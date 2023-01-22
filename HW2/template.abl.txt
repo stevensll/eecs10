@@ -17,6 +17,7 @@ TITLE      'Up/Down Decade Counter'
 " 01/12/18   Glen George  Updated pinout to match new PCB (v2.0)
 " 01/08/20   Glen George  Updated comments
 " 01/04/21   Glen George  Updated comments
+" 01/21/23   Steven Lei   Added code for 12 bit counter
 
 
 
@@ -118,13 +119,8 @@ Q1.CLK   =  Clock;                      " use the global clock pin
 Q0.CLK   =  Clock;                      " use the global clock pin
 
 
-" all of your equations for the BCD counter outputs go here in the form:
-"    Qn := equation;
-
-" ENTER NOTES HERE
-
 " LOW ORDER DIGIT
-Q0  := (!Q1 & !Q0) # (Q1 & Q0) 
+Q0  := !Q0;
 
 Q1  := ((!Q2 & Q1 & Q0) & !DOWN)) 
         # (((!Q3 & Q1 & Q0) # (Q3 & !Q1 & Q0) # (Q2 & !Q1 & !Q0)) & DOWN)
@@ -139,13 +135,21 @@ CountEn1 = ((Q3 & !Q2 & !Q1 & Q0) & DOWN) # ( (!Q3 & !Q2 & !Q1 & !Q0) & DOWN)   
 
 " MIDDLE DIGIT
 
-Q4  := (CountEn1 &) # (!CountEn1 &)
+Q4  := (CountEn1 & !Q4) 
+        # (!CountEn1 & Q4);
 
-Q5  := (CountEn1 &) # (!CountEn1 &)
+Q5  := ((CountEn1 & !CountDown) & ((!Q7 & !Q5 & Q4) # (Q1 & !Q4))) 
+        # ((CountEn1 & CountDown) & ((Q5 & Q4) # (Q7 &   !Q4) # (Q6 & !Q5 & !Q4)))
+        # (!CountEn1 & Q5)
 
-Q6  := (CountEn1 &) # (!CountEn1 &)
-  
-Q7  := (CountEn1 &) # (!CountEn1 &)
+Q6  := ((CountEn1 & !CountDown) & (Q6 & !Q5 & !Q4))
+        # ((CountEn1 & CountDown) & ((Q6 & Q5 & Q4) # (Q7 & !Q2 & !Q4)))
+        # (CountEn1 & ((Q6 & !Q5 & Q4) # (Q6 & !Q5 & !Q4)))
+        # (!CountEn1 & Q6)
+
+Q7  := ((CountEn1 & !CountDown) & ((Q6 &Q5 & Q4) # (Q7 & !Q4)))   
+        # ((CountEn1 & CountDown) & ((!Q7 & !Q6 & !Q5 & !Q4) # (Q7 & !Q5 & Q4)))
+        # (!CountEn1 & Q7);
 
 " HIGH ORDER DIGIT  
 
