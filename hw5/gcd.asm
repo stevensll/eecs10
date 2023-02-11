@@ -22,34 +22,36 @@
 ;0000           WhileLoop:		        ;loop decrementing a until b is 0
 0001  8002;         LDD  b              ;load B
 0002  9F00;         JZ   Done	        ;if b is now 0, we're done
-          ;         JNZ  WhileBody     ;otherwise compute the gcd
+                   ;JNZ  WhileBody     ;otherwise compute the gcd
                 
 ;0003           WhileBody:              ;compute GCD
 0003  8000;         LDD   a             ;get the value of a in the accumulator
 0004  3001;         CMP   b             ;update the C flags by subtracting b from accumulator
-0005  8C01;         JAE   Sub           ;if the carry is clear, then a>=b so go to subtract
-0006  8C04;         JNC   Swap          ;if the carry is not clear, then a < b so swap
+0005  8C03;         JAE   Sub           ;if the carry is clear, then a>=b so go to subtract
+0006  1F80;         NOP
+0007  8C07;          JNC   Swap          ;if the carry is not clear, then a < b so swap
+0008  1F80;         NOP
 
-;0006           Sub:                    ;subtract b from a
-0007  8000;         LDD   a             ;get the value of a in accumulator
-0008  2002;         SUB   b		        ;subtract the value of b
-0009  A001;         STD   a			    ;and store it to a
-000A  C001;         JMP   WhileLoop     ;jump back to the start of Whileloop
-000B  1F80;         NOP           
+;0009           Sub:                    ;subtract b from a
+0009  8000;         LDD   a             ;get the value of a in accumulator
+000A  2002;         SUB   b		        ;subtract the value of b
+000B  A001;         STD   a			    ;and store it to a
+000C  C001;         JMP   WhileLoop     ;jump back to the start of Whileloop
+000D  1F80;         NOP           
 
-;000C           Swap:                   ;swap a and b 
-000C  8000;         LDD   a		        ;get the value of a in the accumulator
-000D  A002;         STD   t		        ;store it in t 
-000E  8002;         LDD   b		        ;get the value of b in the accumulator
-000F  A000;         STD   a		        ;store it in a
-0010  8002;         LDD   t	            ;get the value of t in the accumulator
-0011  A001;         STD   b             ;store it in b
-0012  C001;         JMP   WhileLoop     ;go back to the start of the WhileLoop
-0013  1F80;         NOP 
+;000F           Swap:                   ;swap a and b 
+000F  8000;         LDD   a		        ;get the value of a in the accumulator
+0010  A002;         STD   t		        ;store it in t 
+0011  8002;         LDD   b		        ;get the value of b in the accumulator
+0012  A000;         STD   a		        ;store it in a
+0013  8002;         LDD   t	            ;get the value of t in the accumulator
+0014  A001;         STD   b             ;store it in b
+0015  C001;         JMP   WhileLoop     ;go back to the start of the WhileLoop
+0016  1F80;         NOP 
 
-;0014            Done:			        ;done with the calculation
-0014  8000;         LDD   a			;get returned gcd value into accumulator
-0015  1F00;         RTS                     ;and return
+;0017            Done:			        ;done with the calculation
+0018  8000;         LDD   a			;get returned gcd value into accumulator
+0019  1F00;         RTS                     ;and return
 
 ;Variables
 ;00  ??  a       DB    ?			;the first number for GCD comparison
