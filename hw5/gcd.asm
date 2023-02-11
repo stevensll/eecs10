@@ -50,8 +50,8 @@
 0016  1F80;         NOP 
 
 ;0017            Done:			        ;done with the calculation
-0018  8000;         LDD   a			;get returned gcd value into accumulator
-0019  1F00;         RTS                     ;and return
+0017  8000;         LDD   a			;get returned gcd value into accumulator
+0018  1F00;         RTS                     ;and return
 
 ;Variables
 ;00  ??  a       DB    ?			;the first number for GCD comparison
