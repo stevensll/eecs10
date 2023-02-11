@@ -19,42 +19,40 @@
 ; 	10 Feb 23 Steven Lei	   Converted pseudo code to assembly
 ;	10 Feb 23 Steven Lei       Hand compliled .asm to .obj
 
-;0000            start:			;initialize variables
-0000                LDI   $0    ;load input 1 into accumulator
-0001                STD   a		;load acc into a
-0002                INC         ;load input 2 into accumlator
-0003                STD   b		;load accumulator into b
-0004                STD   t 	;load accumulator into t
-0005
-;0006            WhileLoop:			;loop decrementing a until b is 0
-0006                LDD   b			;load B
-0007                JZ    Done		;if b is now 0, we're done
+;0000           WhileLoop:		        ;loop decrementing a until b is 0
+0001  8002;         LDD  b              ;load B
+0002  9F00;         JZ   Done	        ;if b is now 0, we're done
+          ;         JNZ  WhileBody     ;otherwise compute the gcd
+                
+;0003           WhileBody:              ;compute GCD
+0003  8000;         LDD   a             ;get the value of a in the accumulator
+0004  3001;         CMP   b             ;update the C flags by subtracting b from accumulator
+0005  3030;         JAE   Sub           ;if the carry is clear, then a>=b so go to subtract
+006   30            JNC   Swap          ;if the carry is not clear, then a < b so swap
 
-                    JZ    Done      ;
-0008                ;JNZ  FibBody		;otherwise compute the next number
-0009                STD   n			;always store new value of n (branch slot)
-000A
-            WhileBody:			;compute the next fibonacci number
-            IfCase1:
-                LDD   a		    ;get the value of a in accumulator
-                SUB   b		    ;subtract the value of b
-                STD   a			;and store it to a
+;0006           Sub:                    ;subtract b from a
+0007  8000;         LDD   a             ;get the value of a in accumulator
+0008  2002;         SUB   b		        ;subtract the value of b
+0009  A001;         STD   a			    ;and store it to a
+000A      ;         JMP   WhileLoop     ;jump back to the start of Whileloop
+000B  1F80;         NOP           
 
-            IfCase2:
-                LDD   a		;get the value of a in the accumulator
-                STD   t		;store it in t 
-                LDD   b		;get the value of b in the accumulator
-                STD   a		;store it in a
-                LDD   t	    ;get the value of t in the accumulator
-                STD   B     ;store it in b
+000C;           Swap:                   ;swap a and b 
+0004  8000;         LDD   a		        ;get the value of a in the accumulator
+0010  A002;         STD   t		        ;store it in t 
+0011  8002;         LDD   b		        ;get the value of b in the accumulator
+0011  A000;         STD   a		        ;store it in a
+0011  8002;         LDD   t	            ;get the value of t in the accumulator
+0011  A001;         STD   b             ;store it in b
+0011  2192;         JMP   WhileLoop     ;go back to the start of the WhileLoop
+0111  1F80;         NOP 
 
-            Done:			;done with the calculation
-                LDD   a			;get returned gcd value into accumulator
-                RTS                     ;and return
+0001;            Done:			        ;done with the calculation
+0111  8000;         LDD   a			;get returned gcd value into accumulator
+0111  1F00;         RTS                     ;and return
 
 ;Variables
 
-        a       DB    ?			;the first number for GCD comparison
-        b       DB    ?			;the second number for GCD comparison
-        a1      DB    ?			;
-        t       DB    ?			;temporary storage for swapping
+;00  ??  a       DB    ?			;the first number for GCD comparison
+;01  ??  b       DB    ?			;the second number for GCD comparison
+;02  ??  t       DB    ?			;temporary storage for swapping
