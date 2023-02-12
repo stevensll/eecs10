@@ -1,0 +1,61 @@
+; This subroutine computes GCD value of two unsigned 8-bit integers.
+; The algorithm implemented is Euclid's subtraction algorithm, and is given
+; by the pseudo code below:
+;       gcd(a,b):
+;           while(b!=0):
+;               if a >= b: a = a-b
+;               else: swap a and b (will need a temporary variable)
+;           return a
+; 
+; The values of a and b are 8-bit values stored in memory in the variables a and b
+; respectively. At the end of the program, the GCD of (a,b) is stored in the variable
+; a as an unsigned 8 bit integer and the value of variable b will always be 0.
+; The value of a is then returned to the accumulator. For error handling, 
+; faulty inputs (e.g. gcd(0,0)) will return 0. 
+;
+; Revision History
+;	10 Feb 23 Steven Lei	   Created pseudo code with comments
+; 	10 Feb 23 Steven Lei	   Converted pseudo code to assembly
+;	11 Feb 23 Steven Lei       Hand compliled .asm to .obj
+;   11 Feb 23 Steven Lei       Debugged program and ran test cases
+;   11 Feb 23 Steven Lei       Successfully tested program
+
+;0000           EuclidLoop:		        ;loop until b is 0
+0000  8001;         LDD   b             ;load the value of b
+0001  3033;         CMPI  0             ;compare b to 0
+0002  9F14;         JZ    Done	        ;if b is now 0, we're done
+0003  1F80;         NOP 
+                   ;JNZ   EuclidCheck   ;otherwise compute the gcd by decrementing a
+
+;0004           EuclidCheck:            ;first check if a>=b
+0004  8000;         LDD   a             ;load the value of a in the accumulator
+0005  3001;         CMP   b             ;compare a to b
+0006  8C04;         JAE   Sub           ;if a>=b then go to subtract branch
+0007  1F80;         NOP
+0008  8F06;         JB    Swap          ;else a<b, so go to swap branch
+0009  1F80;         NOP
+
+;000A           Sub:                    ;subtract b from a
+000A  8000;         LDD   a             ;load the value of a in accumulator
+000B  1001;         SUB   b		        ;subtract the value of b from accumulator
+000C  A000;         STD   a			    ;and store it to a
+000D  C000;         JMP   EuclidLoop    ;jump back to the start of EuclidLoop
+000E  1F80;         NOP           
+
+;000F           Swap:                   ;swap a and b using register X as a temporary variable
+000F  8000;         LDD   a		        ;load the value of a in the accumulator
+0010  0780;         TAX                 ;store it in register X
+0011  8001;         LDD   b		        ;load the value of b in the accumulator
+0012  A000;         STD   a		        ;store it in a
+0013  6701;         TXA   	            ;load the value of register X in the accumulator
+0014  A001;         STD   b             ;store it in b
+0015  C000;         JMP   EuclidLoop    ;go back to the start of the EuclidLoop
+0016  1F80;         NOP 
+
+;0017            Done:			        ;done with the calculation
+0017  8000;         LDD   a			    ;load the value of a (the gcd value) into the accumulator
+0018  1F00;         RTS                 ;and return
+ 
+;Variables
+;00  ??  a         DB    ?			;the first number for GCD comparison
+;01  ??  b         DB    ?			;the second number for GCD comparison
