@@ -27,16 +27,15 @@ TITLE      'Program Address Unit Unit Demo'
 " 02/14/18   Glen George  Specialized for Program Memory Access Unit
 " 01/08/20   Glen George  Updated comments
 " 01/04/21   Glen George  Updated comments
-" 02/20/23   Steven Lei   Created pseudo code
-" 02/20/23   Steven Lei   
+
 
 
 " Pin/Signal Declarations
 
 " Inputs
 
-DataOff7..DataOff6	    pin  80..81;	"input  8-bit data/offset input
-DataOff5..DataOff0	    pin  83..88;
+DataOff7..DataOff6	pin  80..81;	"input  8-bit data/offset input
+DataOff5..DataOff0	pin  83..88;
 
 AddrData12..AddrData9	pin  102..105;	"input  13-bit data or address input
 AddrData8		        pin  111;
@@ -46,39 +45,39 @@ AddrData1..AddrData0	pin  100..101;
 Control29..Control26	pin  14..11;	"input  30 bits of control input
 Control25..Control20	pin  9..4;
 Control19..Control14	pin  143..138;
-Control13..Control9	    pin  135..131;
-Control8..Control4	    pin  124..120;
-Control3..Control0	    pin  116..113;
+Control13..Control9	pin  135..131;
+Control8..Control4	pin  124..120;
+Control3..Control0	pin  116..113;
 
-Reset			        pin  40;	"input  system reset
+Reset			pin  40;	"input  system reset
 
-Clock           	    pin  128;	"input  system clock
+Clock           	pin  128;	"input  system clock
 
 
 " Outputs
 
 AccumAddr12..AccumAddr8	pin  29..33;	"13 bits of accumulator/address
-AccumAddr7		        pin  16;
+AccumAddr7		pin  16;
 AccumAddr6..AccumAddr1	pin  21..26;
-AccumAddr0		        pin  28;
+AccumAddr0		pin  28;
 
-XReg7..XReg4		    pin  68..71;	"8 bits of X register
-XReg3..XReg0		    pin  76..79;
+XReg7..XReg4		pin  68..71;	"8 bits of X register
+XReg3..XReg0		pin  76..79;
 
-SReg7..SReg2		    pin  58..63;	"8 bits of S register
-SReg1..SReg0		    pin  66..67;
+SReg7..SReg2		pin  58..63;	"8 bits of S register
+SReg1..SReg0		pin  66..67;
 
-!Flags7..!Flags5	    pin  42..44;	"the flags (8 bits, active low)
-!Flags4..!Flags0	    pin  48..52;
+!Flags7..!Flags5	pin  42..44;	"the flags (8 bits, active low)
+!Flags4..!Flags0	pin  48..52;
 
 
 
 " Buses
- 
+
 DataOff    =  [DataOff7..DataOff0];		"8 bits of data or offset
 AddrData   =  [AddrData12..AddrData0];		"13 bits of address or data
 Control    =  [Control29..Control0];		"30 bits of control
-AccumAddr  =  [AccumAddr12..AccumAddr0];    "accumulator or address (13 bits)
+AccumAddr  =  [AccumAddr12..AccumAddr0];	"accumulator or address (13 bits)
 Flags      =  [Flags7..Flags0];			"the flags (8 bits)
 XReg       =  [XReg7..XReg0];			"8 bit X-Register
 SReg       =  [SReg7..SReg0];			"8 bit S-Register
@@ -88,7 +87,7 @@ SReg       =  [SReg7..SReg0];			"8 bit S-Register
 " declare the unit to be tested
 
 ProgramAccess INTERFACE  (Offset7..Offset0, Direct12..Direct0,
-                          ControlSignal29..ControlSignal0,  " you must fill in 'control signals'
+                          control signals,  " you must fill in 'control signals'
                           Reset, Clock
                           -> ProgAddr12..ProgAddr0, PC12..PC0);
 
@@ -96,6 +95,8 @@ ProgramAccess INTERFACE  (Offset7..Offset0, Direct12..Direct0,
 " create an instance of the unit to be tested
 
 PAUnit    FUNCTIONAL_BLOCK  ProgramAccess;
+
+
 
 EQUATIONS
 
@@ -108,12 +109,11 @@ PAUnit.[Offset7..Offset0]   =  [DataOff7..DataOff0];
 PAUnit.[Direct12..Direct0]  =  [AddrData12..AddrData0];
 
 " Program Memory Access Unit Control Inputs
+
 " connect each Program Memory Access Unit control signal or bus to a subset of
 "    Control29..Control0
 
-PAUnit.[ControlSignal29..ControlSignal0] = [Control29..Conrol0];
-
-" Program Meory Reset and Clock Inputs
+PAUnit.[ControlSignal29..Control0] = [Control29..Control0]
 
 PAUnit.Reset  =  Reset;
 PAUnit.Clock  =  Clock;

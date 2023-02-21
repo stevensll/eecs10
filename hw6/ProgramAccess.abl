@@ -1,0 +1,55 @@
+MODULE      ProgramAccess
+INTERFACE   (Offset7..Offset0, Direct12..Direct0,
+                          ControlSignal29..ControlSignal0,
+                          Reset, Clock
+                          -> ProgAddr12..ProgAddr0, PC12..PC0);
+
+" Description:  This module implements the ProgramAccess unit
+"               k
+"
+" Inputs:       DataOff[7..0]    - 8 bits of data or offset input
+"               AddrData[12..0]  - 13 bits of address or data input
+"               Control[29..0]   - 30 bits of control input
+"               Reset            - system reset
+"               Clock            - system clock
+
+
+
+" Outputs:      AccumAddr[12..0] - 13 bits of address or accumulator output
+"               XReg[7..0]       - 8 bits of X register output
+"               SReg[7..0]       - 8 bits of S register output
+"               Flags[7..0]      - 8 bits of flag output (active low)
+
+" Revision History:
+" 02/20/23   Steven Lei  Created file
+" 02/20/23   Steven Lei  Impelemented 
+" 02/20/23   Steven Lei  Updated comments
+" 02/20/23   Steven Lei  ADded test vectors
+
+" Pin/Signal Declarations
+
+" Inputs
+
+Offset7..Offset0                    pin;    "offset for index registers
+Direct12..Direct0                   pin;    "direct instruction
+ControlSignal29..ControlSignal0     pin;    "control pins
+
+" Outputs
+
+ProgAddr12..ProgAddr12  pin;
+PC12..PC0               pin;
+
+EQUATIONS
+
+"load 
+
+[AccumAddr12..AccumAddr0] = [Direct12..Direct0];
+
+
+"add 0
+
+
+
+
+
+END ProgramAccess
