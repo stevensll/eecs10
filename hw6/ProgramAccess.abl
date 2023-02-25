@@ -11,7 +11,7 @@ INTERFACE   (Offset7..Offset0, Direct12..Direct0,
 " 4 control signals, a reset and clock, and returns the appropriate
 " ProgramAddress and PC by selecting the right inputs and adding them.
 
-" The control signals work in combinations to creat the following functions: 
+" The control signals work in combinations to create the following functions: 
 " 1 0 0 0 -> direct jump                    -> PC = a
 " 0 0 0 1 -> hold                           -> PC = PC + 0
 " 0 0 1 1 -> increment                      -> PC = PC + 1
@@ -41,9 +41,9 @@ PC12..PC0                       pin ISTYPE 'REG, KEEP';     " 13 bit program cou
 
 " Intermediate Terms
 
-SOffset12..SOffset0             node ;         " used to convert 8 bit signed offset data to 13 bit
-SHOffset12..SHOffset0           node;          " used to convert the first 5 bit of offset data to 13 bit
-SLOffset12..SLOffset0           node;          " used to convert the last 8 bit of offset data to 13 bit
+SOffset12..SOffset0             node ;         " sign extend the 8 bit offset data to 13 bit
+SHOffset12..SHOffset0           node;          " load the first 5 high bits to PC
+SLOffset12..SLOffset0           node;          " load the last 8 low bits to PC
 
 CarryIn12..CarryIn0           	node ;         " 13 bit CarryIn used in adder.
 A12..A0                         node ;         " first input of the adder
@@ -78,28 +78,27 @@ PC.CLK = Clock;
 PC.CLR = !Reset;
 
 " We will convert the 8 bit offset data depending on our signal
-" For converting signed 8 bit to 13 bit, we can just append the highest order bit leftwards
-" For converting the hi 5 bits of the offset to 13 bit, we can just replace them in PC
-" For converting the last  8 bits of the offset to 13 bit, we can just append 0 leftwards
+" We can sign extend the 8 bit offset to 13 bits by appending the high order bit
+" For loading the first 5 hi bits, we can load the 5 hi bits into PC and keep the rest
+" For loading the last 8 low bits, we can load the 8 low bits into PC and keep the rest
 
 
 SOffset = [Offset7, Offset7, Offset7, Offset7, Offset7, Offset7..Offset0];
 SHOffset =[Offset4..Offset0, PC7..PC0];
 SLOffset =[PC12..PC8, Offset7..Offset0];
 
-
 " Here we use logic to select the adder inputs
 " A will be dependent on the Load signals
 " and B (the MUX) will be dependent on the select signals
 " as described in the description
 
-A = (!Load & PC);
+A = (!Load & PC);                                       " If load = 1 then PC is not loaded in A 
 B = ((!Select2 & !Select1 & !Select0 & Direct)          " 1 0 0 0 PC = a
   #  (!Select2 & !Select1 & Select0 & ZEROES)           " 0 0 0 1 PC = PC+0
-  #  (!Select2 & Select1 & Select0 & ONE)		" 0 0 1 1 PC = PC+1
+  #  (!Select2 & Select1 & Select0 & ONE)		            " 0 0 1 1 PC = PC+1
   #  (!Select2 & Select1 & !Select0 & SOffset)          " 0 0 1 0 PC = PC + r
-  #  (Select2 & !Select0 & SLOffset) 			" 1 X 0 0 PC = [PC12..PC8, Off7..Off0]
-  #  (Select2 & Select0 & SHOffset)			" 1 X 0 1 PC = [Off4..Off0, PC7..PC0]
+  #  (Select2 & !Select0 & SLOffset) 			              " 1 X 0 0 PC = [PC12..PC8, Off7..Off0]
+  #  (Select2 & Select0 & SHOffset)			                " 1 X 0 1 PC = [Off4..Off0, PC7..PC0]
   );
 
 " From the 8 bit adder assignment, we know the following
@@ -107,7 +106,7 @@ B = ((!Select2 & !Select1 & !Select0 & Direct)          " 1 0 0 0 PC = a
 " For each CarryOut, C(n) = (A & B) # (C(n-1) & (A $ B))
 
 " CarryOut[N] = CarryIn[N+1]
-" First CarryIn is zero, we take care of incrementation through control signals.
+" First CarryIn is zero, we take care of incrementation by adding ONE
 
 CarryIn0 = 0;
 CarryIn[12..1]=(A[11..0] & B[11..0]) # (CarryIn[11..0] & (A[11..0] $ B[11..0]));
