@@ -50,7 +50,7 @@
 0013  6701;         TXA   	            ;load the value of register X in the accumulator
 0014  A001;         STD   b             ;store it in b
 0015  C000;         JMP   EuclidLoop    ;go back to the start of the EuclidLoop
-0016  1F80;         NOP 
+0016  1F80;         
 
 ;0017            Done:			        ;done with the calculation
 0017  8000;         LDD   a			    ;load the value of a (the gcd value) into the accumulator

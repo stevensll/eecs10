@@ -1,5 +1,5 @@
-MODULE      PAUDemo
-TITLE      'Program Address Unit Unit Demo'
+MODULE      ALUDemo
+TITLE      'ALU Unit Demo'
 
 
 " Description:  This module is the top-level for the unit demos using the Unit
@@ -7,7 +7,7 @@ TITLE      'Program Address Unit Unit Demo'
 "               (outputs) for demonstrating each of the different units of the
 "               CPU.  The Unit Demo Board has a total of 51 inputs and 35
 "               outputs.  This version of the demo module is meant to be used
-"               with the Program Memory Access Unit.
+"               with the ALU.
 "
 " Inputs:       DataOff[7..0]    - 8 bits of data or offset input
 "               AddrData[12..0]  - 13 bits of address or data input
@@ -24,12 +24,9 @@ TITLE      'Program Address Unit Unit Demo'
 " Revision History:
 " 02/06/18   Glen George  Initial Revision
 " 02/14/18   Glen George  Fixed some typos
-" 02/14/18   Glen George  Specialized for Program Memory Access Unit
+" 02/14/18   Glen George  Specialized for ALU
 " 01/08/20   Glen George  Updated comments
 " 01/04/21   Glen George  Updated comments
-" 02/22/23   Steven Lei   Updated formatting
-" 02/22/23   Steven Lei   Updated controls inputs
-" 02/22/23   Steven Lei   Updated and tested ProgramAccess
 
 
 
@@ -37,8 +34,8 @@ TITLE      'Program Address Unit Unit Demo'
 
 " Inputs
 
-DataOff7..DataOff6	pin  80..81;	    "input  8-bit data/offset input
-DataOff5..DataOff0	pin  83..88;
+DataOff7..DataOff6	    pin  80..81;	"input  8-bit data/offset input
+DataOff5..DataOff0	    pin  83..88;
 
 AddrData12..AddrData9	pin  102..105;	"input  13-bit data or address input
 AddrData8		        pin  111;
@@ -52,9 +49,9 @@ Control13..Control9	    pin  135..131;
 Control8..Control4	    pin  124..120;
 Control3..Control0	    pin  116..113;
 
-Reset			        pin  40;	    "input  system reset
+Reset			        pin  40;	"input  system reset
 
-Clock           	    pin  128;	    "input  system clock
+Clock           	    pin  128;	"input  system clock
 
 
 " Outputs
@@ -64,10 +61,10 @@ AccumAddr7		        pin  16;
 AccumAddr6..AccumAddr1	pin  21..26;
 AccumAddr0		        pin  28;
 
-XReg7..XReg4		    pin  68..71;	    "8 bits of X register
-XReg3..XReg0		    pin  76..79;
+XReg7..XReg4		    pin  68..71;	"8 bits of X register
+XReg3..XReg0	    	pin  76..79;
 
-SReg7..SReg2		    pin  58..63;	    "8 bits of S register
+SReg7..SReg2		    pin  58..63;	"8 bits of S register
 SReg1..SReg0		    pin  66..67;
 
 !Flags7..!Flags5	    pin  42..44;	"the flags (8 bits, active low)
@@ -89,15 +86,15 @@ SReg       =  [SReg7..SReg0];			"8 bit S-Register
 
 " declare the unit to be tested
 
-ProgramAccess INTERFACE  (Offset7..Offset0, Direct12..Direct0,
-                          Load, Select2..Select0,
-                          Reset, Clock
-                          -> ProgAddr12..ProgAddr0, PC12..PC0);
+ALU INTERFACE  (Data7..Data0,
+                control signals,       " you must fill in 'control signals'
+                Reset, Clock
+                -> Accum7..Accum0, Flags7..Flags0);
 
 
 " create an instance of the unit to be tested
 
-PAUnit    FUNCTIONAL_BLOCK  ProgramAccess;
+ALUnit    FUNCTIONAL_BLOCK  ALU;
 
 
 
@@ -106,31 +103,28 @@ EQUATIONS
 
 " connect up the unit to be tested
 
-" Program Memory Access Unit Inputs
+" ALU Inputs
 
-PAUnit.[Offset7..Offset0]   =  [DataOff7..DataOff0];
-PAUnit.[Direct12..Direct0]  =  [AddrData12..AddrData0];
+ALUnit.[Data7..Data0]  =  [DataOff7..DataOff0];
 
-" Program Memory Access Unit Control Inputs
+" ALU Control Inputs
 
-" connect each Program Memory Access Unit control signal or bus to a subset of
-"    Control29..Control0
+" connect each ALU control signal/bus to a subset of Control29..Control0
 
-PAUnit.[Load, Select2, Select1, Select0] = [Control3..Control0];
+ALUnit.Reset  =  Reset;
+ALUnit.Clock  =  Clock;
 
-PAUnit.Reset  =  Reset;
-PAUnit.Clock  =  Clock;
+" ALU Outputs
 
-" Program Memory Access Unit Outputs
-
-[AccumAddr12..AccumAddr0]  =  PAUnit.[ProgAddr12..ProgAddr0];
+[AccumAddr7..AccumAddr0]  =  ALUnit.[Accum7..Accum0];
+[Flags7..Flags0]          =  ALUnit.[Flags7..Flags0];
 
 
 " unused outputs are 0
 
-Flags[7..0] = 0;
-XReg = [DataOff4..DataOff0, 0, 0, 0];
-SReg = [DataOff7..DataOff0];
+AccumAddr[12..8] = 0;
+XReg = 0;
+SReg = 0;
 
 
-END  PAUDemo
+END  ALUDemo

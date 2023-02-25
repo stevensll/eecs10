@@ -1,0 +1,35 @@
+MODULE ALU
+INTERFACE (Data7..Data0,
+           control signals,       " you must fill in 'control signals'
+           Reset, Clock
+        -> Accum7..Accum0, Flags7..Flags0);
+
+" Description
+
+" Inputs
+
+Data7..Data0            pin;
+C
+
+Reset                   pin;
+Clock                   pin;
+
+
+" Outputs
+
+Accum7..Accum0          pin;
+Flags7..Flags0          pin;
+
+
+" Intermediate Terms
+
+
+" Buses
+
+Data = [Data7..Data0];
+C = 
+
+
+Accum = [Accum7..Acuum0];
+Flags = [Flags7..Flags0];
+

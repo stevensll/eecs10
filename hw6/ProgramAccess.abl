@@ -1,55 +1,120 @@
 MODULE      ProgramAccess
 INTERFACE   (Offset7..Offset0, Direct12..Direct0,
-                          ControlSignal29..ControlSignal0,
-                          Reset, Clock
-                          -> ProgAddr12..ProgAddr0, PC12..PC0);
+            Load, Select2..Select0,
+            Reset, Clock
+            -> ProgAddr12..ProgAddr0, PC12..PC0);
 
-" Description:  This module implements the ProgramAccess unit
-"               k
-"
-" Inputs:       DataOff[7..0]    - 8 bits of data or offset input
-"               AddrData[12..0]  - 13 bits of address or data input
-"               Control[29..0]   - 30 bits of control input
-"               Reset            - system reset
-"               Clock            - system clock
+" Description 
 
+" This is the implementation of the ProgramAccess Module. 
+" It takes in 8 bits of signed offset data, 13 bits of direct data,
+" 4 control signals, a reset and clock, and returns the appropriate
+" ProgramAddress and PC by selecting the right inputs and adding them.
 
-
-" Outputs:      AccumAddr[12..0] - 13 bits of address or accumulator output
-"               XReg[7..0]       - 8 bits of X register output
-"               SReg[7..0]       - 8 bits of S register output
-"               Flags[7..0]      - 8 bits of flag output (active low)
+" The control signals work in combinations to creat the following functions: 
+" 1 0 0 0 -> direct jump                    -> PC = a
+" 0 0 0 1 -> hold                           -> PC = PC + 0
+" 0 0 1 1 -> increment                      -> PC = PC + 1
+" 0 0 1 0 -> add r                          -> PC = PC + r
+" 1 1 X 0 -> load last 8 bits of offset     -> PC = [PC12..PC8, Off7..Off0]
+" 1 1 X 1 -> load first 5 bits of offset    -> PC = [Off4..Off0, PC7..PC0]
 
 " Revision History:
-" 02/20/23   Steven Lei  Created file
-" 02/20/23   Steven Lei  Impelemented 
-" 02/20/23   Steven Lei  Updated comments
-" 02/20/23   Steven Lei  ADded test vectors
-
-" Pin/Signal Declarations
+" 02/22/23   Steven Lei   Created file
+" 02/22/23   Steven Lei   Added logic and tested
+" 02/22/23   STeven Lei   Updated comments
 
 " Inputs
 
-Offset7..Offset0                    pin;    "offset for index registers
-Direct12..Direct0                   pin;    "direct instruction
-ControlSignal29..ControlSignal0     pin;    "control pins
+Offset7..Offset0                pin;                        " 8 bits of signed offset data
+Direct12..Direct0               pin;                        " 13 bits of direct data
+Load                            pin;                        " load signal for PC
+Select2..Select0                pin;                        " select signals for MUX
+Reset                           pin;                        " reset
+Clock                           pin;                        " clock
 
 " Outputs
 
-ProgAddr12..ProgAddr12  pin;
-PC12..PC0               pin;
+ProgAddr12..ProgAddr0           pin;                        " 13 bit program address output, same as PC
+PC12..PC0                       pin ISTYPE 'REG, KEEP';     " 13 bit program counter output
+
+
+" Intermediate Terms
+
+SOffset12..SOffset0             node ;         " used to convert 8 bit signed offset data to 13 bit
+SHOffset12..SHOffset0           node;          " used to convert the first 5 bit of offset data to 13 bit
+SLOffset12..SLOffset0           node;          " used to convert the last 8 bit of offset data to 13 bit
+
+CarryIn12..CarryIn0           	node ;         " 13 bit CarryIn used in adder.
+A12..A0                         node ;         " first input of the adder
+B12..B0                         node;          " second input of the adder
+Sum12..Sum0                     node ;         " adder sum
+
+
+" Buses
+
+Direct = [Direct12..Direct0];
+SOffset = [SOffset12..SOffset0];
+SHOffset = [SHOffset12..SHOffset0];
+SLOffset = [SLOffset12..SLOffset0];
+
+A = [A12..A0];
+B = [B12..B0];
+Sum = [Sum12..Sum0];
+CarryIn = [CarryIn12..CarryIn0];
+
+PC = [PC12..PC0];
+ProgAddr = [ProgAddr12..ProgAddr0];
+
+" Constants
+
+ZEROES = [0,0,0,0,0,0,0,0,0,0,0,0,0];
+ONE =    [0,0,0,0,0,0,0,0,0,0,0,0,1];
+
 
 EQUATIONS
 
-"load 
+PC.CLK = Clock;
+PC.CLR = !Reset;
 
-[AccumAddr12..AccumAddr0] = [Direct12..Direct0];
+" We will convert the 8 bit offset data depending on our signal
+" For converting signed 8 bit to 13 bit, we can just append the highest order bit leftwards
+" For converting the hi 5 bits of the offset to 13 bit, we can just replace them in PC
+" For converting the last  8 bits of the offset to 13 bit, we can just append 0 leftwards
 
 
-"add 0
+SOffset = [Offset7, Offset7, Offset7, Offset7, Offset7, Offset7..Offset0];
+SHOffset =[Offset4..Offset0, PC7..PC0];
+SLOffset =[PC12..PC8, Offset7..Offset0];
 
 
+" Here we use logic to select the adder inputs
+" A will be dependent on the Load signals
+" and B (the MUX) will be dependent on the select signals
+" as described in the description
 
+A = (!Load & PC);
+B = ((!Select2 & !Select1 & !Select0 & Direct)          " 1 0 0 0 PC = a
+  #  (!Select2 & !Select1 & Select0 & ZEROES)           " 0 0 0 1 PC = PC+0
+  #  (!Select2 & Select1 & Select0 & ONE)		" 0 0 1 1 PC = PC+1
+  #  (!Select2 & Select1 & !Select0 & SOffset)          " 0 0 1 0 PC = PC + r
+  #  (Select2 & !Select0 & SLOffset) 			" 1 X 0 0 PC = [PC12..PC8, Off7..Off0]
+  #  (Select2 & Select0 & SHOffset)			" 1 X 0 1 PC = [Off4..Off0, PC7..PC0]
+  );
+
+" From the 8 bit adder assignment, we know the following
+" For each sum, S = A $ B $ CarryIn
+" For each CarryOut, C(n) = (A & B) # (C(n-1) & (A $ B))
+
+" CarryOut[N] = CarryIn[N+1]
+" First CarryIn is zero, we take care of incrementation through control signals.
+
+CarryIn0 = 0;
+CarryIn[12..1]=(A[11..0] & B[11..0]) # (CarryIn[11..0] & (A[11..0] $ B[11..0]));
+
+Sum = (A $ B $ CarryIn);
+PC:= Sum;                           "the final PC value will just be the sum
+ProgAddr = PC;                      "and ProgAddr is just the PC
 
 
 END ProgramAccess
