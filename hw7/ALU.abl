@@ -1,6 +1,8 @@
 MODULE ALU
 INTERFACE (Data7..Data0,
-           control signals,       " you must fill in 'control signals'
+           F3..F0,
+           Subtract,
+           Load,
            Reset, Clock
         -> Accum7..Accum0, Flags7..Flags0);
 
@@ -9,7 +11,10 @@ INTERFACE (Data7..Data0,
 " Inputs
 
 Data7..Data0            pin;
-C
+
+F3..F0                  pin;
+Subtract                pin;
+Load                    pin;
 
 Reset                   pin;
 Clock                   pin;
@@ -23,13 +28,74 @@ Flags7..Flags0          pin;
 
 " Intermediate Terms
 
+FOut7..FOut0            node;                    
+
+A7..A0                  node;
+B7..B0                  node;
+Sum7..Sum0              node;
+CarryOut7..CarryOut0    node;
 
 " Buses
 
 Data = [Data7..Data0];
-C = 
 
+FOut = [FOut7..FOut0];
+
+A = [A7..A0];
+B = [B7..B0];
+Sum = [Sum7..Sum0];
+CarryOut = [CarryOut7..CaryOut0];
 
 Accum = [Accum7..Acuum0];
 Flags = [Flags7..Flags0];
 
+" Constants
+ZEROES = [0,0,0,0,0,0,0,0];
+ONES =   [1,1,1,1,1,1,1,1];
+
+
+EQUATIONS
+
+
+" F-BLOCK
+
+FOut = (!F3 & !F2 & !F1 & !F0 & ZEROES)            " 0 
+     # (!F3 & !F2 & !F1 &  F0 & !(Accum # Data))   " A nor B
+     # (!F3 & !F2 &  F1 &  F0 & (!Accum))          " not A
+     # (!F3 &  F2 & !F1 &  F0 & (!Data))           " not B
+     # (!F3 &  F2 &  F1 & !F0 & (Accum $ Data))    " A xor B
+     # (!F3 &  F2 &  F1 &  F0 & !(Accum & Data))   " A nand B
+     # ( F3 & !F2 & !F1 & !F0 & (Accum & Data))    " A and B
+     # ( F3 & !F2 & !F1 &  F0 & !(Accum $ Data))   " A xnor B
+     # ( F3 &  F2 &  F1 & !F0 & (Accum # Data ))   " A or B
+     # ( F3 &  F2 &  F1 &  F0 & ONES)              " 1
+  );
+
+
+
+" ADDER/SUBTRACTER
+
+" CarryOut0 = (A0 & (B0 $ Subtract)) # ((A0 $ (B0 $ Subtract)) & Subtract);
+
+CarryOut  = (A & (B $ Subtract)) # ((A $ (B $ Subtract)) & [CarryOut6..CarryOut0, Subtract]);
+CarryOut7 = CarryOut7 $ Subtract                " correct Carry for carry/borrow 
+Sum = ((A $ (B $ Subtract)) $ CarryOut);
+
+" SHIFTER
+
+
+
+
+
+
+
+Accum = (Sum & !Load) # (Accum & Data);
+
+Accum.Clock = Clock;
+Accum.CLR = !Reset;
+
+Flags.Clock = Clock;
+Flags.CLR = !Reset;
+
+
+END ALU
