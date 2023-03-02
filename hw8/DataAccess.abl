@@ -1,0 +1,40 @@
+MODULE DAU
+INTERFACE DataAccess   (Accum7..Accum0, Offset7..Offset0,
+
+                       Reset, Clock
+                       -> DataAddr7..DataAddr0, XReg7..XReg0, SReg7..SReg0);
+
+
+" Inputs
+
+
+Accum7..Accum0              pin;
+Offset7..Offset0            pin;
+
+Reset                       pin;
+Clock                       pin;
+
+" Outputs
+
+DataAddr7..DataAddr0        pin;
+XReg7..XReg0                pin;
+SReg7..SReg0                pin;
+
+
+" Buses
+
+DataAddr = [DataAddr7..DataAddr0];
+XReg =     [XReg7..XReg0];
+SReg =     [SReg7..SReg7];
+
+
+EQUATIONS
+
+DataAddr.CLK = Clock;
+DataAddr.CLR = !Reset;
+
+XReg.CLK = Clock;
+XReg.CLR = !Reset;
+
+SReg.CLK = Clock;
+SReg.CLR = !Reset;

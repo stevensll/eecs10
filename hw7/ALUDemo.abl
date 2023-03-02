@@ -27,48 +27,51 @@ TITLE      'ALU Unit Demo'
 " 02/14/18   Glen George  Specialized for ALU
 " 01/08/20   Glen George  Updated comments
 " 01/04/21   Glen George  Updated comments
-
+" 02/26/23	 Steven Lei   Fixed formatting
+" 02/27/23	 Steven Lei   Updated control inputs and testing ALU
+" 02/28/23   Steven Lei	  Continue testing ALU
+" 03/01/23	 Steven Lei	  Updated comments
 
 
 " Pin/Signal Declarations
 
 " Inputs
 
-DataOff7..DataOff6	    pin  80..81;	"input  8-bit data/offset input
-DataOff5..DataOff0	    pin  83..88;
+DataOff7..DataOff6	        pin  80..81;	"input  8-bit data/offset input
+DataOff5..DataOff0	        pin  83..88;
 
-AddrData12..AddrData9	pin  102..105;	"input  13-bit data or address input
-AddrData8		        pin  111;
-AddrData7..AddrData2	pin  93..98;
-AddrData1..AddrData0	pin  100..101;
+AddrData12..AddrData9		pin  102..105;	"input  13-bit data or address input
+AddrData8		        	pin  111;
+AddrData7..AddrData2		pin  93..98;
+AddrData1..AddrData0		pin  100..101;
 
-Control29..Control26	pin  14..11;	"input  30 bits of control input
-Control25..Control20	pin  9..4;
-Control19..Control14	pin  143..138;
-Control13..Control9	    pin  135..131;
-Control8..Control4	    pin  124..120;
-Control3..Control0	    pin  116..113;
+Control29..Control26		pin  14..11;	"input  30 bits of control input
+Control25..Control20		pin  9..4;
+Control19..Control14		pin  143..138;
+Control13..Control9	        pin  135..131;
+Control8..Control4	        pin  124..120;
+Control3..Control0	        pin  116..113;
 
-Reset			        pin  40;	"input  system reset
+Reset			        	pin  40;	"input  system reset
 
-Clock           	    pin  128;	"input  system clock
+Clock           	    	pin  128;	"input  system clock
 
 
 " Outputs
 
-AccumAddr12..AccumAddr8	pin  29..33;	"13 bits of accumulator/address
-AccumAddr7		        pin  16;
-AccumAddr6..AccumAddr1	pin  21..26;
-AccumAddr0		        pin  28;
+AccumAddr12..AccumAddr8	    pin  29..33;	"13 bits of accumulator/address
+AccumAddr7		        	pin  16;
+AccumAddr6..AccumAddr1	    pin  21..26;
+AccumAddr0		        	pin  28;
 
-XReg7..XReg4		    pin  68..71;	"8 bits of X register
-XReg3..XReg0	    	pin  76..79;
+XReg7..XReg4		    	pin  68..71;	"8 bits of X register
+XReg3..XReg0	    		pin  76..79;
 
-SReg7..SReg2		    pin  58..63;	"8 bits of S register
-SReg1..SReg0		    pin  66..67;
+SReg7..SReg2		    	pin  58..63;	"8 bits of S register
+SReg1..SReg0		   		pin  66..67;
 
-!Flags7..!Flags5	    pin  42..44;	"the flags (8 bits, active low)
-!Flags4..!Flags0	    pin  48..52;
+!Flags7..!Flags5	    	pin  42..44;	"the flags (8 bits, active low)
+!Flags4..!Flags0	    	pin  48..52;
 
 
 
@@ -87,9 +90,12 @@ SReg       =  [SReg7..SReg0];			"8 bit S-Register
 " declare the unit to be tested
 
 ALU INTERFACE  (Data7..Data0,
+				Mode3..Mode0,
+                LoadFlags,
+                MaskC, MaskV, MaskS, MaskZ,
+                WC,
                 F3..F0,
-                Subtract, 
-                Load,
+	           	Shift, Rotate, Direction,
                 Reset, Clock
                 -> Accum7..Accum0, Flags7..Flags0);
 
@@ -109,7 +115,13 @@ ALUnit.[Data7..Data0]  =  [DataOff7..DataOff0];
 
 " ALU Control Inputs
 
-ALUnit.[F3..F0, Subtract, Load] = [Control5..Control0];
+ALUnit.[F3..F0] = 					[Control7..Control4];
+ALUnit.[Mode3..Mode0] = 			[Control3..Control0];
+ALUnit.[WC] = 			    		[Control9];
+ALUnit.[LoadFlags] = 	    		[Control8]; 		
+ALUnit.[MaskC, MaskV, MaskS, MaskZ]= [Control13..Control10];
+
+ALUnit.[Shift, Rotate, Direction] = [Control23..Control21];
 
 ALUnit.Reset  =  Reset;
 ALUnit.Clock  =  Clock;
@@ -123,8 +135,8 @@ ALUnit.Clock  =  Clock;
 " unused outputs are 0
 
 AccumAddr[12..8] = 0;
-XReg = 0;
-SReg = 0;
+XReg = [0,0,0,0,DataOff3..DataOff0];
+SReg = [0,0,0,0,Control7..Control4];
 
 
 END  ALUDemo

@@ -1,39 +1,89 @@
 MODULE ALU
 INTERFACE (Data7..Data0,
+           Mode3..Mode0,
+           LoadFlags,
+           WC,
            F3..F0,
-           Subtract,
-           Load,
+           MaskC, MaskV, MaskS, MaskZ,
+           Shift, Rotate, Direction,
            Reset, Clock
-        -> Accum7..Accum0, Flags7..Flags0);
+           -> Accum7..Accum0, Flags7..Flags0);
 
 " Description
 
+" This is the implementation of the ALU module for HW7 without EC. It takes in
+" 8 bits of data input and computes the necessary logic, adder, shift, rotate,
+" or compare operations. The outputs are returned to the accumulator and the flags
+" are updated as appropriate. Below are a list of operations from muxing
+
+" M3 M2 M1 M0 (MODE MUX)
+"  0  0  0  0 -> HOLD
+"  0  0  0  1 -> LOGIC
+"  0  0  1  0 -> ADD/SUB/ADC/SBB,		 Note: FBlock must be set to 0101 (!B) for SUB/SBB. High WC to use carry flag
+"  0  0  1  1 -> ASL/LSL/RLC, 	       Note: To use Carry, High WC to use carry flag
+"  0  1  0  0 -> INC
+"  1  0  0  0 -> DEC                    	 Note: FBlock must be set to 0101 
+"  1  1  0  0 -> CMP, 			       Note: FBlock must be set to 0101 (!B)
+"  1  1  1  0 -> TST, 				 Note: FBlock must be set to 1000 (AND)
+"  1  1  1  1 -> LDD
+
+" F3 F2 F1 F0 (LOGIC MUX)
+"  0  0  0  0 -> ZERO
+"  0  0  0  1 -> NOR
+"  0  0  1  1 -> NOT A
+"  0  1  0  1 -> NOT B 				 Note: For SUB/SBB, FBlock must be set to this.
+"  0  1  1  0 -> XOR
+"  0  1  1  1 -> NAND
+"  1  0  0  0 -> AND
+"  1  0  0  1 -> XNOR
+"  1  1  1  0 -> OR
+"  1  1  1  1 -> ONE
+
 " Inputs
 
-Data7..Data0            pin;
+Data7..Data0            pin;			" Data input
 
-F3..F0                  pin;
-Subtract                pin;
-Load                    pin;
+Mode3..Mode0            pin;			" Modes for MUX-ing the adder inputs
+WC                      pin;    		" With Carry flag, used for operations like ADC/SBB
+F3..F0                  pin;			" MUX for F-Block
+LoadFlags               pin;			" Load Data into flags instead of using computed flags
+	
+MaskC					pin;    		" Flag mask for Carry Flag
+MaskV					pin;    		" Flag mask for Overflow Flag
+MaskS					pin;			" Flag mask for Sign Flag
+MaskZ					pin;			" Flag mask for Zero Flag
+
+Shift                   pin;			" NOT USED ATM for Shifting
+Rotate                  pin;			" NOT USED ATM for rotating
+Direction               pin;			" NOT USED ATM for direction
 
 Reset                   pin;
 Clock                   pin;
 
-
 " Outputs
 
-Accum7..Accum0          pin;
+Accum7..Accum0          pin;	
 Flags7..Flags0          pin;
-
 
 " Intermediate Terms
 
-FOut7..FOut0            node;                    
+FOut7..FOut0            node;			" 8 bits of FBlock Output                    
 
-A7..A0                  node;
-B7..B0                  node;
-Sum7..Sum0              node;
-CarryOut7..CarryOut0    node;
+Subtract                node;			" Determine if subtracting - enabled by the 0101 (!B) in FBlock
+
+CIn                     node;			" CarryIn for adder
+
+A7..A0                  node;			" 8 bits of first adder input
+B7..B0                  node;			" 8 bits of second adder input
+Sum7..Sum0              node;			" 8 bits of adder output
+CarryOut7..CarryOut0    node;			" 8 bits of carry output
+
+KeepC					node;			" determine if Carry Flag updates from ALU ops
+KeepV					node;			" determine if Overflow Flag updates from ALU ops
+KeepS					node;			" detemrine if Sign Flag updates from ALU ops
+KeepZ					node;			" determine if Zero Flag updates from ALU ops
+
+" SOut7..SOut0            node;
 
 " Buses
 
@@ -44,22 +94,30 @@ FOut = [FOut7..FOut0];
 A = [A7..A0];
 B = [B7..B0];
 Sum = [Sum7..Sum0];
-CarryOut = [CarryOut7..CaryOut0];
+CarryOut = [CarryOut7..CarryOut0];
 
-Accum = [Accum7..Acuum0];
+" SOut = [SOut7..SOut0];
+
+Accum = [Accum7..Accum0];
 Flags = [Flags7..Flags0];
 
 " Constants
-ZEROES = [0,0,0,0,0,0,0,0];
+
+ZEROES = [0,0,0,0,0,0,0,0];  
+ONE  =   [0,0,0,0,0,0,0,1];
 ONES =   [1,1,1,1,1,1,1,1];
 
 
 EQUATIONS
 
+" ################
+" #    FBLOCK    # 
+" ################ 
 
-" F-BLOCK
+" The FBlock handles all logical ALU operations.
+" If the FBlock output is desired, it is passed through the adder by adding ZEROES.
 
-FOut = (!F3 & !F2 & !F1 & !F0 & ZEROES)            " 0 
+FOut =((!F3 & !F2 & !F1 & !F0 & ZEROES)            " 0 
      # (!F3 & !F2 & !F1 &  F0 & !(Accum # Data))   " A nor B
      # (!F3 & !F2 &  F1 &  F0 & (!Accum))          " not A
      # (!F3 &  F2 & !F1 &  F0 & (!Data))           " not B
@@ -71,30 +129,112 @@ FOut = (!F3 & !F2 & !F1 & !F0 & ZEROES)            " 0
      # ( F3 &  F2 &  F1 &  F0 & ONES)              " 1
   );
 
+" ################
+" #    ADDER     # 
+" ################
+
+" The adder takes in inputs A and B, and adds them with a carry in (CIn).
+" All ALU operations go through the adder; the A and B inputs are MUXED by
+" the mode signals so the correct adder inputs are used to for the correct output.
+" Note that for subtracting, the FBlock needs to be set to 0101 so !Data is passed to the adder
+
+Subtract = (!F3 & F2 & !F1 &F0);
+
+A = (!Mode3 & !Mode2 & !Mode1 &  Mode0 & FOut)				   " LOGIC: Use FOut
+  # ( Mode3 &  Mode2 &  Mode1 & !Mode0 & FOut) 				   " TST: Use FOut
+  # ( (!(!Mode3 & !Mode2 & !Mode1 &  Mode0) 
+  	 & !( Mode3 &  Mode2 &  Mode1 & !Mode0))
+    & Accum);					                     	   " Else use the Accum
+
+B = (!Mode3 & !Mode2 &  Mode1 & !Mode0 & !Subtract & Data)           " ADD/ADC: Use Data  
+  # (!Mode3 & !Mode2 &  Mode1 & !Mode0 &  Subtract & FOut)      	   " SUB/SBB: Use !Data from FOut  
+  # (!Mode3 & !Mode2 &  Mode1 &  Mode0 & Accum           )     	   " ASL/LSL/RLC : Use Accum 
+  # (!Mode3 &  Mode2 & !Mode1 & !Mode0 & ONE)  			  	   " INC: Use ONE 	
+  # ( Mode3 & !Mode2 & !Mode1 & !Mode0 & ONES) 				   " DEC: Use ONES (!ONE in 2s complement)
+  # ( Mode3 &  Mode2 & !Mode1 & !Mode0 & Subtract & FOut)		   " CMP: Use !DATA
+  # (ZEROES);														                " Else use ZEROES
+	
+" The CarryIn depends on the mode used and also if there's a carry control (WC)
+
+CIn = (!Mode3 & !Mode2 &  Mode1 & !Mode0 & !WC &  Subtract)      			" SUB: Use HIGH Subtract
+	# ( Mode3 &  Mode2 & !Mode1 & !Mode0 & !WC &  Subtract)			" CMP: USE HIGH Subtract
+    # (!Mode3 & !Mode2 &  Mode1 & !Mode0 &  WC &  !Subtract & Flags3)     	" ADC: Use HIGH CarryFlag 
+    # (!Mode3 & !Mode2 &  Mode1 & !Mode0 &  WC &  Subtract & !Flags3)     	" SBB: Use LOW CarryFlag 
+    # (!Mode3 & !Mode2 &  Mode1 &  Mode0 &  WC &  Flags3)			    	" RLC: Use Carry Flag for RLC
+	;																		" Else zero
+
+Sum = (A $ B) $ [CarryOut6..CarryOut0, CIn];     
+
+CarryOut = (A & B) # ((A$B) & [CarryOut6..CarryOut0, CIn]);
+
+" The accumulator only takes in the adder output depending on the mode.
+
+Accum := ( Mode3 &  Mode2 & 		 !Mode0 & Accum)	      	" CMP/TST: set to Acc
+ 	   # ( Mode3 &  Mode2 &  Mode1 &  Mode0 & Data)		   	" LDD : set to Data
+ 	   # (!Mode3 & !Mode2 & !Mode1 & !Mode0 & Accum)	   	" HOLD: set to Acc
+	   # (( 
+		      (!(Mode3 &  Mode2 & 		 !Mode0))
+		    & (!(Mode3 &  Mode2 &  Mode1 &  Mode0)) 											
+		    & (!(!Mode3 & !Mode2 & !Mode1 & !Mode0))
+		  
+		  )& Sum);								" Else set to adder output
 
 
-" ADDER/SUBTRACTER
+" ################
+" #     FLAGS    # 
+" ################
 
-" CarryOut0 = (A0 & (B0 $ Subtract)) # ((A0 $ (B0 $ Subtract)) & Subtract);
+" The flags are almost always updated in exception to some ALU operations.
+" The Keep[FLAG] intermediates help determine if the each flag needs to be updated.
 
-CarryOut  = (A & (B $ Subtract)) # ((A $ (B $ Subtract)) & [CarryOut6..CarryOut0, Subtract]);
-CarryOut7 = CarryOut7 $ Subtract                " correct Carry for carry/borrow 
-Sum = ((A $ (B $ Subtract)) $ CarryOut);
+KeepS = (!Mode3 & !Mode2 & !Mode1 & !Mode0)		" HOLD: Don't change S
+	  # ( Mode3 &  Mode2 &  Mode1 &  Mode0);	   	" LDD:  Don't change S
 
-" SHIFTER
+KeepZ = KeepS; 							"Z Flag always changes with S
 
+KeepC = (!Mode3 & !Mode2 & !Mode1 &  Mode0)		" LOGIC: Don't change C since only SZ are affected
+	  # ( Mode3 &  Mode2 &  Mode1 & !Mode0)		" TST:   Don't change C since only SZ are affected
+	  # KeepS;							" HOLD/LDD: Don't change C
 
+KeepV = KeepC;							" V Flag always changes with C
 
+" If we're loading our own flags from data, ignore the computed flags.      
+" Otherwise, the Keep[FLAG] is OR'd with the Mask[FLAG] control signal to determine if the FLAG
+" will finally need to update. The Flag computations are from the adder assignment.
 
+" CARRY FLAG
 
+Flags3 := ( LoadFlags & 					Data3)		   "Just load data into flags if
+		# (!LoadFlags &  (KeepC #  MaskC) & Flags3) 	      	   "otherwise unchanged if masking/won't update
+		# (!LoadFlags & (!KeepC & !MaskC) & (CarryOut7 $ Subtract));   "otherwise update
 
+" OVERFLOW FLAG
 
-Accum = (Sum & !Load) # (Accum & Data);
+Flags2 := ( LoadFlags & 					Data2)
+		# (!LoadFlags &  (KeepV #  MaskV) & Flags2)					  
+		# (!LoadFlags & (!KeepV & !MaskV) & (CarryOut7 $ CarryOut6));    
 
-Accum.Clock = Clock;
+" SIGN FLAG
+
+Flags1 := ( LoadFlags & 					Data1)
+		# (!LoadFlags & ( KeepS #  MaskS) & Flags1)	
+		# (!LoadFlags & (!KeepS & !MaskS) & Sum7);           
+
+" ZERO FLAG
+
+Flags0 := ( LoadFlags & 					Data0)
+		# (!LoadFlags & ( KeepZ #  MaskZ) & Flags0)  
+		
+		" If not keeping, use SUM
+	    # (!LoadFlags & (!KeepZ & !MaskZ) & (!Sum7 & !Sum6 & !Sum5 & !Sum4 & !Sum3 & !Sum2 & !Sum1 & !Sum0))
+		;
+
+[Flags7..Flags4] := LoadFlags & [Data7..Data4];
+
+Accum.CLK = Clock;
 Accum.CLR = !Reset;
 
-Flags.Clock = Clock;
+Flags.CLK = Clock;
 Flags.CLR = !Reset;
 
 
