@@ -1,0 +1,1117 @@
+// Node Statistic Information File
+// Tool:  ispLEVER Classic 2.0.00.17.20.15
+// Design 'paudemo' created   Thu Feb 23 19:14:17 2012
+
+// Fmax Logic Level: 12.
+
+// Path: AccumAddr0.Q
+//    -> P0_CarryOut1
+//    -> P0_CarryOut2
+//    -> P0_CarryOut3
+//    -> P0_CarryOut4
+//    -> P0_CarryOut5
+//    -> P0_CarryOut6
+//    -> P0_CarryOut7
+//    -> P0_CarryOut8
+//    -> P0_CarryOut9
+//    -> P0_CarryOut10
+//    -> P0_CarryOut11
+//    -> AccumAddr12.D.X1
+
+// Signal Name: XReg7
+// Type: Output
+BEGIN XReg7
+Fanin Number		1
+Pterm Number		1
+Fanin per Macrocell	N/A
+Cluster PT		N/A
+Logic Levels		N/A
+Fanin Input     	DataOff4.BLIF       	0
+END
+
+// Signal Name: XReg6
+// Type: Output
+BEGIN XReg6
+Fanin Number		1
+Pterm Number		1
+Fanin per Macrocell	N/A
+Cluster PT		N/A
+Logic Levels		N/A
+Fanin Input     	DataOff3.BLIF       	0
+END
+
+// Signal Name: XReg5
+// Type: Output
+BEGIN XReg5
+Fanin Number		1
+Pterm Number		1
+Fanin per Macrocell	N/A
+Cluster PT		N/A
+Logic Levels		N/A
+Fanin Input     	DataOff2.BLIF       	0
+END
+
+// Signal Name: XReg4
+// Type: Output
+BEGIN XReg4
+Fanin Number		1
+Pterm Number		1
+Fanin per Macrocell	N/A
+Cluster PT		N/A
+Logic Levels		N/A
+Fanin Input     	DataOff1.BLIF       	0
+END
+
+// Signal Name: XReg3
+// Type: Output
+BEGIN XReg3
+Fanin Number		1
+Pterm Number		1
+Fanin per Macrocell	N/A
+Cluster PT		N/A
+Logic Levels		N/A
+Fanin Input     	DataOff0.BLIF       	0
+END
+
+// Signal Name: XReg2
+// Type: Output
+BEGIN XReg2
+Fanin Number		0
+Pterm Number		0
+Fanin per Macrocell	N/A
+Cluster PT		N/A
+Logic Levels		N/A
+END
+
+// Signal Name: XReg1
+// Type: Output
+BEGIN XReg1
+Fanin Number		0
+Pterm Number		0
+Fanin per Macrocell	N/A
+Cluster PT		N/A
+Logic Levels		N/A
+END
+
+// Signal Name: XReg0
+// Type: Output
+BEGIN XReg0
+Fanin Number		0
+Pterm Number		0
+Fanin per Macrocell	N/A
+Cluster PT		N/A
+Logic Levels		N/A
+END
+
+// Signal Name: SReg7
+// Type: Output
+BEGIN SReg7
+Fanin Number		1
+Pterm Number		1
+Fanin per Macrocell	N/A
+Cluster PT		N/A
+Logic Levels		N/A
+Fanin Input     	DataOff7.BLIF       	0
+END
+
+// Signal Name: SReg6
+// Type: Output
+BEGIN SReg6
+Fanin Number		1
+Pterm Number		1
+Fanin per Macrocell	N/A
+Cluster PT		N/A
+Logic Levels		N/A
+Fanin Input     	DataOff6.BLIF       	0
+END
+
+// Signal Name: SReg5
+// Type: Output
+BEGIN SReg5
+Fanin Number		1
+Pterm Number		1
+Fanin per Macrocell	N/A
+Cluster PT		N/A
+Logic Levels		N/A
+Fanin Input     	DataOff5.BLIF       	0
+END
+
+// Signal Name: SReg4
+// Type: Output
+BEGIN SReg4
+Fanin Number		1
+Pterm Number		1
+Fanin per Macrocell	N/A
+Cluster PT		N/A
+Logic Levels		N/A
+Fanin Input     	DataOff4.BLIF       	0
+END
+
+// Signal Name: SReg3
+// Type: Output
+BEGIN SReg3
+Fanin Number		1
+Pterm Number		1
+Fanin per Macrocell	N/A
+Cluster PT		N/A
+Logic Levels		N/A
+Fanin Input     	DataOff3.BLIF       	0
+END
+
+// Signal Name: SReg2
+// Type: Output
+BEGIN SReg2
+Fanin Number		1
+Pterm Number		1
+Fanin per Macrocell	N/A
+Cluster PT		N/A
+Logic Levels		N/A
+Fanin Input     	DataOff2.BLIF       	0
+END
+
+// Signal Name: SReg1
+// Type: Output
+BEGIN SReg1
+Fanin Number		1
+Pterm Number		1
+Fanin per Macrocell	N/A
+Cluster PT		N/A
+Logic Levels		N/A
+Fanin Input     	DataOff1.BLIF       	0
+END
+
+// Signal Name: SReg0
+// Type: Output
+BEGIN SReg0
+Fanin Number		1
+Pterm Number		1
+Fanin per Macrocell	N/A
+Cluster PT		N/A
+Logic Levels		N/A
+Fanin Input     	DataOff0.BLIF       	0
+END
+
+// Signal Name: Flags7
+// Type: Output
+BEGIN Flags7
+Fanin Number		0
+Pterm Number		1
+Fanin per Macrocell	N/A
+Cluster PT		N/A
+Logic Levels		N/A
+END
+
+// Signal Name: Flags6
+// Type: Output
+BEGIN Flags6
+Fanin Number		0
+Pterm Number		1
+Fanin per Macrocell	N/A
+Cluster PT		N/A
+Logic Levels		N/A
+END
+
+// Signal Name: Flags5
+// Type: Output
+BEGIN Flags5
+Fanin Number		0
+Pterm Number		1
+Fanin per Macrocell	N/A
+Cluster PT		N/A
+Logic Levels		N/A
+END
+
+// Signal Name: Flags4
+// Type: Output
+BEGIN Flags4
+Fanin Number		0
+Pterm Number		1
+Fanin per Macrocell	N/A
+Cluster PT		N/A
+Logic Levels		N/A
+END
+
+// Signal Name: Flags3
+// Type: Output
+BEGIN Flags3
+Fanin Number		0
+Pterm Number		1
+Fanin per Macrocell	N/A
+Cluster PT		N/A
+Logic Levels		N/A
+END
+
+// Signal Name: Flags2
+// Type: Output
+BEGIN Flags2
+Fanin Number		0
+Pterm Number		1
+Fanin per Macrocell	N/A
+Cluster PT		N/A
+Logic Levels		N/A
+END
+
+// Signal Name: Flags1
+// Type: Output
+BEGIN Flags1
+Fanin Number		0
+Pterm Number		1
+Fanin per Macrocell	N/A
+Cluster PT		N/A
+Logic Levels		N/A
+END
+
+// Signal Name: Flags0
+// Type: Output
+BEGIN Flags0
+Fanin Number		0
+Pterm Number		1
+Fanin per Macrocell	N/A
+Cluster PT		N/A
+Logic Levels		N/A
+END
+
+// Signal Name: AccumAddr12.D.X1
+// Type: Output_reg
+BEGIN AccumAddr12.D.X1
+Fanin Number		6
+Pterm Number		7
+Fanin per Macrocell	N/A
+Cluster PT		N/A
+Logic Levels		12
+Fanin Input     	Control3.BLIF       	0
+Fanin Input     	Reset.BLIF          	0
+Fanin Output    	AccumAddr11.Q       	2
+Fanin Output    	AccumAddr12.Q       	7
+Fanin Node      	P0_CarryOut11.BLIF  	3
+Fanin Node      	P0_B11.BLIF         	4
+END
+
+// Signal Name: AccumAddr12.D.X2
+// Type: Output_reg
+BEGIN AccumAddr12.D.X2
+Fanin Number		2
+Pterm Number		1
+Fanin per Macrocell	N/A
+Cluster PT		N/A
+Logic Levels		2
+Fanin Input     	Reset.BLIF          	0
+Fanin Node      	P0_B12.BLIF         	4
+END
+
+// Signal Name: AccumAddr12.C
+// Type: Output_reg
+BEGIN AccumAddr12.C
+Fanin Number		1
+Pterm Number		1
+Fanin per Macrocell	N/A
+Cluster PT		N/A
+Logic Levels		N/A
+Fanin Input     	Clock.BLIF          	0
+END
+
+// Signal Name: AccumAddr11.D.X1
+// Type: Output_reg
+BEGIN AccumAddr11.D.X1
+Fanin Number		3
+Pterm Number		2
+Fanin per Macrocell	N/A
+Cluster PT		N/A
+Logic Levels		12
+Fanin Input     	Reset.BLIF          	0
+Fanin Node      	P0_CarryOut11.BLIF  	3
+Fanin Node      	P0_B11.BLIF         	4
+END
+
+// Signal Name: AccumAddr11.D.X2
+// Type: Output_reg
+BEGIN AccumAddr11.D.X2
+Fanin Number		3
+Pterm Number		1
+Fanin per Macrocell	N/A
+Cluster PT		N/A
+Logic Levels		1
+Fanin Input     	Control3.BLIF       	0
+Fanin Input     	Reset.BLIF          	0
+Fanin Output    	AccumAddr11.Q       	2
+END
+
+// Signal Name: AccumAddr11.C
+// Type: Output_reg
+BEGIN AccumAddr11.C
+Fanin Number		1
+Pterm Number		1
+Fanin per Macrocell	N/A
+Cluster PT		N/A
+Logic Levels		N/A
+Fanin Input     	Clock.BLIF          	0
+END
+
+// Signal Name: AccumAddr10.D.X1
+// Type: Output_reg
+BEGIN AccumAddr10.D.X1
+Fanin Number		3
+Pterm Number		2
+Fanin per Macrocell	N/A
+Cluster PT		N/A
+Logic Levels		11
+Fanin Input     	Reset.BLIF          	0
+Fanin Node      	P0_CarryOut10.BLIF  	3
+Fanin Node      	P0_B10.BLIF         	4
+END
+
+// Signal Name: AccumAddr10.D.X2
+// Type: Output_reg
+BEGIN AccumAddr10.D.X2
+Fanin Number		3
+Pterm Number		1
+Fanin per Macrocell	N/A
+Cluster PT		N/A
+Logic Levels		1
+Fanin Input     	Control3.BLIF       	0
+Fanin Input     	Reset.BLIF          	0
+Fanin Output    	AccumAddr10.Q       	2
+END
+
+// Signal Name: AccumAddr10.C
+// Type: Output_reg
+BEGIN AccumAddr10.C
+Fanin Number		1
+Pterm Number		1
+Fanin per Macrocell	N/A
+Cluster PT		N/A
+Logic Levels		N/A
+Fanin Input     	Clock.BLIF          	0
+END
+
+// Signal Name: AccumAddr9.D.X1
+// Type: Output_reg
+BEGIN AccumAddr9.D.X1
+Fanin Number		3
+Pterm Number		2
+Fanin per Macrocell	N/A
+Cluster PT		N/A
+Logic Levels		10
+Fanin Input     	Reset.BLIF          	0
+Fanin Node      	P0_CarryOut9.BLIF   	3
+Fanin Node      	P0_B9.BLIF          	4
+END
+
+// Signal Name: AccumAddr9.D.X2
+// Type: Output_reg
+BEGIN AccumAddr9.D.X2
+Fanin Number		3
+Pterm Number		1
+Fanin per Macrocell	N/A
+Cluster PT		N/A
+Logic Levels		1
+Fanin Input     	Control3.BLIF       	0
+Fanin Input     	Reset.BLIF          	0
+Fanin Output    	AccumAddr9.Q        	2
+END
+
+// Signal Name: AccumAddr9.C
+// Type: Output_reg
+BEGIN AccumAddr9.C
+Fanin Number		1
+Pterm Number		1
+Fanin per Macrocell	N/A
+Cluster PT		N/A
+Logic Levels		N/A
+Fanin Input     	Clock.BLIF          	0
+END
+
+// Signal Name: AccumAddr8.D.X1
+// Type: Output_reg
+BEGIN AccumAddr8.D.X1
+Fanin Number		3
+Pterm Number		2
+Fanin per Macrocell	N/A
+Cluster PT		N/A
+Logic Levels		9
+Fanin Input     	Reset.BLIF          	0
+Fanin Node      	P0_CarryOut8.BLIF   	3
+Fanin Node      	P0_B8.BLIF          	4
+END
+
+// Signal Name: AccumAddr8.D.X2
+// Type: Output_reg
+BEGIN AccumAddr8.D.X2
+Fanin Number		3
+Pterm Number		1
+Fanin per Macrocell	N/A
+Cluster PT		N/A
+Logic Levels		1
+Fanin Input     	Control3.BLIF       	0
+Fanin Input     	Reset.BLIF          	0
+Fanin Output    	AccumAddr8.Q        	2
+END
+
+// Signal Name: AccumAddr8.C
+// Type: Output_reg
+BEGIN AccumAddr8.C
+Fanin Number		1
+Pterm Number		1
+Fanin per Macrocell	N/A
+Cluster PT		N/A
+Logic Levels		N/A
+Fanin Input     	Clock.BLIF          	0
+END
+
+// Signal Name: AccumAddr7.D.X1
+// Type: Output_reg
+BEGIN AccumAddr7.D.X1
+Fanin Number		3
+Pterm Number		2
+Fanin per Macrocell	N/A
+Cluster PT		N/A
+Logic Levels		8
+Fanin Input     	Reset.BLIF          	0
+Fanin Node      	P0_CarryOut7.BLIF   	3
+Fanin Node      	P0_B7.BLIF          	4
+END
+
+// Signal Name: AccumAddr7.D.X2
+// Type: Output_reg
+BEGIN AccumAddr7.D.X2
+Fanin Number		3
+Pterm Number		1
+Fanin per Macrocell	N/A
+Cluster PT		N/A
+Logic Levels		1
+Fanin Input     	Control3.BLIF       	0
+Fanin Input     	Reset.BLIF          	0
+Fanin Output    	AccumAddr7.Q        	2
+END
+
+// Signal Name: AccumAddr7.C
+// Type: Output_reg
+BEGIN AccumAddr7.C
+Fanin Number		1
+Pterm Number		1
+Fanin per Macrocell	N/A
+Cluster PT		N/A
+Logic Levels		N/A
+Fanin Input     	Clock.BLIF          	0
+END
+
+// Signal Name: AccumAddr6.D.X1
+// Type: Output_reg
+BEGIN AccumAddr6.D.X1
+Fanin Number		3
+Pterm Number		2
+Fanin per Macrocell	N/A
+Cluster PT		N/A
+Logic Levels		7
+Fanin Input     	Reset.BLIF          	0
+Fanin Node      	P0_CarryOut6.BLIF   	3
+Fanin Node      	P0_B6.BLIF          	4
+END
+
+// Signal Name: AccumAddr6.D.X2
+// Type: Output_reg
+BEGIN AccumAddr6.D.X2
+Fanin Number		3
+Pterm Number		1
+Fanin per Macrocell	N/A
+Cluster PT		N/A
+Logic Levels		1
+Fanin Input     	Control3.BLIF       	0
+Fanin Input     	Reset.BLIF          	0
+Fanin Output    	AccumAddr6.Q        	2
+END
+
+// Signal Name: AccumAddr6.C
+// Type: Output_reg
+BEGIN AccumAddr6.C
+Fanin Number		1
+Pterm Number		1
+Fanin per Macrocell	N/A
+Cluster PT		N/A
+Logic Levels		N/A
+Fanin Input     	Clock.BLIF          	0
+END
+
+// Signal Name: AccumAddr5.D.X1
+// Type: Output_reg
+BEGIN AccumAddr5.D.X1
+Fanin Number		3
+Pterm Number		2
+Fanin per Macrocell	N/A
+Cluster PT		N/A
+Logic Levels		6
+Fanin Input     	Reset.BLIF          	0
+Fanin Node      	P0_CarryOut5.BLIF   	3
+Fanin Node      	P0_B5.BLIF          	4
+END
+
+// Signal Name: AccumAddr5.D.X2
+// Type: Output_reg
+BEGIN AccumAddr5.D.X2
+Fanin Number		3
+Pterm Number		1
+Fanin per Macrocell	N/A
+Cluster PT		N/A
+Logic Levels		1
+Fanin Input     	Control3.BLIF       	0
+Fanin Input     	Reset.BLIF          	0
+Fanin Output    	AccumAddr5.Q        	2
+END
+
+// Signal Name: AccumAddr5.C
+// Type: Output_reg
+BEGIN AccumAddr5.C
+Fanin Number		1
+Pterm Number		1
+Fanin per Macrocell	N/A
+Cluster PT		N/A
+Logic Levels		N/A
+Fanin Input     	Clock.BLIF          	0
+END
+
+// Signal Name: AccumAddr4.D.X1
+// Type: Output_reg
+BEGIN AccumAddr4.D.X1
+Fanin Number		3
+Pterm Number		2
+Fanin per Macrocell	N/A
+Cluster PT		N/A
+Logic Levels		5
+Fanin Input     	Reset.BLIF          	0
+Fanin Node      	P0_CarryOut4.BLIF   	3
+Fanin Node      	P0_B4.BLIF          	4
+END
+
+// Signal Name: AccumAddr4.D.X2
+// Type: Output_reg
+BEGIN AccumAddr4.D.X2
+Fanin Number		3
+Pterm Number		1
+Fanin per Macrocell	N/A
+Cluster PT		N/A
+Logic Levels		1
+Fanin Input     	Control3.BLIF       	0
+Fanin Input     	Reset.BLIF          	0
+Fanin Output    	AccumAddr4.Q        	2
+END
+
+// Signal Name: AccumAddr4.C
+// Type: Output_reg
+BEGIN AccumAddr4.C
+Fanin Number		1
+Pterm Number		1
+Fanin per Macrocell	N/A
+Cluster PT		N/A
+Logic Levels		N/A
+Fanin Input     	Clock.BLIF          	0
+END
+
+// Signal Name: AccumAddr3.D.X1
+// Type: Output_reg
+BEGIN AccumAddr3.D.X1
+Fanin Number		3
+Pterm Number		2
+Fanin per Macrocell	N/A
+Cluster PT		N/A
+Logic Levels		4
+Fanin Input     	Reset.BLIF          	0
+Fanin Node      	P0_CarryOut3.BLIF   	3
+Fanin Node      	P0_B3.BLIF          	4
+END
+
+// Signal Name: AccumAddr3.D.X2
+// Type: Output_reg
+BEGIN AccumAddr3.D.X2
+Fanin Number		3
+Pterm Number		1
+Fanin per Macrocell	N/A
+Cluster PT		N/A
+Logic Levels		1
+Fanin Input     	Control3.BLIF       	0
+Fanin Input     	Reset.BLIF          	0
+Fanin Output    	AccumAddr3.Q        	2
+END
+
+// Signal Name: AccumAddr3.C
+// Type: Output_reg
+BEGIN AccumAddr3.C
+Fanin Number		1
+Pterm Number		1
+Fanin per Macrocell	N/A
+Cluster PT		N/A
+Logic Levels		N/A
+Fanin Input     	Clock.BLIF          	0
+END
+
+// Signal Name: AccumAddr2.D.X1
+// Type: Output_reg
+BEGIN AccumAddr2.D.X1
+Fanin Number		3
+Pterm Number		2
+Fanin per Macrocell	N/A
+Cluster PT		N/A
+Logic Levels		3
+Fanin Input     	Reset.BLIF          	0
+Fanin Node      	P0_CarryOut2.BLIF   	3
+Fanin Node      	P0_B2.BLIF          	4
+END
+
+// Signal Name: AccumAddr2.D.X2
+// Type: Output_reg
+BEGIN AccumAddr2.D.X2
+Fanin Number		3
+Pterm Number		1
+Fanin per Macrocell	N/A
+Cluster PT		N/A
+Logic Levels		1
+Fanin Input     	Control3.BLIF       	0
+Fanin Input     	Reset.BLIF          	0
+Fanin Output    	AccumAddr2.Q        	2
+END
+
+// Signal Name: AccumAddr2.C
+// Type: Output_reg
+BEGIN AccumAddr2.C
+Fanin Number		1
+Pterm Number		1
+Fanin per Macrocell	N/A
+Cluster PT		N/A
+Logic Levels		N/A
+Fanin Input     	Clock.BLIF          	0
+END
+
+// Signal Name: AccumAddr1.D.X1
+// Type: Output_reg
+BEGIN AccumAddr1.D.X1
+Fanin Number		3
+Pterm Number		2
+Fanin per Macrocell	N/A
+Cluster PT		N/A
+Logic Levels		2
+Fanin Input     	Reset.BLIF          	0
+Fanin Node      	P0_CarryOut1.BLIF   	5
+Fanin Node      	P0_B1.BLIF          	4
+END
+
+// Signal Name: AccumAddr1.D.X2
+// Type: Output_reg
+BEGIN AccumAddr1.D.X2
+Fanin Number		3
+Pterm Number		1
+Fanin per Macrocell	N/A
+Cluster PT		N/A
+Logic Levels		1
+Fanin Input     	Control3.BLIF       	0
+Fanin Input     	Reset.BLIF          	0
+Fanin Output    	AccumAddr1.Q        	2
+END
+
+// Signal Name: AccumAddr1.C
+// Type: Output_reg
+BEGIN AccumAddr1.C
+Fanin Number		1
+Pterm Number		1
+Fanin per Macrocell	N/A
+Cluster PT		N/A
+Logic Levels		N/A
+Fanin Input     	Clock.BLIF          	0
+END
+
+// Signal Name: AccumAddr0.D.X1
+// Type: Output_reg
+BEGIN AccumAddr0.D.X1
+Fanin Number		7
+Pterm Number		8
+Fanin per Macrocell	N/A
+Cluster PT		N/A
+Logic Levels		1
+Fanin Input     	DataOff0.BLIF       	0
+Fanin Input     	AddrData0.BLIF      	0
+Fanin Input     	Control2.BLIF       	0
+Fanin Input     	Control1.BLIF       	0
+Fanin Input     	Control0.BLIF       	0
+Fanin Input     	Reset.BLIF          	0
+Fanin Output    	AccumAddr0.Q        	8
+END
+
+// Signal Name: AccumAddr0.D.X2
+// Type: Output_reg
+BEGIN AccumAddr0.D.X2
+Fanin Number		3
+Pterm Number		1
+Fanin per Macrocell	N/A
+Cluster PT		N/A
+Logic Levels		1
+Fanin Input     	Control3.BLIF       	0
+Fanin Input     	Reset.BLIF          	0
+Fanin Output    	AccumAddr0.Q        	8
+END
+
+// Signal Name: AccumAddr0.C
+// Type: Output_reg
+BEGIN AccumAddr0.C
+Fanin Number		1
+Pterm Number		1
+Fanin per Macrocell	N/A
+Cluster PT		N/A
+Logic Levels		N/A
+Fanin Input     	Clock.BLIF          	0
+END
+
+// Signal Name: P0_CarryOut11
+// Type: Node
+BEGIN P0_CarryOut11
+Fanin Number		4
+Pterm Number		3
+Fanin per Macrocell	N/A
+Cluster PT		N/A
+Logic Levels		N/A
+Fanin Input     	Control3.BLIF       	0
+Fanin Output    	AccumAddr10.Q       	2
+Fanin Node      	P0_CarryOut10.BLIF  	3
+Fanin Node      	P0_B10.BLIF         	4
+END
+
+// Signal Name: P0_CarryOut10
+// Type: Node
+BEGIN P0_CarryOut10
+Fanin Number		4
+Pterm Number		3
+Fanin per Macrocell	N/A
+Cluster PT		N/A
+Logic Levels		N/A
+Fanin Input     	Control3.BLIF       	0
+Fanin Output    	AccumAddr9.Q        	2
+Fanin Node      	P0_CarryOut9.BLIF   	3
+Fanin Node      	P0_B9.BLIF          	4
+END
+
+// Signal Name: P0_CarryOut9
+// Type: Node
+BEGIN P0_CarryOut9
+Fanin Number		4
+Pterm Number		3
+Fanin per Macrocell	N/A
+Cluster PT		N/A
+Logic Levels		N/A
+Fanin Input     	Control3.BLIF       	0
+Fanin Output    	AccumAddr8.Q        	2
+Fanin Node      	P0_CarryOut8.BLIF   	3
+Fanin Node      	P0_B8.BLIF          	4
+END
+
+// Signal Name: P0_CarryOut8
+// Type: Node
+BEGIN P0_CarryOut8
+Fanin Number		4
+Pterm Number		3
+Fanin per Macrocell	N/A
+Cluster PT		N/A
+Logic Levels		N/A
+Fanin Input     	Control3.BLIF       	0
+Fanin Output    	AccumAddr7.Q        	2
+Fanin Node      	P0_CarryOut7.BLIF   	3
+Fanin Node      	P0_B7.BLIF          	4
+END
+
+// Signal Name: P0_CarryOut7
+// Type: Node
+BEGIN P0_CarryOut7
+Fanin Number		4
+Pterm Number		3
+Fanin per Macrocell	N/A
+Cluster PT		N/A
+Logic Levels		N/A
+Fanin Input     	Control3.BLIF       	0
+Fanin Output    	AccumAddr6.Q        	2
+Fanin Node      	P0_CarryOut6.BLIF   	3
+Fanin Node      	P0_B6.BLIF          	4
+END
+
+// Signal Name: P0_CarryOut6
+// Type: Node
+BEGIN P0_CarryOut6
+Fanin Number		4
+Pterm Number		3
+Fanin per Macrocell	N/A
+Cluster PT		N/A
+Logic Levels		N/A
+Fanin Input     	Control3.BLIF       	0
+Fanin Output    	AccumAddr5.Q        	2
+Fanin Node      	P0_CarryOut5.BLIF   	3
+Fanin Node      	P0_B5.BLIF          	4
+END
+
+// Signal Name: P0_CarryOut5
+// Type: Node
+BEGIN P0_CarryOut5
+Fanin Number		4
+Pterm Number		3
+Fanin per Macrocell	N/A
+Cluster PT		N/A
+Logic Levels		N/A
+Fanin Input     	Control3.BLIF       	0
+Fanin Output    	AccumAddr4.Q        	2
+Fanin Node      	P0_CarryOut4.BLIF   	3
+Fanin Node      	P0_B4.BLIF          	4
+END
+
+// Signal Name: P0_CarryOut4
+// Type: Node
+BEGIN P0_CarryOut4
+Fanin Number		4
+Pterm Number		3
+Fanin per Macrocell	N/A
+Cluster PT		N/A
+Logic Levels		N/A
+Fanin Input     	Control3.BLIF       	0
+Fanin Output    	AccumAddr3.Q        	2
+Fanin Node      	P0_CarryOut3.BLIF   	3
+Fanin Node      	P0_B3.BLIF          	4
+END
+
+// Signal Name: P0_CarryOut3
+// Type: Node
+BEGIN P0_CarryOut3
+Fanin Number		4
+Pterm Number		3
+Fanin per Macrocell	N/A
+Cluster PT		N/A
+Logic Levels		N/A
+Fanin Input     	Control3.BLIF       	0
+Fanin Output    	AccumAddr2.Q        	2
+Fanin Node      	P0_CarryOut2.BLIF   	3
+Fanin Node      	P0_B2.BLIF          	4
+END
+
+// Signal Name: P0_CarryOut2
+// Type: Node
+BEGIN P0_CarryOut2
+Fanin Number		4
+Pterm Number		3
+Fanin per Macrocell	N/A
+Cluster PT		N/A
+Logic Levels		N/A
+Fanin Input     	Control3.BLIF       	0
+Fanin Output    	AccumAddr1.Q        	2
+Fanin Node      	P0_CarryOut1.BLIF   	5
+Fanin Node      	P0_B1.BLIF          	4
+END
+
+// Signal Name: P0_CarryOut1
+// Type: Node
+BEGIN P0_CarryOut1
+Fanin Number		7
+Pterm Number		5
+Fanin per Macrocell	N/A
+Cluster PT		N/A
+Logic Levels		N/A
+Fanin Input     	DataOff0.BLIF       	0
+Fanin Input     	AddrData0.BLIF      	0
+Fanin Input     	Control3.BLIF       	0
+Fanin Input     	Control2.BLIF       	0
+Fanin Input     	Control1.BLIF       	0
+Fanin Input     	Control0.BLIF       	0
+Fanin Output    	AccumAddr0.Q        	8
+END
+
+// Signal Name: P0_B12
+// Type: Node
+BEGIN P0_B12
+Fanin Number		7
+Pterm Number		4
+Fanin per Macrocell	N/A
+Cluster PT		N/A
+Logic Levels		N/A
+Fanin Input     	DataOff7.BLIF       	0
+Fanin Input     	DataOff4.BLIF       	0
+Fanin Input     	AddrData12.BLIF     	0
+Fanin Input     	Control2.BLIF       	0
+Fanin Input     	Control1.BLIF       	0
+Fanin Input     	Control0.BLIF       	0
+Fanin Output    	AccumAddr12.Q       	7
+END
+
+// Signal Name: P0_B11
+// Type: Node
+BEGIN P0_B11
+Fanin Number		7
+Pterm Number		4
+Fanin per Macrocell	N/A
+Cluster PT		N/A
+Logic Levels		N/A
+Fanin Input     	DataOff7.BLIF       	0
+Fanin Input     	DataOff3.BLIF       	0
+Fanin Input     	AddrData11.BLIF     	0
+Fanin Input     	Control2.BLIF       	0
+Fanin Input     	Control1.BLIF       	0
+Fanin Input     	Control0.BLIF       	0
+Fanin Output    	AccumAddr11.Q       	2
+END
+
+// Signal Name: P0_B10
+// Type: Node
+BEGIN P0_B10
+Fanin Number		7
+Pterm Number		4
+Fanin per Macrocell	N/A
+Cluster PT		N/A
+Logic Levels		N/A
+Fanin Input     	DataOff7.BLIF       	0
+Fanin Input     	DataOff2.BLIF       	0
+Fanin Input     	AddrData10.BLIF     	0
+Fanin Input     	Control2.BLIF       	0
+Fanin Input     	Control1.BLIF       	0
+Fanin Input     	Control0.BLIF       	0
+Fanin Output    	AccumAddr10.Q       	2
+END
+
+// Signal Name: P0_B9
+// Type: Node
+BEGIN P0_B9
+Fanin Number		7
+Pterm Number		4
+Fanin per Macrocell	N/A
+Cluster PT		N/A
+Logic Levels		N/A
+Fanin Input     	DataOff7.BLIF       	0
+Fanin Input     	DataOff1.BLIF       	0
+Fanin Input     	AddrData9.BLIF      	0
+Fanin Input     	Control2.BLIF       	0
+Fanin Input     	Control1.BLIF       	0
+Fanin Input     	Control0.BLIF       	0
+Fanin Output    	AccumAddr9.Q        	2
+END
+
+// Signal Name: P0_B8
+// Type: Node
+BEGIN P0_B8
+Fanin Number		7
+Pterm Number		4
+Fanin per Macrocell	N/A
+Cluster PT		N/A
+Logic Levels		N/A
+Fanin Input     	DataOff7.BLIF       	0
+Fanin Input     	DataOff0.BLIF       	0
+Fanin Input     	AddrData8.BLIF      	0
+Fanin Input     	Control2.BLIF       	0
+Fanin Input     	Control1.BLIF       	0
+Fanin Input     	Control0.BLIF       	0
+Fanin Output    	AccumAddr8.Q        	2
+END
+
+// Signal Name: P0_B7
+// Type: Node
+BEGIN P0_B7
+Fanin Number		6
+Pterm Number		4
+Fanin per Macrocell	N/A
+Cluster PT		N/A
+Logic Levels		N/A
+Fanin Input     	DataOff7.BLIF       	0
+Fanin Input     	AddrData7.BLIF      	0
+Fanin Input     	Control2.BLIF       	0
+Fanin Input     	Control1.BLIF       	0
+Fanin Input     	Control0.BLIF       	0
+Fanin Output    	AccumAddr7.Q        	2
+END
+
+// Signal Name: P0_B6
+// Type: Node
+BEGIN P0_B6
+Fanin Number		6
+Pterm Number		4
+Fanin per Macrocell	N/A
+Cluster PT		N/A
+Logic Levels		N/A
+Fanin Input     	DataOff6.BLIF       	0
+Fanin Input     	AddrData6.BLIF      	0
+Fanin Input     	Control2.BLIF       	0
+Fanin Input     	Control1.BLIF       	0
+Fanin Input     	Control0.BLIF       	0
+Fanin Output    	AccumAddr6.Q        	2
+END
+
+// Signal Name: P0_B5
+// Type: Node
+BEGIN P0_B5
+Fanin Number		6
+Pterm Number		4
+Fanin per Macrocell	N/A
+Cluster PT		N/A
+Logic Levels		N/A
+Fanin Input     	DataOff5.BLIF       	0
+Fanin Input     	AddrData5.BLIF      	0
+Fanin Input     	Control2.BLIF       	0
+Fanin Input     	Control1.BLIF       	0
+Fanin Input     	Control0.BLIF       	0
+Fanin Output    	AccumAddr5.Q        	2
+END
+
+// Signal Name: P0_B4
+// Type: Node
+BEGIN P0_B4
+Fanin Number		6
+Pterm Number		4
+Fanin per Macrocell	N/A
+Cluster PT		N/A
+Logic Levels		N/A
+Fanin Input     	DataOff4.BLIF       	0
+Fanin Input     	AddrData4.BLIF      	0
+Fanin Input     	Control2.BLIF       	0
+Fanin Input     	Control1.BLIF       	0
+Fanin Input     	Control0.BLIF       	0
+Fanin Output    	AccumAddr4.Q        	2
+END
+
+// Signal Name: P0_B3
+// Type: Node
+BEGIN P0_B3
+Fanin Number		6
+Pterm Number		4
+Fanin per Macrocell	N/A
+Cluster PT		N/A
+Logic Levels		N/A
+Fanin Input     	DataOff3.BLIF       	0
+Fanin Input     	AddrData3.BLIF      	0
+Fanin Input     	Control2.BLIF       	0
+Fanin Input     	Control1.BLIF       	0
+Fanin Input     	Control0.BLIF       	0
+Fanin Output    	AccumAddr3.Q        	2
+END
+
+// Signal Name: P0_B2
+// Type: Node
+BEGIN P0_B2
+Fanin Number		6
+Pterm Number		4
+Fanin per Macrocell	N/A
+Cluster PT		N/A
+Logic Levels		N/A
+Fanin Input     	DataOff2.BLIF       	0
+Fanin Input     	AddrData2.BLIF      	0
+Fanin Input     	Control2.BLIF       	0
+Fanin Input     	Control1.BLIF       	0
+Fanin Input     	Control0.BLIF       	0
+Fanin Output    	AccumAddr2.Q        	2
+END
+
+// Signal Name: P0_B1
+// Type: Node
+BEGIN P0_B1
+Fanin Number		6
+Pterm Number		4
+Fanin per Macrocell	N/A
+Cluster PT		N/A
+Logic Levels		N/A
+Fanin Input     	DataOff1.BLIF       	0
+Fanin Input     	AddrData1.BLIF      	0
+Fanin Input     	Control2.BLIF       	0
+Fanin Input     	Control1.BLIF       	0
+Fanin Input     	Control0.BLIF       	0
+Fanin Output    	AccumAddr1.Q        	2
+END
+
+// Design 'paudemo' used clock signal list:
+CLOCK	Clock
+

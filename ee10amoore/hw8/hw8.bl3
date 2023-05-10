@@ -1,0 +1,807 @@
+#$ TOOL ispLEVER Classic 2.0.00.17.20.15
+#$ DATE Sat Mar 04 15:44:53 1995
+#$ TITLE Data Address Unit Unit Demo
+#$ MODULE hw8
+#$ JEDECFILE daudemo
+#$ PINS 90 DataOff7:80 DataOff6:81 DataOff5:83 DataOff4:84 DataOff3:85 DataOff2:86 \
+#  DataOff1:87 DataOff0:88 AddrData12:102 AddrData11:103 AddrData10:104 AddrData9:105 \
+#  AddrData8:111 AddrData7:93 AddrData6:94 AddrData5:95 AddrData4:96 AddrData3:97 \
+#  AddrData2:98 AddrData1:100 AddrData0:101 Control29:14 Control28:13 Control27:12 \
+#  Control26:11 Control25:9 Control24:8 Control23:7 Control22:6 Control21:5 Control20:4 \
+#  Control19:143 Control18:142 Control17:141 Control16:140 Control15:139 Control14:138 \
+#  Control13:135 Control12:134 Control11:133 Control10:132 Control9:131 Control8:124 \
+#  Control7:123 Control6:122 Control5:121 Control4:120 Control3:116 Control2:115 \
+#  Control1:114 Control0:113 Reset:40 Clock:128 AccumAddr12:29 AccumAddr11:30 \
+#  AccumAddr10:31 AccumAddr9:32 AccumAddr8:33 AccumAddr7:16 AccumAddr6:21 \
+#  AccumAddr5:22 AccumAddr4:23 AccumAddr3:24 AccumAddr2:25 AccumAddr1:26 AccumAddr0:28 \
+#  XReg7:68 XReg6:69 XReg5:70 XReg4:71 XReg3:76 XReg2:77 XReg1:78 XReg0:79 SReg7:58 \
+#  SReg6:59 SReg5:60 SReg4:61 SReg3:62 SReg2:63 SReg1:66 SReg0:67 Flags7:42 Flags6:43 \
+#  Flags5:44 Flags4:48 Flags3:49 Flags2:50 Flags1:51 Flags0:52
+#$ NODES 37 DAUnit>SReg0'co,o'  DAUnit>SReg1'co,o'  DAUnit>SReg2'co,o'  DAUnit>SReg3'co,o'  \
+#  DAUnit>SReg4'co,o'  DAUnit>SReg5'co,o'  DAUnit>SReg6'co,o'  DAUnit>SReg7'co,o'  DAUnit>XReg0'co,o'  \
+#  DAUnit>XReg1'co,o'  DAUnit>XReg2'co,o'  DAUnit>XReg3'co,o'  DAUnit>XReg4'co,o'  DAUnit>XReg5'co,o'  \
+#  DAUnit>XReg6'co,o'  DAUnit>XReg7'co,o'  DAUnit/IDSum7 DAUnit/IDSum6 DAUnit/IDSum5 \
+#  DAUnit/IDSum4 DAUnit/IDSum3 DAUnit/IDSum2 DAUnit/IDSum1 DAUnit/IDCOut4 \
+#  DAUnit/AddrB7 DAUnit/AddrB6 DAUnit/AddrB5 DAUnit/AddrB4 DAUnit/AddrB3 DAUnit/AddrB2 \
+#  DAUnit/AddrB1 DAUnit/AddrB0 DAUnit/AddrCOut5 DAUnit/AddrCOut4 DAUnit/AddrCOut3 \
+#  DAUnit/AddrCOut2 DAUnit/AddrCOut1
+.model daudemo
+.inputs AddrData7.BLIF AddrData6.BLIF AddrData5.BLIF AddrData4.BLIF \
+AddrData3.BLIF AddrData2.BLIF AddrData1.BLIF AddrData0.BLIF DataOff7.BLIF \
+DataOff6.BLIF DataOff5.BLIF DataOff4.BLIF DataOff3.BLIF DataOff2.BLIF \
+DataOff1.BLIF DataOff0.BLIF Control2.BLIF Control1.BLIF Control0.BLIF \
+Control3.BLIF Control4.BLIF Reset.BLIF Clock.BLIF DAUnit>XReg7.BLIF \
+DAUnit>XReg6.BLIF DAUnit>XReg5.BLIF DAUnit>XReg4.BLIF DAUnit>XReg3.BLIF \
+DAUnit>XReg2.BLIF DAUnit>XReg1.BLIF DAUnit>XReg0.BLIF DAUnit>SReg7.BLIF \
+DAUnit>SReg6.BLIF DAUnit>SReg5.BLIF DAUnit>SReg4.BLIF DAUnit>SReg3.BLIF \
+DAUnit>SReg2.BLIF DAUnit>SReg1.BLIF DAUnit>SReg0.BLIF DAUnit/IDSum7.BLIF \
+DAUnit/IDSum6.BLIF DAUnit/IDSum5.BLIF DAUnit/IDSum4.BLIF DAUnit/IDSum3.BLIF \
+DAUnit/IDSum2.BLIF DAUnit/IDSum1.BLIF DAUnit/IDCOut4.BLIF DAUnit/AddrB7.BLIF \
+DAUnit/AddrB6.BLIF DAUnit/AddrB5.BLIF DAUnit/AddrB4.BLIF DAUnit/AddrB3.BLIF \
+DAUnit/AddrB2.BLIF DAUnit/AddrB1.BLIF DAUnit/AddrB0.BLIF DAUnit/AddrCOut5.BLIF \
+DAUnit/AddrCOut4.BLIF DAUnit/AddrCOut3.BLIF DAUnit/AddrCOut2.BLIF \
+DAUnit/AddrCOut1.BLIF
+.outputs AccumAddr12 AccumAddr11 AccumAddr10 AccumAddr9 AccumAddr8 AccumAddr0 \
+XReg7 XReg6 XReg5 XReg4 XReg3 XReg2 XReg1 XReg0 SReg7 SReg6 SReg5 SReg4 SReg3 \
+SReg2 SReg1 SReg0 Flags7 Flags6 Flags5 Flags4 Flags3 Flags2 Flags1 Flags0 \
+DAUnit>SReg0.REG DAUnit>SReg0.CLR DAUnit>SReg0.C DAUnit>SReg1.REG \
+DAUnit>SReg1.CLR DAUnit>SReg1.C DAUnit>SReg2.REG DAUnit>SReg2.CLR \
+DAUnit>SReg2.C DAUnit>SReg3.REG DAUnit>SReg3.CLR DAUnit>SReg3.C \
+DAUnit>SReg4.REG DAUnit>SReg4.CLR DAUnit>SReg4.C DAUnit>SReg5.REG \
+DAUnit>SReg5.CLR DAUnit>SReg5.C DAUnit>SReg6.REG DAUnit>SReg6.CLR \
+DAUnit>SReg6.C DAUnit>SReg7.REG DAUnit>SReg7.CLR DAUnit>SReg7.C \
+DAUnit>XReg0.REG DAUnit>XReg0.CLR DAUnit>XReg0.C DAUnit>XReg1.REG \
+DAUnit>XReg1.CLR DAUnit>XReg1.C DAUnit>XReg2.REG DAUnit>XReg2.CLR \
+DAUnit>XReg2.C DAUnit>XReg3.REG DAUnit>XReg3.CLR DAUnit>XReg3.C \
+DAUnit>XReg4.REG DAUnit>XReg4.CLR DAUnit>XReg4.C DAUnit>XReg5.REG \
+DAUnit>XReg5.CLR DAUnit>XReg5.C DAUnit>XReg6.REG DAUnit>XReg6.CLR \
+DAUnit>XReg6.C DAUnit>XReg7.REG DAUnit>XReg7.CLR DAUnit>XReg7.C DAUnit/AddrB7 \
+DAUnit/AddrB6 DAUnit/AddrB5 DAUnit/AddrB4 DAUnit/AddrB3 DAUnit/AddrB2 \
+DAUnit/AddrB1 DAUnit/AddrCOut5 DAUnit/AddrCOut4 DAUnit/AddrCOut3 \
+DAUnit/AddrCOut2 DAUnit/AddrCOut1 AccumAddr7.X1 AccumAddr7.X2 AccumAddr6.X1 \
+AccumAddr6.X2 AccumAddr5.X1 AccumAddr5.X2 AccumAddr4.X1 AccumAddr4.X2 \
+AccumAddr3.X1 AccumAddr3.X2 AccumAddr2.X1 AccumAddr2.X2 AccumAddr1.X1 \
+AccumAddr1.X2 DAUnit/IDSum7.X1 DAUnit/IDSum7.X2 DAUnit/IDSum6.X1 \
+DAUnit/IDSum6.X2 DAUnit/IDSum5.X1 DAUnit/IDSum5.X2 DAUnit/IDSum4.X1 \
+DAUnit/IDSum4.X2 DAUnit/IDSum3.X1 DAUnit/IDSum3.X2 DAUnit/IDSum2.X1 \
+DAUnit/IDSum2.X2 DAUnit/IDSum1.X1 DAUnit/IDSum1.X2 DAUnit/IDCOut4.X1 \
+DAUnit/IDCOut4.X2 DAUnit/AddrB0.X1 DAUnit/AddrB0.X2
+.names AccumAddr12
+ 0
+.names AccumAddr11
+ 0
+.names AccumAddr10
+ 0
+.names AccumAddr9
+ 0
+.names AccumAddr8
+ 0
+.names Flags7
+ 1
+.names Flags6
+ 1
+.names Flags5
+ 1
+.names Flags4
+ 1
+.names Flags3
+ 1
+.names Flags2
+ 1
+.names Flags1
+ 1
+.names Flags0
+ 1
+.names Control2.BLIF Control3.BLIF DAUnit>SReg0.BLIF DAUnit>SReg0.REG
+100 1
+0-1 1
+-11 1
+101 0
+-10 0
+0-0 0
+.names Reset.BLIF DAUnit>SReg0.CLR
+0 1
+1 0
+.names Control3.BLIF DAUnit>SReg1.BLIF DAUnit/IDSum1.BLIF DAUnit>SReg1.REG
+11- 1
+0-1 1
+10- 0
+0-0 0
+.names Reset.BLIF DAUnit>SReg1.CLR
+0 1
+1 0
+.names Control3.BLIF DAUnit>SReg2.BLIF DAUnit/IDSum2.BLIF DAUnit>SReg2.REG
+11- 1
+0-1 1
+10- 0
+0-0 0
+.names Reset.BLIF DAUnit>SReg2.CLR
+0 1
+1 0
+.names Control3.BLIF DAUnit>SReg3.BLIF DAUnit/IDSum3.BLIF DAUnit>SReg3.REG
+11- 1
+0-1 1
+10- 0
+0-0 0
+.names Reset.BLIF DAUnit>SReg3.CLR
+0 1
+1 0
+.names Control3.BLIF DAUnit>SReg4.BLIF DAUnit/IDSum4.BLIF DAUnit>SReg4.REG
+11- 1
+0-1 1
+10- 0
+0-0 0
+.names Reset.BLIF DAUnit>SReg4.CLR
+0 1
+1 0
+.names Control3.BLIF DAUnit>SReg5.BLIF DAUnit/IDSum5.BLIF DAUnit>SReg5.REG
+11- 1
+0-1 1
+10- 0
+0-0 0
+.names Reset.BLIF DAUnit>SReg5.CLR
+0 1
+1 0
+.names Control3.BLIF DAUnit>SReg6.BLIF DAUnit/IDSum6.BLIF DAUnit>SReg6.REG
+11- 1
+0-1 1
+10- 0
+0-0 0
+.names Reset.BLIF DAUnit>SReg6.CLR
+0 1
+1 0
+.names Control3.BLIF DAUnit>SReg7.BLIF DAUnit/IDSum7.BLIF DAUnit>SReg7.REG
+11- 1
+0-1 1
+10- 0
+0-0 0
+.names Reset.BLIF DAUnit>SReg7.CLR
+0 1
+1 0
+.names Control2.BLIF Control3.BLIF DAUnit>XReg0.BLIF DAUnit>XReg0.REG
+110 1
+0-1 1
+-01 1
+111 0
+-00 0
+0-0 0
+.names Reset.BLIF DAUnit>XReg0.CLR
+0 1
+1 0
+.names Control3.BLIF DAUnit>XReg1.BLIF DAUnit/IDSum1.BLIF DAUnit>XReg1.REG
+01- 1
+1-1 1
+00- 0
+1-0 0
+.names Reset.BLIF DAUnit>XReg1.CLR
+0 1
+1 0
+.names Control3.BLIF DAUnit>XReg2.BLIF DAUnit/IDSum2.BLIF DAUnit>XReg2.REG
+01- 1
+1-1 1
+00- 0
+1-0 0
+.names Reset.BLIF DAUnit>XReg2.CLR
+0 1
+1 0
+.names Control3.BLIF DAUnit>XReg3.BLIF DAUnit/IDSum3.BLIF DAUnit>XReg3.REG
+01- 1
+1-1 1
+00- 0
+1-0 0
+.names Reset.BLIF DAUnit>XReg3.CLR
+0 1
+1 0
+.names Control3.BLIF DAUnit>XReg4.BLIF DAUnit/IDSum4.BLIF DAUnit>XReg4.REG
+01- 1
+1-1 1
+00- 0
+1-0 0
+.names Reset.BLIF DAUnit>XReg4.CLR
+0 1
+1 0
+.names Control3.BLIF DAUnit>XReg5.BLIF DAUnit/IDSum5.BLIF DAUnit>XReg5.REG
+01- 1
+1-1 1
+00- 0
+1-0 0
+.names Reset.BLIF DAUnit>XReg5.CLR
+0 1
+1 0
+.names Control3.BLIF DAUnit>XReg6.BLIF DAUnit/IDSum6.BLIF DAUnit>XReg6.REG
+01- 1
+1-1 1
+00- 0
+1-0 0
+.names Reset.BLIF DAUnit>XReg6.CLR
+0 1
+1 0
+.names Control3.BLIF DAUnit>XReg7.BLIF DAUnit/IDSum7.BLIF DAUnit>XReg7.REG
+01- 1
+1-1 1
+00- 0
+1-0 0
+.names Reset.BLIF DAUnit>XReg7.CLR
+0 1
+1 0
+.names Control2.BLIF Control1.BLIF Control0.BLIF Control3.BLIF \
+DAUnit>XReg7.BLIF DAUnit>SReg7.BLIF DAUnit/IDSum7.BLIF DAUnit/AddrB7
+0000-1- 1
+00011-- 1
+11-0-1- 1
+11-11-- 1
+10----1 1
+-1-0-0- 0
+-1-10-- 0
+10----0 0
+0--0-0- 0
+0--10-- 0
+0-1---- 0
+01----- 0
+.names Control2.BLIF Control1.BLIF Control0.BLIF Control3.BLIF \
+DAUnit>XReg6.BLIF DAUnit>SReg6.BLIF DAUnit/IDSum6.BLIF DAUnit/AddrB6
+0000-1- 1
+00011-- 1
+11-0-1- 1
+11-11-- 1
+10----1 1
+-1-0-0- 0
+-1-10-- 0
+10----0 0
+0--0-0- 0
+0--10-- 0
+0-1---- 0
+01----- 0
+.names Control2.BLIF Control1.BLIF Control0.BLIF Control3.BLIF \
+DAUnit>XReg5.BLIF DAUnit>SReg5.BLIF DAUnit/IDSum5.BLIF DAUnit/AddrB5
+0000-1- 1
+00011-- 1
+11-0-1- 1
+11-11-- 1
+10----1 1
+-1-0-0- 0
+-1-10-- 0
+10----0 0
+0--0-0- 0
+0--10-- 0
+0-1---- 0
+01----- 0
+.names Control2.BLIF Control1.BLIF Control0.BLIF Control3.BLIF \
+DAUnit>XReg4.BLIF DAUnit>SReg4.BLIF DAUnit/IDSum4.BLIF DAUnit/AddrB4
+0000-1- 1
+00011-- 1
+11-0-1- 1
+11-11-- 1
+10----1 1
+-1-0-0- 0
+-1-10-- 0
+10----0 0
+0--0-0- 0
+0--10-- 0
+0-1---- 0
+01----- 0
+.names Control2.BLIF Control1.BLIF Control0.BLIF Control3.BLIF \
+DAUnit>XReg3.BLIF DAUnit>SReg3.BLIF DAUnit/IDSum3.BLIF DAUnit/AddrB3
+0000-1- 1
+00011-- 1
+11-0-1- 1
+11-11-- 1
+10----1 1
+-1-0-0- 0
+-1-10-- 0
+10----0 0
+0--0-0- 0
+0--10-- 0
+0-1---- 0
+01----- 0
+.names Control2.BLIF Control1.BLIF Control0.BLIF Control3.BLIF \
+DAUnit>XReg2.BLIF DAUnit>SReg2.BLIF DAUnit/IDSum2.BLIF DAUnit/AddrB2
+0000-1- 1
+00011-- 1
+11-0-1- 1
+11-11-- 1
+10----1 1
+-1-0-0- 0
+-1-10-- 0
+10----0 0
+0--0-0- 0
+0--10-- 0
+0-1---- 0
+01----- 0
+.names Control2.BLIF Control1.BLIF Control0.BLIF Control3.BLIF \
+DAUnit>XReg1.BLIF DAUnit>SReg1.BLIF DAUnit/IDSum1.BLIF DAUnit/AddrB1
+0000-1- 1
+00011-- 1
+11-0-1- 1
+11-11-- 1
+10----1 1
+-1-0-0- 0
+-1-10-- 0
+10----0 0
+0--0-0- 0
+0--10-- 0
+0-1---- 0
+01----- 0
+.names DataOff5.BLIF Control4.BLIF DAUnit/AddrB5.BLIF DAUnit/AddrCOut4.BLIF \
+DAUnit/AddrCOut5
+101- 1
+10-1 1
+--11 1
+-10- 0
+0-0- 0
+-1-0 0
+0--0 0
+--00 0
+.names DataOff4.BLIF Control4.BLIF DAUnit/AddrB4.BLIF DAUnit/AddrCOut3.BLIF \
+DAUnit/AddrCOut4
+101- 1
+10-1 1
+--11 1
+-10- 0
+0-0- 0
+-1-0 0
+0--0 0
+--00 0
+.names DataOff3.BLIF Control4.BLIF DAUnit/AddrB3.BLIF DAUnit/AddrCOut2.BLIF \
+DAUnit/AddrCOut3
+101- 1
+10-1 1
+--11 1
+-10- 0
+0-0- 0
+-1-0 0
+0--0 0
+--00 0
+.names DataOff2.BLIF Control4.BLIF DAUnit/AddrB2.BLIF DAUnit/AddrCOut1.BLIF \
+DAUnit/AddrCOut2
+101- 1
+10-1 1
+--11 1
+-10- 0
+0-0- 0
+-1-0 0
+0--0 0
+--00 0
+.names DataOff1.BLIF DataOff0.BLIF Control4.BLIF DAUnit/AddrB1.BLIF \
+DAUnit/AddrB0.BLIF DAUnit/AddrCOut1
+1-01- 1
+-1011 1
+110-1 1
+-0-0- 0
+00--- 0
+0--0- 0
+--1-- 0
+---00 0
+0---0 0
+.names DataOff0.BLIF Control4.BLIF DAUnit/AddrB0.BLIF AccumAddr0
+100 1
+-11 1
+0-1 1
+101 0
+-10 0
+0-0 0
+.names DAUnit>XReg7.BLIF XReg7
+1 1
+0 0
+.names DAUnit>XReg6.BLIF XReg6
+1 1
+0 0
+.names DAUnit>XReg5.BLIF XReg5
+1 1
+0 0
+.names DAUnit>XReg4.BLIF XReg4
+1 1
+0 0
+.names DAUnit>XReg3.BLIF XReg3
+1 1
+0 0
+.names DAUnit>XReg2.BLIF XReg2
+1 1
+0 0
+.names DAUnit>XReg1.BLIF XReg1
+1 1
+0 0
+.names DAUnit>XReg0.BLIF XReg0
+1 1
+0 0
+.names DAUnit>SReg7.BLIF SReg7
+1 1
+0 0
+.names DAUnit>SReg6.BLIF SReg6
+1 1
+0 0
+.names DAUnit>SReg5.BLIF SReg5
+1 1
+0 0
+.names DAUnit>SReg4.BLIF SReg4
+1 1
+0 0
+.names DAUnit>SReg3.BLIF SReg3
+1 1
+0 0
+.names DAUnit>SReg2.BLIF SReg2
+1 1
+0 0
+.names DAUnit>SReg1.BLIF SReg1
+1 1
+0 0
+.names DAUnit>SReg0.BLIF SReg0
+1 1
+0 0
+.names Clock.BLIF DAUnit>SReg0.C
+1 1
+0 0
+.names Clock.BLIF DAUnit>SReg1.C
+1 1
+0 0
+.names Clock.BLIF DAUnit>SReg2.C
+1 1
+0 0
+.names Clock.BLIF DAUnit>SReg3.C
+1 1
+0 0
+.names Clock.BLIF DAUnit>SReg4.C
+1 1
+0 0
+.names Clock.BLIF DAUnit>SReg5.C
+1 1
+0 0
+.names Clock.BLIF DAUnit>SReg6.C
+1 1
+0 0
+.names Clock.BLIF DAUnit>SReg7.C
+1 1
+0 0
+.names Clock.BLIF DAUnit>XReg0.C
+1 1
+0 0
+.names Clock.BLIF DAUnit>XReg1.C
+1 1
+0 0
+.names Clock.BLIF DAUnit>XReg2.C
+1 1
+0 0
+.names Clock.BLIF DAUnit>XReg3.C
+1 1
+0 0
+.names Clock.BLIF DAUnit>XReg4.C
+1 1
+0 0
+.names Clock.BLIF DAUnit>XReg5.C
+1 1
+0 0
+.names Clock.BLIF DAUnit>XReg6.C
+1 1
+0 0
+.names Clock.BLIF DAUnit>XReg7.C
+1 1
+0 0
+.names DAUnit/AddrB7.BLIF AccumAddr7.X1
+1 1
+0 0
+.names DataOff7.BLIF DataOff6.BLIF Control4.BLIF DAUnit/AddrB7.BLIF \
+DAUnit/AddrB6.BLIF DAUnit/AddrCOut5.BLIF AccumAddr7.X2
+010-1- 1
+010--1 1
+0---11 1
+100-0- 1
+100--0 1
+1-0-00 1
+--1-11 1
+--1-0- 0
+--1--0 0
+00--0- 0
+00---0 0
+0---00 0
+110-1- 0
+110--1 0
+1-0-11 0
+.names DAUnit/AddrB6.BLIF AccumAddr6.X1
+0 1
+1 0
+.names DataOff6.BLIF Control4.BLIF DAUnit/AddrB6.BLIF DAUnit/AddrCOut5.BLIF \
+AccumAddr6.X2
+0--0 1
+-1-0 1
+10-1 1
+0--1 0
+-1-1 0
+10-0 0
+.names DAUnit/AddrB5.BLIF AccumAddr5.X1
+0 1
+1 0
+.names DataOff5.BLIF Control4.BLIF DAUnit/AddrB5.BLIF DAUnit/AddrCOut4.BLIF \
+AccumAddr5.X2
+0--0 1
+-1-0 1
+10-1 1
+0--1 0
+-1-1 0
+10-0 0
+.names DAUnit/AddrB4.BLIF AccumAddr4.X1
+0 1
+1 0
+.names DataOff4.BLIF Control4.BLIF DAUnit/AddrB4.BLIF DAUnit/AddrCOut3.BLIF \
+AccumAddr4.X2
+0--0 1
+-1-0 1
+10-1 1
+0--1 0
+-1-1 0
+10-0 0
+.names DAUnit/AddrB3.BLIF AccumAddr3.X1
+0 1
+1 0
+.names DataOff3.BLIF Control4.BLIF DAUnit/AddrB3.BLIF DAUnit/AddrCOut2.BLIF \
+AccumAddr3.X2
+0--0 1
+-1-0 1
+10-1 1
+0--1 0
+-1-1 0
+10-0 0
+.names DAUnit/AddrB2.BLIF AccumAddr2.X1
+0 1
+1 0
+.names DataOff2.BLIF Control4.BLIF DAUnit/AddrB2.BLIF DAUnit/AddrCOut1.BLIF \
+AccumAddr2.X2
+0--0 1
+-1-0 1
+10-1 1
+0--1 0
+-1-1 0
+10-0 0
+.names DAUnit/AddrB1.BLIF AccumAddr1.X1
+1 1
+0 0
+.names DataOff1.BLIF DataOff0.BLIF Control4.BLIF DAUnit/AddrB1.BLIF \
+DAUnit/AddrB0.BLIF AccumAddr1.X2
+010-1 1
+100-- 1
+1-0-0 1
+--1-- 0
+00--- 0
+0---0 0
+11--1 0
+.names Control3.BLIF DAUnit>XReg7.BLIF DAUnit/IDSum7.X1
+11 1
+0- 0
+-0 0
+.names Control2.BLIF Control0.BLIF Control3.BLIF DAUnit>XReg7.BLIF \
+DAUnit>XReg6.BLIF DAUnit>XReg5.BLIF DAUnit>SReg7.BLIF DAUnit>SReg6.BLIF \
+DAUnit>SReg5.BLIF DAUnit/IDCOut4.BLIF DAUnit/IDSum7.X2
+100---0000 1
+0-0---0111 1
+-10---0111 1
+--0---101- 1
+--0---1-01 1
+0-0---1--0 1
+-10---1--0 1
+100---11-- 1
+101-00---0 1
+0-1-11---1 1
+-11-11---1 1
+0-1-0----- 0
+-11-0----- 0
+--1-01---- 0
+--1-10---- 0
+--1-0----1 0
+--1-1----0 0
+101-1----- 0
+0-0---00-- 0
+-10---00-- 0
+--0---001- 0
+--0---010- 0
+--0---00-1 0
+--0---01-0 0
+100---01-- 0
+0-0---1111 0
+-10---1111 0
+100---1000 0
+.names Control3.BLIF DAUnit>XReg6.BLIF DAUnit/IDSum6.X1
+11 1
+0- 0
+-0 0
+.names Control2.BLIF Control0.BLIF Control3.BLIF DAUnit>XReg6.BLIF \
+DAUnit>XReg5.BLIF DAUnit>SReg6.BLIF DAUnit>SReg5.BLIF DAUnit/IDCOut4.BLIF \
+DAUnit/IDSum6.X2
+100--000 1
+0-0--011 1
+-10--011 1
+0-0--10- 1
+-10--10- 1
+--0--110 1
+100--1-1 1
+101-0--0 1
+0-1-1--1 1
+-11-1--1 1
+0-1-0--- 0
+-11-0--- 0
+--1-0--1 0
+--1-1--0 0
+101-1--- 0
+0-0--00- 0
+-10--00- 0
+--0--001 0
+--0--010 0
+100--01- 0
+0-0--111 0
+-10--111 0
+100--100 0
+.names Control2.BLIF Control0.BLIF DAUnit/IDSum5.X1
+10 1
+0- 0
+-1 0
+.names Control2.BLIF Control0.BLIF Control3.BLIF DAUnit>XReg5.BLIF \
+DAUnit>SReg5.BLIF DAUnit/IDCOut4.BLIF DAUnit/IDSum5.X2
+--0-01 1
+--0-10 1
+--10-1 1
+--11-0 1
+--11-1 0
+--0-11 0
+--10-0 0
+--0-00 0
+.names Control3.BLIF DAUnit>XReg4.BLIF DAUnit/IDSum4.X1
+11 1
+0- 0
+-0 0
+.names Control2.BLIF Control0.BLIF Control3.BLIF DAUnit>XReg4.BLIF \
+DAUnit>XReg3.BLIF DAUnit>XReg2.BLIF DAUnit>XReg1.BLIF DAUnit>XReg0.BLIF \
+DAUnit>SReg4.BLIF DAUnit>SReg3.BLIF DAUnit>SReg2.BLIF DAUnit>SReg1.BLIF \
+DAUnit>SReg0.BLIF DAUnit/IDSum4.X2
+100-----00000 1
+110-----01111 1
+0-0-----1---- 1
+-10-----10--- 1
+--0-----1-01- 1
+--0-----11-0- 1
+-00-----1---1 1
+--0-----1-1-0 1
+101-0000----- 1
+111-1111----- 1
+0-1---------- 0
+0-------0---- 0
+-01-1-------- 0
+-11-0-------- 0
+-01--1------- 0
+-11--0------- 0
+-01---1------ 0
+-11---0------ 0
+-01----1----- 0
+-11----0----- 0
+-00-----01--- 0
+-10-----00--- 0
+-00-----0-1-- 0
+-10-----0-0-- 0
+-00-----0--1- 0
+-10-----0--0- 0
+-00-----0---1 0
+-10-----0---0 0
+110-----11111 0
+100-----10000 0
+.names Control3.BLIF DAUnit>XReg3.BLIF DAUnit/IDSum3.X1
+11 1
+0- 0
+-0 0
+.names Control2.BLIF Control0.BLIF Control3.BLIF DAUnit>XReg3.BLIF \
+DAUnit>XReg2.BLIF DAUnit>XReg1.BLIF DAUnit>XReg0.BLIF DAUnit>SReg3.BLIF \
+DAUnit>SReg2.BLIF DAUnit>SReg1.BLIF DAUnit>SReg0.BLIF DAUnit/IDSum3.X2
+100----0000 1
+110----0111 1
+0-0----1--- 1
+-00----11-- 1
+--0----101- 1
+--0----1-01 1
+-10----1--0 1
+101-000---- 1
+111-111---- 1
+0-1-------- 0
+0------0--- 0
+-01-1------ 0
+-11-0------ 0
+-01--1----- 0
+-11--0----- 0
+-01---1---- 0
+-11---0---- 0
+-00----01-- 0
+-10----00-- 0
+-00----0-1- 0
+-10----0-0- 0
+-00----0--1 0
+-10----0--0 0
+110----1111 0
+100----1000 0
+.names Control3.BLIF DAUnit>XReg2.BLIF DAUnit/IDSum2.X1
+11 1
+0- 0
+-0 0
+.names Control2.BLIF Control0.BLIF Control3.BLIF DAUnit>XReg2.BLIF \
+DAUnit>XReg1.BLIF DAUnit>XReg0.BLIF DAUnit>SReg2.BLIF DAUnit>SReg1.BLIF \
+DAUnit>SReg0.BLIF DAUnit/IDSum2.X2
+100---000 1
+110---011 1
+0-0---1-- 1
+-10---10- 1
+-00---1-1 1
+--0---110 1
+101-00--- 1
+111-11--- 1
+0-1------ 0
+0-----0-- 0
+-01-1---- 0
+-11-0---- 0
+-01--1--- 0
+-11--0--- 0
+-00---01- 0
+-10---00- 0
+-00---0-1 0
+-10---0-0 0
+110---111 0
+100---100 0
+.names Control2.BLIF Control0.BLIF DAUnit/IDSum1.X1
+10 1
+0- 0
+-1 0
+.names Control2.BLIF Control0.BLIF Control3.BLIF DAUnit>XReg1.BLIF \
+DAUnit>XReg0.BLIF DAUnit>SReg1.BLIF DAUnit>SReg0.BLIF DAUnit/IDSum1.X2
+1-0--01 1
+0-0--1- 1
+--0--10 1
+1-101-- 1
+0-11--- 1
+--110-- 1
+0-10--- 0
+--100-- 0
+0-0--0- 0
+--0--00 0
+1-111-- 0
+1-0--11 0
+.names Control2.BLIF Control0.BLIF DAUnit/IDCOut4.X1
+10 1
+0- 0
+-1 0
+.names Control2.BLIF Control0.BLIF Control3.BLIF DAUnit>XReg4.BLIF \
+DAUnit>XReg3.BLIF DAUnit>XReg2.BLIF DAUnit>XReg1.BLIF DAUnit>XReg0.BLIF \
+DAUnit>SReg4.BLIF DAUnit>SReg3.BLIF DAUnit>SReg2.BLIF DAUnit>SReg1.BLIF \
+DAUnit>SReg0.BLIF DAUnit/IDCOut4.X2
+100-----00000 1
+10100000----- 1
+110-----11111 1
+11111111----- 1
+0------------ 0
+-011--------- 0
+-110--------- 0
+-01-1-------- 0
+-11-0-------- 0
+-01--1------- 0
+-11--0------- 0
+-01---1------ 0
+-11---0------ 0
+-01----1----- 0
+-11----0----- 0
+-00-----1---- 0
+-10-----0---- 0
+-00------1--- 0
+-10------0--- 0
+-00-------1-- 0
+-10-------0-- 0
+-00--------1- 0
+-10--------0- 0
+-00---------1 0
+-10---------0 0
+.names Control2.BLIF Control1.BLIF DAUnit/AddrB0.X1
+10 1
+0- 0
+-1 0
+.names Control2.BLIF Control1.BLIF Control0.BLIF Control3.BLIF \
+DAUnit>XReg0.BLIF DAUnit>SReg0.BLIF DAUnit/AddrB0.X2
+-000-1 1
+1--0-1 1
+-0011- 1
+1--11- 1
+01---- 0
+0-1--- 0
+---10- 0
+---0-0 0
+.end

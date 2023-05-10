@@ -1,0 +1,11 @@
+JDF B
+// Created by Version 2.0 
+PROJECT Untitled
+DESIGN untitled Normal
+DEVKIT LC4032V-10T44I
+ENTRY ABEL/Schematic
+MODULE deccntr.abl
+MODSTYLE deccntr Normal
+SYNTHESIS_TOOL Synplify
+SIMULATOR_TOOL ActiveHDL
+TOPMODULE deccntr

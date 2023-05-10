@@ -1,0 +1,62 @@
+|--------------------------------------------------- ----------|
+|- ispLEVER Classic 2.0.00.17.20.15 Equations File            -|
+|- Copyright(C), 1992-2012, Lattice Semiconductor Corporation -|
+|- All Rights Reserved.                                       -|
+|--------------------------------------------------------------|
+
+
+Equations:
+
+Carry = Sum4 ; (1 pterm, 1 signal)
+
+CarryOut2 = A2 & A1 & B1
+    # A1 & B2 & B1
+    # Subtract & !A0
+    # Subtract & A1
+    # A2 & B2
+    # Subtract & A2 ; (6 pterms, 6 signals)
+
+Overflow = !Sum4 & CarryOut2
+    # Sum4 & !CarryOut2 ; (2 pterms, 2 signals)
+
+Sign = Sum3 ; (1 pterm, 1 signal)
+
+SignedEQ = Zero ; (1 pterm, 1 signal)
+
+SignedGT = !Overflow & !Sign
+    # Overflow & Sign ; (2 pterms, 2 signals)
+
+SignedLT = !SignedGT & !SignedEQ ; (1 pterm, 2 signals)
+
+Sum0 = !Subtract & !A0 & B0
+    # A0 & !B0
+    # Subtract & A0 ; (3 pterms, 3 signals)
+
+Sum1.X1 = !Subtract & A0 & !B1 & B0
+    # !Subtract & B1 & !B0
+    # !Subtract & !A0 & B1 ; (3 pterms, 4 signals)
+Sum1.X2 = A1 ; (1 pterm, 1 signal)
+
+Sum2.X1 = !Subtract & A1 & !B2 & B1
+    # !Subtract & B2 & !B1
+    # !Subtract & !A1 & B2
+    # Subtract & !A1 & A0 ; (4 pterms, 5 signals)
+Sum2.X2 = A2 ; (1 pterm, 1 signal)
+
+Sum3.X1 = !Subtract & !B3 & !CarryOut2
+    # Subtract & CarryOut2
+    # B3 & CarryOut2 ; (3 pterms, 3 signals)
+Sum3.X2 = !A3 ; (1 pterm, 1 signal)
+
+Sum4 = !( !Subtract & !A3 & !B3
+    # !Subtract & !B3 & !CarryOut2
+    # !A3 & !CarryOut2 ) ; (3 pterms, 4 signals)
+
+UnsignedEQ = Zero ; (1 pterm, 1 signal)
+
+UnsignedGT = !Carry ; (1 pterm, 1 signal)
+
+UnsignedLT = !UnsignedGT & !UnsignedEQ ; (1 pterm, 2 signals)
+
+Zero = !Sum3 & !Sum2 & !Sum1 & !Sum0 ; (1 pterm, 4 signals)
+

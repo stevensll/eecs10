@@ -1,0 +1,424 @@
+|--------------------------------------------------- ----------|
+|- ispLEVER Classic 2.0.00.17.20.15 Equations File            -|
+|- Copyright(C), 1992-2012, Lattice Semiconductor Corporation -|
+|- All Rights Reserved.                                       -|
+|--------------------------------------------------------------|
+
+
+Equations:
+
+AccumAddr0.D = !Control3 & Control1 & Reset & X0_Sum0
+    # !Control3 & !Control2 & !Control1 & !Control0 & Reset & AccumAddr0.Q
+    # DataOff0 & Control3 & Control2 & Control1 & Control0 & Reset
+    # Control3 & Control2 & !Control0 & Reset & AccumAddr0.Q
+    # !Control1 & Control0 & Reset & X0_Sum0
+    # !Control3 & Control2 & Reset & X0_Sum0
+    # Control3 & !Control2 & Reset & X0_Sum0 ; (7 pterms, 8 signals)
+AccumAddr0.C = Clock ; (1 pterm, 1 signal)
+
+AccumAddr1.D = !Control3 & Control1 & Reset & X0_Sum1
+    # !Control3 & !Control2 & !Control1 & !Control0 & Reset & AccumAddr1.Q
+    # DataOff1 & Control3 & Control2 & Control1 & Control0 & Reset
+    # Control3 & Control2 & !Control0 & Reset & AccumAddr1.Q
+    # !Control1 & Control0 & Reset & X0_Sum1
+    # !Control3 & Control2 & Reset & X0_Sum1
+    # Control3 & !Control2 & Reset & X0_Sum1 ; (7 pterms, 8 signals)
+AccumAddr1.C = Clock ; (1 pterm, 1 signal)
+
+AccumAddr10 = 0 ; (0 pterm, 0 signal)
+
+AccumAddr11 = 0 ; (0 pterm, 0 signal)
+
+AccumAddr12 = 0 ; (0 pterm, 0 signal)
+
+AccumAddr2.D = !Control3 & Control1 & Reset & X0_Sum2
+    # !Control3 & !Control2 & !Control1 & !Control0 & Reset & AccumAddr2.Q
+    # DataOff2 & Control3 & Control2 & Control1 & Control0 & Reset
+    # Control3 & Control2 & !Control0 & Reset & AccumAddr2.Q
+    # !Control1 & Control0 & Reset & X0_Sum2
+    # !Control3 & Control2 & Reset & X0_Sum2
+    # Control3 & !Control2 & Reset & X0_Sum2 ; (7 pterms, 8 signals)
+AccumAddr2.C = Clock ; (1 pterm, 1 signal)
+
+AccumAddr3.D = !Control3 & Control1 & Reset & X0_Sum3
+    # !Control3 & !Control2 & !Control1 & !Control0 & Reset & AccumAddr3.Q
+    # DataOff3 & Control3 & Control2 & Control1 & Control0 & Reset
+    # Control3 & Control2 & !Control0 & Reset & AccumAddr3.Q
+    # !Control1 & Control0 & Reset & X0_Sum3
+    # !Control3 & Control2 & Reset & X0_Sum3
+    # Control3 & !Control2 & Reset & X0_Sum3 ; (7 pterms, 8 signals)
+AccumAddr3.C = Clock ; (1 pterm, 1 signal)
+
+AccumAddr4.D = !Control3 & Control1 & Reset & X0_Sum4
+    # !Control3 & !Control2 & !Control1 & !Control0 & Reset & AccumAddr4.Q
+    # DataOff4 & Control3 & Control2 & Control1 & Control0 & Reset
+    # Control3 & Control2 & !Control0 & Reset & AccumAddr4.Q
+    # !Control1 & Control0 & Reset & X0_Sum4
+    # !Control3 & Control2 & Reset & X0_Sum4
+    # Control3 & !Control2 & Reset & X0_Sum4 ; (7 pterms, 8 signals)
+AccumAddr4.C = Clock ; (1 pterm, 1 signal)
+
+AccumAddr5.D = !Control3 & Control1 & Reset & X0_Sum5
+    # !Control3 & !Control2 & !Control1 & !Control0 & Reset & AccumAddr5.Q
+    # DataOff5 & Control3 & Control2 & Control1 & Control0 & Reset
+    # Control3 & Control2 & !Control0 & Reset & AccumAddr5.Q
+    # !Control1 & Control0 & Reset & X0_Sum5
+    # !Control3 & Control2 & Reset & X0_Sum5
+    # Control3 & !Control2 & Reset & X0_Sum5 ; (7 pterms, 8 signals)
+AccumAddr5.C = Clock ; (1 pterm, 1 signal)
+
+AccumAddr6.D = !Control3 & Control1 & Reset & X0_Sum6
+    # !Control3 & !Control2 & !Control1 & !Control0 & Reset & AccumAddr6.Q
+    # DataOff6 & Control3 & Control2 & Control1 & Control0 & Reset
+    # Control3 & Control2 & !Control0 & Reset & AccumAddr6.Q
+    # !Control1 & Control0 & Reset & X0_Sum6
+    # !Control3 & Control2 & Reset & X0_Sum6
+    # Control3 & !Control2 & Reset & X0_Sum6 ; (7 pterms, 8 signals)
+AccumAddr6.C = Clock ; (1 pterm, 1 signal)
+
+AccumAddr7.D = !Control3 & Control1 & Reset & X0_Sum7
+    # !Control3 & !Control2 & !Control1 & !Control0 & Reset & AccumAddr7.Q
+    # DataOff7 & Control3 & Control2 & Control1 & Control0 & Reset
+    # Control3 & Control2 & !Control0 & Reset & AccumAddr7.Q
+    # !Control1 & Control0 & Reset & X0_Sum7
+    # !Control3 & Control2 & Reset & X0_Sum7
+    # Control3 & !Control2 & Reset & X0_Sum7 ; (7 pterms, 8 signals)
+AccumAddr7.C = Clock ; (1 pterm, 1 signal)
+
+AccumAddr8 = 0 ; (0 pterm, 0 signal)
+
+AccumAddr9 = 0 ; (0 pterm, 0 signal)
+
+Flags0.D = !Control10 & !Control8 & Reset & !X0_Sum7 & !X0_Sum6 & !X0_Sum5
+       & !X0_Sum4 & !X0_Sum3 & !X0_Sum2 & !X0_Sum1 & !X0_Sum0 & !X0_KeepS
+    # Control10 & !Control8 & Reset & Flags0.Q
+    # DataOff0 & Control8 & Reset
+    # !Control8 & Reset & Flags0.Q & X0_KeepS ; (4 pterms, 14 signals)
+Flags0.C = Clock ; (1 pterm, 1 signal)
+
+Flags1.D = !Control11 & !Control8 & Reset & X0_Sum7 & !X0_KeepS
+    # Control11 & !Control8 & Reset & Flags1.Q
+    # DataOff1 & Control8 & Reset
+    # !Control8 & Reset & Flags1.Q & X0_KeepS ; (4 pterms, 7 signals)
+Flags1.C = Clock ; (1 pterm, 1 signal)
+
+Flags2.D = !Control12 & !Control8 & Reset & X0_A7 & X0_B7 & !X0_CarryOut6
+       & !X0_KeepC
+    # !Control12 & !Control8 & Reset & !X0_A7 & !X0_B7 & X0_CarryOut6
+       & !X0_KeepC
+    # Control12 & !Control8 & Reset & Flags2.Q
+    # DataOff2 & Control8 & Reset
+    # !Control8 & Reset & Flags2.Q & X0_KeepC ; (5 pterms, 9 signals)
+Flags2.C = Clock ; (1 pterm, 1 signal)
+
+Flags3.D = !Control13 & !Control8 & Reset & X0_Subtract & !X0_B7
+       & !X0_CarryOut6 & !X0_KeepC
+    # !Control13 & !Control8 & Reset & X0_Subtract & !X0_A7 & !X0_CarryOut6
+       & !X0_KeepC
+    # !Control13 & !Control8 & Reset & !X0_Subtract & X0_B7 & X0_CarryOut6
+       & !X0_KeepC
+    # !Control13 & !Control8 & Reset & !X0_Subtract & X0_A7 & X0_CarryOut6
+       & !X0_KeepC
+    # !Control13 & !Control8 & Reset & X0_Subtract & !X0_A7 & !X0_B7
+       & !X0_KeepC
+    # !Control13 & !Control8 & Reset & !X0_Subtract & X0_A7 & X0_B7
+       & !X0_KeepC
+    # DataOff3 & Control8 & Reset
+    # Control13 & !Control8 & Reset & Flags3.Q
+    # !Control8 & Reset & Flags3.Q & X0_KeepC ; (9 pterms, 10 signals)
+Flags3.C = Clock ; (1 pterm, 1 signal)
+
+Flags4.D = DataOff4 & Control8 & Reset ; (1 pterm, 3 signals)
+Flags4.C = Clock ; (1 pterm, 1 signal)
+
+Flags5.D = DataOff5 & Control8 & Reset ; (1 pterm, 3 signals)
+Flags5.C = Clock ; (1 pterm, 1 signal)
+
+Flags6.D = DataOff6 & Control8 & Reset ; (1 pterm, 3 signals)
+Flags6.C = Clock ; (1 pterm, 1 signal)
+
+Flags7.D = DataOff7 & Control8 & Reset ; (1 pterm, 3 signals)
+Flags7.C = Clock ; (1 pterm, 1 signal)
+
+SReg0 = Control4 ; (1 pterm, 1 signal)
+
+SReg1 = Control5 ; (1 pterm, 1 signal)
+
+SReg2 = Control6 ; (1 pterm, 1 signal)
+
+SReg3 = Control7 ; (1 pterm, 1 signal)
+
+SReg4 = 0 ; (0 pterm, 0 signal)
+
+SReg5 = 0 ; (0 pterm, 0 signal)
+
+SReg6 = 0 ; (0 pterm, 0 signal)
+
+SReg7 = 0 ; (0 pterm, 0 signal)
+
+X0_A0 = !Control2 & !Control0 & AccumAddr0.Q
+    # Control1 & Control0 & AccumAddr0.Q
+    # Control3 & !Control1 & AccumAddr0.Q
+    # !Control3 & Control2 & AccumAddr0.Q
+    # Control3 & Control2 & Control1 & !Control0 & X0_FOut0
+    # !Control3 & !Control2 & !Control1 & Control0 & X0_FOut0 ; (6 pterms, 6 signals)
+
+X0_A1 = !Control2 & !Control0 & AccumAddr1.Q
+    # Control1 & Control0 & AccumAddr1.Q
+    # Control3 & !Control1 & AccumAddr1.Q
+    # !Control3 & Control2 & AccumAddr1.Q
+    # Control3 & Control2 & Control1 & !Control0 & X0_FOut1
+    # !Control3 & !Control2 & !Control1 & Control0 & X0_FOut1 ; (6 pterms, 6 signals)
+
+X0_A2 = !Control2 & !Control0 & AccumAddr2.Q
+    # Control1 & Control0 & AccumAddr2.Q
+    # Control3 & !Control1 & AccumAddr2.Q
+    # !Control3 & Control2 & AccumAddr2.Q
+    # Control3 & Control2 & Control1 & !Control0 & X0_FOut2
+    # !Control3 & !Control2 & !Control1 & Control0 & X0_FOut2 ; (6 pterms, 6 signals)
+
+X0_A3 = !Control2 & !Control0 & AccumAddr3.Q
+    # Control1 & Control0 & AccumAddr3.Q
+    # Control3 & !Control1 & AccumAddr3.Q
+    # !Control3 & Control2 & AccumAddr3.Q
+    # Control3 & Control2 & Control1 & !Control0 & X0_FOut3
+    # !Control3 & !Control2 & !Control1 & Control0 & X0_FOut3 ; (6 pterms, 6 signals)
+
+X0_A4 = !Control2 & !Control0 & AccumAddr4.Q
+    # Control1 & Control0 & AccumAddr4.Q
+    # Control3 & !Control1 & AccumAddr4.Q
+    # !Control3 & Control2 & AccumAddr4.Q
+    # Control3 & Control2 & Control1 & !Control0 & X0_FOut4
+    # !Control3 & !Control2 & !Control1 & Control0 & X0_FOut4 ; (6 pterms, 6 signals)
+
+X0_A5 = !Control2 & !Control0 & AccumAddr5.Q
+    # Control1 & Control0 & AccumAddr5.Q
+    # Control3 & !Control1 & AccumAddr5.Q
+    # !Control3 & Control2 & AccumAddr5.Q
+    # Control3 & Control2 & Control1 & !Control0 & X0_FOut5
+    # !Control3 & !Control2 & !Control1 & Control0 & X0_FOut5 ; (6 pterms, 6 signals)
+
+X0_A6 = !Control2 & !Control0 & AccumAddr6.Q
+    # Control1 & Control0 & AccumAddr6.Q
+    # Control3 & !Control1 & AccumAddr6.Q
+    # !Control3 & Control2 & AccumAddr6.Q
+    # Control3 & Control2 & Control1 & !Control0 & X0_FOut6
+    # !Control3 & !Control2 & !Control1 & Control0 & X0_FOut6 ; (6 pterms, 6 signals)
+
+X0_A7 = !Control2 & !Control0 & AccumAddr7.Q
+    # Control1 & Control0 & AccumAddr7.Q
+    # Control3 & !Control1 & AccumAddr7.Q
+    # !Control3 & Control2 & AccumAddr7.Q
+    # Control3 & Control2 & Control1 & !Control0 & X0_FOut7
+    # !Control3 & !Control2 & !Control1 & Control0 & X0_FOut7 ; (6 pterms, 6 signals)
+
+X0_B0 = Control3 & !Control1 & !Control0 & X0_FOut0 & X0_Subtract
+    # !Control3 & !Control2 & Control1 & Control0 & AccumAddr0.Q
+    # DataOff0 & !Control3 & !Control2 & Control1 & !Control0 & !X0_Subtract
+    # !Control3 & !Control2 & Control1 & !Control0 & X0_FOut0 & X0_Subtract
+    # Control3 & !Control2 & !Control1 & !Control0
+    # !Control3 & Control2 & !Control1 & !Control0 ; (6 pterms, 8 signals)
+
+X0_B1 = Control3 & !Control1 & !Control0 & X0_FOut1 & X0_Subtract
+    # !Control3 & !Control2 & Control1 & Control0 & AccumAddr1.Q
+    # DataOff1 & !Control3 & !Control2 & Control1 & !Control0 & !X0_Subtract
+    # !Control3 & !Control2 & Control1 & !Control0 & X0_FOut1 & X0_Subtract
+    # Control3 & !Control2 & !Control1 & !Control0 ; (5 pterms, 8 signals)
+
+X0_B2 = Control3 & !Control1 & !Control0 & X0_FOut2 & X0_Subtract
+    # !Control3 & !Control2 & Control1 & Control0 & AccumAddr2.Q
+    # DataOff2 & !Control3 & !Control2 & Control1 & !Control0 & !X0_Subtract
+    # !Control3 & !Control2 & Control1 & !Control0 & X0_FOut2 & X0_Subtract
+    # Control3 & !Control2 & !Control1 & !Control0 ; (5 pterms, 8 signals)
+
+X0_B3 = Control3 & !Control1 & !Control0 & X0_FOut3 & X0_Subtract
+    # !Control3 & !Control2 & Control1 & Control0 & AccumAddr3.Q
+    # DataOff3 & !Control3 & !Control2 & Control1 & !Control0 & !X0_Subtract
+    # !Control3 & !Control2 & Control1 & !Control0 & X0_FOut3 & X0_Subtract
+    # Control3 & !Control2 & !Control1 & !Control0 ; (5 pterms, 8 signals)
+
+X0_B4 = Control3 & !Control1 & !Control0 & X0_FOut4 & X0_Subtract
+    # !Control3 & !Control2 & Control1 & Control0 & AccumAddr4.Q
+    # DataOff4 & !Control3 & !Control2 & Control1 & !Control0 & !X0_Subtract
+    # !Control3 & !Control2 & Control1 & !Control0 & X0_FOut4 & X0_Subtract
+    # Control3 & !Control2 & !Control1 & !Control0 ; (5 pterms, 8 signals)
+
+X0_B5 = Control3 & !Control1 & !Control0 & X0_FOut5 & X0_Subtract
+    # !Control3 & !Control2 & Control1 & Control0 & AccumAddr5.Q
+    # DataOff5 & !Control3 & !Control2 & Control1 & !Control0 & !X0_Subtract
+    # !Control3 & !Control2 & Control1 & !Control0 & X0_FOut5 & X0_Subtract
+    # Control3 & !Control2 & !Control1 & !Control0 ; (5 pterms, 8 signals)
+
+X0_B6 = Control3 & !Control1 & !Control0 & X0_FOut6 & X0_Subtract
+    # !Control3 & !Control2 & Control1 & Control0 & AccumAddr6.Q
+    # DataOff6 & !Control3 & !Control2 & Control1 & !Control0 & !X0_Subtract
+    # !Control3 & !Control2 & Control1 & !Control0 & X0_FOut6 & X0_Subtract
+    # Control3 & !Control2 & !Control1 & !Control0 ; (5 pterms, 8 signals)
+
+X0_B7 = Control3 & !Control1 & !Control0 & X0_FOut7 & X0_Subtract
+    # !Control3 & !Control2 & Control1 & Control0 & AccumAddr7.Q
+    # DataOff7 & !Control3 & !Control2 & Control1 & !Control0 & !X0_Subtract
+    # !Control3 & !Control2 & Control1 & !Control0 & X0_FOut7 & X0_Subtract
+    # Control3 & !Control2 & !Control1 & !Control0 ; (5 pterms, 8 signals)
+
+X0_CIn.X1 = !Control3 & !Control2 & Control1 & !Control0 & X0_Subtract
+    # !Control9 & Control3 & Control2 & !Control1 & !Control0 & X0_Subtract ; (2 pterms, 6 signals)
+X0_CIn.X2 = Control9 & !Control3 & !Control2 & Control1 & Flags3.Q ; (1 pterm, 5 signals)
+
+X0_CarryOut0 = X0_A0 & X0_B0
+    # X0_CIn & X0_A0
+    # X0_CIn & X0_B0 ; (3 pterms, 3 signals)
+
+X0_CarryOut1 = X0_A1 & X0_B1
+    # X0_A1 & X0_CarryOut0
+    # X0_B1 & X0_CarryOut0 ; (3 pterms, 3 signals)
+
+X0_CarryOut2 = X0_A2 & X0_B2
+    # X0_A2 & X0_CarryOut1
+    # X0_B2 & X0_CarryOut1 ; (3 pterms, 3 signals)
+
+X0_CarryOut3 = X0_A3 & X0_B3
+    # X0_A3 & X0_CarryOut2
+    # X0_B3 & X0_CarryOut2 ; (3 pterms, 3 signals)
+
+X0_CarryOut4 = X0_A4 & X0_B4
+    # X0_A4 & X0_CarryOut3
+    # X0_B4 & X0_CarryOut3 ; (3 pterms, 3 signals)
+
+X0_CarryOut5 = X0_A5 & X0_B5
+    # X0_A5 & X0_CarryOut4
+    # X0_B5 & X0_CarryOut4 ; (3 pterms, 3 signals)
+
+X0_CarryOut6 = X0_A6 & X0_B6
+    # X0_A6 & X0_CarryOut5
+    # X0_B6 & X0_CarryOut5 ; (3 pterms, 3 signals)
+
+X0_FOut0.X1 = !DataOff0 & !Control6 & !Control5 & Control4 & !AccumAddr0.Q
+    # DataOff0 & Control7 & !Control6 & !Control5 & AccumAddr0.Q
+    # !Control7 & !Control6 & Control5 & Control4 & !AccumAddr0.Q
+    # !DataOff0 & !Control7 & Control6 & !Control5 & Control4
+    # !DataOff0 & Control6 & Control5 & !Control4 & !AccumAddr0.Q
+    # DataOff0 & !Control7 & Control6 & Control5 & AccumAddr0.Q ; (6 pterms, 6 signals)
+X0_FOut0.X2 = Control6 & Control5 ; (1 pterm, 2 signals)
+
+X0_FOut1.X1 = !DataOff1 & !Control6 & !Control5 & Control4 & !AccumAddr1.Q
+    # DataOff1 & Control7 & !Control6 & !Control5 & AccumAddr1.Q
+    # !Control7 & !Control6 & Control5 & Control4 & !AccumAddr1.Q
+    # !DataOff1 & !Control7 & Control6 & !Control5 & Control4
+    # !DataOff1 & Control6 & Control5 & !Control4 & !AccumAddr1.Q
+    # DataOff1 & !Control7 & Control6 & Control5 & AccumAddr1.Q ; (6 pterms, 6 signals)
+X0_FOut1.X2 = Control6 & Control5 ; (1 pterm, 2 signals)
+
+X0_FOut2.X1 = !DataOff2 & !Control6 & !Control5 & Control4 & !AccumAddr2.Q
+    # DataOff2 & Control7 & !Control6 & !Control5 & AccumAddr2.Q
+    # !Control7 & !Control6 & Control5 & Control4 & !AccumAddr2.Q
+    # !DataOff2 & !Control7 & Control6 & !Control5 & Control4
+    # !DataOff2 & Control6 & Control5 & !Control4 & !AccumAddr2.Q
+    # DataOff2 & !Control7 & Control6 & Control5 & AccumAddr2.Q ; (6 pterms, 6 signals)
+X0_FOut2.X2 = Control6 & Control5 ; (1 pterm, 2 signals)
+
+X0_FOut3.X1 = !DataOff3 & !Control6 & !Control5 & Control4 & !AccumAddr3.Q
+    # DataOff3 & Control7 & !Control6 & !Control5 & AccumAddr3.Q
+    # !Control7 & !Control6 & Control5 & Control4 & !AccumAddr3.Q
+    # !DataOff3 & !Control7 & Control6 & !Control5 & Control4
+    # !DataOff3 & Control6 & Control5 & !Control4 & !AccumAddr3.Q
+    # DataOff3 & !Control7 & Control6 & Control5 & AccumAddr3.Q ; (6 pterms, 6 signals)
+X0_FOut3.X2 = Control6 & Control5 ; (1 pterm, 2 signals)
+
+X0_FOut4.X1 = !DataOff4 & !Control6 & !Control5 & Control4 & !AccumAddr4.Q
+    # DataOff4 & Control7 & !Control6 & !Control5 & AccumAddr4.Q
+    # !Control7 & !Control6 & Control5 & Control4 & !AccumAddr4.Q
+    # !DataOff4 & !Control7 & Control6 & !Control5 & Control4
+    # !DataOff4 & Control6 & Control5 & !Control4 & !AccumAddr4.Q
+    # DataOff4 & !Control7 & Control6 & Control5 & AccumAddr4.Q ; (6 pterms, 6 signals)
+X0_FOut4.X2 = Control6 & Control5 ; (1 pterm, 2 signals)
+
+X0_FOut5.X1 = !DataOff5 & !Control6 & !Control5 & Control4 & !AccumAddr5.Q
+    # DataOff5 & Control7 & !Control6 & !Control5 & AccumAddr5.Q
+    # !Control7 & !Control6 & Control5 & Control4 & !AccumAddr5.Q
+    # !DataOff5 & !Control7 & Control6 & !Control5 & Control4
+    # !DataOff5 & Control6 & Control5 & !Control4 & !AccumAddr5.Q
+    # DataOff5 & !Control7 & Control6 & Control5 & AccumAddr5.Q ; (6 pterms, 6 signals)
+X0_FOut5.X2 = Control6 & Control5 ; (1 pterm, 2 signals)
+
+X0_FOut6.X1 = !DataOff6 & !Control6 & !Control5 & Control4 & !AccumAddr6.Q
+    # DataOff6 & Control7 & !Control6 & !Control5 & AccumAddr6.Q
+    # !Control7 & !Control6 & Control5 & Control4 & !AccumAddr6.Q
+    # !DataOff6 & !Control7 & Control6 & !Control5 & Control4
+    # !DataOff6 & Control6 & Control5 & !Control4 & !AccumAddr6.Q
+    # DataOff6 & !Control7 & Control6 & Control5 & AccumAddr6.Q ; (6 pterms, 6 signals)
+X0_FOut6.X2 = Control6 & Control5 ; (1 pterm, 2 signals)
+
+X0_FOut7.X1 = !DataOff7 & !Control6 & !Control5 & Control4 & !AccumAddr7.Q
+    # DataOff7 & Control7 & !Control6 & !Control5 & AccumAddr7.Q
+    # !Control7 & !Control6 & Control5 & Control4 & !AccumAddr7.Q
+    # !DataOff7 & !Control7 & Control6 & !Control5 & Control4
+    # !DataOff7 & Control6 & Control5 & !Control4 & !AccumAddr7.Q
+    # DataOff7 & !Control7 & Control6 & Control5 & AccumAddr7.Q ; (6 pterms, 6 signals)
+X0_FOut7.X2 = Control6 & Control5 ; (1 pterm, 2 signals)
+
+X0_KeepC = Control3 & Control2 & Control1 & !Control0
+    # !Control3 & !Control2 & !Control1 & Control0
+    # X0_KeepS ; (3 pterms, 5 signals)
+
+X0_KeepS = !Control3 & !Control2 & !Control1 & !Control0
+    # Control3 & Control2 & Control1 & Control0 ; (2 pterms, 4 signals)
+
+X0_Subtract = !Control7 & Control6 & !Control5 & Control4 ; (1 pterm, 4 signals)
+
+X0_Sum0 = !X0_CIn & X0_A0 & !X0_B0
+    # !X0_CIn & !X0_A0 & X0_B0
+    # X0_CIn & !X0_A0 & !X0_B0
+    # X0_CIn & X0_A0 & X0_B0 ; (4 pterms, 3 signals)
+
+X0_Sum1 = X0_A1 & !X0_B1 & !X0_CarryOut0
+    # !X0_A1 & X0_B1 & !X0_CarryOut0
+    # !X0_A1 & !X0_B1 & X0_CarryOut0
+    # X0_A1 & X0_B1 & X0_CarryOut0 ; (4 pterms, 3 signals)
+
+X0_Sum2 = X0_A2 & !X0_B2 & !X0_CarryOut1
+    # !X0_A2 & X0_B2 & !X0_CarryOut1
+    # !X0_A2 & !X0_B2 & X0_CarryOut1
+    # X0_A2 & X0_B2 & X0_CarryOut1 ; (4 pterms, 3 signals)
+
+X0_Sum3 = X0_A3 & !X0_B3 & !X0_CarryOut2
+    # !X0_A3 & X0_B3 & !X0_CarryOut2
+    # !X0_A3 & !X0_B3 & X0_CarryOut2
+    # X0_A3 & X0_B3 & X0_CarryOut2 ; (4 pterms, 3 signals)
+
+X0_Sum4 = X0_A4 & !X0_B4 & !X0_CarryOut3
+    # !X0_A4 & X0_B4 & !X0_CarryOut3
+    # !X0_A4 & !X0_B4 & X0_CarryOut3
+    # X0_A4 & X0_B4 & X0_CarryOut3 ; (4 pterms, 3 signals)
+
+X0_Sum5 = X0_A5 & !X0_B5 & !X0_CarryOut4
+    # !X0_A5 & X0_B5 & !X0_CarryOut4
+    # !X0_A5 & !X0_B5 & X0_CarryOut4
+    # X0_A5 & X0_B5 & X0_CarryOut4 ; (4 pterms, 3 signals)
+
+X0_Sum6 = X0_A6 & !X0_B6 & !X0_CarryOut5
+    # !X0_A6 & X0_B6 & !X0_CarryOut5
+    # !X0_A6 & !X0_B6 & X0_CarryOut5
+    # X0_A6 & X0_B6 & X0_CarryOut5 ; (4 pterms, 3 signals)
+
+X0_Sum7 = X0_A7 & !X0_B7 & !X0_CarryOut6
+    # !X0_A7 & X0_B7 & !X0_CarryOut6
+    # !X0_A7 & !X0_B7 & X0_CarryOut6
+    # X0_A7 & X0_B7 & X0_CarryOut6 ; (4 pterms, 3 signals)
+
+XReg0 = DataOff0 ; (1 pterm, 1 signal)
+
+XReg1 = DataOff1 ; (1 pterm, 1 signal)
+
+XReg2 = DataOff2 ; (1 pterm, 1 signal)
+
+XReg3 = DataOff3 ; (1 pterm, 1 signal)
+
+XReg4 = 0 ; (0 pterm, 0 signal)
+
+XReg5 = 0 ; (0 pterm, 0 signal)
+
+XReg6 = 0 ; (0 pterm, 0 signal)
+
+XReg7 = 0 ; (0 pterm, 0 signal)
+

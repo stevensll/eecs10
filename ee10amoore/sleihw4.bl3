@@ -1,0 +1,142 @@
+#$ TOOL ispLEVER Classic 2.0.00.17.20.15
+#$ DATE Thu Jan 07 17:24:06 2021
+#$ TITLE Adder/Subtracter with Flags
+#$ MODULE sleihw4
+#$ JEDECFILE addsub
+#$ PINS 24 Subtract:37 A3:31 A2:30 A1:29 A0:26 B3:22 B2:21 B1:20 B0:19 Sum4:13 Sum3:3 \
+#  Sum2:2 Sum1:44 Sum0:43 Carry:9 Overflow:8 Sign:7 Zero:4 UnsignedGT:15 UnsignedEQ:41 \
+#  UnsignedLT:24 SignedGT:16 SignedEQ:42 SignedLT:25
+#$ NODES 2 CarryOut1 CarryOut2
+.model addsub
+.inputs A0.BLIF B0.BLIF Subtract.BLIF A1.BLIF B1.BLIF A2.BLIF B2.BLIF \
+CarryOut1.BLIF A3.BLIF B3.BLIF CarryOut2.BLIF Sum0.BLIF Sum1.BLIF Sum2.BLIF \
+Sum3.BLIF Sum4.BLIF Zero.BLIF Carry.BLIF UnsignedGT.BLIF UnsignedEQ.BLIF \
+Sign.BLIF Overflow.BLIF SignedGT.BLIF SignedEQ.BLIF
+.outputs Sum4 Sum0 Carry Overflow Sign Zero UnsignedGT UnsignedEQ UnsignedLT \
+SignedGT SignedEQ SignedLT CarryOut1 CarryOut2 Sum3.X1 Sum3.X2 Sum2.X1 Sum2.X2 \
+Sum1.X1 Sum1.X2
+.names Subtract.BLIF A3.BLIF B3.BLIF CarryOut2.BLIF Sum4
+110- 1
+011- 1
+1-01 1
+0-11 1
+-1-1 1
+000- 0
+101- 0
+0-00 0
+1-10 0
+-0-0 0
+.names A0.BLIF B0.BLIF Sum0
+10 1
+01 1
+00 0
+11 0
+.names Subtract.BLIF Sum4.BLIF Carry
+10 1
+01 1
+00 0
+11 0
+.names CarryOut2.BLIF Sum4.BLIF Overflow
+10 1
+01 1
+00 0
+11 0
+.names Sum0.BLIF Sum1.BLIF Sum2.BLIF Sum3.BLIF Zero
+0000 1
+--1- 0
+-1-- 0
+1--- 0
+---1 0
+.names Zero.BLIF Carry.BLIF UnsignedGT
+00 1
+1- 0
+-1 0
+.names UnsignedGT.BLIF UnsignedEQ.BLIF UnsignedLT
+00 1
+1- 0
+-1 0
+.names Zero.BLIF Carry.BLIF Sign.BLIF Overflow.BLIF SignedGT
+0111 1
+0-00 1
+-0-1 0
+--10 0
+1--- 0
+--01 0
+.names SignedGT.BLIF SignedEQ.BLIF SignedLT
+00 1
+1- 0
+-1 0
+.names A0.BLIF B0.BLIF Subtract.BLIF A1.BLIF B1.BLIF CarryOut1
+-0-11 1
+110-1 1
+11-1- 1
+-01-0 1
+1-1-0 1
+--011 1
+--110 1
+-0-01 0
+011-1 0
+01-0- 0
+-00-0 0
+0-0-0 0
+--101 0
+--000 0
+.names Subtract.BLIF A2.BLIF B2.BLIF CarryOut1.BLIF CarryOut2
+110- 1
+011- 1
+1-01 1
+0-11 1
+-1-1 1
+000- 0
+101- 0
+0-00 0
+1-10 0
+-0-0 0
+.names Sum3.BLIF Sign
+1 1
+0 0
+.names Zero.BLIF UnsignedEQ
+1 1
+0 0
+.names Zero.BLIF SignedEQ
+1 1
+0 0
+.names Subtract.BLIF Sum3.X1
+0 1
+1 0
+.names Subtract.BLIF A3.BLIF B3.BLIF CarryOut2.BLIF Sum3.X2
+-000 1
+-011 1
+-101 1
+-110 1
+-111 0
+-001 0
+-010 0
+-100 0
+.names Subtract.BLIF Sum2.X1
+0 1
+1 0
+.names Subtract.BLIF A2.BLIF B2.BLIF CarryOut1.BLIF Sum2.X2
+-000 1
+-011 1
+-101 1
+-110 1
+-111 0
+-001 0
+-010 0
+-100 0
+.names A1.BLIF Sum1.X1
+0 1
+1 0
+.names A0.BLIF B0.BLIF Subtract.BLIF A1.BLIF B1.BLIF Sum1.X2
+-0--0 1
+0-0-0 1
+1-1-0 1
+011-1 1
+110-1 1
+-0--1 0
+1-1-1 0
+0-0-1 0
+011-0 0
+110-0 0
+.end

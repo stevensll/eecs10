@@ -1,0 +1,38 @@
+//
+// Software Version :  ispLEVER Classic 2.0.00.17.20.15  
+// Project Name	    :  sleihw4
+// Targeted Device  :  LC4032V-10T44I
+// Date             :  Thu Jan 07 17:24:11 2021
+//
+                     Sum2          OUT           2
+                     Sum3          OUT           3
+                     Zero          OUT           4
+                   GNDIO0          SYS           5
+                   VCCIO0          SYS           6
+                     Sign          OUT           7
+                 Overflow          OUT           8
+                    Carry          OUT           9
+                      VCC          SYS           11
+                      GND          SYS           12
+                     Sum4          OUT           13
+               UnsignedGT          OUT           15
+                 SignedGT          OUT           16
+                       B0          IN            19
+                       B1          IN            20
+                       B2          IN            21
+                       B3          IN            22
+               UnsignedLT          OUT           24
+                 SignedLT          OUT           25
+                       A0          IN            26
+                   GNDIO1          SYS           27
+                   VCCIO1          SYS           28
+                       A1          IN            29
+                       A2          IN            30
+                       A3          IN            31
+                      VCC          SYS           33
+                      GND          SYS           34
+                 Subtract          IN            37
+               UnsignedEQ          OUT           41
+                 SignedEQ          OUT           42
+                     Sum0          OUT           43
+                     Sum1          OUT           44

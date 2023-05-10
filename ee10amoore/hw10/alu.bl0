@@ -1,0 +1,611 @@
+#$ TOOL ispLEVER Classic 2.0.00.17.20.15
+#$ DATE Thu Mar 19 03:12:29 2015
+#$ MODULE alu
+#$ JEDECFILE alu
+#$ PINS 40 Data7 Data6 Data5 Data4 Data3 Data2 Data1 Data0 Mode3 Mode2 Mode1 Mode0 WC F3 F2 F1 F0 LoadFlags MaskC MaskV MaskS MaskZ Reset Clock Accum7 Accum6 Accum5 \
+#  Accum4 Accum3 Accum2 Accum1 Accum0 Flags7 Flags6 Flags5 Flags4 Flags3 Flags2 Flags1 Flags0
+#$ NODES 46 FOut7 FOut6 FOut5 FOut4 FOut3 FOut2 FOut1 FOut0 Subtract CIn A7 A6 A5 A4 A3 A2 A1 A0 B7 B6 B5 B4 B3 B2 B1 B0 Sum7 Sum6 Sum5 Sum4 Sum3 Sum2 Sum1 Sum0 CarryOut7 \
+#  CarryOut6 CarryOut5 CarryOut4 CarryOut3 CarryOut2 CarryOut1 CarryOut0 KeepC KeepV KeepS KeepZ
+#$ INTERFACE alu  40 Clock'i'  Data0'i'  Data1'i'  Data2'i'  Data3'i'  Data4'i'  Data5'i'  Data6'i'  Data7'i'  F0'i'  F1'i'  F2'i'  F3'i'  LoadFlags'i'  MaskC'i'  MaskS'i'  MaskV'i'  MaskZ'i'  Mode0'i'  Mode1'i'  Mode2'i'  Mode3'i'  Reset'i'  WC'i'  Accum0'o'  \
+#  Accum1'o'  Accum2'o'  Accum3'o'  Accum4'o'  Accum5'o'  Accum6'o'  Accum7'o'  Flags0'o'  Flags1'o'  Flags2'o'  Flags3'o'  Flags4'o'  Flags5'o'  Flags6'o'  Flags7'o' 
+
+.model alu
+.inputs F3.BLIF F2.BLIF F1.BLIF F0.BLIF Accum7.BLIF Data7.BLIF Accum6.BLIF Data6.BLIF \
+Accum5.BLIF Data5.BLIF Accum4.BLIF Data4.BLIF Accum3.BLIF Data3.BLIF \
+Accum2.BLIF Data2.BLIF Accum1.BLIF Data1.BLIF Accum0.BLIF Data0.BLIF \
+Mode3.BLIF Mode2.BLIF Mode1.BLIF Mode0.BLIF FOut7.BLIF FOut6.BLIF FOut5.BLIF \
+FOut4.BLIF FOut3.BLIF FOut2.BLIF FOut1.BLIF FOut0.BLIF Subtract.BLIF WC.BLIF \
+Flags3.BLIF A7.BLIF B7.BLIF CarryOut6.BLIF A6.BLIF B6.BLIF CarryOut5.BLIF \
+A5.BLIF B5.BLIF CarryOut4.BLIF A4.BLIF B4.BLIF CarryOut3.BLIF A3.BLIF B3.BLIF \
+CarryOut2.BLIF A2.BLIF B2.BLIF CarryOut1.BLIF A1.BLIF B1.BLIF CarryOut0.BLIF \
+A0.BLIF B0.BLIF CIn.BLIF Sum7.BLIF Sum6.BLIF Sum5.BLIF Sum4.BLIF Sum3.BLIF \
+Sum2.BLIF Sum1.BLIF Sum0.BLIF KeepS.BLIF KeepC.BLIF LoadFlags.BLIF MaskC.BLIF \
+CarryOut7.BLIF KeepV.BLIF MaskV.BLIF Flags2.BLIF MaskS.BLIF Flags1.BLIF \
+KeepZ.BLIF MaskZ.BLIF Flags0.BLIF Clock.BLIF Reset.BLIF
+.outputs FOut7 FOut6 FOut5 FOut4 FOut3 FOut2 FOut1 FOut0 Subtract CIn A7 A6 A5 \
+A4 A3 A2 A1 A0 B7 B6 B5 B4 B3 B2 B1 B0 Sum7 Sum6 Sum5 Sum4 Sum3 Sum2 Sum1 Sum0 \
+CarryOut7 CarryOut6 CarryOut5 CarryOut4 CarryOut3 CarryOut2 CarryOut1 \
+CarryOut0 KeepC KeepV KeepS KeepZ Accum7.REG Accum6.REG Accum5.REG Accum4.REG \
+Accum3.REG Accum2.REG Accum1.REG Accum0.REG Flags3.REG Flags2.REG Flags1.REG \
+Flags0.REG Flags7.REG Flags6.REG Flags5.REG Flags4.REG Accum7.C Accum6.C \
+Accum5.C Accum4.C Accum3.C Accum2.C Accum1.C Accum0.C Accum7.CLR Accum6.CLR \
+Accum5.CLR Accum4.CLR Accum3.CLR Accum2.CLR Accum1.CLR Accum0.CLR Flags7.C \
+Flags6.C Flags5.C Flags4.C Flags3.C Flags2.C Flags1.C Flags0.C Flags7.CLR \
+Flags6.CLR Flags5.CLR Flags4.CLR Flags3.CLR Flags2.CLR Flags1.CLR Flags0.CLR
+.names F3.BLIF F2.BLIF F1.BLIF F0.BLIF Accum7.BLIF Data7.BLIF FOut7
+1111-- 1
+11101- 1
+01110- 1
+00110- 1
+1110-1 1
+0111-0 1
+0101-0 1
+100111 1
+100011 1
+011001 1
+011010 1
+100100 1
+000100 1
+.names F3.BLIF F2.BLIF F1.BLIF F0.BLIF Accum6.BLIF Data6.BLIF FOut6
+1111-- 1
+11101- 1
+01110- 1
+00110- 1
+1110-1 1
+0111-0 1
+0101-0 1
+100111 1
+100011 1
+011001 1
+011010 1
+100100 1
+000100 1
+.names F3.BLIF F2.BLIF F1.BLIF F0.BLIF Accum5.BLIF Data5.BLIF FOut5
+1111-- 1
+11101- 1
+01110- 1
+00110- 1
+1110-1 1
+0111-0 1
+0101-0 1
+100111 1
+100011 1
+011001 1
+011010 1
+100100 1
+000100 1
+.names F3.BLIF F2.BLIF F1.BLIF F0.BLIF Accum4.BLIF Data4.BLIF FOut4
+1111-- 1
+11101- 1
+01110- 1
+00110- 1
+1110-1 1
+0111-0 1
+0101-0 1
+100111 1
+100011 1
+011001 1
+011010 1
+100100 1
+000100 1
+.names F3.BLIF F2.BLIF F1.BLIF F0.BLIF Accum3.BLIF Data3.BLIF FOut3
+1111-- 1
+11101- 1
+01110- 1
+00110- 1
+1110-1 1
+0111-0 1
+0101-0 1
+100111 1
+100011 1
+011001 1
+011010 1
+100100 1
+000100 1
+.names F3.BLIF F2.BLIF F1.BLIF F0.BLIF Accum2.BLIF Data2.BLIF FOut2
+1111-- 1
+11101- 1
+01110- 1
+00110- 1
+1110-1 1
+0111-0 1
+0101-0 1
+100111 1
+100011 1
+011001 1
+011010 1
+100100 1
+000100 1
+.names F3.BLIF F2.BLIF F1.BLIF F0.BLIF Accum1.BLIF Data1.BLIF FOut1
+1111-- 1
+11101- 1
+01110- 1
+00110- 1
+1110-1 1
+0111-0 1
+0101-0 1
+100111 1
+100011 1
+011001 1
+011010 1
+100100 1
+000100 1
+.names F3.BLIF F2.BLIF F1.BLIF F0.BLIF Accum0.BLIF Data0.BLIF FOut0
+1111-- 1
+11101- 1
+01110- 1
+00110- 1
+1110-1 1
+0111-0 1
+0101-0 1
+100111 1
+100011 1
+011001 1
+011010 1
+100100 1
+000100 1
+.names F3.BLIF F2.BLIF F1.BLIF F0.BLIF Subtract
+0101 1
+.names Mode3.BLIF Mode2.BLIF Mode1.BLIF Mode0.BLIF Subtract.BLIF WC.BLIF \
+Flags3.BLIF CIn
+001010- 1
+110010- 1
+0011-11 1
+0010011 1
+0010110 1
+.names Accum7.BLIF Mode3.BLIF Mode2.BLIF Mode1.BLIF Mode0.BLIF FOut7.BLIF A7
+101--- 1
+110--- 1
+10-1-- 1
+1-01-- 1
+11-0-- 1
+1-10-- 1
+11--1- 1
+1-1-1- 1
+1--11- 1
+10--0- 1
+1-0-0- 1
+1--00- 1
+-00011 1
+-11101 1
+.names Accum6.BLIF Mode3.BLIF Mode2.BLIF Mode1.BLIF Mode0.BLIF FOut6.BLIF A6
+101--- 1
+110--- 1
+10-1-- 1
+1-01-- 1
+11-0-- 1
+1-10-- 1
+11--1- 1
+1-1-1- 1
+1--11- 1
+10--0- 1
+1-0-0- 1
+1--00- 1
+-00011 1
+-11101 1
+.names Accum5.BLIF Mode3.BLIF Mode2.BLIF Mode1.BLIF Mode0.BLIF FOut5.BLIF A5
+101--- 1
+110--- 1
+10-1-- 1
+1-01-- 1
+11-0-- 1
+1-10-- 1
+11--1- 1
+1-1-1- 1
+1--11- 1
+10--0- 1
+1-0-0- 1
+1--00- 1
+-00011 1
+-11101 1
+.names Accum4.BLIF Mode3.BLIF Mode2.BLIF Mode1.BLIF Mode0.BLIF FOut4.BLIF A4
+101--- 1
+110--- 1
+10-1-- 1
+1-01-- 1
+11-0-- 1
+1-10-- 1
+11--1- 1
+1-1-1- 1
+1--11- 1
+10--0- 1
+1-0-0- 1
+1--00- 1
+-00011 1
+-11101 1
+.names Accum3.BLIF Mode3.BLIF Mode2.BLIF Mode1.BLIF Mode0.BLIF FOut3.BLIF A3
+101--- 1
+110--- 1
+10-1-- 1
+1-01-- 1
+11-0-- 1
+1-10-- 1
+11--1- 1
+1-1-1- 1
+1--11- 1
+10--0- 1
+1-0-0- 1
+1--00- 1
+-00011 1
+-11101 1
+.names Accum2.BLIF Mode3.BLIF Mode2.BLIF Mode1.BLIF Mode0.BLIF FOut2.BLIF A2
+101--- 1
+110--- 1
+10-1-- 1
+1-01-- 1
+11-0-- 1
+1-10-- 1
+11--1- 1
+1-1-1- 1
+1--11- 1
+10--0- 1
+1-0-0- 1
+1--00- 1
+-00011 1
+-11101 1
+.names Accum1.BLIF Mode3.BLIF Mode2.BLIF Mode1.BLIF Mode0.BLIF FOut1.BLIF A1
+101--- 1
+110--- 1
+10-1-- 1
+1-01-- 1
+11-0-- 1
+1-10-- 1
+11--1- 1
+1-1-1- 1
+1--11- 1
+10--0- 1
+1-0-0- 1
+1--00- 1
+-00011 1
+-11101 1
+.names Accum0.BLIF Mode3.BLIF Mode2.BLIF Mode1.BLIF Mode0.BLIF FOut0.BLIF A0
+101--- 1
+110--- 1
+10-1-- 1
+1-01-- 1
+11-0-- 1
+1-10-- 1
+11--1- 1
+1-1-1- 1
+1--11- 1
+10--0- 1
+1-0-0- 1
+1--00- 1
+-00011 1
+-11101 1
+.names Accum7.BLIF Data7.BLIF Mode3.BLIF Mode2.BLIF Mode1.BLIF Mode0.BLIF \
+FOut7.BLIF Subtract.BLIF B7
+--1000-- 1
+1-0011-- 1
+--001011 1
+--110011 1
+-10010-0 1
+.names Accum6.BLIF Data6.BLIF Mode3.BLIF Mode2.BLIF Mode1.BLIF Mode0.BLIF \
+FOut6.BLIF Subtract.BLIF B6
+--1000-- 1
+1-0011-- 1
+--001011 1
+--110011 1
+-10010-0 1
+.names Accum5.BLIF Data5.BLIF Mode3.BLIF Mode2.BLIF Mode1.BLIF Mode0.BLIF \
+FOut5.BLIF Subtract.BLIF B5
+--1000-- 1
+1-0011-- 1
+--001011 1
+--110011 1
+-10010-0 1
+.names Accum4.BLIF Data4.BLIF Mode3.BLIF Mode2.BLIF Mode1.BLIF Mode0.BLIF \
+FOut4.BLIF Subtract.BLIF B4
+--1000-- 1
+1-0011-- 1
+--001011 1
+--110011 1
+-10010-0 1
+.names Accum3.BLIF Data3.BLIF Mode3.BLIF Mode2.BLIF Mode1.BLIF Mode0.BLIF \
+FOut3.BLIF Subtract.BLIF B3
+--1000-- 1
+1-0011-- 1
+--001011 1
+--110011 1
+-10010-0 1
+.names Accum2.BLIF Data2.BLIF Mode3.BLIF Mode2.BLIF Mode1.BLIF Mode0.BLIF \
+FOut2.BLIF Subtract.BLIF B2
+--1000-- 1
+1-0011-- 1
+--001011 1
+--110011 1
+-10010-0 1
+.names Accum1.BLIF Data1.BLIF Mode3.BLIF Mode2.BLIF Mode1.BLIF Mode0.BLIF \
+FOut1.BLIF Subtract.BLIF B1
+--1000-- 1
+1-0011-- 1
+--001011 1
+--110011 1
+-10010-0 1
+.names Accum0.BLIF Data0.BLIF Mode3.BLIF Mode2.BLIF Mode1.BLIF Mode0.BLIF \
+FOut0.BLIF Subtract.BLIF B0
+--0100-- 1
+--1000-- 1
+1-0011-- 1
+--001011 1
+--110011 1
+-10010-0 1
+.names A7.BLIF B7.BLIF CarryOut6.BLIF Sum7
+111 1
+001 1
+010 1
+100 1
+.names A6.BLIF B6.BLIF CarryOut5.BLIF Sum6
+111 1
+001 1
+010 1
+100 1
+.names A5.BLIF B5.BLIF CarryOut4.BLIF Sum5
+111 1
+001 1
+010 1
+100 1
+.names A4.BLIF B4.BLIF CarryOut3.BLIF Sum4
+111 1
+001 1
+010 1
+100 1
+.names A3.BLIF B3.BLIF CarryOut2.BLIF Sum3
+111 1
+001 1
+010 1
+100 1
+.names A2.BLIF B2.BLIF CarryOut1.BLIF Sum2
+111 1
+001 1
+010 1
+100 1
+.names A1.BLIF B1.BLIF CarryOut0.BLIF Sum1
+111 1
+001 1
+010 1
+100 1
+.names A0.BLIF B0.BLIF CIn.BLIF Sum0
+111 1
+001 1
+010 1
+100 1
+.names A7.BLIF B7.BLIF CarryOut6.BLIF CarryOut7
+11- 1
+011 1
+101 1
+.names A6.BLIF B6.BLIF CarryOut5.BLIF CarryOut6
+11- 1
+011 1
+101 1
+.names A5.BLIF B5.BLIF CarryOut4.BLIF CarryOut5
+11- 1
+011 1
+101 1
+.names A4.BLIF B4.BLIF CarryOut3.BLIF CarryOut4
+11- 1
+011 1
+101 1
+.names A3.BLIF B3.BLIF CarryOut2.BLIF CarryOut3
+11- 1
+011 1
+101 1
+.names A2.BLIF B2.BLIF CarryOut1.BLIF CarryOut2
+11- 1
+011 1
+101 1
+.names A1.BLIF B1.BLIF CarryOut0.BLIF CarryOut1
+11- 1
+011 1
+101 1
+.names A0.BLIF B0.BLIF CIn.BLIF CarryOut0
+11- 1
+011 1
+101 1
+.names Mode3.BLIF Mode2.BLIF Mode1.BLIF Mode0.BLIF KeepS.BLIF KeepC
+----1 1
+0001- 1
+1110- 1
+.names KeepC.BLIF KeepV
+1 1
+.names Mode3.BLIF Mode2.BLIF Mode1.BLIF Mode0.BLIF KeepS
+1111 1
+0000 1
+.names KeepS.BLIF KeepZ
+1 1
+.names Accum7.BLIF Data7.BLIF Mode3.BLIF Mode2.BLIF Mode1.BLIF Mode0.BLIF \
+Sum7.BLIF Accum7.REG
+--01--1 1
+--10--1 1
+--0-1-1 1
+---01-1 1
+--0--11 1
+---0-11 1
+----011 1
+1-11-0- 1
+-11111- 1
+1-0000- 1
+.names Accum6.BLIF Data6.BLIF Mode3.BLIF Mode2.BLIF Mode1.BLIF Mode0.BLIF \
+Sum6.BLIF Accum6.REG
+--01--1 1
+--10--1 1
+--0-1-1 1
+---01-1 1
+--0--11 1
+---0-11 1
+----011 1
+1-11-0- 1
+-11111- 1
+1-0000- 1
+.names Accum5.BLIF Data5.BLIF Mode3.BLIF Mode2.BLIF Mode1.BLIF Mode0.BLIF \
+Sum5.BLIF Accum5.REG
+--01--1 1
+--10--1 1
+--0-1-1 1
+---01-1 1
+--0--11 1
+---0-11 1
+----011 1
+1-11-0- 1
+-11111- 1
+1-0000- 1
+.names Accum4.BLIF Data4.BLIF Mode3.BLIF Mode2.BLIF Mode1.BLIF Mode0.BLIF \
+Sum4.BLIF Accum4.REG
+--01--1 1
+--10--1 1
+--0-1-1 1
+---01-1 1
+--0--11 1
+---0-11 1
+----011 1
+1-11-0- 1
+-11111- 1
+1-0000- 1
+.names Accum3.BLIF Data3.BLIF Mode3.BLIF Mode2.BLIF Mode1.BLIF Mode0.BLIF \
+Sum3.BLIF Accum3.REG
+--01--1 1
+--10--1 1
+--0-1-1 1
+---01-1 1
+--0--11 1
+---0-11 1
+----011 1
+1-11-0- 1
+-11111- 1
+1-0000- 1
+.names Accum2.BLIF Data2.BLIF Mode3.BLIF Mode2.BLIF Mode1.BLIF Mode0.BLIF \
+Sum2.BLIF Accum2.REG
+--01--1 1
+--10--1 1
+--0-1-1 1
+---01-1 1
+--0--11 1
+---0-11 1
+----011 1
+1-11-0- 1
+-11111- 1
+1-0000- 1
+.names Accum1.BLIF Data1.BLIF Mode3.BLIF Mode2.BLIF Mode1.BLIF Mode0.BLIF \
+Sum1.BLIF Accum1.REG
+--01--1 1
+--10--1 1
+--0-1-1 1
+---01-1 1
+--0--11 1
+---0-11 1
+----011 1
+1-11-0- 1
+-11111- 1
+1-0000- 1
+.names Accum0.BLIF Data0.BLIF Mode3.BLIF Mode2.BLIF Mode1.BLIF Mode0.BLIF \
+Sum0.BLIF Accum0.REG
+--01--1 1
+--10--1 1
+--0-1-1 1
+---01-1 1
+--0--11 1
+---0-11 1
+----011 1
+1-11-0- 1
+-11111- 1
+1-0000- 1
+.names Data3.BLIF Subtract.BLIF Flags3.BLIF KeepC.BLIF LoadFlags.BLIF \
+MaskC.BLIF CarryOut7.BLIF Flags3.REG
+1---1-- 1
+--110-- 1
+--1-01- 1
+-0-0001 1
+-1-0000 1
+.names Data2.BLIF CarryOut6.BLIF LoadFlags.BLIF CarryOut7.BLIF KeepV.BLIF \
+MaskV.BLIF Flags2.BLIF Flags2.REG
+1-1---- 1
+--0-1-1 1
+--0--11 1
+-00100- 1
+-10000- 1
+.names Data1.BLIF Sum7.BLIF KeepS.BLIF LoadFlags.BLIF MaskS.BLIF Flags1.BLIF \
+Flags1.REG
+1--1-- 1
+--10-1 1
+---011 1
+-1000- 1
+.names Data0.BLIF Sum7.BLIF Sum6.BLIF Sum5.BLIF Sum4.BLIF Sum3.BLIF Sum2.BLIF \
+Sum1.BLIF Sum0.BLIF LoadFlags.BLIF KeepZ.BLIF MaskZ.BLIF Flags0.BLIF \
+Flags0.REG
+1--------1--- 1
+---------01-1 1
+---------0-11 1
+-00000000000- 1
+.names Data7.BLIF LoadFlags.BLIF Flags7.REG
+11 1
+.names Data6.BLIF LoadFlags.BLIF Flags6.REG
+11 1
+.names Data5.BLIF LoadFlags.BLIF Flags5.REG
+11 1
+.names Data4.BLIF LoadFlags.BLIF Flags4.REG
+11 1
+.names Clock.BLIF Accum7.C
+1 1
+.names Clock.BLIF Accum6.C
+1 1
+.names Clock.BLIF Accum5.C
+1 1
+.names Clock.BLIF Accum4.C
+1 1
+.names Clock.BLIF Accum3.C
+1 1
+.names Clock.BLIF Accum2.C
+1 1
+.names Clock.BLIF Accum1.C
+1 1
+.names Clock.BLIF Accum0.C
+1 1
+.names Reset.BLIF Accum7.CLR
+0 1
+.names Reset.BLIF Accum6.CLR
+0 1
+.names Reset.BLIF Accum5.CLR
+0 1
+.names Reset.BLIF Accum4.CLR
+0 1
+.names Reset.BLIF Accum3.CLR
+0 1
+.names Reset.BLIF Accum2.CLR
+0 1
+.names Reset.BLIF Accum1.CLR
+0 1
+.names Reset.BLIF Accum0.CLR
+0 1
+.names Clock.BLIF Flags7.C
+1 1
+.names Clock.BLIF Flags6.C
+1 1
+.names Clock.BLIF Flags5.C
+1 1
+.names Clock.BLIF Flags4.C
+1 1
+.names Clock.BLIF Flags3.C
+1 1
+.names Clock.BLIF Flags2.C
+1 1
+.names Clock.BLIF Flags1.C
+1 1
+.names Clock.BLIF Flags0.C
+1 1
+.names Reset.BLIF Flags7.CLR
+0 1
+.names Reset.BLIF Flags6.CLR
+0 1
+.names Reset.BLIF Flags5.CLR
+0 1
+.names Reset.BLIF Flags4.CLR
+0 1
+.names Reset.BLIF Flags3.CLR
+0 1
+.names Reset.BLIF Flags2.CLR
+0 1
+.names Reset.BLIF Flags1.CLR
+0 1
+.names Reset.BLIF Flags0.CLR
+0 1
+.end

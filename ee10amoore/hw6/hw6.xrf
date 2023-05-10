@@ -1,0 +1,38 @@
+Signal Name Cross Reference File
+
+ispLEVER Classic 2.0.00.17.20.15
+
+Design 'hw6' created Sun Feb 26 00:19:17 2012
+
+Title:  Program Address Unit Unit Demo
+
+ LEGEND:  '>'  Functional Block Port Separator
+          '/'  Hierarchy Path Separator
+          '@'  Automatically Generated Node
+
+
+Short Name                              Hierarchical Name
+----------                              -----------------
+P0_B0                                	PAUnit/B0
+P0_B1                                	PAUnit/B1
+P0_B10                               	PAUnit/B10
+P0_B11                               	PAUnit/B11
+P0_B12                               	PAUnit/B12
+P0_B2                                	PAUnit/B2
+P0_B3                                	PAUnit/B3
+P0_B4                                	PAUnit/B4
+P0_B5                                	PAUnit/B5
+P0_B6                                	PAUnit/B6
+P0_B7                                	PAUnit/B7
+P0_B8                                	PAUnit/B8
+P0_B9                                	PAUnit/B9
+P0_CarryIn10                         	PAUnit/CarryIn10
+P0_CarryIn11                         	PAUnit/CarryIn11
+P0_CarryIn2                          	PAUnit/CarryIn2
+P0_CarryIn3                          	PAUnit/CarryIn3
+P0_CarryIn4                          	PAUnit/CarryIn4
+P0_CarryIn5                          	PAUnit/CarryIn5
+P0_CarryIn6                          	PAUnit/CarryIn6
+P0_CarryIn7                          	PAUnit/CarryIn7
+P0_CarryIn8                          	PAUnit/CarryIn8
+P0_CarryIn9                          	PAUnit/CarryIn9

@@ -1,0 +1,36 @@
+Signal Name Cross Reference File
+
+ispLEVER Classic 2.0.00.17.20.15
+
+Design 'hw8' created Sat Mar 04 15:44:53 1995
+
+Title:  Data Address Unit Unit Demo
+
+ LEGEND:  '>'  Functional Block Port Separator
+          '/'  Hierarchy Path Separator
+          '@'  Automatically Generated Node
+
+
+Short Name                              Hierarchical Name
+----------                              -----------------
+V0_AddrB0                            	DAUnit/AddrB0
+V0_AddrB1                            	DAUnit/AddrB1
+V0_AddrB2                            	DAUnit/AddrB2
+V0_AddrB3                            	DAUnit/AddrB3
+V0_AddrB4                            	DAUnit/AddrB4
+V0_AddrB5                            	DAUnit/AddrB5
+V0_AddrB6                            	DAUnit/AddrB6
+V0_AddrB7                            	DAUnit/AddrB7
+V0_AddrCOut1                         	DAUnit/AddrCOut1
+V0_AddrCOut2                         	DAUnit/AddrCOut2
+V0_AddrCOut3                         	DAUnit/AddrCOut3
+V0_AddrCOut4                         	DAUnit/AddrCOut4
+V0_AddrCOut5                         	DAUnit/AddrCOut5
+V0_IDCOut4                           	DAUnit/IDCOut4
+V0_IDSum1                            	DAUnit/IDSum1
+V0_IDSum2                            	DAUnit/IDSum2
+V0_IDSum3                            	DAUnit/IDSum3
+V0_IDSum4                            	DAUnit/IDSum4
+V0_IDSum5                            	DAUnit/IDSum5
+V0_IDSum6                            	DAUnit/IDSum6
+V0_IDSum7                            	DAUnit/IDSum7

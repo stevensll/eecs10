@@ -1,0 +1,37 @@
+Simulator. Version 1.4
+Copyright (c) 1998-2007 by Lattice Semiconductor Corporation.
+Initializing mapping data.
+Initializing mapping data successfully.
+ticksize 100 ps
+stepsize 100000 ps
+mode unit
+Loading netlist......
+Loading netlist successfully.
+run 1,200.0 ns
+at 800.000 ns, PROGRAMAB0  expected: 1, actual: 0
+at 1000.000 ns, PROGRAMAB11  expected: 0, actual: 1
+at 1000.000 ns, PROGRAMAB8  expected: 0, actual: 1
+at 1000.000 ns, PROGRAMAB6  expected: 0, actual: 1
+at 1000.000 ns, PROGRAMAB4  expected: 0, actual: 1
+at 1000.000 ns, PROGRAMAB2  expected: 0, actual: 1
+at 1000.000 ns, PROGRAMAB1  expected: 1, actual: 0
+at 1000.000 ns, PROGRAMAB0  expected: 0, actual: 1
+at 1000.000 ns, WR  expected: 1, actual: 0
+at 1000.000 ns, DATADB7  expected: 0, actual: z
+at 1000.000 ns, DATADB6  expected: 1, actual: z
+at 1000.000 ns, DATADB5  expected: 0, actual: z
+at 1000.000 ns, DATADB4  expected: 1, actual: z
+at 1000.000 ns, DATADB3  expected: 0, actual: z
+at 1000.000 ns, DATADB2  expected: 1, actual: z
+at 1000.000 ns, DATADB1  expected: 0, actual: z
+at 1000.000 ns, DATADB0  expected: 1, actual: z
+It reaches the running time defined by user.
+at 1200.000 ns, PROGRAMAB11  expected: 0, actual: 1
+at 1200.000 ns, PROGRAMAB8  expected: 0, actual: 1
+at 1200.000 ns, PROGRAMAB7  expected: 0, actual: 1
+at 1200.000 ns, PROGRAMAB5  expected: 0, actual: 1
+at 1200.000 ns, PROGRAMAB3  expected: 0, actual: 1
+at 1200.000 ns, PROGRAMAB2  expected: 0, actual: 1
+at 1200.000 ns, RD  expected: 1, actual: 0
+Operation RUN ends.
+quit

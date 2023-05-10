@@ -1,0 +1,13 @@
+JDF B
+// Created by Version 2.0 
+PROJECT Untitled
+DESIGN hw8 Normal
+DEVKIT LC4128V-75T144I
+ENTRY ABEL/Schematic
+MODULE DAUDemo.abl
+MODSTYLE DAUDemo Normal
+MODULE DataAccess.abl
+MODSTYLE DataAccess Normal
+SYNTHESIS_TOOL Synplify
+SIMULATOR_TOOL ActiveHDL
+TOPMODULE DAUDemo

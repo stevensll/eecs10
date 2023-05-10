@@ -1,0 +1,635 @@
+#$ TOOL ispLEVER Classic 2.0.00.17.20.15
+#$ DATE Sun Feb 26 00:19:17 2012
+#$ TITLE Program Address Unit Unit Demo
+#$ MODULE hw6
+#$ JEDECFILE paudemo
+#$ PINS 90 DataOff7:80 DataOff6:81 DataOff5:83 DataOff4:84 DataOff3:85 DataOff2:86 \
+#  DataOff1:87 DataOff0:88 AddrData12:102 AddrData11:103 AddrData10:104 AddrData9:105 \
+#  AddrData8:111 AddrData7:93 AddrData6:94 AddrData5:95 AddrData4:96 AddrData3:97 \
+#  AddrData2:98 AddrData1:100 AddrData0:101 Control29:14 Control28:13 Control27:12 \
+#  Control26:11 Control25:9 Control24:8 Control23:7 Control22:6 Control21:5 Control20:4 \
+#  Control19:143 Control18:142 Control17:141 Control16:140 Control15:139 Control14:138 \
+#  Control13:135 Control12:134 Control11:133 Control10:132 Control9:131 Control8:124 \
+#  Control7:123 Control6:122 Control5:121 Control4:120 Control3:116 Control2:115 \
+#  Control1:114 Control0:113 Reset:40 Clock:128 AccumAddr12:29 AccumAddr11:30 \
+#  AccumAddr10:31 AccumAddr9:32 AccumAddr8:33 AccumAddr7:16 AccumAddr6:21 \
+#  AccumAddr5:22 AccumAddr4:23 AccumAddr3:24 AccumAddr2:25 AccumAddr1:26 AccumAddr0:28 \
+#  XReg7:68 XReg6:69 XReg5:70 XReg4:71 XReg3:76 XReg2:77 XReg1:78 XReg0:79 SReg7:58 \
+#  SReg6:59 SReg5:60 SReg4:61 SReg3:62 SReg2:63 SReg1:66 SReg0:67 Flags7:42 Flags6:43 \
+#  Flags5:44 Flags4:48 Flags3:49 Flags2:50 Flags1:51 Flags0:52
+#$ NODES 36 PAUnit>PC0'co,o'  PAUnit>PC1'co,o'  PAUnit>PC10'co,o'  PAUnit>PC11'co,o'  \
+#  PAUnit>PC12'co,o'  PAUnit>PC2'co,o'  PAUnit>PC3'co,o'  PAUnit>PC4'co,o'  PAUnit>PC5'co,o'  \
+#  PAUnit>PC6'co,o'  PAUnit>PC7'co,o'  PAUnit>PC8'co,o'  PAUnit>PC9'co,o'  PAUnit/CarryIn11 \
+#  PAUnit/CarryIn10 PAUnit/CarryIn9 PAUnit/CarryIn8 PAUnit/CarryIn7 PAUnit/CarryIn6 \
+#  PAUnit/CarryIn5 PAUnit/CarryIn4 PAUnit/CarryIn3 PAUnit/CarryIn2 PAUnit/B12 \
+#  PAUnit/B11 PAUnit/B10 PAUnit/B9 PAUnit/B8 PAUnit/B7 PAUnit/B6 PAUnit/B5 PAUnit/B4 \
+#  PAUnit/B3 PAUnit/B2 PAUnit/B1 PAUnit/B0
+.model paudemo
+.inputs DataOff7.BLIF DataOff6.BLIF DataOff5.BLIF DataOff4.BLIF DataOff3.BLIF \
+DataOff2.BLIF DataOff1.BLIF DataOff0.BLIF AddrData12.BLIF AddrData11.BLIF \
+AddrData10.BLIF AddrData9.BLIF AddrData8.BLIF AddrData7.BLIF AddrData6.BLIF \
+AddrData5.BLIF AddrData4.BLIF AddrData3.BLIF AddrData2.BLIF AddrData1.BLIF \
+AddrData0.BLIF Control3.BLIF Control2.BLIF Control1.BLIF Control0.BLIF \
+Reset.BLIF Clock.BLIF PAUnit>PC0.BLIF PAUnit>PC1.BLIF PAUnit>PC10.BLIF \
+PAUnit>PC11.BLIF PAUnit>PC12.BLIF PAUnit>PC2.BLIF PAUnit>PC3.BLIF \
+PAUnit>PC4.BLIF PAUnit>PC5.BLIF PAUnit>PC6.BLIF PAUnit>PC7.BLIF \
+PAUnit>PC8.BLIF PAUnit>PC9.BLIF PAUnit/CarryIn11.BLIF PAUnit/CarryIn10.BLIF \
+PAUnit/CarryIn9.BLIF PAUnit/CarryIn8.BLIF PAUnit/CarryIn7.BLIF \
+PAUnit/CarryIn6.BLIF PAUnit/CarryIn5.BLIF PAUnit/CarryIn4.BLIF \
+PAUnit/CarryIn3.BLIF PAUnit/CarryIn2.BLIF PAUnit/B12.BLIF PAUnit/B11.BLIF \
+PAUnit/B10.BLIF PAUnit/B9.BLIF PAUnit/B8.BLIF PAUnit/B7.BLIF PAUnit/B6.BLIF \
+PAUnit/B5.BLIF PAUnit/B4.BLIF PAUnit/B3.BLIF PAUnit/B2.BLIF PAUnit/B1.BLIF \
+PAUnit/B0.BLIF
+.outputs AccumAddr12 AccumAddr11 AccumAddr10 AccumAddr9 AccumAddr8 AccumAddr7 \
+AccumAddr6 AccumAddr5 AccumAddr4 AccumAddr3 AccumAddr2 AccumAddr1 AccumAddr0 \
+XReg7 XReg6 XReg5 XReg4 XReg3 XReg2 XReg1 XReg0 SReg7 SReg6 SReg5 SReg4 SReg3 \
+SReg2 SReg1 SReg0 Flags7 Flags6 Flags5 Flags4 Flags3 Flags2 Flags1 Flags0 \
+PAUnit>PC0.REG PAUnit>PC0.CLR PAUnit>PC0.C PAUnit>PC1.CLR PAUnit>PC1.C \
+PAUnit>PC10.CLR PAUnit>PC10.C PAUnit>PC11.CLR PAUnit>PC11.C PAUnit>PC12.CLR \
+PAUnit>PC12.C PAUnit>PC2.CLR PAUnit>PC2.C PAUnit>PC3.CLR PAUnit>PC3.C \
+PAUnit>PC4.CLR PAUnit>PC4.C PAUnit>PC5.CLR PAUnit>PC5.C PAUnit>PC6.CLR \
+PAUnit>PC6.C PAUnit>PC7.CLR PAUnit>PC7.C PAUnit>PC8.CLR PAUnit>PC8.C \
+PAUnit>PC9.CLR PAUnit>PC9.C PAUnit/CarryIn11 PAUnit/CarryIn10 PAUnit/CarryIn9 \
+PAUnit/CarryIn8 PAUnit/CarryIn7 PAUnit/CarryIn6 PAUnit/CarryIn5 \
+PAUnit/CarryIn4 PAUnit/CarryIn3 PAUnit/CarryIn2 PAUnit/B12 PAUnit/B11 \
+PAUnit/B10 PAUnit/B9 PAUnit/B8 PAUnit/B7 PAUnit/B6 PAUnit/B5 PAUnit/B4 \
+PAUnit/B3 PAUnit/B2 PAUnit/B1 PAUnit/B0 PAUnit>PC1.REG.X1 PAUnit>PC1.REG.X2 \
+PAUnit>PC10.REG.X1 PAUnit>PC10.REG.X2 PAUnit>PC11.REG.X1 PAUnit>PC11.REG.X2 \
+PAUnit>PC12.REG.X1 PAUnit>PC12.REG.X2 PAUnit>PC2.REG.X1 PAUnit>PC2.REG.X2 \
+PAUnit>PC3.REG.X1 PAUnit>PC3.REG.X2 PAUnit>PC4.REG.X1 PAUnit>PC4.REG.X2 \
+PAUnit>PC5.REG.X1 PAUnit>PC5.REG.X2 PAUnit>PC6.REG.X1 PAUnit>PC6.REG.X2 \
+PAUnit>PC7.REG.X1 PAUnit>PC7.REG.X2 PAUnit>PC8.REG.X1 PAUnit>PC8.REG.X2 \
+PAUnit>PC9.REG.X1 PAUnit>PC9.REG.X2
+.names XReg2
+ 0
+.names XReg1
+ 0
+.names XReg0
+ 0
+.names Flags7
+ 1
+.names Flags6
+ 1
+.names Flags5
+ 1
+.names Flags4
+ 1
+.names Flags3
+ 1
+.names Flags2
+ 1
+.names Flags1
+ 1
+.names Flags0
+ 1
+.names Reset.BLIF PAUnit>PC0.CLR
+0 1
+1 0
+.names Reset.BLIF PAUnit>PC1.CLR
+0 1
+1 0
+.names Reset.BLIF PAUnit>PC10.CLR
+0 1
+1 0
+.names Reset.BLIF PAUnit>PC11.CLR
+0 1
+1 0
+.names Reset.BLIF PAUnit>PC12.CLR
+0 1
+1 0
+.names Reset.BLIF PAUnit>PC2.CLR
+0 1
+1 0
+.names Reset.BLIF PAUnit>PC3.CLR
+0 1
+1 0
+.names Reset.BLIF PAUnit>PC4.CLR
+0 1
+1 0
+.names Reset.BLIF PAUnit>PC5.CLR
+0 1
+1 0
+.names Reset.BLIF PAUnit>PC6.CLR
+0 1
+1 0
+.names Reset.BLIF PAUnit>PC7.CLR
+0 1
+1 0
+.names Reset.BLIF PAUnit>PC8.CLR
+0 1
+1 0
+.names Reset.BLIF PAUnit>PC9.CLR
+0 1
+1 0
+.names Control3.BLIF PAUnit>PC10.BLIF PAUnit/CarryIn10.BLIF PAUnit/B10.BLIF \
+PAUnit/CarryIn11
+011- 1
+01-1 1
+--11 1
+-00- 0
+1-0- 0
+-0-0 0
+1--0 0
+--00 0
+.names Control3.BLIF PAUnit>PC9.BLIF PAUnit/CarryIn9.BLIF PAUnit/B9.BLIF \
+PAUnit/CarryIn10
+011- 1
+01-1 1
+--11 1
+-00- 0
+1-0- 0
+-0-0 0
+1--0 0
+--00 0
+.names Control3.BLIF PAUnit>PC8.BLIF PAUnit/CarryIn8.BLIF PAUnit/B8.BLIF \
+PAUnit/CarryIn9
+011- 1
+01-1 1
+--11 1
+-00- 0
+1-0- 0
+-0-0 0
+1--0 0
+--00 0
+.names Control3.BLIF PAUnit>PC7.BLIF PAUnit/CarryIn7.BLIF PAUnit/B7.BLIF \
+PAUnit/CarryIn8
+011- 1
+01-1 1
+--11 1
+-00- 0
+1-0- 0
+-0-0 0
+1--0 0
+--00 0
+.names Control3.BLIF PAUnit>PC6.BLIF PAUnit/CarryIn6.BLIF PAUnit/B6.BLIF \
+PAUnit/CarryIn7
+011- 1
+01-1 1
+--11 1
+-00- 0
+1-0- 0
+-0-0 0
+1--0 0
+--00 0
+.names Control3.BLIF PAUnit>PC5.BLIF PAUnit/CarryIn5.BLIF PAUnit/B5.BLIF \
+PAUnit/CarryIn6
+011- 1
+01-1 1
+--11 1
+-00- 0
+1-0- 0
+-0-0 0
+1--0 0
+--00 0
+.names Control3.BLIF PAUnit>PC4.BLIF PAUnit/CarryIn4.BLIF PAUnit/B4.BLIF \
+PAUnit/CarryIn5
+011- 1
+01-1 1
+--11 1
+-00- 0
+1-0- 0
+-0-0 0
+1--0 0
+--00 0
+.names Control3.BLIF PAUnit>PC3.BLIF PAUnit/CarryIn3.BLIF PAUnit/B3.BLIF \
+PAUnit/CarryIn4
+011- 1
+01-1 1
+--11 1
+-00- 0
+1-0- 0
+-0-0 0
+1--0 0
+--00 0
+.names Control3.BLIF PAUnit>PC2.BLIF PAUnit/CarryIn2.BLIF PAUnit/B2.BLIF \
+PAUnit/CarryIn3
+011- 1
+01-1 1
+--11 1
+-00- 0
+1-0- 0
+-0-0 0
+1--0 0
+--00 0
+.names Control3.BLIF PAUnit>PC0.BLIF PAUnit>PC1.BLIF PAUnit/B1.BLIF \
+PAUnit/B0.BLIF PAUnit/CarryIn2
+0-11- 1
+01-11 1
+011-1 1
+-0-0- 0
+-00-- 0
+--00- 0
+1---- 0
+---00 0
+--0-0 0
+.names DataOff7.BLIF DataOff4.BLIF AddrData12.BLIF Control2.BLIF Control1.BLIF \
+Control0.BLIF PAUnit>PC12.BLIF PAUnit/B12
+--1000- 1
+1--010- 1
+-1-1-1- 1
+---1-01 1
+--000-- 0
+0--01-- 0
+---1-00 0
+-0---1- 0
+---0-1- 0
+.names DataOff7.BLIF DataOff3.BLIF AddrData11.BLIF Control2.BLIF Control1.BLIF \
+Control0.BLIF PAUnit>PC11.BLIF PAUnit/B11
+--1000- 1
+1--010- 1
+-1-1-1- 1
+---1-01 1
+--000-- 0
+0--01-- 0
+---1-00 0
+-0---1- 0
+---0-1- 0
+.names DataOff7.BLIF DataOff2.BLIF AddrData10.BLIF Control2.BLIF Control1.BLIF \
+Control0.BLIF PAUnit>PC10.BLIF PAUnit/B10
+--1000- 1
+1--010- 1
+-1-1-1- 1
+---1-01 1
+--000-- 0
+0--01-- 0
+---1-00 0
+-0---1- 0
+---0-1- 0
+.names DataOff7.BLIF DataOff1.BLIF AddrData9.BLIF Control2.BLIF Control1.BLIF \
+Control0.BLIF PAUnit>PC9.BLIF PAUnit/B9
+--1000- 1
+1--010- 1
+-1-1-1- 1
+---1-01 1
+--000-- 0
+0--01-- 0
+---1-00 0
+-0---1- 0
+---0-1- 0
+.names DataOff7.BLIF DataOff0.BLIF AddrData8.BLIF Control2.BLIF Control1.BLIF \
+Control0.BLIF PAUnit>PC8.BLIF PAUnit/B8
+--1000- 1
+1--010- 1
+-1-1-1- 1
+---1-01 1
+--000-- 0
+0--01-- 0
+---1-00 0
+-0---1- 0
+---0-1- 0
+.names DataOff7.BLIF AddrData7.BLIF Control2.BLIF Control1.BLIF Control0.BLIF \
+PAUnit>PC7.BLIF PAUnit/B7
+-1000- 1
+1--10- 1
+--1-11 1
+1-1-0- 1
+0-01-- 0
+0-1-0- 0
+-000-- 0
+--0-1- 0
+----10 0
+.names DataOff6.BLIF AddrData6.BLIF Control2.BLIF Control1.BLIF Control0.BLIF \
+PAUnit>PC6.BLIF PAUnit/B6
+-1000- 1
+1--10- 1
+--1-11 1
+1-1-0- 1
+0-01-- 0
+0-1-0- 0
+-000-- 0
+--0-1- 0
+----10 0
+.names DataOff5.BLIF AddrData5.BLIF Control2.BLIF Control1.BLIF Control0.BLIF \
+PAUnit>PC5.BLIF PAUnit/B5
+-1000- 1
+1--10- 1
+--1-11 1
+1-1-0- 1
+0-01-- 0
+0-1-0- 0
+-000-- 0
+--0-1- 0
+----10 0
+.names DataOff4.BLIF AddrData4.BLIF Control2.BLIF Control1.BLIF Control0.BLIF \
+PAUnit>PC4.BLIF PAUnit/B4
+-1000- 1
+1--10- 1
+--1-11 1
+1-1-0- 1
+0-01-- 0
+0-1-0- 0
+-000-- 0
+--0-1- 0
+----10 0
+.names DataOff3.BLIF AddrData3.BLIF Control2.BLIF Control1.BLIF Control0.BLIF \
+PAUnit>PC3.BLIF PAUnit/B3
+-1000- 1
+1--10- 1
+--1-11 1
+1-1-0- 1
+0-01-- 0
+0-1-0- 0
+-000-- 0
+--0-1- 0
+----10 0
+.names DataOff2.BLIF AddrData2.BLIF Control2.BLIF Control1.BLIF Control0.BLIF \
+PAUnit>PC2.BLIF PAUnit/B2
+-1000- 1
+1--10- 1
+--1-11 1
+1-1-0- 1
+0-01-- 0
+0-1-0- 0
+-000-- 0
+--0-1- 0
+----10 0
+.names DataOff1.BLIF AddrData1.BLIF Control2.BLIF Control1.BLIF Control0.BLIF \
+PAUnit>PC1.BLIF PAUnit/B1
+-1000- 1
+1--10- 1
+--1-11 1
+1-1-0- 1
+0-01-- 0
+0-1-0- 0
+-000-- 0
+--0-1- 0
+----10 0
+.names DataOff0.BLIF AddrData0.BLIF Control2.BLIF Control1.BLIF Control0.BLIF \
+PAUnit>PC0.BLIF PAUnit/B0
+1-01-- 1
+-1000- 1
+1-1-0- 1
+--011- 1
+--1-11 1
+0--10- 0
+-000-- 0
+0-1-0- 0
+--001- 0
+--1-10 0
+.names PAUnit>PC12.BLIF AccumAddr12
+1 1
+0 0
+.names PAUnit>PC11.BLIF AccumAddr11
+1 1
+0 0
+.names PAUnit>PC10.BLIF AccumAddr10
+1 1
+0 0
+.names PAUnit>PC9.BLIF AccumAddr9
+1 1
+0 0
+.names PAUnit>PC8.BLIF AccumAddr8
+1 1
+0 0
+.names PAUnit>PC7.BLIF AccumAddr7
+1 1
+0 0
+.names PAUnit>PC6.BLIF AccumAddr6
+1 1
+0 0
+.names PAUnit>PC5.BLIF AccumAddr5
+1 1
+0 0
+.names PAUnit>PC4.BLIF AccumAddr4
+1 1
+0 0
+.names PAUnit>PC3.BLIF AccumAddr3
+1 1
+0 0
+.names PAUnit>PC2.BLIF AccumAddr2
+1 1
+0 0
+.names PAUnit>PC1.BLIF AccumAddr1
+1 1
+0 0
+.names PAUnit>PC0.BLIF AccumAddr0
+1 1
+0 0
+.names DataOff4.BLIF XReg7
+1 1
+0 0
+.names DataOff3.BLIF XReg6
+1 1
+0 0
+.names DataOff2.BLIF XReg5
+1 1
+0 0
+.names DataOff1.BLIF XReg4
+1 1
+0 0
+.names DataOff0.BLIF XReg3
+1 1
+0 0
+.names DataOff7.BLIF SReg7
+1 1
+0 0
+.names DataOff6.BLIF SReg6
+1 1
+0 0
+.names DataOff5.BLIF SReg5
+1 1
+0 0
+.names DataOff4.BLIF SReg4
+1 1
+0 0
+.names DataOff3.BLIF SReg3
+1 1
+0 0
+.names DataOff2.BLIF SReg2
+1 1
+0 0
+.names DataOff1.BLIF SReg1
+1 1
+0 0
+.names DataOff0.BLIF SReg0
+1 1
+0 0
+.names Control3.BLIF PAUnit>PC0.BLIF PAUnit/B0.BLIF PAUnit>PC0.REG
+010 1
+-01 1
+1-1 1
+011 0
+-00 0
+1-0 0
+.names Clock.BLIF PAUnit>PC0.C
+1 1
+0 0
+.names Clock.BLIF PAUnit>PC1.C
+1 1
+0 0
+.names Clock.BLIF PAUnit>PC10.C
+1 1
+0 0
+.names Clock.BLIF PAUnit>PC11.C
+1 1
+0 0
+.names Clock.BLIF PAUnit>PC12.C
+1 1
+0 0
+.names Clock.BLIF PAUnit>PC2.C
+1 1
+0 0
+.names Clock.BLIF PAUnit>PC3.C
+1 1
+0 0
+.names Clock.BLIF PAUnit>PC4.C
+1 1
+0 0
+.names Clock.BLIF PAUnit>PC5.C
+1 1
+0 0
+.names Clock.BLIF PAUnit>PC6.C
+1 1
+0 0
+.names Clock.BLIF PAUnit>PC7.C
+1 1
+0 0
+.names Clock.BLIF PAUnit>PC8.C
+1 1
+0 0
+.names Clock.BLIF PAUnit>PC9.C
+1 1
+0 0
+.names PAUnit/B1.BLIF PAUnit>PC1.REG.X1
+1 1
+0 0
+.names Control3.BLIF PAUnit>PC0.BLIF PAUnit>PC1.BLIF PAUnit/B1.BLIF \
+PAUnit/B0.BLIF PAUnit>PC1.REG.X2
+010-1 1
+001-- 1
+0-1-0 1
+1---- 0
+-00-- 0
+--0-0 0
+-11-1 0
+.names PAUnit/CarryIn10.BLIF PAUnit>PC10.REG.X1
+0 1
+1 0
+.names Control3.BLIF PAUnit>PC10.BLIF PAUnit/CarryIn10.BLIF PAUnit/B10.BLIF \
+PAUnit>PC10.REG.X2
+1--0 1
+-0-0 1
+01-1 1
+1--1 0
+-0-1 0
+01-0 0
+.names PAUnit/CarryIn11.BLIF PAUnit>PC11.REG.X1
+0 1
+1 0
+.names Control3.BLIF PAUnit>PC11.BLIF PAUnit/CarryIn11.BLIF PAUnit/B11.BLIF \
+PAUnit>PC11.REG.X2
+1--0 1
+-0-0 1
+01-1 1
+1--1 0
+-0-1 0
+01-0 0
+.names PAUnit/B12.BLIF PAUnit>PC12.REG.X1
+1 1
+0 0
+.names Control3.BLIF PAUnit>PC11.BLIF PAUnit>PC12.BLIF PAUnit/CarryIn11.BLIF \
+PAUnit/B12.BLIF PAUnit/B11.BLIF PAUnit>PC12.REG.X2
+0101-- 1
+010--1 1
+--01-1 1
+0010-- 1
+001--0 1
+0-10-0 1
+1--1-1 1
+1--0-- 0
+1----0 0
+-000-- 0
+-00--0 0
+--00-0 0
+0111-- 0
+011--1 0
+0-11-1 0
+.names PAUnit/CarryIn2.BLIF PAUnit>PC2.REG.X1
+0 1
+1 0
+.names Control3.BLIF PAUnit>PC2.BLIF PAUnit/CarryIn2.BLIF PAUnit/B2.BLIF \
+PAUnit>PC2.REG.X2
+1--0 1
+-0-0 1
+01-1 1
+1--1 0
+-0-1 0
+01-0 0
+.names PAUnit/CarryIn3.BLIF PAUnit>PC3.REG.X1
+0 1
+1 0
+.names Control3.BLIF PAUnit>PC3.BLIF PAUnit/CarryIn3.BLIF PAUnit/B3.BLIF \
+PAUnit>PC3.REG.X2
+1--0 1
+-0-0 1
+01-1 1
+1--1 0
+-0-1 0
+01-0 0
+.names PAUnit/CarryIn4.BLIF PAUnit>PC4.REG.X1
+0 1
+1 0
+.names Control3.BLIF PAUnit>PC4.BLIF PAUnit/CarryIn4.BLIF PAUnit/B4.BLIF \
+PAUnit>PC4.REG.X2
+1--0 1
+-0-0 1
+01-1 1
+1--1 0
+-0-1 0
+01-0 0
+.names PAUnit/CarryIn5.BLIF PAUnit>PC5.REG.X1
+0 1
+1 0
+.names Control3.BLIF PAUnit>PC5.BLIF PAUnit/CarryIn5.BLIF PAUnit/B5.BLIF \
+PAUnit>PC5.REG.X2
+1--0 1
+-0-0 1
+01-1 1
+1--1 0
+-0-1 0
+01-0 0
+.names PAUnit/CarryIn6.BLIF PAUnit>PC6.REG.X1
+0 1
+1 0
+.names Control3.BLIF PAUnit>PC6.BLIF PAUnit/CarryIn6.BLIF PAUnit/B6.BLIF \
+PAUnit>PC6.REG.X2
+1--0 1
+-0-0 1
+01-1 1
+1--1 0
+-0-1 0
+01-0 0
+.names PAUnit/CarryIn7.BLIF PAUnit>PC7.REG.X1
+0 1
+1 0
+.names Control3.BLIF PAUnit>PC7.BLIF PAUnit/CarryIn7.BLIF PAUnit/B7.BLIF \
+PAUnit>PC7.REG.X2
+1--0 1
+-0-0 1
+01-1 1
+1--1 0
+-0-1 0
+01-0 0
+.names PAUnit/CarryIn8.BLIF PAUnit>PC8.REG.X1
+0 1
+1 0
+.names Control3.BLIF PAUnit>PC8.BLIF PAUnit/CarryIn8.BLIF PAUnit/B8.BLIF \
+PAUnit>PC8.REG.X2
+1--0 1
+-0-0 1
+01-1 1
+1--1 0
+-0-1 0
+01-0 0
+.names PAUnit/CarryIn9.BLIF PAUnit>PC9.REG.X1
+0 1
+1 0
+.names Control3.BLIF PAUnit>PC9.BLIF PAUnit/CarryIn9.BLIF PAUnit/B9.BLIF \
+PAUnit>PC9.REG.X2
+1--0 1
+-0-0 1
+01-1 1
+1--1 0
+-0-1 0
+01-0 0
+.end

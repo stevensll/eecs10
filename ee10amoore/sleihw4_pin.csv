@@ -1,0 +1,50 @@
+ ispLEVER Classic 2.0.00.17.20.15 Fitter Report File 
+Project Name,sleihw4
+Project Path,U:\slei
+Project Fitted on,Thu Jan 07 17:24:11 2021
+
+Pin,Pin_Type,Bank,GLB_Pad,Assigned,I/O_Type,Signal_Type,Signal_Name
+1,TDI,-,,,,,
+2,I_O,0,A5,*,LVCMOS18,Output,Sum2
+3,I_O,0,A6,*,LVCMOS18,Output,Sum3
+4,I_O,0,A7,*,LVCMOS18,Output,Zero
+5,GNDIO0,-,,,,,
+6,VCCIO0,-,,,,,
+7,I_O,0,A8,*,LVCMOS18,Output,Sign
+8,I_O,0,A9,*,LVCMOS18,Output,Overflow
+9,I_O,0,A10,*,LVCMOS18,Output,Carry
+10,TCK,-,,,,,
+11,VCC,-,,,,,
+12,GND,-,,,,,
+13,I_O,0,A12,*,LVCMOS18,Output,Sum4
+14,I_O,0,A13,,,,
+15,I_O,0,A14,*,LVCMOS18,Output,UnsignedGT
+16,I_O,0,A15,*,LVCMOS18,Output,SignedGT
+17,INCLK2,1,,,,,
+18,I_O,1,B0,,,,
+19,I_O,1,B1,*,LVCMOS18,Input,B0
+20,I_O,1,B2,*,LVCMOS18,Input,B1
+21,I_O,1,B3,*,LVCMOS18,Input,B2
+22,I_O,1,B4,*,LVCMOS18,Input,B3
+23,TMS,-,,,,,
+24,I_O,1,B5,*,LVCMOS18,Output,UnsignedLT
+25,I_O,1,B6,*,LVCMOS18,Output,SignedLT
+26,I_O,1,B7,*,LVCMOS18,Input,A0
+27,GNDIO1,-,,,,,
+28,VCCIO1,-,,,,,
+29,I_O,1,B8,*,LVCMOS18,Input,A1
+30,I_O,1,B9,*,LVCMOS18,Input,A2
+31,I_O,1,B10,*,LVCMOS18,Input,A3
+32,TDO,-,,,,,
+33,VCC,-,,,,,
+34,GND,-,,,,,
+35,I_O,1,B12,,,,
+36,I_O,1,B13,,,,
+37,I_O,1,B14,*,LVCMOS18,Input,Subtract
+38,I_O/OE,1,B15,,,,
+39,INCLK0,0,,,,,
+40,I_O/OE,0,A0,,,,
+41,I_O,0,A1,*,LVCMOS18,Output,UnsignedEQ
+42,I_O,0,A2,*,LVCMOS18,Output,SignedEQ
+43,I_O,0,A3,*,LVCMOS18,Output,Sum0
+44,I_O,0,A4,*,LVCMOS18,Output,Sum1

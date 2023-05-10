@@ -1,0 +1,1090 @@
+#$ TOOL ispLEVER Classic 2.0.00.17.20.15
+#$ DATE Thu Mar 01 15:36:58 2007
+#$ TITLE ALU Unit Demo
+#$ MODULE hw7
+#$ JEDECFILE aludemo
+#$ PINS 90 DataOff7:80 DataOff6:81 DataOff5:83 DataOff4:84 DataOff3:85 DataOff2:86 \
+#  DataOff1:87 DataOff0:88 AddrData12:102 AddrData11:103 AddrData10:104 AddrData9:105 \
+#  AddrData8:111 AddrData7:93 AddrData6:94 AddrData5:95 AddrData4:96 AddrData3:97 \
+#  AddrData2:98 AddrData1:100 AddrData0:101 Control29:14 Control28:13 Control27:12 \
+#  Control26:11 Control25:9 Control24:8 Control23:7 Control22:6 Control21:5 Control20:4 \
+#  Control19:143 Control18:142 Control17:141 Control16:140 Control15:139 Control14:138 \
+#  Control13:135 Control12:134 Control11:133 Control10:132 Control9:131 Control8:124 \
+#  Control7:123 Control6:122 Control5:121 Control4:120 Control3:116 Control2:115 \
+#  Control1:114 Control0:113 Reset:40 Clock:128 AccumAddr12:29 AccumAddr11:30 \
+#  AccumAddr10:31 AccumAddr9:32 AccumAddr8:33 AccumAddr7:16 AccumAddr6:21 \
+#  AccumAddr5:22 AccumAddr4:23 AccumAddr3:24 AccumAddr2:25 AccumAddr1:26 AccumAddr0:28 \
+#  XReg7:68 XReg6:69 XReg5:70 XReg4:71 XReg3:76 XReg2:77 XReg1:78 XReg0:79 SReg7:58 \
+#  SReg6:59 SReg5:60 SReg4:61 SReg3:62 SReg2:63 SReg1:66 SReg0:67 Flags7:42 Flags6:43 \
+#  Flags5:44 Flags4:48 Flags3:49 Flags2:50 Flags1:51 Flags0:52
+#$ NODES 59 ALUnit>Accum0'co,o'  ALUnit>Accum1'co,o'  ALUnit>Accum2'co,o'  ALUnit>Accum3'co,o'  \
+#  ALUnit>Accum4'co,o'  ALUnit>Accum5'co,o'  ALUnit>Accum6'co,o'  ALUnit>Accum7'co,o'  \
+#  ALUnit>Flags0'co,o'  ALUnit>Flags1'co,o'  ALUnit>Flags2'co,o'  ALUnit>Flags3'co,o'  \
+#  ALUnit>Flags4'co,o'  ALUnit>Flags5'co,o'  ALUnit>Flags6'co,o'  ALUnit>Flags7'co,o'  ALUnit/FOut7 \
+#  ALUnit/FOut6 ALUnit/FOut5 ALUnit/FOut4 ALUnit/FOut3 ALUnit/FOut2 ALUnit/FOut1 \
+#  ALUnit/FOut0 ALUnit/Subtract ALUnit/CIn ALUnit/A7 ALUnit/A6 ALUnit/A5 ALUnit/A4 \
+#  ALUnit/A3 ALUnit/A2 ALUnit/A1 ALUnit/A0 ALUnit/B7 ALUnit/B6 ALUnit/B5 ALUnit/B4 \
+#  ALUnit/B3 ALUnit/B2 ALUnit/B1 ALUnit/B0 ALUnit/Sum7 ALUnit/Sum6 ALUnit/Sum5 \
+#  ALUnit/Sum4 ALUnit/Sum3 ALUnit/Sum2 ALUnit/Sum1 ALUnit/Sum0 ALUnit/CarryOut6 \
+#  ALUnit/CarryOut5 ALUnit/CarryOut4 ALUnit/CarryOut3 ALUnit/CarryOut2 \
+#  ALUnit/CarryOut1 ALUnit/CarryOut0 ALUnit/KeepC ALUnit/KeepS
+.model aludemo
+.inputs DataOff7.BLIF DataOff6.BLIF DataOff5.BLIF DataOff4.BLIF DataOff3.BLIF \
+DataOff2.BLIF DataOff1.BLIF DataOff0.BLIF Control7.BLIF Control6.BLIF \
+Control5.BLIF Control4.BLIF Control3.BLIF Control2.BLIF Control1.BLIF \
+Control0.BLIF Control9.BLIF Control8.BLIF Control13.BLIF Control12.BLIF \
+Control11.BLIF Control10.BLIF Control23.BLIF Control22.BLIF Control21.BLIF \
+Reset.BLIF Clock.BLIF ALUnit>Accum7.BLIF ALUnit>Accum6.BLIF ALUnit>Accum5.BLIF \
+ALUnit>Accum4.BLIF ALUnit>Accum3.BLIF ALUnit>Accum2.BLIF ALUnit>Accum1.BLIF \
+ALUnit>Accum0.BLIF ALUnit>Flags7.BLIF ALUnit>Flags6.BLIF ALUnit>Flags5.BLIF \
+ALUnit>Flags4.BLIF ALUnit>Flags3.BLIF ALUnit>Flags2.BLIF ALUnit>Flags1.BLIF \
+ALUnit>Flags0.BLIF ALUnit/FOut7.BLIF ALUnit/FOut6.BLIF ALUnit/FOut5.BLIF \
+ALUnit/FOut4.BLIF ALUnit/FOut3.BLIF ALUnit/FOut2.BLIF ALUnit/FOut1.BLIF \
+ALUnit/FOut0.BLIF ALUnit/Subtract.BLIF ALUnit/CIn.BLIF ALUnit/A7.BLIF \
+ALUnit/A6.BLIF ALUnit/A5.BLIF ALUnit/A4.BLIF ALUnit/A3.BLIF ALUnit/A2.BLIF \
+ALUnit/A1.BLIF ALUnit/A0.BLIF ALUnit/B7.BLIF ALUnit/B6.BLIF ALUnit/B5.BLIF \
+ALUnit/B4.BLIF ALUnit/B3.BLIF ALUnit/B2.BLIF ALUnit/B1.BLIF ALUnit/B0.BLIF \
+ALUnit/Sum7.BLIF ALUnit/Sum6.BLIF ALUnit/Sum5.BLIF ALUnit/Sum4.BLIF \
+ALUnit/Sum3.BLIF ALUnit/Sum2.BLIF ALUnit/Sum1.BLIF ALUnit/Sum0.BLIF \
+ALUnit/CarryOut6.BLIF ALUnit/CarryOut5.BLIF ALUnit/CarryOut4.BLIF \
+ALUnit/CarryOut3.BLIF ALUnit/CarryOut2.BLIF ALUnit/CarryOut1.BLIF \
+ALUnit/CarryOut0.BLIF ALUnit/KeepC.BLIF ALUnit/KeepS.BLIF
+.outputs AccumAddr12 AccumAddr11 AccumAddr10 AccumAddr9 AccumAddr8 AccumAddr7 \
+AccumAddr6 AccumAddr5 AccumAddr4 AccumAddr3 AccumAddr2 AccumAddr1 AccumAddr0 \
+XReg7 XReg6 XReg5 XReg4 XReg3 XReg2 XReg1 XReg0 SReg7 SReg6 SReg5 SReg4 SReg3 \
+SReg2 SReg1 SReg0 Flags7 Flags6 Flags5 Flags4 Flags3 Flags2 Flags1 Flags0 \
+ALUnit>Accum0.REG ALUnit>Accum0.CLR ALUnit>Accum0.C ALUnit>Accum1.REG \
+ALUnit>Accum1.CLR ALUnit>Accum1.C ALUnit>Accum2.REG ALUnit>Accum2.CLR \
+ALUnit>Accum2.C ALUnit>Accum3.REG ALUnit>Accum3.CLR ALUnit>Accum3.C \
+ALUnit>Accum4.REG ALUnit>Accum4.CLR ALUnit>Accum4.C ALUnit>Accum5.REG \
+ALUnit>Accum5.CLR ALUnit>Accum5.C ALUnit>Accum6.REG ALUnit>Accum6.CLR \
+ALUnit>Accum6.C ALUnit>Accum7.REG ALUnit>Accum7.CLR ALUnit>Accum7.C \
+ALUnit>Flags0.REG ALUnit>Flags0.CLR ALUnit>Flags0.C ALUnit>Flags1.REG \
+ALUnit>Flags1.CLR ALUnit>Flags1.C ALUnit>Flags2.REG ALUnit>Flags2.CLR \
+ALUnit>Flags2.C ALUnit>Flags3.CLR ALUnit>Flags3.C ALUnit>Flags4.REG \
+ALUnit>Flags4.CLR ALUnit>Flags4.C ALUnit>Flags5.REG ALUnit>Flags5.CLR \
+ALUnit>Flags5.C ALUnit>Flags6.REG ALUnit>Flags6.CLR ALUnit>Flags6.C \
+ALUnit>Flags7.REG ALUnit>Flags7.CLR ALUnit>Flags7.C ALUnit/Subtract ALUnit/CIn \
+ALUnit/A7 ALUnit/A6 ALUnit/A5 ALUnit/A4 ALUnit/A3 ALUnit/A2 ALUnit/A1 \
+ALUnit/A0 ALUnit/B7 ALUnit/B6 ALUnit/B5 ALUnit/B4 ALUnit/B3 ALUnit/B2 \
+ALUnit/B1 ALUnit/B0 ALUnit/Sum7 ALUnit/Sum6 ALUnit/Sum5 ALUnit/Sum4 \
+ALUnit/Sum3 ALUnit/Sum2 ALUnit/Sum1 ALUnit/Sum0 ALUnit/CarryOut6 \
+ALUnit/CarryOut5 ALUnit/CarryOut4 ALUnit/CarryOut3 ALUnit/CarryOut2 \
+ALUnit/CarryOut1 ALUnit/CarryOut0 ALUnit/KeepC ALUnit/KeepS \
+ALUnit>Flags3.REG.X1 ALUnit>Flags3.REG.X2 ALUnit/FOut7.X1 ALUnit/FOut7.X2 \
+ALUnit/FOut6.X1 ALUnit/FOut6.X2 ALUnit/FOut5.X1 ALUnit/FOut5.X2 \
+ALUnit/FOut4.X1 ALUnit/FOut4.X2 ALUnit/FOut3.X1 ALUnit/FOut3.X2 \
+ALUnit/FOut2.X1 ALUnit/FOut2.X2 ALUnit/FOut1.X1 ALUnit/FOut1.X2 \
+ALUnit/FOut0.X1 ALUnit/FOut0.X2
+.names AccumAddr12
+ 0
+.names AccumAddr11
+ 0
+.names AccumAddr10
+ 0
+.names AccumAddr9
+ 0
+.names AccumAddr8
+ 0
+.names XReg7
+ 0
+.names XReg6
+ 0
+.names XReg5
+ 0
+.names XReg4
+ 0
+.names SReg7
+ 0
+.names SReg6
+ 0
+.names SReg5
+ 0
+.names SReg4
+ 0
+.names DataOff0.BLIF Control3.BLIF Control2.BLIF Control1.BLIF Control0.BLIF \
+ALUnit>Accum0.BLIF ALUnit/Sum0.BLIF ALUnit>Accum0.REG
+--01--1 1
+-00001- 1
+11111-- 1
+-11-01- 1
+---01-1 1
+-01---1 1
+-10---1 1
+--01--0 0
+-00000- 0
+01111-- 0
+-11-00- 0
+---01-0 0
+-01---0 0
+-10---0 0
+.names Reset.BLIF ALUnit>Accum0.CLR
+0 1
+1 0
+.names DataOff1.BLIF Control3.BLIF Control2.BLIF Control1.BLIF Control0.BLIF \
+ALUnit>Accum1.BLIF ALUnit/Sum1.BLIF ALUnit>Accum1.REG
+--01--1 1
+-00001- 1
+11111-- 1
+-11-01- 1
+---01-1 1
+-01---1 1
+-10---1 1
+--01--0 0
+-00000- 0
+01111-- 0
+-11-00- 0
+---01-0 0
+-01---0 0
+-10---0 0
+.names Reset.BLIF ALUnit>Accum1.CLR
+0 1
+1 0
+.names DataOff2.BLIF Control3.BLIF Control2.BLIF Control1.BLIF Control0.BLIF \
+ALUnit>Accum2.BLIF ALUnit/Sum2.BLIF ALUnit>Accum2.REG
+--01--1 1
+-00001- 1
+11111-- 1
+-11-01- 1
+---01-1 1
+-01---1 1
+-10---1 1
+--01--0 0
+-00000- 0
+01111-- 0
+-11-00- 0
+---01-0 0
+-01---0 0
+-10---0 0
+.names Reset.BLIF ALUnit>Accum2.CLR
+0 1
+1 0
+.names DataOff3.BLIF Control3.BLIF Control2.BLIF Control1.BLIF Control0.BLIF \
+ALUnit>Accum3.BLIF ALUnit/Sum3.BLIF ALUnit>Accum3.REG
+--01--1 1
+-00001- 1
+11111-- 1
+-11-01- 1
+---01-1 1
+-01---1 1
+-10---1 1
+--01--0 0
+-00000- 0
+01111-- 0
+-11-00- 0
+---01-0 0
+-01---0 0
+-10---0 0
+.names Reset.BLIF ALUnit>Accum3.CLR
+0 1
+1 0
+.names DataOff4.BLIF Control3.BLIF Control2.BLIF Control1.BLIF Control0.BLIF \
+ALUnit>Accum4.BLIF ALUnit/Sum4.BLIF ALUnit>Accum4.REG
+--01--1 1
+-00001- 1
+11111-- 1
+-11-01- 1
+---01-1 1
+-01---1 1
+-10---1 1
+--01--0 0
+-00000- 0
+01111-- 0
+-11-00- 0
+---01-0 0
+-01---0 0
+-10---0 0
+.names Reset.BLIF ALUnit>Accum4.CLR
+0 1
+1 0
+.names DataOff5.BLIF Control3.BLIF Control2.BLIF Control1.BLIF Control0.BLIF \
+ALUnit>Accum5.BLIF ALUnit/Sum5.BLIF ALUnit>Accum5.REG
+--01--1 1
+-00001- 1
+11111-- 1
+-11-01- 1
+---01-1 1
+-01---1 1
+-10---1 1
+--01--0 0
+-00000- 0
+01111-- 0
+-11-00- 0
+---01-0 0
+-01---0 0
+-10---0 0
+.names Reset.BLIF ALUnit>Accum5.CLR
+0 1
+1 0
+.names DataOff6.BLIF Control3.BLIF Control2.BLIF Control1.BLIF Control0.BLIF \
+ALUnit>Accum6.BLIF ALUnit/Sum6.BLIF ALUnit>Accum6.REG
+--01--1 1
+-00001- 1
+11111-- 1
+-11-01- 1
+---01-1 1
+-01---1 1
+-10---1 1
+--01--0 0
+-00000- 0
+01111-- 0
+-11-00- 0
+---01-0 0
+-01---0 0
+-10---0 0
+.names Reset.BLIF ALUnit>Accum6.CLR
+0 1
+1 0
+.names DataOff7.BLIF Control3.BLIF Control2.BLIF Control1.BLIF Control0.BLIF \
+ALUnit>Accum7.BLIF ALUnit/Sum7.BLIF ALUnit>Accum7.REG
+--01--1 1
+-00001- 1
+11111-- 1
+-11-01- 1
+---01-1 1
+-01---1 1
+-10---1 1
+--01--0 0
+-00000- 0
+01111-- 0
+-11-00- 0
+---01-0 0
+-01---0 0
+-10---0 0
+.names Reset.BLIF ALUnit>Accum7.CLR
+0 1
+1 0
+.names DataOff0.BLIF Control8.BLIF Control10.BLIF ALUnit>Flags0.BLIF \
+ALUnit/Sum7.BLIF ALUnit/Sum6.BLIF ALUnit/Sum5.BLIF ALUnit/Sum4.BLIF \
+ALUnit/Sum3.BLIF ALUnit/Sum2.BLIF ALUnit/Sum1.BLIF ALUnit/Sum0.BLIF \
+ALUnit/KeepS.BLIF ALUnit>Flags0.REG
+-00-000000000 1
+-011--------- 1
+11----------- 1
+-0-1--------1 1
+01----------- 0
+-010--------- 0
+-0-0--------1 0
+-00--------10 0
+-00-------1-0 0
+-00------1--0 0
+-00-----1---0 0
+-00----1----0 0
+-00---1-----0 0
+-00--1------0 0
+-00-1-------0 0
+.names Reset.BLIF ALUnit>Flags0.CLR
+0 1
+1 0
+.names DataOff1.BLIF Control8.BLIF Control11.BLIF ALUnit>Flags1.BLIF \
+ALUnit/Sum7.BLIF ALUnit/KeepS.BLIF ALUnit>Flags1.REG
+-00-10 1
+-011-- 1
+11---- 1
+-0-1-1 1
+-00-00 0
+-010-- 0
+01---- 0
+-0-0-1 0
+.names Reset.BLIF ALUnit>Flags1.CLR
+0 1
+1 0
+.names DataOff2.BLIF Control8.BLIF Control12.BLIF ALUnit>Flags2.BLIF \
+ALUnit/A7.BLIF ALUnit/B7.BLIF ALUnit/CarryOut6.BLIF ALUnit/KeepC.BLIF \
+ALUnit>Flags2.REG
+-00-1100 1
+-00-0010 1
+-011---- 1
+11------ 1
+-0-1---1 1
+-00--000 0
+-00-1-10 0
+-00-01-0 0
+01------ 0
+-010---- 0
+-0-0---1 0
+.names Reset.BLIF ALUnit>Flags2.CLR
+0 1
+1 0
+.names Reset.BLIF ALUnit>Flags3.CLR
+0 1
+1 0
+.names DataOff4.BLIF Control8.BLIF ALUnit>Flags4.REG
+11 1
+0- 0
+-0 0
+.names Reset.BLIF ALUnit>Flags4.CLR
+0 1
+1 0
+.names DataOff5.BLIF Control8.BLIF ALUnit>Flags5.REG
+11 1
+0- 0
+-0 0
+.names Reset.BLIF ALUnit>Flags5.CLR
+0 1
+1 0
+.names DataOff6.BLIF Control8.BLIF ALUnit>Flags6.REG
+11 1
+0- 0
+-0 0
+.names Reset.BLIF ALUnit>Flags6.CLR
+0 1
+1 0
+.names DataOff7.BLIF Control8.BLIF ALUnit>Flags7.REG
+11 1
+0- 0
+-0 0
+.names Reset.BLIF ALUnit>Flags7.CLR
+0 1
+1 0
+.names Control7.BLIF Control6.BLIF Control5.BLIF Control4.BLIF ALUnit/Subtract
+0101 1
+--1- 0
+-0-- 0
+1--- 0
+---0 0
+.names Control3.BLIF Control2.BLIF Control1.BLIF Control0.BLIF Control9.BLIF \
+ALUnit>Flags3.BLIF ALUnit/Subtract.BLIF ALUnit/CIn
+11000-1 1
+001-110 1
+0010-01 1
+001111- 1
+00100-1 1
+-00---- 0
+1-1---- 0
+01----- 0
+--0-1-- 0
+---0111 0
+---1-0- 0
+---10-- 0
+-----00 0
+----0-0 0
+.names Control3.BLIF Control2.BLIF Control1.BLIF Control0.BLIF \
+ALUnit>Accum7.BLIF ALUnit/FOut7.BLIF ALUnit/A7
+-0-01- 1
+--111- 1
+1-0-1- 1
+01--1- 1
+1110-1 1
+0001-1 1
+-0-00- 0
+1--10- 0
+-10-0- 0
+0-1-0- 0
+1110-0 0
+0001-0 0
+.names Control3.BLIF Control2.BLIF Control1.BLIF Control0.BLIF \
+ALUnit>Accum6.BLIF ALUnit/FOut6.BLIF ALUnit/A6
+-0-01- 1
+--111- 1
+1-0-1- 1
+01--1- 1
+1110-1 1
+0001-1 1
+-0-00- 0
+1--10- 0
+-10-0- 0
+0-1-0- 0
+1110-0 0
+0001-0 0
+.names Control3.BLIF Control2.BLIF Control1.BLIF Control0.BLIF \
+ALUnit>Accum5.BLIF ALUnit/FOut5.BLIF ALUnit/A5
+-0-01- 1
+--111- 1
+1-0-1- 1
+01--1- 1
+1110-1 1
+0001-1 1
+-0-00- 0
+1--10- 0
+-10-0- 0
+0-1-0- 0
+1110-0 0
+0001-0 0
+.names Control3.BLIF Control2.BLIF Control1.BLIF Control0.BLIF \
+ALUnit>Accum4.BLIF ALUnit/FOut4.BLIF ALUnit/A4
+-0-01- 1
+--111- 1
+1-0-1- 1
+01--1- 1
+1110-1 1
+0001-1 1
+-0-00- 0
+1--10- 0
+-10-0- 0
+0-1-0- 0
+1110-0 0
+0001-0 0
+.names Control3.BLIF Control2.BLIF Control1.BLIF Control0.BLIF \
+ALUnit>Accum3.BLIF ALUnit/FOut3.BLIF ALUnit/A3
+-0-01- 1
+--111- 1
+1-0-1- 1
+01--1- 1
+1110-1 1
+0001-1 1
+-0-00- 0
+1--10- 0
+-10-0- 0
+0-1-0- 0
+1110-0 0
+0001-0 0
+.names Control3.BLIF Control2.BLIF Control1.BLIF Control0.BLIF \
+ALUnit>Accum2.BLIF ALUnit/FOut2.BLIF ALUnit/A2
+-0-01- 1
+--111- 1
+1-0-1- 1
+01--1- 1
+1110-1 1
+0001-1 1
+-0-00- 0
+1--10- 0
+-10-0- 0
+0-1-0- 0
+1110-0 0
+0001-0 0
+.names Control3.BLIF Control2.BLIF Control1.BLIF Control0.BLIF \
+ALUnit>Accum1.BLIF ALUnit/FOut1.BLIF ALUnit/A1
+-0-01- 1
+--111- 1
+1-0-1- 1
+01--1- 1
+1110-1 1
+0001-1 1
+-0-00- 0
+1--10- 0
+-10-0- 0
+0-1-0- 0
+1110-0 0
+0001-0 0
+.names Control3.BLIF Control2.BLIF Control1.BLIF Control0.BLIF \
+ALUnit>Accum0.BLIF ALUnit/FOut0.BLIF ALUnit/A0
+-0-01- 1
+--111- 1
+1-0-1- 1
+01--1- 1
+1110-1 1
+0001-1 1
+-0-00- 0
+1--10- 0
+-10-0- 0
+0-1-0- 0
+1110-0 0
+0001-0 0
+.names DataOff7.BLIF Control3.BLIF Control2.BLIF Control1.BLIF Control0.BLIF \
+ALUnit>Accum7.BLIF ALUnit/FOut7.BLIF ALUnit/Subtract.BLIF ALUnit/B7
+-1-00-11 1
+-00111-- 1
+10010--0 1
+-0010-11 1
+-1000--- 1
+0--10--0 0
+---01--- 0
+---10-01 0
+--11---- 0
+----10-- 0
+-1-1---- 0
+--1---0- 0
+-0-0---- 0
+--1----0 0
+.names DataOff6.BLIF Control3.BLIF Control2.BLIF Control1.BLIF Control0.BLIF \
+ALUnit>Accum6.BLIF ALUnit/FOut6.BLIF ALUnit/Subtract.BLIF ALUnit/B6
+-1-00-11 1
+-00111-- 1
+10010--0 1
+-0010-11 1
+-1000--- 1
+0--10--0 0
+---01--- 0
+---10-01 0
+--11---- 0
+----10-- 0
+-1-1---- 0
+--1---0- 0
+-0-0---- 0
+--1----0 0
+.names DataOff5.BLIF Control3.BLIF Control2.BLIF Control1.BLIF Control0.BLIF \
+ALUnit>Accum5.BLIF ALUnit/FOut5.BLIF ALUnit/Subtract.BLIF ALUnit/B5
+-1-00-11 1
+-00111-- 1
+10010--0 1
+-0010-11 1
+-1000--- 1
+0--10--0 0
+---01--- 0
+---10-01 0
+--11---- 0
+----10-- 0
+-1-1---- 0
+--1---0- 0
+-0-0---- 0
+--1----0 0
+.names DataOff4.BLIF Control3.BLIF Control2.BLIF Control1.BLIF Control0.BLIF \
+ALUnit>Accum4.BLIF ALUnit/FOut4.BLIF ALUnit/Subtract.BLIF ALUnit/B4
+-1-00-11 1
+-00111-- 1
+10010--0 1
+-0010-11 1
+-1000--- 1
+0--10--0 0
+---01--- 0
+---10-01 0
+--11---- 0
+----10-- 0
+-1-1---- 0
+--1---0- 0
+-0-0---- 0
+--1----0 0
+.names DataOff3.BLIF Control3.BLIF Control2.BLIF Control1.BLIF Control0.BLIF \
+ALUnit>Accum3.BLIF ALUnit/FOut3.BLIF ALUnit/Subtract.BLIF ALUnit/B3
+-1-00-11 1
+-00111-- 1
+10010--0 1
+-0010-11 1
+-1000--- 1
+0--10--0 0
+---01--- 0
+---10-01 0
+--11---- 0
+----10-- 0
+-1-1---- 0
+--1---0- 0
+-0-0---- 0
+--1----0 0
+.names DataOff2.BLIF Control3.BLIF Control2.BLIF Control1.BLIF Control0.BLIF \
+ALUnit>Accum2.BLIF ALUnit/FOut2.BLIF ALUnit/Subtract.BLIF ALUnit/B2
+-1-00-11 1
+-00111-- 1
+10010--0 1
+-0010-11 1
+-1000--- 1
+0--10--0 0
+---01--- 0
+---10-01 0
+--11---- 0
+----10-- 0
+-1-1---- 0
+--1---0- 0
+-0-0---- 0
+--1----0 0
+.names DataOff1.BLIF Control3.BLIF Control2.BLIF Control1.BLIF Control0.BLIF \
+ALUnit>Accum1.BLIF ALUnit/FOut1.BLIF ALUnit/Subtract.BLIF ALUnit/B1
+-1-00-11 1
+-00111-- 1
+10010--0 1
+-0010-11 1
+-1000--- 1
+0--10--0 0
+---01--- 0
+---10-01 0
+--11---- 0
+----10-- 0
+-1-1---- 0
+--1---0- 0
+-0-0---- 0
+--1----0 0
+.names DataOff0.BLIF Control3.BLIF Control2.BLIF Control1.BLIF Control0.BLIF \
+ALUnit>Accum0.BLIF ALUnit/FOut0.BLIF ALUnit/Subtract.BLIF ALUnit/B0
+-1-00-11 1
+-00111-- 1
+10010--0 1
+-0010-11 1
+-1000--- 1
+-0100--- 1
+0--10--0 0
+---10-01 0
+---01--- 0
+-000---- 0
+-11---0- 0
+----10-- 0
+-11----0 0
+--11---- 0
+-1-1---- 0
+.names ALUnit/A7.BLIF ALUnit/B7.BLIF ALUnit/CarryOut6.BLIF ALUnit/Sum7
+100 1
+010 1
+001 1
+111 1
+000 0
+110 0
+101 0
+011 0
+.names ALUnit/A6.BLIF ALUnit/B6.BLIF ALUnit/CarryOut5.BLIF ALUnit/Sum6
+100 1
+010 1
+001 1
+111 1
+000 0
+110 0
+101 0
+011 0
+.names ALUnit/A5.BLIF ALUnit/B5.BLIF ALUnit/CarryOut4.BLIF ALUnit/Sum5
+100 1
+010 1
+001 1
+111 1
+000 0
+110 0
+101 0
+011 0
+.names ALUnit/A4.BLIF ALUnit/B4.BLIF ALUnit/CarryOut3.BLIF ALUnit/Sum4
+100 1
+010 1
+001 1
+111 1
+000 0
+110 0
+101 0
+011 0
+.names ALUnit/A3.BLIF ALUnit/B3.BLIF ALUnit/CarryOut2.BLIF ALUnit/Sum3
+100 1
+010 1
+001 1
+111 1
+000 0
+110 0
+101 0
+011 0
+.names ALUnit/A2.BLIF ALUnit/B2.BLIF ALUnit/CarryOut1.BLIF ALUnit/Sum2
+100 1
+010 1
+001 1
+111 1
+000 0
+110 0
+101 0
+011 0
+.names ALUnit/A1.BLIF ALUnit/B1.BLIF ALUnit/CarryOut0.BLIF ALUnit/Sum1
+100 1
+010 1
+001 1
+111 1
+000 0
+110 0
+101 0
+011 0
+.names ALUnit/A0.BLIF ALUnit/B0.BLIF ALUnit/CIn.BLIF ALUnit/Sum0
+100 1
+010 1
+001 1
+111 1
+000 0
+110 0
+101 0
+011 0
+.names ALUnit/A6.BLIF ALUnit/B6.BLIF ALUnit/CarryOut5.BLIF ALUnit/CarryOut6
+11- 1
+1-1 1
+-11 1
+00- 0
+-00 0
+0-0 0
+.names ALUnit/A5.BLIF ALUnit/B5.BLIF ALUnit/CarryOut4.BLIF ALUnit/CarryOut5
+11- 1
+1-1 1
+-11 1
+00- 0
+-00 0
+0-0 0
+.names ALUnit/A4.BLIF ALUnit/B4.BLIF ALUnit/CarryOut3.BLIF ALUnit/CarryOut4
+11- 1
+1-1 1
+-11 1
+00- 0
+-00 0
+0-0 0
+.names ALUnit/A3.BLIF ALUnit/B3.BLIF ALUnit/CarryOut2.BLIF ALUnit/CarryOut3
+11- 1
+1-1 1
+-11 1
+00- 0
+-00 0
+0-0 0
+.names ALUnit/A2.BLIF ALUnit/B2.BLIF ALUnit/CarryOut1.BLIF ALUnit/CarryOut2
+11- 1
+1-1 1
+-11 1
+00- 0
+-00 0
+0-0 0
+.names ALUnit/A1.BLIF ALUnit/B1.BLIF ALUnit/CarryOut0.BLIF ALUnit/CarryOut1
+11- 1
+1-1 1
+-11 1
+00- 0
+-00 0
+0-0 0
+.names ALUnit/A0.BLIF ALUnit/B0.BLIF ALUnit/CIn.BLIF ALUnit/CarryOut0
+11- 1
+1-1 1
+-11 1
+00- 0
+-00 0
+0-0 0
+.names Control3.BLIF Control2.BLIF Control1.BLIF Control0.BLIF \
+ALUnit/KeepS.BLIF ALUnit/KeepC
+1110- 1
+0001- 1
+----1 1
+-0-00 0
+--110 0
+1-0-0 0
+01--0 0
+.names Control3.BLIF Control2.BLIF Control1.BLIF Control0.BLIF ALUnit/KeepS
+0000 1
+1111 1
+--10 0
+-0-1 0
+1-0- 0
+01-- 0
+.names ALUnit>Accum7.BLIF AccumAddr7
+1 1
+0 0
+.names ALUnit>Accum6.BLIF AccumAddr6
+1 1
+0 0
+.names ALUnit>Accum5.BLIF AccumAddr5
+1 1
+0 0
+.names ALUnit>Accum4.BLIF AccumAddr4
+1 1
+0 0
+.names ALUnit>Accum3.BLIF AccumAddr3
+1 1
+0 0
+.names ALUnit>Accum2.BLIF AccumAddr2
+1 1
+0 0
+.names ALUnit>Accum1.BLIF AccumAddr1
+1 1
+0 0
+.names ALUnit>Accum0.BLIF AccumAddr0
+1 1
+0 0
+.names DataOff3.BLIF XReg3
+1 1
+0 0
+.names DataOff2.BLIF XReg2
+1 1
+0 0
+.names DataOff1.BLIF XReg1
+1 1
+0 0
+.names DataOff0.BLIF XReg0
+1 1
+0 0
+.names Control7.BLIF SReg3
+1 1
+0 0
+.names Control6.BLIF SReg2
+1 1
+0 0
+.names Control5.BLIF SReg1
+1 1
+0 0
+.names Control4.BLIF SReg0
+1 1
+0 0
+.names ALUnit>Flags7.BLIF Flags7
+1 1
+0 0
+.names ALUnit>Flags6.BLIF Flags6
+1 1
+0 0
+.names ALUnit>Flags5.BLIF Flags5
+1 1
+0 0
+.names ALUnit>Flags4.BLIF Flags4
+1 1
+0 0
+.names ALUnit>Flags3.BLIF Flags3
+1 1
+0 0
+.names ALUnit>Flags2.BLIF Flags2
+1 1
+0 0
+.names ALUnit>Flags1.BLIF Flags1
+1 1
+0 0
+.names ALUnit>Flags0.BLIF Flags0
+1 1
+0 0
+.names Clock.BLIF ALUnit>Accum0.C
+1 1
+0 0
+.names Clock.BLIF ALUnit>Accum1.C
+1 1
+0 0
+.names Clock.BLIF ALUnit>Accum2.C
+1 1
+0 0
+.names Clock.BLIF ALUnit>Accum3.C
+1 1
+0 0
+.names Clock.BLIF ALUnit>Accum4.C
+1 1
+0 0
+.names Clock.BLIF ALUnit>Accum5.C
+1 1
+0 0
+.names Clock.BLIF ALUnit>Accum6.C
+1 1
+0 0
+.names Clock.BLIF ALUnit>Accum7.C
+1 1
+0 0
+.names Clock.BLIF ALUnit>Flags0.C
+1 1
+0 0
+.names Clock.BLIF ALUnit>Flags1.C
+1 1
+0 0
+.names Clock.BLIF ALUnit>Flags2.C
+1 1
+0 0
+.names Clock.BLIF ALUnit>Flags3.C
+1 1
+0 0
+.names Clock.BLIF ALUnit>Flags4.C
+1 1
+0 0
+.names Clock.BLIF ALUnit>Flags5.C
+1 1
+0 0
+.names Clock.BLIF ALUnit>Flags6.C
+1 1
+0 0
+.names Clock.BLIF ALUnit>Flags7.C
+1 1
+0 0
+.names Control8.BLIF Control13.BLIF ALUnit/Subtract.BLIF ALUnit/KeepC.BLIF \
+ALUnit>Flags3.REG.X1
+0000 1
+1--- 0
+-1-- 0
+--1- 0
+---1 0
+.names DataOff3.BLIF Control8.BLIF Control13.BLIF ALUnit>Flags3.BLIF \
+ALUnit/Subtract.BLIF ALUnit/A7.BLIF ALUnit/B7.BLIF ALUnit/CarryOut6.BLIF \
+ALUnit/KeepC.BLIF ALUnit>Flags3.REG.X2
+-00--00-0 1
+-00--0-00 1
+-00---000 1
+-0-1----1 1
+-011----- 1
+11------- 1
+01------- 0
+-010----- 0
+-0-0----1 0
+-00--11-0 0
+-00--1-10 0
+-00---110 0
+.names Control6.BLIF Control5.BLIF ALUnit/FOut7.X1
+11 1
+0- 0
+-0 0
+.names DataOff7.BLIF Control7.BLIF Control6.BLIF Control5.BLIF Control4.BLIF \
+ALUnit>Accum7.BLIF ALUnit/FOut7.X2
+0-0010 1
+1100-1 1
+-00110 1
+00101- 1
+0-1100 1
+1011-1 1
+111--- 0
+-101-- 0
+10-0-- 0
+1-10-- 0
+-110-- 0
+0-0-0- 0
+--010- 0
+--100- 0
+0-0--1 0
+0--1-1 0
+--01-1 0
+1-1--0 0
+1--0-0 0
+0-111- 0
+.names Control6.BLIF Control5.BLIF ALUnit/FOut6.X1
+11 1
+0- 0
+-0 0
+.names DataOff6.BLIF Control7.BLIF Control6.BLIF Control5.BLIF Control4.BLIF \
+ALUnit>Accum6.BLIF ALUnit/FOut6.X2
+0-0010 1
+1100-1 1
+-00110 1
+00101- 1
+0-1100 1
+1011-1 1
+111--- 0
+-101-- 0
+10-0-- 0
+1-10-- 0
+-110-- 0
+0-0-0- 0
+--010- 0
+--100- 0
+0-0--1 0
+0--1-1 0
+--01-1 0
+1-1--0 0
+1--0-0 0
+0-111- 0
+.names Control6.BLIF Control5.BLIF ALUnit/FOut5.X1
+11 1
+0- 0
+-0 0
+.names DataOff5.BLIF Control7.BLIF Control6.BLIF Control5.BLIF Control4.BLIF \
+ALUnit>Accum5.BLIF ALUnit/FOut5.X2
+0-0010 1
+1100-1 1
+-00110 1
+00101- 1
+0-1100 1
+1011-1 1
+111--- 0
+-101-- 0
+10-0-- 0
+1-10-- 0
+-110-- 0
+0-0-0- 0
+--010- 0
+--100- 0
+0-0--1 0
+0--1-1 0
+--01-1 0
+1-1--0 0
+1--0-0 0
+0-111- 0
+.names Control6.BLIF Control5.BLIF ALUnit/FOut4.X1
+11 1
+0- 0
+-0 0
+.names DataOff4.BLIF Control7.BLIF Control6.BLIF Control5.BLIF Control4.BLIF \
+ALUnit>Accum4.BLIF ALUnit/FOut4.X2
+0-0010 1
+1100-1 1
+-00110 1
+00101- 1
+0-1100 1
+1011-1 1
+111--- 0
+-101-- 0
+10-0-- 0
+1-10-- 0
+-110-- 0
+0-0-0- 0
+--010- 0
+--100- 0
+0-0--1 0
+0--1-1 0
+--01-1 0
+1-1--0 0
+1--0-0 0
+0-111- 0
+.names Control6.BLIF Control5.BLIF ALUnit/FOut3.X1
+11 1
+0- 0
+-0 0
+.names DataOff3.BLIF Control7.BLIF Control6.BLIF Control5.BLIF Control4.BLIF \
+ALUnit>Accum3.BLIF ALUnit/FOut3.X2
+0-0010 1
+1100-1 1
+-00110 1
+00101- 1
+0-1100 1
+1011-1 1
+111--- 0
+-101-- 0
+10-0-- 0
+1-10-- 0
+-110-- 0
+0-0-0- 0
+--010- 0
+--100- 0
+0-0--1 0
+0--1-1 0
+--01-1 0
+1-1--0 0
+1--0-0 0
+0-111- 0
+.names Control6.BLIF Control5.BLIF ALUnit/FOut2.X1
+11 1
+0- 0
+-0 0
+.names DataOff2.BLIF Control7.BLIF Control6.BLIF Control5.BLIF Control4.BLIF \
+ALUnit>Accum2.BLIF ALUnit/FOut2.X2
+0-0010 1
+1100-1 1
+-00110 1
+00101- 1
+0-1100 1
+1011-1 1
+111--- 0
+-101-- 0
+10-0-- 0
+1-10-- 0
+-110-- 0
+0-0-0- 0
+--010- 0
+--100- 0
+0-0--1 0
+0--1-1 0
+--01-1 0
+1-1--0 0
+1--0-0 0
+0-111- 0
+.names Control6.BLIF Control5.BLIF ALUnit/FOut1.X1
+11 1
+0- 0
+-0 0
+.names DataOff1.BLIF Control7.BLIF Control6.BLIF Control5.BLIF Control4.BLIF \
+ALUnit>Accum1.BLIF ALUnit/FOut1.X2
+0-0010 1
+1100-1 1
+-00110 1
+00101- 1
+0-1100 1
+1011-1 1
+111--- 0
+-101-- 0
+10-0-- 0
+1-10-- 0
+-110-- 0
+0-0-0- 0
+--010- 0
+--100- 0
+0-0--1 0
+0--1-1 0
+--01-1 0
+1-1--0 0
+1--0-0 0
+0-111- 0
+.names Control6.BLIF Control5.BLIF ALUnit/FOut0.X1
+11 1
+0- 0
+-0 0
+.names DataOff0.BLIF Control7.BLIF Control6.BLIF Control5.BLIF Control4.BLIF \
+ALUnit>Accum0.BLIF ALUnit/FOut0.X2
+0-0010 1
+1100-1 1
+-00110 1
+00101- 1
+0-1100 1
+1011-1 1
+111--- 0
+-101-- 0
+10-0-- 0
+1-10-- 0
+-110-- 0
+0-0-0- 0
+--010- 0
+--100- 0
+0-0--1 0
+0--1-1 0
+--01-1 0
+1-1--0 0
+1--0-0 0
+0-111- 0
+.end

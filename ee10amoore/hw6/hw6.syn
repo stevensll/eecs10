@@ -1,0 +1,13 @@
+JDF B
+// Created by Version 2.0 
+PROJECT hw6
+DESIGN hw6 Normal
+DEVKIT LC4128V-75T144E
+ENTRY ABEL/Schematic
+MODULE PAUDemo.abl
+MODSTYLE PAUDemo Normal
+MODULE ProgramAccess.abl
+MODSTYLE ProgramAccess Normal
+SYNTHESIS_TOOL Synplify
+SIMULATOR_TOOL ActiveHDL
+TOPMODULE PAUDemo

@@ -1,0 +1,850 @@
+<HTML>
+<HEAD><TITLE>HTML_REPORT_FILE</TITLE>
+<STYLE TYPE="text/css">
+<!--
+.blink {text-decoration:blink}
+.ms  {font-size: 10pt; font-family: monospace; font-weight: normal}
+.msb {font-size: 10pt; font-family: monospace; font-weight: bold  }
+-->
+</STYLE>
+</HEAD>
+<PRE>
+<A name="Top"></A><H2 align=center> ispLEVER Classic 2.0.00.17.20.15 Fitter Report File </H2>
+<H2 align=center>Copyright(C), 1992-2012, Lattice Semiconductor Corporation</H2>
+<H2 align=center>All Rights Reserved</H2>
+
+
+The Basic/Detailed Report Format can be selected in the dialog box
+Tools->Fitter Report File Format...
+
+<A name="Project_Summary"></A><FONT COLOR=maroon><U><B><big>Project_Summary</big></B></U></FONT>
+<BR>
+Project Name         :  hw6
+Project Path         :  U:\slei\hw6
+Project Fitted on    :  Sun Feb 26 00:19:42 2012
+
+Device               :  M4128_96
+Package              :  144
+GLB Input Mux Size   :  19
+Available Blocks     :  8
+Speed                :  -7.5
+Part Number          :  LC4128V-75T144E
+Source Format        :  ABEL_Schematic
+
+
+<font color=green size=4><span class=blink><strong><B>Project 'hw6' Fit Successfully!</B></strong></span></font>
+
+
+<A name="Compilation_Times"></A><FONT COLOR=maroon><U><B><big>Compilation_Times</big></B></U></FONT>
+<BR>
+Prefit Time                     0 secs
+Load Design Time                0.03 secs
+Partition Time                  0.03 secs
+Place Time                      0.00 secs
+Route Time                      0.00 secs
+Total Fit Time                  00:00:01
+
+
+<A name="Design_Summary"></A><FONT COLOR=maroon><U><B><big>Design_Summary</big></B></U></FONT>
+<BR>
+Total Input Pins                53
+Total Logic Functions           60
+  Total Output Pins             37
+  Total Bidir I/O Pins          0
+  Total Buried Nodes            23
+Total Flip-Flops                13
+  Total D Flip-Flops            13
+  Total T Flip-Flops            0
+  Total Latches                 0
+Total Product Terms             162
+
+Total Reserved Pins             0
+Total Locked Pins               90
+Total Locked Nodes              0
+
+Total Unique Output Enables     0
+Total Unique Clocks             1
+Total Unique Clock Enables      0
+Total Unique Resets             0
+Total Unique Presets            0
+
+Fmax Logic Levels               12
+
+
+<A name="Device_Resource_Summary"></A><FONT COLOR=maroon><U><B><big>Device_Resource_Summary</big></B></U></FONT>
+<BR>
+<B>                                 Device
+                                 Total    Used   Not Used   Utilization
+-----------------------------------------------------------------------
+</B>Dedicated Pins
+  Clock/Input Pins                  4        1      3    -->    25
+  I/O / Enable Pins                 2        0      2    -->     0
+I/O Pins                           94       89      5    -->    94
+Logic Functions                   128       60     68    -->    46
+  Input Registers                  96        0     96    -->     0
+
+GLB Inputs                        288      124    164    -->    43
+Logical Product Terms             640      149    491    -->    23
+Occupied GLBs                       8        8      0    -->   100
+Macrocells                        128       60     68    -->    46
+
+Control Product Terms:
+  GLB Clock/Clock Enables           8        0      8    -->     0
+  GLB Reset/Presets                 8        0      8    -->     0
+  Macrocell Clocks                128        0    128    -->     0
+  Macrocell Clock Enables         128        0    128    -->     0
+  Macrocell Enables               128        0    128    -->     0
+  Macrocell Resets                128        0    128    -->     0
+  Macrocell Presets               128        0    128    -->     0
+
+Global Routing Pool               252       62    190    -->    24
+  GRP from IFB                     ..       26     ..    -->    ..
+    (from input signals)           ..       26     ..    -->    ..
+    (from output signals)          ..        0     ..    -->    ..
+    (from bidir signals)           ..        0     ..    -->    ..
+  GRP from MFB                     ..       36     ..    -->    ..
+----------------------------------------------------------------------
+
+&lt;Note&gt; 1 : The available PT is the product term that has not been used.
+&lt;Note&gt; 2 : IFB is I/O feedback.
+&lt;Note&gt; 3 : MFB is macrocell feedback.
+
+
+<A name="GLB_Resource_Summary"></A><FONT COLOR=maroon><U><B><big>GLB_Resource_Summary</big></B></U></FONT>
+<BR>
+<B>                                                                                     # of PT
+               ---  Fanin  ---    I/O    Input  Macrocells       Macrocells   Logic  clusters
+             Unique Shared Total  Pins    Regs Used Inaccessible  available    PTs   used
+-------------------------------------------------------------------------------------------
+Maximum
+  GLB                      36      *(1)     8   --     --             16       80       16
+</B>-------------------------------------------------------------------------------------------
+  GLB    A      9     1    10     11/12     0    3      0             13        9        3
+  GLB    B      4     4     8     11/12     0    3      0             13        9        3
+  GLB    C     28     7    35     12/12     0   12      0              4       42       13
+  GLB    D      8     6    14      9/12     0   12      0              4       24       12
+-------------------------------------------------------------------------------------------
+  GLB    E      7    10    17     12/12     0   15      0              1       24       14
+  GLB    F      9     6    15     12/12     0    8      0              8       16        8
+  GLB    G     10     1    11     12/12     0    3      0             13        9        3
+  GLB    H      8     6    14     10/12     0    4      0             12       16        4
+-------------------------------------------------------------------------------------------
+TOTALS:        83    41   124     89/96     0   60      0             68      149       60
+
+&lt;Note&gt; 1 : For ispMACH 4000 devices, the number of IOs depends on the GLB.
+&lt;Note&gt; 2 : Four rightmost columns above reflect last status of the placement process.
+
+
+<A name="GLB_Control_Summary"></A><FONT COLOR=maroon><U><B><big>GLB_Control_Summary</big></B></U></FONT>
+<BR>
+<B>           Shared Shared | Mcell  Mcell  Mcell  Mcell  Mcell 
+           Clk/CE Rst/Pr | Clock  CE     Enable Reset  Preset
+------------------------------------------------------------------------------
+Maximum
+  GLB        1      1        16     16     16     16     16  
+==============================================================================
+</B>  GLB    A   0      0         0      0      0      0      0
+  GLB    B   0      0         0      0      0      0      0
+  GLB    C   0      0         0      0      0      0      0
+  GLB    D   0      0         0      0      0      0      0
+------------------------------------------------------------------------------
+  GLB    E   0      0         0      0      0      0      0
+  GLB    F   0      0         0      0      0      0      0
+  GLB    G   0      0         0      0      0      0      0
+  GLB    H   0      0         0      0      0      0      0
+------------------------------------------------------------------------------
+
+&lt;Note&gt; 1 : For ispMACH 4000 devices, the number of output enables depends on the GLB.
+
+
+<A name="Optimizer_and_Fitter_Options"></A><FONT COLOR=maroon><U><B><big>Optimizer_and_Fitter_Options</big></B></U></FONT>
+<BR>
+Pin Assignment :                       Yes
+Group Assignment :                     No
+Pin Reservation :                      No
+
+@Ignore_Project_Constraints :
+  Pin Assignments :                    No
+      Keep Block Assignment            --
+      Keep Segment Assignment          --
+  Group Assignments :                  No
+  Macrocell Assignment :               No
+      Keep Block Assignment            --
+      Keep Segment Assignment          --
+
+@Backannotate_Project_Constraints
+  Pin Assignments :                    No
+  Pin And Block Assignments :          No
+  Pin, Macrocell and Block :           No
+
+@Timing_Constraints :                  No
+
+@Global_Project_Optimization :
+  Balanced Partitioning :              Yes
+  Spread Placement :                   Yes
+
+  Note :
+    Pack Design :
+       Balanced Partitioning = No
+       Spread Placement      = No
+    Spread Design :
+       Balanced Partitioning = Yes
+       Spread Placement      = Yes
+
+
+@Logic_Synthesis :
+  Logic Reduction :                    Yes
+  Node Collapsing :                    Area
+  Fmax_Logic_Level :                   1
+  D/T Synthesis :                      Yes
+  XOR Synthesis :                      Yes
+  Max. P-Term for Collapsing :         16
+  Max. P-Term for Splitting :          80
+  Max Symbols :                        24
+
+@Utilization_options
+  Max. % of Macrocells used :          100
+@Usercode                               (HEX)
+@IO_Types                              Default = LVCMOS18 (2)
+@Output_Slew_Rate                      Default = FAST (2)
+@Power                                 Default = HIGH (2)
+@Pull                                  Default = PULLUP_UP (2)
+@Fast_Bypass                           Default = None (2)
+@ORP_Bypass                            Default = None
+@Input_Registers                       Default = None (2)
+@Register_Powerup                      Default = None
+
+Device Options:
+&lt;Note&gt; 1 : Reserved unused I/Os can be independently driven to Low or High, and does not
+           follow the drive level set for the Global Configure Unused I/O Option.
+&lt;Note&gt; 2 : For user-specified constraints on individual signals, refer to the Output,
+           Bidir and Buried Signal Lists.
+
+
+<A name="Pinout_Listing"></A><FONT COLOR=maroon><U><B><big>Pinout_Listing</big></B></U></FONT>
+<BR>
+<B>      | Pin   | Bank |GLB |Assigned|                 | Signal|
+Pin No| Type  |Number|Pad |Pin     |     I/O Type    | Type  | Signal name
+</B>---------------------------------------------------------------------------
+1     | GND   |   -  |    |        |                 |       |
+2     | TDI   |   -  |    |        |                 |       |
+3     |VCCIO0 |   -  |    |        |                 |       |
+4     |  I_O  |   0  |B0  |    *   |LVCMOS18         | Input |<A href=#36>Control20</A>
+5     |  I_O  |   0  |B1  |    *   |LVCMOS18         | Input |<A href=#35>Control21</A>
+6     |  I_O  |   0  |B2  |    *   |LVCMOS18         | Input |<A href=#34>Control22</A>
+7     |  I_O  |   0  |B4  |    *   |LVCMOS18         | Input |<A href=#33>Control23</A>
+8     |  I_O  |   0  |B5  |    *   |LVCMOS18         | Input |<A href=#32>Control24</A>
+9     |  I_O  |   0  |B6  |    *   |LVCMOS18         | Input |<A href=#31>Control25</A>
+10    |GNDIO0 |   -  |    |        |                 |       |
+11    |  I_O  |   0  |B8  |    *   |LVCMOS18         | Input |<A href=#30>Control26</A>
+12    |  I_O  |   0  |B9  |    *   |LVCMOS18         | Input |<A href=#29>Control27</A>
+13    |  I_O  |   0  |B10 |    *   |LVCMOS18         | Input |<A href=#28>Control28</A>
+14    |  I_O  |   0  |B12 |    *   |LVCMOS18         | Input |<A href=#27>Control29</A>
+15    |  I_O  |   0  |B13 |        |                 |       |
+16    |  I_O  |   0  |B14 |    *   |LVCMOS18         | Output|<A href=#88>AccumAddr7</A>
+17    | NC    |   -  |    |        |                 |       |
+18    |GNDIO0 |   -  |    |        |                 |       |
+19    |VCCIO0 |   -  |    |        |                 |       |
+20    | NC    |   -  |    |        |                 |       |
+21    |  I_O  |   0  |C14 |    *   |LVCMOS18         | Output|<A href=#89>AccumAddr6</A>
+22    |  I_O  |   0  |C13 |    *   |LVCMOS18         | Output|<A href=#90>AccumAddr5</A>
+23    |  I_O  |   0  |C12 |    *   |LVCMOS18         | Output|<A href=#91>AccumAddr4</A>
+24    |  I_O  |   0  |C10 |    *   |LVCMOS18         | Output|<A href=#92>AccumAddr3</A>
+25    |  I_O  |   0  |C9  |    *   |LVCMOS18         | Output|<A href=#93>AccumAddr2</A>
+26    |  I_O  |   0  |C8  |    *   |LVCMOS18         | Output|<A href=#94>AccumAddr1</A>
+27    |GNDIO0 |   -  |    |        |                 |       |
+28    |  I_O  |   0  |C6  |    *   |LVCMOS18         | Output|<A href=#95>AccumAddr0</A>
+29    |  I_O  |   0  |C5  |    *   |LVCMOS18         | Output|<A href=#83>AccumAddr12</A>
+30    |  I_O  |   0  |C4  |    *   |LVCMOS18         | Output|<A href=#84>AccumAddr11</A>
+31    |  I_O  |   0  |C2  |    *   |LVCMOS18         | Output|<A href=#85>AccumAddr10</A>
+32    |  I_O  |   0  |C1  |    *   |LVCMOS18         | Output|<A href=#86>AccumAddr9</A>
+33    |  I_O  |   0  |C0  |    *   |LVCMOS18         | Output|<A href=#87>AccumAddr8</A>
+34    |VCCIO0 |   -  |    |        |                 |       |
+35    | TCK   |   -  |    |        |                 |       |
+36    | VCC   |   -  |    |        |                 |       |
+37    | GND   |   -  |    |        |                 |       |
+38    | NC    |   -  |    |        |                 |       |
+39    |  I_O  |   0  |D14 |        |                 |       |
+40    |  I_O  |   0  |D13 |    *   |LVCMOS18         | Input |<A href=#57>Reset</A>
+41    |  I_O  |   0  |D12 |        |                 |       |
+42    |  I_O  |   0  |D10 |    *   |LVCMOS18         | Output|<A href=#75>Flags7</A>
+43    |  I_O  |   0  |D9  |    *   |LVCMOS18         | Output|<A href=#76>Flags6</A>
+44    |  I_O  |   0  |D8  |    *   |LVCMOS18         | Output|<A href=#77>Flags5</A>
+45    | NC    |   -  |    |        |                 |       |
+46    |GNDIO0 |   -  |    |        |                 |       |
+47    |VCCIO0 |   -  |    |        |                 |       |
+48    |  I_O  |   0  |D6  |    *   |LVCMOS18         | Output|<A href=#78>Flags4</A>
+49    |  I_O  |   0  |D5  |    *   |LVCMOS18         | Output|<A href=#79>Flags3</A>
+50    |  I_O  |   0  |D4  |    *   |LVCMOS18         | Output|<A href=#80>Flags2</A>
+51    |  I_O  |   0  |D2  |    *   |LVCMOS18         | Output|<A href=#81>Flags1</A>
+52    |  I_O  |   0  |D1  |    *   |LVCMOS18         | Output|<A href=#82>Flags0</A>
+53    |  I_O  |   0  |D0  |        |                 |       |
+54    |INCLK1 |   0  |    |        |                 |       |
+55    |GNDIO1 |   -  |    |        |                 |       |
+56    |INCLK2 |   1  |    |        |                 |       |
+57    | VCC   |   -  |    |        |                 |       |
+58    |  I_O  |   1  |E0  |    *   |LVCMOS18         | Output|<A href=#67>SReg7</A>
+59    |  I_O  |   1  |E1  |    *   |LVCMOS18         | Output|<A href=#68>SReg6</A>
+60    |  I_O  |   1  |E2  |    *   |LVCMOS18         | Output|<A href=#69>SReg5</A>
+61    |  I_O  |   1  |E4  |    *   |LVCMOS18         | Output|<A href=#70>SReg4</A>
+62    |  I_O  |   1  |E5  |    *   |LVCMOS18         | Output|<A href=#71>SReg3</A>
+63    |  I_O  |   1  |E6  |    *   |LVCMOS18         | Output|<A href=#72>SReg2</A>
+64    |VCCIO1 |   -  |    |        |                 |       |
+65    |GNDIO1 |   -  |    |        |                 |       |
+66    |  I_O  |   1  |E8  |    *   |LVCMOS18         | Output|<A href=#73>SReg1</A>
+67    |  I_O  |   1  |E9  |    *   |LVCMOS18         | Output|<A href=#74>SReg0</A>
+68    |  I_O  |   1  |E10 |    *   |LVCMOS18         | Output|<A href=#59>XReg7</A>
+69    |  I_O  |   1  |E12 |    *   |LVCMOS18         | Output|<A href=#60>XReg6</A>
+70    |  I_O  |   1  |E13 |    *   |LVCMOS18         | Output|<A href=#61>XReg5</A>
+71    |  I_O  |   1  |E14 |    *   |LVCMOS18         | Output|<A href=#62>XReg4</A>
+72    | NC    |   -  |    |        |                 |       |
+73    | GND   |   -  |    |        |                 |       |
+74    | TMS   |   -  |    |        |                 |       |
+75    |VCCIO1 |   -  |    |        |                 |       |
+76    |  I_O  |   1  |F0  |    *   |LVCMOS18         | Output|<A href=#63>XReg3</A>
+77    |  I_O  |   1  |F1  |    *   |LVCMOS18         | Output|<A href=#64>XReg2</A>
+78    |  I_O  |   1  |F2  |    *   |LVCMOS18         | Output|<A href=#65>XReg1</A>
+79    |  I_O  |   1  |F4  |    *   |LVCMOS18         | Output|<A href=#66>XReg0</A>
+80    |  I_O  |   1  |F5  |    *   |LVCMOS18         | Input |<A href=#6>DataOff7</A>
+81    |  I_O  |   1  |F6  |    *   |LVCMOS18         | Input |<A href=#7>DataOff6</A>
+82    |GNDIO1 |   -  |    |        |                 |       |
+83    |  I_O  |   1  |F8  |    *   |LVCMOS18         | Input |<A href=#8>DataOff5</A>
+84    |  I_O  |   1  |F9  |    *   |LVCMOS18         | Input |<A href=#9>DataOff4</A>
+85    |  I_O  |   1  |F10 |    *   |LVCMOS18         | Input |<A href=#10>DataOff3</A>
+86    |  I_O  |   1  |F12 |    *   |LVCMOS18         | Input |<A href=#11>DataOff2</A>
+87    |  I_O  |   1  |F13 |    *   |LVCMOS18         | Input |<A href=#12>DataOff1</A>
+88    |  I_O  |   1  |F14 |    *   |LVCMOS18         | Input |<A href=#13>DataOff0</A>
+89    | NC    |   -  |    |        |                 |       |
+90    |GNDIO1 |   -  |    |        |                 |       |
+91    |VCCIO1 |   -  |    |        |                 |       |
+92    | NC    |   -  |    |        |                 |       |
+93    |  I_O  |   1  |G14 |    *   |LVCMOS18         | Input |<A href=#19>AddrData7</A>
+94    |  I_O  |   1  |G13 |    *   |LVCMOS18         | Input |<A href=#20>AddrData6</A>
+95    |  I_O  |   1  |G12 |    *   |LVCMOS18         | Input |<A href=#21>AddrData5</A>
+96    |  I_O  |   1  |G10 |    *   |LVCMOS18         | Input |<A href=#22>AddrData4</A>
+97    |  I_O  |   1  |G9  |    *   |LVCMOS18         | Input |<A href=#23>AddrData3</A>
+98    |  I_O  |   1  |G8  |    *   |LVCMOS18         | Input |<A href=#24>AddrData2</A>
+99    |GNDIO1 |   -  |    |        |                 |       |
+100   |  I_O  |   1  |G6  |    *   |LVCMOS18         | Input |<A href=#25>AddrData1</A>
+101   |  I_O  |   1  |G5  |    *   |LVCMOS18         | Input |<A href=#26>AddrData0</A>
+102   |  I_O  |   1  |G4  |    *   |LVCMOS18         | Input |<A href=#14>AddrData12</A>
+103   |  I_O  |   1  |G2  |    *   |LVCMOS18         | Input |<A href=#15>AddrData11</A>
+104   |  I_O  |   1  |G1  |    *   |LVCMOS18         | Input |<A href=#16>AddrData10</A>
+105   |  I_O  |   1  |G0  |    *   |LVCMOS18         | Input |<A href=#17>AddrData9</A>
+106   |VCCIO1 |   -  |    |        |                 |       |
+107   | TDO   |   -  |    |        |                 |       |
+108   | VCC   |   -  |    |        |                 |       |
+109   | GND   |   -  |    |        |                 |       |
+110   | NC    |   -  |    |        |                 |       |
+111   |  I_O  |   1  |H14 |    *   |LVCMOS18         | Input |<A href=#18>AddrData8</A>
+112   |  I_O  |   1  |H13 |        |                 |       |
+113   |  I_O  |   1  |H12 |    *   |LVCMOS18         | Input |<A href=#56>Control0</A>
+114   |  I_O  |   1  |H10 |    *   |LVCMOS18         | Input |<A href=#55>Control1</A>
+115   |  I_O  |   1  |H9  |    *   |LVCMOS18         | Input |<A href=#54>Control2</A>
+116   |  I_O  |   1  |H8  |    *   |LVCMOS18         | Input |<A href=#53>Control3</A>
+117   | NC    |   -  |    |        |                 |       |
+118   |GNDIO1 |   -  |    |        |                 |       |
+119   |VCCIO1 |   -  |    |        |                 |       |
+120   |  I_O  |   1  |H6  |    *   |LVCMOS18         | Input |<A href=#52>Control4</A>
+121   |  I_O  |   1  |H5  |    *   |LVCMOS18         | Input |<A href=#51>Control5</A>
+122   |  I_O  |   1  |H4  |    *   |LVCMOS18         | Input |<A href=#50>Control6</A>
+123   |  I_O  |   1  |H2  |    *   |LVCMOS18         | Input |<A href=#49>Control7</A>
+124   |  I_O  |   1  |H1  |    *   |LVCMOS18         | Input |<A href=#48>Control8</A>
+125   | I_O/OE|   1  |H0  |        |                 |       |
+126   |INCLK3 |   1  |    |        |                 |       |
+127   |GNDIO0 |   -  |    |        |                 |       |
+128   |INCLK0 |   0  |    |    *   |LVCMOS18         | Input |<A href=#58>Clock</A>
+129   | VCC   |   -  |    |        |                 |       |
+130   | I_O/OE|   0  |A0  |        |                 |       |
+131   |  I_O  |   0  |A1  |    *   |LVCMOS18         | Input |<A href=#47>Control9</A>
+132   |  I_O  |   0  |A2  |    *   |LVCMOS18         | Input |<A href=#46>Control10</A>
+133   |  I_O  |   0  |A4  |    *   |LVCMOS18         | Input |<A href=#45>Control11</A>
+134   |  I_O  |   0  |A5  |    *   |LVCMOS18         | Input |<A href=#44>Control12</A>
+135   |  I_O  |   0  |A6  |    *   |LVCMOS18         | Input |<A href=#43>Control13</A>
+136   |VCCIO0 |   -  |    |        |                 |       |
+137   |GNDIO0 |   -  |    |        |                 |       |
+138   |  I_O  |   0  |A8  |    *   |LVCMOS18         | Input |<A href=#42>Control14</A>
+139   |  I_O  |   0  |A9  |    *   |LVCMOS18         | Input |<A href=#41>Control15</A>
+140   |  I_O  |   0  |A10 |    *   |LVCMOS18         | Input |<A href=#40>Control16</A>
+141   |  I_O  |   0  |A12 |    *   |LVCMOS18         | Input |<A href=#39>Control17</A>
+142   |  I_O  |   0  |A13 |    *   |LVCMOS18         | Input |<A href=#38>Control18</A>
+143   |  I_O  |   0  |A14 |    *   |LVCMOS18         | Input |<A href=#37>Control19</A>
+144   | NC    |   -  |    |        |                 |       |
+---------------------------------------------------------------------------
+
+&lt;Note&gt; GLB Pad : This notation refers to the GLB I/O pad number in the device.
+&lt;Note&gt; Assigned Pin : user or dedicated input assignment (E.g. Clock pins).
+&lt;Note&gt; Pin Type : 
+          ClkIn : Dedicated input or clock pin 
+           CLK  : Dedicated clock pin
+           I_O  : Input/Output pin
+           INP  : Dedicated input pin
+           JTAG : JTAG Control and test pin
+           NC   : No connected
+
+
+<A name="Input_Signal_List"></A><FONT COLOR=maroon><U><B><big>Input_Signal_List</big></B></U></FONT>
+<BR>
+<B>                Input
+         Pin    Fanout
+ Pin GLB Type               Pullup Signal
+</B>---------------------------------------------
+ 101   G  I/O   1 -----F--      Up <A name=26>AddrData0</A>
+ 100   G  I/O   1 -------H      Up <A name=25>AddrData1</A>
+ 104   G  I/O   1 -------H      Up <A name=16>AddrData10</A>
+ 103   G  I/O   1 ---D----      Up <A name=15>AddrData11</A>
+ 102   G  I/O   1 ---D----      Up <A name=14>AddrData12</A>
+  98   G  I/O   1 -------H      Up <A name=24>AddrData2</A>
+  97   G  I/O   1 ---D----      Up <A name=23>AddrData3</A>
+  96   G  I/O   1 ---D----      Up <A name=22>AddrData4</A>
+  95   G  I/O   1 ----E---      Up <A name=21>AddrData5</A>
+  94   G  I/O   1 -----F--      Up <A name=20>AddrData6</A>
+  93   G  I/O   1 ----E---      Up <A name=19>AddrData7</A>
+ 111   H  I/O   1 ----E---      Up <A name=18>AddrData8</A>
+ 105   G  I/O   1 -------H      Up <A name=17>AddrData9</A>
+ 128  -- INCLK    --------      Up <A name=58>Clock</A>
+ 113   H  I/O   4 ---DEF-H      Up <A name=56>Control0</A>
+ 114   H  I/O   4 ---DEF-H      Up <A name=55>Control1</A>
+ 132   A  I/O     --------      Up <A name=46>Control10</A>
+ 133   A  I/O     --------      Up <A name=45>Control11</A>
+ 134   A  I/O     --------      Up <A name=44>Control12</A>
+ 135   A  I/O     --------      Up <A name=43>Control13</A>
+ 138   A  I/O     --------      Up <A name=42>Control14</A>
+ 139   A  I/O     --------      Up <A name=41>Control15</A>
+ 140   A  I/O     --------      Up <A name=40>Control16</A>
+ 141   A  I/O     --------      Up <A name=39>Control17</A>
+ 142   A  I/O     --------      Up <A name=38>Control18</A>
+ 143   A  I/O     --------      Up <A name=37>Control19</A>
+ 115   H  I/O   4 ---DEF-H      Up <A name=54>Control2</A>
+   4   B  I/O     --------      Up <A name=36>Control20</A>
+   5   B  I/O     --------      Up <A name=35>Control21</A>
+   6   B  I/O     --------      Up <A name=34>Control22</A>
+   7   B  I/O     --------      Up <A name=33>Control23</A>
+   8   B  I/O     --------      Up <A name=32>Control24</A>
+   9   B  I/O     --------      Up <A name=31>Control25</A>
+  11   B  I/O     --------      Up <A name=30>Control26</A>
+  12   B  I/O     --------      Up <A name=29>Control27</A>
+  13   B  I/O     --------      Up <A name=28>Control28</A>
+  14   B  I/O     --------      Up <A name=27>Control29</A>
+ 116   H  I/O   5 ABC--FG-      Up <A name=53>Control3</A>
+ 120   H  I/O     --------      Up <A name=52>Control4</A>
+ 121   H  I/O     --------      Up <A name=51>Control5</A>
+ 122   H  I/O     --------      Up <A name=50>Control6</A>
+ 123   H  I/O     --------      Up <A name=49>Control7</A>
+ 124   H  I/O     --------      Up <A name=48>Control8</A>
+ 131   A  I/O     --------      Up <A name=47>Control9</A>
+  88   F  I/O   2 ----EF--      Up <A name=13>DataOff0</A>
+  87   F  I/O   2 ----E--H      Up <A name=12>DataOff1</A>
+  86   F  I/O   2 ----E--H      Up <A name=11>DataOff2</A>
+  85   F  I/O   2 ---DE---      Up <A name=10>DataOff3</A>
+  84   F  I/O   2 ---DE---      Up <A name=9>DataOff4</A>
+  83   F  I/O   1 ----E---      Up <A name=8>DataOff5</A>
+  81   F  I/O   2 ----EF--      Up <A name=7>DataOff6</A>
+  80   F  I/O   3 ---DE--H      Up <A name=6>DataOff7</A>
+  40   D  I/O   2 -BC-----      Up <A name=57>Reset</A>
+---------------------------------------------
+
+
+<A name="Output_Signal_List"></A><FONT COLOR=maroon><U><B><big>Output_Signal_List</big></B></U></FONT>
+<BR>
+<B>          I         C      P R P       O Output
+          N         L Mc   R E U C O F B Fanout
+ Pin GLB  P LL PTs  S Type E S P E E P P             Slew Pullup Signal
+</B>----------------------------------------------------------------------------
+  28   C  4  2   3  1 DFF      R         3 --C--FG-  Fast     Up <A href=#95>AccumAddr0</A>
+  26   C  6  2   4  2 DFF      R         3 --C---GH  Fast     Up <A href=#94>AccumAddr1</A>
+  31   C  5 11   3  1 DFF      R         3 --C---GH  Fast     Up <A href=#85>AccumAddr10</A>
+  30   C  5 12   3  1 DFF      R         2 --CD----  Fast     Up <A href=#84>AccumAddr11</A>
+  29   C  7 12   8  2 DFF      R         2 --CD----  Fast     Up <A href=#83>AccumAddr12</A>
+  25   C  5  3   3  2 DFF      R         3 A-C----H  Fast     Up <A href=#93>AccumAddr2</A>
+  24   C  5  4   3  2 DFF      R         3 --CD-F--  Fast     Up <A href=#92>AccumAddr3</A>
+  23   C  5  5   3  2 DFF      R         3 A-CD----  Fast     Up <A href=#91>AccumAddr4</A>
+  22   C  5  6   3  2 DFF      R         3 A-C-E---  Fast     Up <A href=#90>AccumAddr5</A>
+  21   C  5  7   3  1 DFF      R         2 --C--F--  Fast     Up <A href=#89>AccumAddr6</A>
+  16   B  5  8   3  1 DFF      R         2 -B--E---  Fast     Up <A href=#88>AccumAddr7</A>
+  33   C  5  9   3  2 DFF      R         3 -BC-E---  Fast     Up <A href=#87>AccumAddr8</A>
+  32   C  5 10   3  2 DFF      R         3 --C---GH  Fast     Up <A href=#86>AccumAddr9</A>
+  52   D  0  -   1  1 COM                  --------  Fast     Up <A href=#82>Flags0</A>
+  51   D  0  -   1  1 COM                  --------  Fast     Up <A href=#81>Flags1</A>
+  50   D  0  -   1  1 COM                  --------  Fast     Up <A href=#80>Flags2</A>
+  49   D  0  -   1  1 COM                  --------  Fast     Up <A href=#79>Flags3</A>
+  48   D  0  -   1  1 COM                  --------  Fast     Up <A href=#78>Flags4</A>
+  44   D  0  -   1  1 COM                  --------  Fast     Up <A href=#77>Flags5</A>
+  43   D  0  -   1  1 COM                  --------  Fast     Up <A href=#76>Flags6</A>
+  42   D  0  -   1  1 COM                  --------  Fast     Up <A href=#75>Flags7</A>
+  67   E  1  1   1  1 COM                  --------  Fast     Up <A href=#74>SReg0</A>
+  66   E  1  1   1  1 COM                  --------  Fast     Up <A href=#73>SReg1</A>
+  63   E  1  1   1  1 COM                  --------  Fast     Up <A href=#72>SReg2</A>
+  62   E  1  1   1  1 COM                  --------  Fast     Up <A href=#71>SReg3</A>
+  61   E  1  1   1  1 COM                  --------  Fast     Up <A href=#70>SReg4</A>
+  60   E  1  1   1  1 COM                  --------  Fast     Up <A href=#69>SReg5</A>
+  59   E  1  1   1  1 COM                  --------  Fast     Up <A href=#68>SReg6</A>
+  58   E  1  1   1  1 COM                  --------  Fast     Up <A href=#67>SReg7</A>
+  79   F  0  -   0  1 COM                  --------  Fast     Up <A href=#66>XReg0</A>
+  78   F  0  -   0  1 COM                  --------  Fast     Up <A href=#65>XReg1</A>
+  77   F  0  -   0  1 COM                  --------  Fast     Up <A href=#64>XReg2</A>
+  76   F  1  1   1  1 COM                  --------  Fast     Up <A href=#63>XReg3</A>
+  71   E  1  1   1  1 COM                  --------  Fast     Up <A href=#62>XReg4</A>
+  70   E  1  1   1  1 COM                  --------  Fast     Up <A href=#61>XReg5</A>
+  69   E  1  1   1  1 COM                  --------  Fast     Up <A href=#60>XReg6</A>
+  68   E  1  1   1  1 COM                  --------  Fast     Up <A href=#59>XReg7</A>
+----------------------------------------------------------------------------
+
+&lt;Note&gt; CLS = Number of clusters used
+       INP = Number of input signals
+       PTs = Number of product terms
+        LL = Number of logic levels
+       PRE = Has preset equation
+       RES = Has reset equation
+       PUP = Power-Up initial state: R=Reset, S=Set
+        CE = Has clock enable equation
+        OE = Has output enable equation
+        FP = Fast path used
+       OBP = ORP bypass used
+
+
+<A name="Bidir_Signal_List"></A><FONT COLOR=maroon><U><B><big>Bidir_Signal_List</big></B></U></FONT>
+<BR>
+<B>          I         C      P R P       O Bidir
+          N         L Mc   R E U C O F B Fanout
+ Pin GLB  P LL PTs  S Type E S P E E P P             Slew Pullup Signal
+</B>-----------------------------------------------------------------------
+-----------------------------------------------------------------------
+
+&lt;Note&gt; CLS = Number of clusters used
+       INP = Number of input signals
+       PTs = Number of product terms
+        LL = Number of logic levels
+       PRE = Has preset equation
+       RES = Has reset equation
+       PUP = Power-Up initial state: R=Reset, S=Set
+        CE = Has clock enable equation
+        OE = Has output enable equation
+        FP = Fast path used
+       OBP = ORP bypass used
+
+
+<A name="Buried_Signal_List"></A><FONT COLOR=maroon><U><B><big>Buried_Signal_List</big></B></U></FONT>
+<BR>
+<B>        I         C      P R P       Node
+        N         L Mc   R E U C I F Fanout
+Mc GLB  P LL PTs  S Type E S P E R P             Signal
+</B>-------------------------------------------------------------
+ 9   F  6  -   5  1 COM              2 --C---G-  <A href=#118>P0_B0</A>
+ 7   H  6  -   4  1 COM              2 --C---G-  <A href=#117>P0_B1</A>
+14   H  7  -   4  1 COM              2 --C---G-  <A href=#108>P0_B10</A>
+ 7   D  7  -   4  1 COM              1 --C-----  <A href=#107>P0_B11</A>
+ 3   D  7  -   4  1 COM              1 --C-----  <A href=#106>P0_B12</A>
+ 3   H  6  -   4  1 COM              2 A-C-----  <A href=#116>P0_B2</A>
+10   D  6  -   4  1 COM              2 --C--F--  <A href=#115>P0_B3</A>
+ 8   D  6  -   4  1 COM              2 A-C-----  <A href=#114>P0_B4</A>
+11   E  6  -   4  1 COM              2 A-C-----  <A href=#113>P0_B5</A>
+11   F  6  -   4  1 COM              2 --C--F--  <A href=#112>P0_B6</A>
+10   E  6  -   4  1 COM              1 -B------  <A href=#111>P0_B7</A>
+ 7   E  7  -   4  1 COM              2 -BC-----  <A href=#110>P0_B8</A>
+ 0   H  7  -   4  1 COM              2 --C---G-  <A href=#109>P0_B9</A>
+10   G  4  -   3  1 COM              2 --C---G-  <A href=#97>P0_CarryIn10</A>
+ 7   G  4  -   3  1 COM              1 --C-----  <A href=#96>P0_CarryIn11</A>
+15   G  5  -   3  1 COM              2 A-C-----  <A href=#105>P0_CarryIn2</A>
+ 2   A  4  -   3  1 COM              2 --C--F--  <A href=#104>P0_CarryIn3</A>
+ 0   F  4  -   3  1 COM              2 A-C-----  <A href=#103>P0_CarryIn4</A>
+13   A  4  -   3  1 COM              2 A-C-----  <A href=#102>P0_CarryIn5</A>
+10   A  4  -   3  1 COM              2 --C--F--  <A href=#101>P0_CarryIn6</A>
+13   F  4  -   3  1 COM              1 -B------  <A href=#100>P0_CarryIn7</A>
+11   B  4  -   3  1 COM              2 -BC-----  <A href=#99>P0_CarryIn8</A>
+ 8   B  4  -   3  1 COM              2 --C---G-  <A href=#98>P0_CarryIn9</A>
+-------------------------------------------------------------
+
+&lt;Note&gt; CLS = Number of clusters used
+       INP = Number of input signals
+       PTs = Number of product terms
+        LL = Number of logic levels
+       PRE = Has preset equation
+       RES = Has reset equation
+       PUP = Power-Up initial state: R=Reset, S=Set
+        CE = Has clock enable equation
+        OE = Has output enable equation
+        IR = Input register
+        FP = Fast path used
+       OBP = ORP bypass used
+
+
+<A name="PostFit_Equations"></A><FONT COLOR=maroon><U><B><big>PostFit_Equations</big></B></U></FONT>
+<BR>
+<A name=95>AccumAddr0.D</A> = !<A href=#53>Control3</A> & <A href=#57>Reset</A> & <A href=#95>AccumAddr0.Q</A> & !<A href=#118>P0_B0</A>
+    # Reset & !AccumAddr0.Q & P0_B0
+    # Control3 & Reset & P0_B0 ; (3 pterms, 4 signals)
+AccumAddr0.C = <A href=#58>Clock</A> ; (1 pterm, 1 signal)
+
+<A name=94>AccumAddr1.D.X1</A> = !<A href=#53>Control3</A> & <A href=#57>Reset</A> & <A href=#94>AccumAddr1.Q</A> & !<A href=#118>P0_B0</A>
+    # !Control3 & Reset & AccumAddr1.Q & !<A href=#95>AccumAddr0.Q</A>
+    # !Control3 & Reset & !AccumAddr1.Q & AccumAddr0.Q & P0_B0 ; (3 pterms, 5 signals)
+AccumAddr1.D.X2 = <A href=#57>Reset</A> & <A href=#117>P0_B1</A> ; (1 pterm, 2 signals)
+AccumAddr1.C = <A href=#58>Clock</A> ; (1 pterm, 1 signal)
+
+<A name=85>AccumAddr10.D.X1</A> = <A href=#57>Reset</A> & <A href=#97>P0_CarryIn10</A> & !<A href=#108>P0_B10</A>
+    # Reset & !P0_CarryIn10 & P0_B10 ; (2 pterms, 3 signals)
+AccumAddr10.D.X2 = !<A href=#53>Control3</A> & <A href=#57>Reset</A> & <A href=#85>AccumAddr10.Q</A> ; (1 pterm, 3 signals)
+AccumAddr10.C = <A href=#58>Clock</A> ; (1 pterm, 1 signal)
+
+<A name=84>AccumAddr11.D.X1</A> = <A href=#57>Reset</A> & <A href=#96>P0_CarryIn11</A> & !<A href=#107>P0_B11</A>
+    # Reset & !P0_CarryIn11 & P0_B11 ; (2 pterms, 3 signals)
+AccumAddr11.D.X2 = !<A href=#53>Control3</A> & <A href=#57>Reset</A> & <A href=#84>AccumAddr11.Q</A> ; (1 pterm, 3 signals)
+AccumAddr11.C = <A href=#58>Clock</A> ; (1 pterm, 1 signal)
+
+<A name=83>AccumAddr12.D.X1</A> = <A href=#53>Control3</A> & <A href=#57>Reset</A> & <A href=#96>P0_CarryIn11</A> & <A href=#107>P0_B11</A>
+    # !Control3 & Reset & !<A href=#83>AccumAddr12.Q</A> & P0_CarryIn11 & P0_B11
+    # !Control3 & Reset & !AccumAddr12.Q & <A href=#84>AccumAddr11.Q</A> & P0_B11
+    # !Control3 & Reset & AccumAddr12.Q & !P0_CarryIn11 & !P0_B11
+    # !Control3 & Reset & AccumAddr12.Q & !AccumAddr11.Q & !P0_CarryIn11
+    # !Control3 & Reset & AccumAddr12.Q & !AccumAddr11.Q & !P0_B11
+    # !Control3 & Reset & !AccumAddr12.Q & AccumAddr11.Q & P0_CarryIn11 ; (7 pterms, 6 signals)
+AccumAddr12.D.X2 = <A href=#57>Reset</A> & <A href=#106>P0_B12</A> ; (1 pterm, 2 signals)
+AccumAddr12.C = <A href=#58>Clock</A> ; (1 pterm, 1 signal)
+
+<A name=93>AccumAddr2.D.X1</A> = <A href=#57>Reset</A> & <A href=#105>P0_CarryIn2</A> & !<A href=#116>P0_B2</A>
+    # Reset & !P0_CarryIn2 & P0_B2 ; (2 pterms, 3 signals)
+AccumAddr2.D.X2 = !<A href=#53>Control3</A> & <A href=#57>Reset</A> & <A href=#93>AccumAddr2.Q</A> ; (1 pterm, 3 signals)
+AccumAddr2.C = <A href=#58>Clock</A> ; (1 pterm, 1 signal)
+
+<A name=92>AccumAddr3.D.X1</A> = <A href=#57>Reset</A> & <A href=#104>P0_CarryIn3</A> & !<A href=#115>P0_B3</A>
+    # Reset & !P0_CarryIn3 & P0_B3 ; (2 pterms, 3 signals)
+AccumAddr3.D.X2 = !<A href=#53>Control3</A> & <A href=#57>Reset</A> & <A href=#92>AccumAddr3.Q</A> ; (1 pterm, 3 signals)
+AccumAddr3.C = <A href=#58>Clock</A> ; (1 pterm, 1 signal)
+
+<A name=91>AccumAddr4.D.X1</A> = <A href=#57>Reset</A> & <A href=#103>P0_CarryIn4</A> & !<A href=#114>P0_B4</A>
+    # Reset & !P0_CarryIn4 & P0_B4 ; (2 pterms, 3 signals)
+AccumAddr4.D.X2 = !<A href=#53>Control3</A> & <A href=#57>Reset</A> & <A href=#91>AccumAddr4.Q</A> ; (1 pterm, 3 signals)
+AccumAddr4.C = <A href=#58>Clock</A> ; (1 pterm, 1 signal)
+
+<A name=90>AccumAddr5.D.X1</A> = <A href=#57>Reset</A> & <A href=#102>P0_CarryIn5</A> & !<A href=#113>P0_B5</A>
+    # Reset & !P0_CarryIn5 & P0_B5 ; (2 pterms, 3 signals)
+AccumAddr5.D.X2 = !<A href=#53>Control3</A> & <A href=#57>Reset</A> & <A href=#90>AccumAddr5.Q</A> ; (1 pterm, 3 signals)
+AccumAddr5.C = <A href=#58>Clock</A> ; (1 pterm, 1 signal)
+
+<A name=89>AccumAddr6.D.X1</A> = <A href=#57>Reset</A> & <A href=#101>P0_CarryIn6</A> & !<A href=#112>P0_B6</A>
+    # Reset & !P0_CarryIn6 & P0_B6 ; (2 pterms, 3 signals)
+AccumAddr6.D.X2 = !<A href=#53>Control3</A> & <A href=#57>Reset</A> & <A href=#89>AccumAddr6.Q</A> ; (1 pterm, 3 signals)
+AccumAddr6.C = <A href=#58>Clock</A> ; (1 pterm, 1 signal)
+
+<A name=88>AccumAddr7.D.X1</A> = <A href=#57>Reset</A> & <A href=#100>P0_CarryIn7</A> & !<A href=#111>P0_B7</A>
+    # Reset & !P0_CarryIn7 & P0_B7 ; (2 pterms, 3 signals)
+AccumAddr7.D.X2 = !<A href=#53>Control3</A> & <A href=#57>Reset</A> & <A href=#88>AccumAddr7.Q</A> ; (1 pterm, 3 signals)
+AccumAddr7.C = <A href=#58>Clock</A> ; (1 pterm, 1 signal)
+
+<A name=87>AccumAddr8.D.X1</A> = <A href=#57>Reset</A> & <A href=#99>P0_CarryIn8</A> & !<A href=#110>P0_B8</A>
+    # Reset & !P0_CarryIn8 & P0_B8 ; (2 pterms, 3 signals)
+AccumAddr8.D.X2 = !<A href=#53>Control3</A> & <A href=#57>Reset</A> & <A href=#87>AccumAddr8.Q</A> ; (1 pterm, 3 signals)
+AccumAddr8.C = <A href=#58>Clock</A> ; (1 pterm, 1 signal)
+
+<A name=86>AccumAddr9.D.X1</A> = <A href=#57>Reset</A> & <A href=#98>P0_CarryIn9</A> & !<A href=#109>P0_B9</A>
+    # Reset & !P0_CarryIn9 & P0_B9 ; (2 pterms, 3 signals)
+AccumAddr9.D.X2 = !<A href=#53>Control3</A> & <A href=#57>Reset</A> & <A href=#86>AccumAddr9.Q</A> ; (1 pterm, 3 signals)
+AccumAddr9.C = <A href=#58>Clock</A> ; (1 pterm, 1 signal)
+
+<A name=82>Flags0</A> = 1 ; (1 pterm, 0 signal)
+
+<A name=81>Flags1</A> = 1 ; (1 pterm, 0 signal)
+
+<A name=80>Flags2</A> = 1 ; (1 pterm, 0 signal)
+
+<A name=79>Flags3</A> = 1 ; (1 pterm, 0 signal)
+
+<A name=78>Flags4</A> = 1 ; (1 pterm, 0 signal)
+
+<A name=77>Flags5</A> = 1 ; (1 pterm, 0 signal)
+
+<A name=76>Flags6</A> = 1 ; (1 pterm, 0 signal)
+
+<A name=75>Flags7</A> = 1 ; (1 pterm, 0 signal)
+
+<A name=118>P0_B0</A> = <A href=#13>DataOff0</A> & !<A href=#54>Control2</A> & <A href=#55>Control1</A>
+    # <A href=#26>AddrData0</A> & !Control2 & !Control1 & !<A href=#56>Control0</A>
+    # DataOff0 & Control2 & !Control0
+    # !Control2 & Control1 & Control0
+    # Control2 & Control0 & <A href=#95>AccumAddr0.Q</A> ; (5 pterms, 6 signals)
+
+<A name=117>P0_B1</A> = <A href=#25>AddrData1</A> & !<A href=#54>Control2</A> & !<A href=#55>Control1</A> & !<A href=#56>Control0</A>
+    # <A href=#12>DataOff1</A> & Control1 & !Control0
+    # Control2 & Control0 & <A href=#94>AccumAddr1.Q</A>
+    # DataOff1 & Control2 & !Control0 ; (4 pterms, 6 signals)
+
+<A name=108>P0_B10</A> = <A href=#16>AddrData10</A> & !<A href=#54>Control2</A> & !<A href=#55>Control1</A> & !<A href=#56>Control0</A>
+    # <A href=#6>DataOff7</A> & !Control2 & Control1 & !Control0
+    # <A href=#11>DataOff2</A> & Control2 & Control0
+    # Control2 & !Control0 & <A href=#85>AccumAddr10.Q</A> ; (4 pterms, 7 signals)
+
+<A name=107>P0_B11</A> = <A href=#15>AddrData11</A> & !<A href=#54>Control2</A> & !<A href=#55>Control1</A> & !<A href=#56>Control0</A>
+    # <A href=#6>DataOff7</A> & !Control2 & Control1 & !Control0
+    # <A href=#10>DataOff3</A> & Control2 & Control0
+    # Control2 & !Control0 & <A href=#84>AccumAddr11.Q</A> ; (4 pterms, 7 signals)
+
+<A name=106>P0_B12</A> = <A href=#14>AddrData12</A> & !<A href=#54>Control2</A> & !<A href=#55>Control1</A> & !<A href=#56>Control0</A>
+    # <A href=#6>DataOff7</A> & !Control2 & Control1 & !Control0
+    # <A href=#9>DataOff4</A> & Control2 & Control0
+    # Control2 & !Control0 & <A href=#83>AccumAddr12.Q</A> ; (4 pterms, 7 signals)
+
+<A name=116>P0_B2</A> = <A href=#24>AddrData2</A> & !<A href=#54>Control2</A> & !<A href=#55>Control1</A> & !<A href=#56>Control0</A>
+    # <A href=#11>DataOff2</A> & Control1 & !Control0
+    # Control2 & Control0 & <A href=#93>AccumAddr2.Q</A>
+    # DataOff2 & Control2 & !Control0 ; (4 pterms, 6 signals)
+
+<A name=115>P0_B3</A> = <A href=#23>AddrData3</A> & !<A href=#54>Control2</A> & !<A href=#55>Control1</A> & !<A href=#56>Control0</A>
+    # <A href=#10>DataOff3</A> & Control1 & !Control0
+    # Control2 & Control0 & <A href=#92>AccumAddr3.Q</A>
+    # DataOff3 & Control2 & !Control0 ; (4 pterms, 6 signals)
+
+<A name=114>P0_B4</A> = <A href=#22>AddrData4</A> & !<A href=#54>Control2</A> & !<A href=#55>Control1</A> & !<A href=#56>Control0</A>
+    # <A href=#9>DataOff4</A> & Control1 & !Control0
+    # Control2 & Control0 & <A href=#91>AccumAddr4.Q</A>
+    # DataOff4 & Control2 & !Control0 ; (4 pterms, 6 signals)
+
+<A name=113>P0_B5</A> = <A href=#21>AddrData5</A> & !<A href=#54>Control2</A> & !<A href=#55>Control1</A> & !<A href=#56>Control0</A>
+    # <A href=#8>DataOff5</A> & Control1 & !Control0
+    # Control2 & Control0 & <A href=#90>AccumAddr5.Q</A>
+    # DataOff5 & Control2 & !Control0 ; (4 pterms, 6 signals)
+
+<A name=112>P0_B6</A> = <A href=#20>AddrData6</A> & !<A href=#54>Control2</A> & !<A href=#55>Control1</A> & !<A href=#56>Control0</A>
+    # <A href=#7>DataOff6</A> & Control1 & !Control0
+    # Control2 & Control0 & <A href=#89>AccumAddr6.Q</A>
+    # DataOff6 & Control2 & !Control0 ; (4 pterms, 6 signals)
+
+<A name=111>P0_B7</A> = <A href=#19>AddrData7</A> & !<A href=#54>Control2</A> & !<A href=#55>Control1</A> & !<A href=#56>Control0</A>
+    # <A href=#6>DataOff7</A> & Control1 & !Control0
+    # Control2 & Control0 & <A href=#88>AccumAddr7.Q</A>
+    # DataOff7 & Control2 & !Control0 ; (4 pterms, 6 signals)
+
+<A name=110>P0_B8</A> = <A href=#18>AddrData8</A> & !<A href=#54>Control2</A> & !<A href=#55>Control1</A> & !<A href=#56>Control0</A>
+    # <A href=#6>DataOff7</A> & !Control2 & Control1 & !Control0
+    # <A href=#13>DataOff0</A> & Control2 & Control0
+    # Control2 & !Control0 & <A href=#87>AccumAddr8.Q</A> ; (4 pterms, 7 signals)
+
+<A name=109>P0_B9</A> = <A href=#17>AddrData9</A> & !<A href=#54>Control2</A> & !<A href=#55>Control1</A> & !<A href=#56>Control0</A>
+    # <A href=#6>DataOff7</A> & !Control2 & Control1 & !Control0
+    # <A href=#12>DataOff1</A> & Control2 & Control0
+    # Control2 & !Control0 & <A href=#86>AccumAddr9.Q</A> ; (4 pterms, 7 signals)
+
+<A name=97>P0_CarryIn10</A> = !<A href=#53>Control3</A> & <A href=#86>AccumAddr9.Q</A> & <A href=#98>P0_CarryIn9</A>
+    # !Control3 & AccumAddr9.Q & <A href=#109>P0_B9</A>
+    # P0_CarryIn9 & P0_B9 ; (3 pterms, 4 signals)
+
+<A name=96>P0_CarryIn11</A> = !<A href=#53>Control3</A> & <A href=#85>AccumAddr10.Q</A> & <A href=#97>P0_CarryIn10</A>
+    # !Control3 & AccumAddr10.Q & <A href=#108>P0_B10</A>
+    # P0_CarryIn10 & P0_B10 ; (3 pterms, 4 signals)
+
+<A name=105>P0_CarryIn2</A> = !<A href=#53>Control3</A> & <A href=#94>AccumAddr1.Q</A> & <A href=#117>P0_B1</A>
+    # !Control3 & <A href=#95>AccumAddr0.Q</A> & P0_B1 & <A href=#118>P0_B0</A>
+    # !Control3 & AccumAddr1.Q & AccumAddr0.Q & P0_B0 ; (3 pterms, 5 signals)
+
+<A name=104>P0_CarryIn3</A> = !<A href=#53>Control3</A> & <A href=#93>AccumAddr2.Q</A> & <A href=#105>P0_CarryIn2</A>
+    # !Control3 & AccumAddr2.Q & <A href=#116>P0_B2</A>
+    # P0_CarryIn2 & P0_B2 ; (3 pterms, 4 signals)
+
+<A name=103>P0_CarryIn4</A> = !<A href=#53>Control3</A> & <A href=#92>AccumAddr3.Q</A> & <A href=#104>P0_CarryIn3</A>
+    # !Control3 & AccumAddr3.Q & <A href=#115>P0_B3</A>
+    # P0_CarryIn3 & P0_B3 ; (3 pterms, 4 signals)
+
+<A name=102>P0_CarryIn5</A> = !<A href=#53>Control3</A> & <A href=#91>AccumAddr4.Q</A> & <A href=#103>P0_CarryIn4</A>
+    # !Control3 & AccumAddr4.Q & <A href=#114>P0_B4</A>
+    # P0_CarryIn4 & P0_B4 ; (3 pterms, 4 signals)
+
+<A name=101>P0_CarryIn6</A> = !<A href=#53>Control3</A> & <A href=#90>AccumAddr5.Q</A> & <A href=#102>P0_CarryIn5</A>
+    # !Control3 & AccumAddr5.Q & <A href=#113>P0_B5</A>
+    # P0_CarryIn5 & P0_B5 ; (3 pterms, 4 signals)
+
+<A name=100>P0_CarryIn7</A> = !<A href=#53>Control3</A> & <A href=#89>AccumAddr6.Q</A> & <A href=#101>P0_CarryIn6</A>
+    # !Control3 & AccumAddr6.Q & <A href=#112>P0_B6</A>
+    # P0_CarryIn6 & P0_B6 ; (3 pterms, 4 signals)
+
+<A name=99>P0_CarryIn8</A> = !<A href=#53>Control3</A> & <A href=#88>AccumAddr7.Q</A> & <A href=#100>P0_CarryIn7</A>
+    # !Control3 & AccumAddr7.Q & <A href=#111>P0_B7</A>
+    # P0_CarryIn7 & P0_B7 ; (3 pterms, 4 signals)
+
+<A name=98>P0_CarryIn9</A> = !<A href=#53>Control3</A> & <A href=#87>AccumAddr8.Q</A> & <A href=#99>P0_CarryIn8</A>
+    # !Control3 & AccumAddr8.Q & <A href=#110>P0_B8</A>
+    # P0_CarryIn8 & P0_B8 ; (3 pterms, 4 signals)
+
+<A name=74>SReg0</A> = <A href=#13>DataOff0</A> ; (1 pterm, 1 signal)
+
+<A name=73>SReg1</A> = <A href=#12>DataOff1</A> ; (1 pterm, 1 signal)
+
+<A name=72>SReg2</A> = <A href=#11>DataOff2</A> ; (1 pterm, 1 signal)
+
+<A name=71>SReg3</A> = <A href=#10>DataOff3</A> ; (1 pterm, 1 signal)
+
+<A name=70>SReg4</A> = <A href=#9>DataOff4</A> ; (1 pterm, 1 signal)
+
+<A name=69>SReg5</A> = <A href=#8>DataOff5</A> ; (1 pterm, 1 signal)
+
+<A name=68>SReg6</A> = <A href=#7>DataOff6</A> ; (1 pterm, 1 signal)
+
+<A name=67>SReg7</A> = <A href=#6>DataOff7</A> ; (1 pterm, 1 signal)
+
+<A name=66>XReg0</A> = 0 ; (0 pterm, 0 signal)
+
+<A name=65>XReg1</A> = 0 ; (0 pterm, 0 signal)
+
+<A name=64>XReg2</A> = 0 ; (0 pterm, 0 signal)
+
+<A name=63>XReg3</A> = <A href=#13>DataOff0</A> ; (1 pterm, 1 signal)
+
+<A name=62>XReg4</A> = <A href=#12>DataOff1</A> ; (1 pterm, 1 signal)
+
+<A name=61>XReg5</A> = <A href=#11>DataOff2</A> ; (1 pterm, 1 signal)
+
+<A name=60>XReg6</A> = <A href=#10>DataOff3</A> ; (1 pterm, 1 signal)
+
+<A name=59>XReg7</A> = <A href=#9>DataOff4</A> ; (1 pterm, 1 signal)
+
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+
+

@@ -1,0 +1,248 @@
+#$ TOOL ispLEVER Classic 2.0.00.17.20.15
+#$ DATE Sun Feb 26 00:19:17 2012
+#$ TITLE Program Address Unit Unit Demo
+#$ MODULE paudemo
+#$ JEDECFILE paudemo
+#$ PINS 90 DataOff7:80 DataOff6:81 DataOff5:83 DataOff4:84 DataOff3:85 DataOff2:86 \
+#  DataOff1:87 DataOff0:88 AddrData12:102 AddrData11:103 AddrData10:104 AddrData9:105 \
+#  AddrData8:111 AddrData7:93 AddrData6:94 AddrData5:95 AddrData4:96 AddrData3:97 \
+#  AddrData2:98 AddrData1:100 AddrData0:101 Control29:14 Control28:13 Control27:12 \
+#  Control26:11 Control25:9 Control24:8 Control23:7 Control22:6 Control21:5 Control20:4 \
+#  Control19:143 Control18:142 Control17:141 Control16:140 Control15:139 Control14:138 \
+#  Control13:135 Control12:134 Control11:133 Control10:132 Control9:131 Control8:124 \
+#  Control7:123 Control6:122 Control5:121 Control4:120 Control3:116 Control2:115 \
+#  Control1:114 Control0:113 Reset:40 Clock:128 AccumAddr12:29 AccumAddr11:30 \
+#  AccumAddr10:31 AccumAddr9:32 AccumAddr8:33 AccumAddr7:16 AccumAddr6:21 \
+#  AccumAddr5:22 AccumAddr4:23 AccumAddr3:24 AccumAddr2:25 AccumAddr1:26 AccumAddr0:28 \
+#  XReg7:68 XReg6:69 XReg5:70 XReg4:71 XReg3:76 XReg2:77 XReg1:78 XReg0:79 SReg7:58 \
+#  SReg6:59 SReg5:60 SReg4:61 SReg3:62 SReg2:63 SReg1:66 SReg0:67 Flags7:42 Flags6:43 \
+#  Flags5:44 Flags4:48 Flags3:49 Flags2:50 Flags1:51 Flags0:52
+#$ NODES 53 PAUnit>Clock'co'  PAUnit>Direct0'co'  PAUnit>Direct1'co'  PAUnit>Direct10'co'  \
+#  PAUnit>Direct11'co'  PAUnit>Direct12'co'  PAUnit>Direct2'co'  PAUnit>Direct3'co'  \
+#  PAUnit>Direct4'co'  PAUnit>Direct5'co'  PAUnit>Direct6'co'  PAUnit>Direct7'co'  \
+#  PAUnit>Direct8'co'  PAUnit>Direct9'co'  PAUnit>Load'co'  PAUnit>Offset0'co'  PAUnit>Offset1'co'  \
+#  PAUnit>Offset2'co'  PAUnit>Offset3'co'  PAUnit>Offset4'co'  PAUnit>Offset5'co'  \
+#  PAUnit>Offset6'co'  PAUnit>Offset7'co'  PAUnit>Reset'co'  PAUnit>Select0'co'  PAUnit>Select1'co'  \
+#  PAUnit>Select2'co'  PAUnit>PC0'co'  PAUnit>PC1'co'  PAUnit>PC10'co'  PAUnit>PC11'co'  \
+#  PAUnit>PC12'co'  PAUnit>PC2'co'  PAUnit>PC3'co'  PAUnit>PC4'co'  PAUnit>PC5'co'  PAUnit>PC6'co'  \
+#  PAUnit>PC7'co'  PAUnit>PC8'co'  PAUnit>PC9'co'  PAUnit>ProgAddr0'co'  PAUnit>ProgAddr1'co'  \
+#  PAUnit>ProgAddr10'co'  PAUnit>ProgAddr11'co'  PAUnit>ProgAddr12'co'  PAUnit>ProgAddr2'co'  \
+#  PAUnit>ProgAddr3'co'  PAUnit>ProgAddr4'co'  PAUnit>ProgAddr5'co'  PAUnit>ProgAddr6'co'  \
+#  PAUnit>ProgAddr7'co'  PAUnit>ProgAddr8'co'  PAUnit>ProgAddr9'co' 
+#$ INTERFACE programaccess  53 Clock'i'  Direct0'i'  Direct1'i'  Direct10'i'  Direct11'i'  Direct12'i'  \
+#  Direct2'i'  Direct3'i'  Direct4'i'  Direct5'i'  Direct6'i'  Direct7'i'  Direct8'i'  Direct9'i'  Load'i'  Offset0'i'  Offset1'i'  \
+#  Offset2'i'  Offset3'i'  Offset4'i'  Offset5'i'  Offset6'i'  Offset7'i'  Reset'i'  Select0'i'  Select1'i'  Select2'i'  PC0'o'  PC1'o'  PC10'o'  \
+#  PC11'o'  PC12'o'  PC2'o'  PC3'o'  PC4'o'  PC5'o'  PC6'o'  PC7'o'  PC8'o'  PC9'o'  ProgAddr0'o'  ProgAddr1'o'  ProgAddr10'o'  ProgAddr11'o'  \
+#  ProgAddr12'o'  ProgAddr2'o'  ProgAddr3'o'  ProgAddr4'o'  ProgAddr5'o'  ProgAddr6'o'  ProgAddr7'o'  ProgAddr8'o'  \
+#  ProgAddr9'o' 
+#$ INSTANCE PAUnit programaccess 53 PAUnit>Clock PAUnit>Direct0 PAUnit>Direct1 \
+#  PAUnit>Direct10 PAUnit>Direct11 PAUnit>Direct12 PAUnit>Direct2 PAUnit>Direct3 \
+#  PAUnit>Direct4 PAUnit>Direct5 PAUnit>Direct6 PAUnit>Direct7 PAUnit>Direct8 \
+#  PAUnit>Direct9 PAUnit>Load PAUnit>Offset0 PAUnit>Offset1 PAUnit>Offset2 \
+#  PAUnit>Offset3 PAUnit>Offset4 PAUnit>Offset5 PAUnit>Offset6 PAUnit>Offset7 \
+#  PAUnit>Reset PAUnit>Select0 PAUnit>Select1 PAUnit>Select2 PAUnit>PC0 PAUnit>PC1 \
+#  PAUnit>PC10 PAUnit>PC11 PAUnit>PC12 PAUnit>PC2 PAUnit>PC3 PAUnit>PC4 PAUnit>PC5 \
+#  PAUnit>PC6 PAUnit>PC7 PAUnit>PC8 PAUnit>PC9 PAUnit>ProgAddr0 PAUnit>ProgAddr1 \
+#  PAUnit>ProgAddr10 PAUnit>ProgAddr11 PAUnit>ProgAddr12 PAUnit>ProgAddr2 \
+#  PAUnit>ProgAddr3 PAUnit>ProgAddr4 PAUnit>ProgAddr5 PAUnit>ProgAddr6 \
+#  PAUnit>ProgAddr7 PAUnit>ProgAddr8 PAUnit>ProgAddr9
+.model paudemo
+.inputs DataOff7.BLIF DataOff6.BLIF DataOff5.BLIF DataOff4.BLIF DataOff3.BLIF \
+DataOff2.BLIF DataOff1.BLIF DataOff0.BLIF AddrData12.BLIF AddrData11.BLIF \
+AddrData10.BLIF AddrData9.BLIF AddrData8.BLIF AddrData7.BLIF AddrData6.BLIF \
+AddrData5.BLIF AddrData4.BLIF AddrData3.BLIF AddrData2.BLIF AddrData1.BLIF \
+AddrData0.BLIF Control3.BLIF Control2.BLIF Control1.BLIF Control0.BLIF \
+Reset.BLIF Clock.BLIF PAUnit>ProgAddr12.BLIF PAUnit>ProgAddr11.BLIF \
+PAUnit>ProgAddr10.BLIF PAUnit>ProgAddr9.BLIF PAUnit>ProgAddr8.BLIF \
+PAUnit>ProgAddr7.BLIF PAUnit>ProgAddr6.BLIF PAUnit>ProgAddr5.BLIF \
+PAUnit>ProgAddr4.BLIF PAUnit>ProgAddr3.BLIF PAUnit>ProgAddr2.BLIF \
+PAUnit>ProgAddr1.BLIF PAUnit>ProgAddr0.BLIF
+.outputs AccumAddr12 AccumAddr11 AccumAddr10 AccumAddr9 AccumAddr8 AccumAddr7 \
+AccumAddr6 AccumAddr5 AccumAddr4 AccumAddr3 AccumAddr2 AccumAddr1 AccumAddr0 \
+XReg7 XReg6 XReg5 XReg4 XReg3 XReg2 XReg1 XReg0 SReg7 SReg6 SReg5 SReg4 SReg3 \
+SReg2 SReg1 SReg0 Flags7 Flags6 Flags5 Flags4 Flags3 Flags2 Flags1 Flags0 \
+PAUnit>Clock PAUnit>Direct0 PAUnit>Direct1 PAUnit>Direct10 PAUnit>Direct11 \
+PAUnit>Direct12 PAUnit>Direct2 PAUnit>Direct3 PAUnit>Direct4 PAUnit>Direct5 \
+PAUnit>Direct6 PAUnit>Direct7 PAUnit>Direct8 PAUnit>Direct9 PAUnit>Load \
+PAUnit>Offset0 PAUnit>Offset1 PAUnit>Offset2 PAUnit>Offset3 PAUnit>Offset4 \
+PAUnit>Offset5 PAUnit>Offset6 PAUnit>Offset7 PAUnit>Reset PAUnit>Select0 \
+PAUnit>Select1 PAUnit>Select2
+.names XReg2
+.names XReg1
+.names XReg0
+.names Flags7
+ 1
+.names Flags6
+ 1
+.names Flags5
+ 1
+.names Flags4
+ 1
+.names Flags3
+ 1
+.names Flags2
+ 1
+.names Flags1
+ 1
+.names Flags0
+ 1
+.names PAUnit>ProgAddr12.BLIF AccumAddr12
+1 1
+0 0
+.names PAUnit>ProgAddr11.BLIF AccumAddr11
+1 1
+0 0
+.names PAUnit>ProgAddr10.BLIF AccumAddr10
+1 1
+0 0
+.names PAUnit>ProgAddr9.BLIF AccumAddr9
+1 1
+0 0
+.names PAUnit>ProgAddr8.BLIF AccumAddr8
+1 1
+0 0
+.names PAUnit>ProgAddr7.BLIF AccumAddr7
+1 1
+0 0
+.names PAUnit>ProgAddr6.BLIF AccumAddr6
+1 1
+0 0
+.names PAUnit>ProgAddr5.BLIF AccumAddr5
+1 1
+0 0
+.names PAUnit>ProgAddr4.BLIF AccumAddr4
+1 1
+0 0
+.names PAUnit>ProgAddr3.BLIF AccumAddr3
+1 1
+0 0
+.names PAUnit>ProgAddr2.BLIF AccumAddr2
+1 1
+0 0
+.names PAUnit>ProgAddr1.BLIF AccumAddr1
+1 1
+0 0
+.names PAUnit>ProgAddr0.BLIF AccumAddr0
+1 1
+0 0
+.names DataOff4.BLIF XReg7
+1 1
+0 0
+.names DataOff3.BLIF XReg6
+1 1
+0 0
+.names DataOff2.BLIF XReg5
+1 1
+0 0
+.names DataOff1.BLIF XReg4
+1 1
+0 0
+.names DataOff0.BLIF XReg3
+1 1
+0 0
+.names DataOff7.BLIF SReg7
+1 1
+0 0
+.names DataOff6.BLIF SReg6
+1 1
+0 0
+.names DataOff5.BLIF SReg5
+1 1
+0 0
+.names DataOff4.BLIF SReg4
+1 1
+0 0
+.names DataOff3.BLIF SReg3
+1 1
+0 0
+.names DataOff2.BLIF SReg2
+1 1
+0 0
+.names DataOff1.BLIF SReg1
+1 1
+0 0
+.names DataOff0.BLIF SReg0
+1 1
+0 0
+.names Clock.BLIF PAUnit>Clock
+1 1
+0 0
+.names AddrData0.BLIF PAUnit>Direct0
+1 1
+0 0
+.names AddrData1.BLIF PAUnit>Direct1
+1 1
+0 0
+.names AddrData10.BLIF PAUnit>Direct10
+1 1
+0 0
+.names AddrData11.BLIF PAUnit>Direct11
+1 1
+0 0
+.names AddrData12.BLIF PAUnit>Direct12
+1 1
+0 0
+.names AddrData2.BLIF PAUnit>Direct2
+1 1
+0 0
+.names AddrData3.BLIF PAUnit>Direct3
+1 1
+0 0
+.names AddrData4.BLIF PAUnit>Direct4
+1 1
+0 0
+.names AddrData5.BLIF PAUnit>Direct5
+1 1
+0 0
+.names AddrData6.BLIF PAUnit>Direct6
+1 1
+0 0
+.names AddrData7.BLIF PAUnit>Direct7
+1 1
+0 0
+.names AddrData8.BLIF PAUnit>Direct8
+1 1
+0 0
+.names AddrData9.BLIF PAUnit>Direct9
+1 1
+0 0
+.names Control3.BLIF PAUnit>Load
+1 1
+0 0
+.names DataOff0.BLIF PAUnit>Offset0
+1 1
+0 0
+.names DataOff1.BLIF PAUnit>Offset1
+1 1
+0 0
+.names DataOff2.BLIF PAUnit>Offset2
+1 1
+0 0
+.names DataOff3.BLIF PAUnit>Offset3
+1 1
+0 0
+.names DataOff4.BLIF PAUnit>Offset4
+1 1
+0 0
+.names DataOff5.BLIF PAUnit>Offset5
+1 1
+0 0
+.names DataOff6.BLIF PAUnit>Offset6
+1 1
+0 0
+.names DataOff7.BLIF PAUnit>Offset7
+1 1
+0 0
+.names Reset.BLIF PAUnit>Reset
+1 1
+0 0
+.names Control0.BLIF PAUnit>Select0
+1 1
+0 0
+.names Control1.BLIF PAUnit>Select1
+1 1
+0 0
+.names Control2.BLIF PAUnit>Select2
+1 1
+0 0
+.end

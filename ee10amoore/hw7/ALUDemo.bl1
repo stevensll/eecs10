@@ -1,0 +1,227 @@
+#$ TOOL ispLEVER Classic 2.0.00.17.20.15
+#$ DATE Thu Mar 01 15:36:58 2007
+#$ TITLE ALU Unit Demo
+#$ MODULE aludemo
+#$ JEDECFILE aludemo
+#$ PINS 90 DataOff7:80 DataOff6:81 DataOff5:83 DataOff4:84 DataOff3:85 DataOff2:86 \
+#  DataOff1:87 DataOff0:88 AddrData12:102 AddrData11:103 AddrData10:104 AddrData9:105 \
+#  AddrData8:111 AddrData7:93 AddrData6:94 AddrData5:95 AddrData4:96 AddrData3:97 \
+#  AddrData2:98 AddrData1:100 AddrData0:101 Control29:14 Control28:13 Control27:12 \
+#  Control26:11 Control25:9 Control24:8 Control23:7 Control22:6 Control21:5 Control20:4 \
+#  Control19:143 Control18:142 Control17:141 Control16:140 Control15:139 Control14:138 \
+#  Control13:135 Control12:134 Control11:133 Control10:132 Control9:131 Control8:124 \
+#  Control7:123 Control6:122 Control5:121 Control4:120 Control3:116 Control2:115 \
+#  Control1:114 Control0:113 Reset:40 Clock:128 AccumAddr12:29 AccumAddr11:30 \
+#  AccumAddr10:31 AccumAddr9:32 AccumAddr8:33 AccumAddr7:16 AccumAddr6:21 \
+#  AccumAddr5:22 AccumAddr4:23 AccumAddr3:24 AccumAddr2:25 AccumAddr1:26 AccumAddr0:28 \
+#  XReg7:68 XReg6:69 XReg5:70 XReg4:71 XReg3:76 XReg2:77 XReg1:78 XReg0:79 SReg7:58 \
+#  SReg6:59 SReg5:60 SReg4:61 SReg3:62 SReg2:63 SReg1:66 SReg0:67 Flags7:42 Flags6:43 \
+#  Flags5:44 Flags4:48 Flags3:49 Flags2:50 Flags1:51 Flags0:52
+#$ NODES 43 ALUnit>Clock'co'  ALUnit>Data0'co'  ALUnit>Data1'co'  ALUnit>Data2'co'  \
+#  ALUnit>Data3'co'  ALUnit>Data4'co'  ALUnit>Data5'co'  ALUnit>Data6'co'  ALUnit>Data7'co'  \
+#  ALUnit>Direction'co'  ALUnit>F0'co'  ALUnit>F1'co'  ALUnit>F2'co'  ALUnit>F3'co'  \
+#  ALUnit>LoadFlags'co'  ALUnit>MaskC'co'  ALUnit>MaskS'co'  ALUnit>MaskV'co'  ALUnit>MaskZ'co'  \
+#  ALUnit>Mode0'co'  ALUnit>Mode1'co'  ALUnit>Mode2'co'  ALUnit>Mode3'co'  ALUnit>Reset'co'  \
+#  ALUnit>Rotate'co'  ALUnit>Shift'co'  ALUnit>WC'co'  ALUnit>Accum0'co'  ALUnit>Accum1'co'  \
+#  ALUnit>Accum2'co'  ALUnit>Accum3'co'  ALUnit>Accum4'co'  ALUnit>Accum5'co'  ALUnit>Accum6'co'  \
+#  ALUnit>Accum7'co'  ALUnit>Flags0'co'  ALUnit>Flags1'co'  ALUnit>Flags2'co'  ALUnit>Flags3'co'  \
+#  ALUnit>Flags4'co'  ALUnit>Flags5'co'  ALUnit>Flags6'co'  ALUnit>Flags7'co' 
+#$ INTERFACE alu  43 Clock'i'  Data0'i'  Data1'i'  Data2'i'  Data3'i'  Data4'i'  Data5'i'  Data6'i'  Data7'i'  Direction'i'  F0'i'  F1'i'  \
+#  F2'i'  F3'i'  LoadFlags'i'  MaskC'i'  MaskS'i'  MaskV'i'  MaskZ'i'  Mode0'i'  Mode1'i'  Mode2'i'  Mode3'i'  Reset'i'  Rotate'i'  Shift'i'  WC'i'  Accum0'o'  \
+#  Accum1'o'  Accum2'o'  Accum3'o'  Accum4'o'  Accum5'o'  Accum6'o'  Accum7'o'  Flags0'o'  Flags1'o'  Flags2'o'  Flags3'o'  Flags4'o'  Flags5'o'  \
+#  Flags6'o'  Flags7'o' 
+#$ INSTANCE ALUnit alu 43 ALUnit>Clock ALUnit>Data0 ALUnit>Data1 ALUnit>Data2 \
+#  ALUnit>Data3 ALUnit>Data4 ALUnit>Data5 ALUnit>Data6 ALUnit>Data7 ALUnit>Direction \
+#  ALUnit>F0 ALUnit>F1 ALUnit>F2 ALUnit>F3 ALUnit>LoadFlags ALUnit>MaskC ALUnit>MaskS \
+#  ALUnit>MaskV ALUnit>MaskZ ALUnit>Mode0 ALUnit>Mode1 ALUnit>Mode2 ALUnit>Mode3 \
+#  ALUnit>Reset ALUnit>Rotate ALUnit>Shift ALUnit>WC ALUnit>Accum0 ALUnit>Accum1 \
+#  ALUnit>Accum2 ALUnit>Accum3 ALUnit>Accum4 ALUnit>Accum5 ALUnit>Accum6 ALUnit>Accum7 \
+#  ALUnit>Flags0 ALUnit>Flags1 ALUnit>Flags2 ALUnit>Flags3 ALUnit>Flags4 ALUnit>Flags5 \
+#  ALUnit>Flags6 ALUnit>Flags7
+.model aludemo
+.inputs DataOff7.BLIF DataOff6.BLIF DataOff5.BLIF DataOff4.BLIF DataOff3.BLIF \
+DataOff2.BLIF DataOff1.BLIF DataOff0.BLIF Control7.BLIF Control6.BLIF \
+Control5.BLIF Control4.BLIF Control3.BLIF Control2.BLIF Control1.BLIF \
+Control0.BLIF Control9.BLIF Control8.BLIF Control13.BLIF Control12.BLIF \
+Control11.BLIF Control10.BLIF Control23.BLIF Control22.BLIF Control21.BLIF \
+Reset.BLIF Clock.BLIF ALUnit>Accum7.BLIF ALUnit>Accum6.BLIF ALUnit>Accum5.BLIF \
+ALUnit>Accum4.BLIF ALUnit>Accum3.BLIF ALUnit>Accum2.BLIF ALUnit>Accum1.BLIF \
+ALUnit>Accum0.BLIF ALUnit>Flags7.BLIF ALUnit>Flags6.BLIF ALUnit>Flags5.BLIF \
+ALUnit>Flags4.BLIF ALUnit>Flags3.BLIF ALUnit>Flags2.BLIF ALUnit>Flags1.BLIF \
+ALUnit>Flags0.BLIF
+.outputs AccumAddr12 AccumAddr11 AccumAddr10 AccumAddr9 AccumAddr8 AccumAddr7 \
+AccumAddr6 AccumAddr5 AccumAddr4 AccumAddr3 AccumAddr2 AccumAddr1 AccumAddr0 \
+XReg7 XReg6 XReg5 XReg4 XReg3 XReg2 XReg1 XReg0 SReg7 SReg6 SReg5 SReg4 SReg3 \
+SReg2 SReg1 SReg0 Flags7 Flags6 Flags5 Flags4 Flags3 Flags2 Flags1 Flags0 \
+ALUnit>Clock ALUnit>Data0 ALUnit>Data1 ALUnit>Data2 ALUnit>Data3 ALUnit>Data4 \
+ALUnit>Data5 ALUnit>Data6 ALUnit>Data7 ALUnit>Direction ALUnit>F0 ALUnit>F1 \
+ALUnit>F2 ALUnit>F3 ALUnit>LoadFlags ALUnit>MaskC ALUnit>MaskS ALUnit>MaskV \
+ALUnit>MaskZ ALUnit>Mode0 ALUnit>Mode1 ALUnit>Mode2 ALUnit>Mode3 ALUnit>Reset \
+ALUnit>Rotate ALUnit>Shift ALUnit>WC
+.names AccumAddr12
+.names AccumAddr11
+.names AccumAddr10
+.names AccumAddr9
+.names AccumAddr8
+.names XReg7
+.names XReg6
+.names XReg5
+.names XReg4
+.names SReg7
+.names SReg6
+.names SReg5
+.names SReg4
+.names ALUnit>Accum7.BLIF AccumAddr7
+1 1
+0 0
+.names ALUnit>Accum6.BLIF AccumAddr6
+1 1
+0 0
+.names ALUnit>Accum5.BLIF AccumAddr5
+1 1
+0 0
+.names ALUnit>Accum4.BLIF AccumAddr4
+1 1
+0 0
+.names ALUnit>Accum3.BLIF AccumAddr3
+1 1
+0 0
+.names ALUnit>Accum2.BLIF AccumAddr2
+1 1
+0 0
+.names ALUnit>Accum1.BLIF AccumAddr1
+1 1
+0 0
+.names ALUnit>Accum0.BLIF AccumAddr0
+1 1
+0 0
+.names DataOff3.BLIF XReg3
+1 1
+0 0
+.names DataOff2.BLIF XReg2
+1 1
+0 0
+.names DataOff1.BLIF XReg1
+1 1
+0 0
+.names DataOff0.BLIF XReg0
+1 1
+0 0
+.names Control7.BLIF SReg3
+1 1
+0 0
+.names Control6.BLIF SReg2
+1 1
+0 0
+.names Control5.BLIF SReg1
+1 1
+0 0
+.names Control4.BLIF SReg0
+1 1
+0 0
+.names ALUnit>Flags7.BLIF Flags7
+1 1
+0 0
+.names ALUnit>Flags6.BLIF Flags6
+1 1
+0 0
+.names ALUnit>Flags5.BLIF Flags5
+1 1
+0 0
+.names ALUnit>Flags4.BLIF Flags4
+1 1
+0 0
+.names ALUnit>Flags3.BLIF Flags3
+1 1
+0 0
+.names ALUnit>Flags2.BLIF Flags2
+1 1
+0 0
+.names ALUnit>Flags1.BLIF Flags1
+1 1
+0 0
+.names ALUnit>Flags0.BLIF Flags0
+1 1
+0 0
+.names Clock.BLIF ALUnit>Clock
+1 1
+0 0
+.names DataOff0.BLIF ALUnit>Data0
+1 1
+0 0
+.names DataOff1.BLIF ALUnit>Data1
+1 1
+0 0
+.names DataOff2.BLIF ALUnit>Data2
+1 1
+0 0
+.names DataOff3.BLIF ALUnit>Data3
+1 1
+0 0
+.names DataOff4.BLIF ALUnit>Data4
+1 1
+0 0
+.names DataOff5.BLIF ALUnit>Data5
+1 1
+0 0
+.names DataOff6.BLIF ALUnit>Data6
+1 1
+0 0
+.names DataOff7.BLIF ALUnit>Data7
+1 1
+0 0
+.names Control21.BLIF ALUnit>Direction
+1 1
+0 0
+.names Control4.BLIF ALUnit>F0
+1 1
+0 0
+.names Control5.BLIF ALUnit>F1
+1 1
+0 0
+.names Control6.BLIF ALUnit>F2
+1 1
+0 0
+.names Control7.BLIF ALUnit>F3
+1 1
+0 0
+.names Control8.BLIF ALUnit>LoadFlags
+1 1
+0 0
+.names Control13.BLIF ALUnit>MaskC
+1 1
+0 0
+.names Control11.BLIF ALUnit>MaskS
+1 1
+0 0
+.names Control12.BLIF ALUnit>MaskV
+1 1
+0 0
+.names Control10.BLIF ALUnit>MaskZ
+1 1
+0 0
+.names Control0.BLIF ALUnit>Mode0
+1 1
+0 0
+.names Control1.BLIF ALUnit>Mode1
+1 1
+0 0
+.names Control2.BLIF ALUnit>Mode2
+1 1
+0 0
+.names Control3.BLIF ALUnit>Mode3
+1 1
+0 0
+.names Reset.BLIF ALUnit>Reset
+1 1
+0 0
+.names Control22.BLIF ALUnit>Rotate
+1 1
+0 0
+.names Control23.BLIF ALUnit>Shift
+1 1
+0 0
+.names Control9.BLIF ALUnit>WC
+1 1
+0 0
+.end

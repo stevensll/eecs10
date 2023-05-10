@@ -1,0 +1,10 @@
+Prefit Logic Optimizer (May 31 2012)  Thu Mar 19 03:13:14 2015
+
+C:\ispLEVER_Classic2_0\ispcpld\bin\prefit.exe -blif -inp hw10.bl4 -out hw10.bl5 -err automake.err -log hw10.log -mod CPU @hw10.l0 -gui -sc 
+<Note> F34000: J0_RD is removed
+<Note> F34000: J0_RD is removed
+Number of pins (IO)    :    82
+Number of outputs (MC) :   199
+Number of registers    :    67
+Number of logic pterms :  1565
+C:\ispLEVER_Classic2_0\ispcpld\bin\prefit.exe complete - Time 1 seconds

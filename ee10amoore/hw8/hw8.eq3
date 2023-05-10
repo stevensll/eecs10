@@ -1,0 +1,301 @@
+|--------------------------------------------------- ----------|
+|- ispLEVER Classic 2.0.00.17.20.15 Equations File            -|
+|- Copyright(C), 1992-2012, Lattice Semiconductor Corporation -|
+|- All Rights Reserved.                                       -|
+|--------------------------------------------------------------|
+
+
+Equations:
+
+AccumAddr0 = DataOff0 & !Control4 & !V0_AddrB0
+    # Control4 & V0_AddrB0
+    # !DataOff0 & V0_AddrB0 ; (3 pterms, 3 signals)
+
+AccumAddr1.X1 = !DataOff1 & DataOff0 & !Control4 & V0_AddrB0
+    # DataOff1 & !DataOff0 & !Control4
+    # DataOff1 & !Control4 & !V0_AddrB0 ; (3 pterms, 4 signals)
+AccumAddr1.X2 = V0_AddrB1 ; (1 pterm, 1 signal)
+
+AccumAddr10 = 0 ; (0 pterm, 0 signal)
+
+AccumAddr11 = 0 ; (0 pterm, 0 signal)
+
+AccumAddr12 = 0 ; (0 pterm, 0 signal)
+
+AccumAddr2.X1 = !DataOff2 & !V0_AddrCOut1
+    # Control4 & !V0_AddrCOut1
+    # DataOff2 & !Control4 & V0_AddrCOut1 ; (3 pterms, 3 signals)
+AccumAddr2.X2 = !V0_AddrB2 ; (1 pterm, 1 signal)
+
+AccumAddr3.X1 = !DataOff3 & !V0_AddrCOut2
+    # Control4 & !V0_AddrCOut2
+    # DataOff3 & !Control4 & V0_AddrCOut2 ; (3 pterms, 3 signals)
+AccumAddr3.X2 = !V0_AddrB3 ; (1 pterm, 1 signal)
+
+AccumAddr4.X1 = !DataOff4 & !V0_AddrCOut3
+    # Control4 & !V0_AddrCOut3
+    # DataOff4 & !Control4 & V0_AddrCOut3 ; (3 pterms, 3 signals)
+AccumAddr4.X2 = !V0_AddrB4 ; (1 pterm, 1 signal)
+
+AccumAddr5.X1 = !DataOff5 & !V0_AddrCOut4
+    # Control4 & !V0_AddrCOut4
+    # DataOff5 & !Control4 & V0_AddrCOut4 ; (3 pterms, 3 signals)
+AccumAddr5.X2 = !V0_AddrB5 ; (1 pterm, 1 signal)
+
+AccumAddr6.X1 = !DataOff6 & !V0_AddrCOut5
+    # Control4 & !V0_AddrCOut5
+    # DataOff6 & !Control4 & V0_AddrCOut5 ; (3 pterms, 3 signals)
+AccumAddr6.X2 = !V0_AddrB6 ; (1 pterm, 1 signal)
+
+AccumAddr7.X1 = !DataOff7 & DataOff6 & !Control4 & V0_AddrB6
+    # !DataOff7 & DataOff6 & !Control4 & V0_AddrCOut5
+    # !DataOff7 & V0_AddrB6 & V0_AddrCOut5
+    # DataOff7 & !DataOff6 & !Control4 & !V0_AddrB6
+    # DataOff7 & !DataOff6 & !Control4 & !V0_AddrCOut5
+    # DataOff7 & !Control4 & !V0_AddrB6 & !V0_AddrCOut5
+    # Control4 & V0_AddrB6 & V0_AddrCOut5 ; (7 pterms, 5 signals)
+AccumAddr7.X2 = V0_AddrB7 ; (1 pterm, 1 signal)
+
+AccumAddr8 = 0 ; (0 pterm, 0 signal)
+
+AccumAddr9 = 0 ; (0 pterm, 0 signal)
+
+Flags0 = 1 ; (1 pterm, 0 signal)
+
+Flags1 = 1 ; (1 pterm, 0 signal)
+
+Flags2 = 1 ; (1 pterm, 0 signal)
+
+Flags3 = 1 ; (1 pterm, 0 signal)
+
+Flags4 = 1 ; (1 pterm, 0 signal)
+
+Flags5 = 1 ; (1 pterm, 0 signal)
+
+Flags6 = 1 ; (1 pterm, 0 signal)
+
+Flags7 = 1 ; (1 pterm, 0 signal)
+
+SReg0.D = !Control3 & Control2 & Reset & !SReg0.Q
+    # Control3 & Reset & SReg0.Q
+    # !Control2 & Reset & SReg0.Q ; (3 pterms, 4 signals)
+SReg0.C = Clock ; (1 pterm, 1 signal)
+
+SReg1.D = Control3 & Reset & SReg1.Q
+    # !Control3 & Reset & V0_IDSum1 ; (2 pterms, 4 signals)
+SReg1.C = Clock ; (1 pterm, 1 signal)
+
+SReg2.D = Control3 & Reset & SReg2.Q
+    # !Control3 & Reset & V0_IDSum2 ; (2 pterms, 4 signals)
+SReg2.C = Clock ; (1 pterm, 1 signal)
+
+SReg3.D = Control3 & Reset & SReg3.Q
+    # !Control3 & Reset & V0_IDSum3 ; (2 pterms, 4 signals)
+SReg3.C = Clock ; (1 pterm, 1 signal)
+
+SReg4.D = Control3 & Reset & SReg4.Q
+    # !Control3 & Reset & V0_IDSum4 ; (2 pterms, 4 signals)
+SReg4.C = Clock ; (1 pterm, 1 signal)
+
+SReg5.D = Control3 & Reset & SReg5.Q
+    # !Control3 & Reset & V0_IDSum5 ; (2 pterms, 4 signals)
+SReg5.C = Clock ; (1 pterm, 1 signal)
+
+SReg6.D = Control3 & Reset & SReg6.Q
+    # !Control3 & Reset & V0_IDSum6 ; (2 pterms, 4 signals)
+SReg6.C = Clock ; (1 pterm, 1 signal)
+
+SReg7.D = Control3 & Reset & SReg7.Q
+    # !Control3 & Reset & V0_IDSum7 ; (2 pterms, 4 signals)
+SReg7.C = Clock ; (1 pterm, 1 signal)
+
+V0_AddrB0.X1 = !Control3 & !Control1 & !Control0 & SReg0.Q
+    # !Control3 & Control2 & SReg0.Q
+    # Control3 & !Control1 & !Control0 & XReg0.Q
+    # Control3 & Control2 & XReg0.Q ; (4 pterms, 6 signals)
+V0_AddrB0.X2 = Control2 & !Control1 ; (1 pterm, 2 signals)
+
+V0_AddrB1 = !Control3 & !Control2 & !Control1 & !Control0 & SReg1.Q
+    # Control3 & !Control2 & !Control1 & !Control0 & XReg1.Q
+    # !Control3 & Control2 & Control1 & SReg1.Q
+    # Control3 & Control2 & Control1 & XReg1.Q
+    # Control2 & !Control1 & V0_IDSum1 ; (5 pterms, 7 signals)
+
+V0_AddrB2 = !Control3 & !Control2 & !Control1 & !Control0 & SReg2.Q
+    # Control3 & !Control2 & !Control1 & !Control0 & XReg2.Q
+    # !Control3 & Control2 & Control1 & SReg2.Q
+    # Control3 & Control2 & Control1 & XReg2.Q
+    # Control2 & !Control1 & V0_IDSum2 ; (5 pterms, 7 signals)
+
+V0_AddrB3 = !Control3 & !Control2 & !Control1 & !Control0 & SReg3.Q
+    # Control3 & !Control2 & !Control1 & !Control0 & XReg3.Q
+    # !Control3 & Control2 & Control1 & SReg3.Q
+    # Control3 & Control2 & Control1 & XReg3.Q
+    # Control2 & !Control1 & V0_IDSum3 ; (5 pterms, 7 signals)
+
+V0_AddrB4 = !Control3 & !Control2 & !Control1 & !Control0 & SReg4.Q
+    # Control3 & !Control2 & !Control1 & !Control0 & XReg4.Q
+    # !Control3 & Control2 & Control1 & SReg4.Q
+    # Control3 & Control2 & Control1 & XReg4.Q
+    # Control2 & !Control1 & V0_IDSum4 ; (5 pterms, 7 signals)
+
+V0_AddrB5 = !Control3 & !Control2 & !Control1 & !Control0 & SReg5.Q
+    # Control3 & !Control2 & !Control1 & !Control0 & XReg5.Q
+    # !Control3 & Control2 & Control1 & SReg5.Q
+    # Control3 & Control2 & Control1 & XReg5.Q
+    # Control2 & !Control1 & V0_IDSum5 ; (5 pterms, 7 signals)
+
+V0_AddrB6 = !Control3 & !Control2 & !Control1 & !Control0 & SReg6.Q
+    # Control3 & !Control2 & !Control1 & !Control0 & XReg6.Q
+    # !Control3 & Control2 & Control1 & SReg6.Q
+    # Control3 & Control2 & Control1 & XReg6.Q
+    # Control2 & !Control1 & V0_IDSum6 ; (5 pterms, 7 signals)
+
+V0_AddrB7 = !Control3 & !Control2 & !Control1 & !Control0 & SReg7.Q
+    # Control3 & !Control2 & !Control1 & !Control0 & XReg7.Q
+    # !Control3 & Control2 & Control1 & SReg7.Q
+    # Control3 & Control2 & Control1 & XReg7.Q
+    # Control2 & !Control1 & V0_IDSum7 ; (5 pterms, 7 signals)
+
+V0_AddrCOut1 = DataOff1 & !Control4 & V0_AddrB1
+    # DataOff0 & !Control4 & V0_AddrB1 & V0_AddrB0
+    # DataOff1 & DataOff0 & !Control4 & V0_AddrB0 ; (3 pterms, 5 signals)
+
+V0_AddrCOut2 = DataOff2 & !Control4 & V0_AddrB2
+    # DataOff2 & !Control4 & V0_AddrCOut1
+    # V0_AddrB2 & V0_AddrCOut1 ; (3 pterms, 4 signals)
+
+V0_AddrCOut3 = DataOff3 & !Control4 & V0_AddrB3
+    # DataOff3 & !Control4 & V0_AddrCOut2
+    # V0_AddrB3 & V0_AddrCOut2 ; (3 pterms, 4 signals)
+
+V0_AddrCOut4 = DataOff4 & !Control4 & V0_AddrB4
+    # DataOff4 & !Control4 & V0_AddrCOut3
+    # V0_AddrB4 & V0_AddrCOut3 ; (3 pterms, 4 signals)
+
+V0_AddrCOut5 = DataOff5 & !Control4 & V0_AddrB5
+    # DataOff5 & !Control4 & V0_AddrCOut4
+    # V0_AddrB5 & V0_AddrCOut4 ; (3 pterms, 4 signals)
+
+V0_IDCOut4.X1 = !Control3 & Control2 & !Control0 & !SReg4.Q & !SReg3.Q
+       & !SReg2.Q & !SReg1.Q & !SReg0.Q
+    # Control3 & Control2 & !Control0 & !XReg4.Q & !XReg3.Q & !XReg2.Q
+       & !XReg1.Q & !XReg0.Q
+    # !Control3 & Control2 & Control0 & SReg4.Q & SReg3.Q & SReg2.Q & SReg1.Q
+       & SReg0.Q
+    # Control3 & Control2 & Control0 & XReg4.Q & XReg3.Q & XReg2.Q & XReg1.Q
+       & XReg0.Q ; (4 pterms, 13 signals)
+V0_IDCOut4.X2 = Control2 & !Control0 ; (1 pterm, 2 signals)
+
+V0_IDSum1.X1 = !Control3 & Control2 & !SReg1.Q & SReg0.Q
+    # !Control3 & !Control2 & SReg1.Q
+    # !Control3 & SReg1.Q & !SReg0.Q
+    # Control3 & Control2 & !XReg1.Q & XReg0.Q
+    # Control3 & !Control2 & XReg1.Q
+    # Control3 & XReg1.Q & !XReg0.Q ; (6 pterms, 6 signals)
+V0_IDSum1.X2 = Control2 & !Control0 ; (1 pterm, 2 signals)
+
+V0_IDSum2.X1 = !Control3 & Control2 & !Control0 & !SReg2.Q & !SReg1.Q
+       & !SReg0.Q
+    # !Control3 & Control2 & Control0 & !SReg2.Q & SReg1.Q & SReg0.Q
+    # !Control3 & !Control2 & SReg2.Q
+    # !Control3 & Control0 & SReg2.Q & !SReg1.Q
+    # !Control3 & !Control0 & SReg2.Q & SReg0.Q
+    # !Control3 & SReg2.Q & SReg1.Q & !SReg0.Q
+    # Control3 & Control2 & !Control0 & !XReg1.Q & !XReg0.Q
+    # Control3 & Control2 & Control0 & XReg1.Q & XReg0.Q ; (8 pterms, 8 signals)
+V0_IDSum2.X2 = Control3 & XReg2.Q ; (1 pterm, 2 signals)
+
+V0_IDSum3.X1 = !Control3 & Control2 & !Control0 & !SReg3.Q & !SReg2.Q
+       & !SReg1.Q & !SReg0.Q
+    # !Control3 & Control2 & Control0 & !SReg3.Q & SReg2.Q & SReg1.Q & SReg0.Q
+    # !Control3 & !Control2 & SReg3.Q
+    # !Control3 & !Control0 & SReg3.Q & SReg2.Q
+    # !Control3 & SReg3.Q & !SReg2.Q & SReg1.Q
+    # !Control3 & SReg3.Q & !SReg1.Q & SReg0.Q
+    # !Control3 & Control0 & SReg3.Q & !SReg0.Q
+    # Control3 & Control2 & !Control0 & !XReg2.Q & !XReg1.Q & !XReg0.Q
+    # Control3 & Control2 & Control0 & XReg2.Q & XReg1.Q & XReg0.Q ; (9 pterms, 10 signals)
+V0_IDSum3.X2 = Control3 & XReg3.Q ; (1 pterm, 2 signals)
+
+V0_IDSum4.X1 = !Control3 & Control2 & !Control0 & !SReg4.Q & !SReg3.Q
+       & !SReg2.Q & !SReg1.Q & !SReg0.Q
+    # !Control3 & Control2 & Control0 & !SReg4.Q & SReg3.Q & SReg2.Q & SReg1.Q
+       & SReg0.Q
+    # !Control3 & !Control2 & SReg4.Q
+    # !Control3 & Control0 & SReg4.Q & !SReg3.Q
+    # !Control3 & SReg4.Q & !SReg2.Q & SReg1.Q
+    # !Control3 & SReg4.Q & SReg3.Q & !SReg1.Q
+    # !Control3 & !Control0 & SReg4.Q & SReg0.Q
+    # !Control3 & SReg4.Q & SReg2.Q & !SReg0.Q
+    # Control3 & Control2 & !Control0 & !XReg3.Q & !XReg2.Q & !XReg1.Q
+       & !XReg0.Q
+    # Control3 & Control2 & Control0 & XReg3.Q & XReg2.Q & XReg1.Q & XReg0.Q ; (10 pterms, 12 signals)
+V0_IDSum4.X2 = Control3 & XReg4.Q ; (1 pterm, 2 signals)
+
+V0_IDSum5.X1 = !Control3 & !SReg5.Q & V0_IDCOut4
+    # !Control3 & SReg5.Q & !V0_IDCOut4
+    # Control3 & !XReg5.Q & V0_IDCOut4
+    # Control3 & XReg5.Q & !V0_IDCOut4 ; (4 pterms, 4 signals)
+V0_IDSum5.X2 = Control2 & !Control0 ; (1 pterm, 2 signals)
+
+V0_IDSum6.X1 = !Control3 & Control2 & !Control0 & !SReg6.Q & !SReg5.Q
+       & !V0_IDCOut4
+    # !Control3 & !Control2 & !SReg6.Q & SReg5.Q & V0_IDCOut4
+    # !Control3 & Control0 & !SReg6.Q & SReg5.Q & V0_IDCOut4
+    # !Control3 & !Control2 & SReg6.Q & !SReg5.Q
+    # !Control3 & Control0 & SReg6.Q & !SReg5.Q
+    # !Control3 & SReg6.Q & SReg5.Q & !V0_IDCOut4
+    # !Control3 & Control2 & !Control0 & SReg6.Q & V0_IDCOut4
+    # Control3 & Control2 & !Control0 & !XReg5.Q & !V0_IDCOut4
+    # Control3 & !Control2 & XReg5.Q & V0_IDCOut4
+    # Control3 & Control0 & XReg5.Q & V0_IDCOut4 ; (10 pterms, 7 signals)
+V0_IDSum6.X2 = Control3 & XReg6.Q ; (1 pterm, 2 signals)
+
+V0_IDSum7.X1 = !Control3 & Control2 & !Control0 & !SReg7.Q & !SReg6.Q
+       & !SReg5.Q & !V0_IDCOut4
+    # !Control3 & !Control2 & !SReg7.Q & SReg6.Q & SReg5.Q & V0_IDCOut4
+    # !Control3 & Control0 & !SReg7.Q & SReg6.Q & SReg5.Q & V0_IDCOut4
+    # !Control3 & SReg7.Q & !SReg6.Q & SReg5.Q
+    # !Control3 & SReg7.Q & !SReg5.Q & V0_IDCOut4
+    # !Control3 & !Control2 & SReg7.Q & !V0_IDCOut4
+    # !Control3 & Control0 & SReg7.Q & !V0_IDCOut4
+    # !Control3 & Control2 & !Control0 & SReg7.Q & SReg6.Q
+    # Control3 & Control2 & !Control0 & !XReg6.Q & !XReg5.Q & !V0_IDCOut4
+    # Control3 & !Control2 & XReg6.Q & XReg5.Q & V0_IDCOut4
+    # Control3 & Control0 & XReg6.Q & XReg5.Q & V0_IDCOut4 ; (11 pterms, 9 signals)
+V0_IDSum7.X2 = Control3 & XReg7.Q ; (1 pterm, 2 signals)
+
+XReg0.D = Control3 & Control2 & Reset & !XReg0.Q
+    # !Control3 & Reset & XReg0.Q
+    # !Control2 & Reset & XReg0.Q ; (3 pterms, 4 signals)
+XReg0.C = Clock ; (1 pterm, 1 signal)
+
+XReg1.D = !Control3 & Reset & XReg1.Q
+    # Control3 & Reset & V0_IDSum1 ; (2 pterms, 4 signals)
+XReg1.C = Clock ; (1 pterm, 1 signal)
+
+XReg2.D = !Control3 & Reset & XReg2.Q
+    # Control3 & Reset & V0_IDSum2 ; (2 pterms, 4 signals)
+XReg2.C = Clock ; (1 pterm, 1 signal)
+
+XReg3.D = !Control3 & Reset & XReg3.Q
+    # Control3 & Reset & V0_IDSum3 ; (2 pterms, 4 signals)
+XReg3.C = Clock ; (1 pterm, 1 signal)
+
+XReg4.D = !Control3 & Reset & XReg4.Q
+    # Control3 & Reset & V0_IDSum4 ; (2 pterms, 4 signals)
+XReg4.C = Clock ; (1 pterm, 1 signal)
+
+XReg5.D = !Control3 & Reset & XReg5.Q
+    # Control3 & Reset & V0_IDSum5 ; (2 pterms, 4 signals)
+XReg5.C = Clock ; (1 pterm, 1 signal)
+
+XReg6.D = !Control3 & Reset & XReg6.Q
+    # Control3 & Reset & V0_IDSum6 ; (2 pterms, 4 signals)
+XReg6.C = Clock ; (1 pterm, 1 signal)
+
+XReg7.D = !Control3 & Reset & XReg7.Q
+    # Control3 & Reset & V0_IDSum7 ; (2 pterms, 4 signals)
+XReg7.C = Clock ; (1 pterm, 1 signal)
+

@@ -1,0 +1,205 @@
+
+[Device]
+Family = lc4k;
+PartNumber = LC4128V-75T144I;
+Package = 144TQFP;
+PartType = LC4128V;
+Speed = -7.5;
+Operating_condition = IND;
+Status = Production;
+
+[Revision]
+Parent = lc4k128v.lci;
+DATE = 02/28/2007;
+TIME = 23:39:28;
+Source_Format = ABEL_Schematic;
+Synthesis = Synplify;
+
+[Ignore Assignments]
+
+[Clear Assignments]
+
+[Backannotate Assignments]
+
+[Global Constraints]
+Nodes_collapsing_mode = Area;
+Node_collapse = Yes;
+
+[Location Assignments]
+layer = OFF;
+DataOff7 = pin, 80, -, -, -;
+DataOff6 = pin, 81, -, -, -;
+DataOff5 = pin, 83, -, -, -;
+DataOff4 = pin, 84, -, -, -;
+DataOff3 = pin, 85, -, -, -;
+DataOff2 = pin, 86, -, -, -;
+DataOff1 = pin, 87, -, -, -;
+DataOff0 = pin, 88, -, -, -;
+AddrData12 = pin, 102, -, -, -;
+AddrData11 = pin, 103, -, -, -;
+AddrData10 = pin, 104, -, -, -;
+AddrData9 = pin, 105, -, -, -;
+AddrData8 = pin, 111, -, -, -;
+AddrData7 = pin, 93, -, -, -;
+AddrData6 = pin, 94, -, -, -;
+AddrData5 = pin, 95, -, -, -;
+AddrData4 = pin, 96, -, -, -;
+AddrData3 = pin, 97, -, -, -;
+AddrData2 = pin, 98, -, -, -;
+AddrData1 = pin, 100, -, -, -;
+AddrData0 = pin, 101, -, -, -;
+Control29 = pin, 14, -, -, -;
+Control28 = pin, 13, -, -, -;
+Control27 = pin, 12, -, -, -;
+Control26 = pin, 11, -, -, -;
+Control25 = pin, 9, -, -, -;
+Control24 = pin, 8, -, -, -;
+Control23 = pin, 7, -, -, -;
+Control22 = pin, 6, -, -, -;
+Control21 = pin, 5, -, -, -;
+Control20 = pin, 4, -, -, -;
+Control19 = pin, 143, -, -, -;
+Control18 = pin, 142, -, -, -;
+Control17 = pin, 141, -, -, -;
+Control16 = pin, 140, -, -, -;
+Control15 = pin, 139, -, -, -;
+Control14 = pin, 138, -, -, -;
+Control13 = pin, 135, -, -, -;
+Control12 = pin, 134, -, -, -;
+Control11 = pin, 133, -, -, -;
+Control10 = pin, 132, -, -, -;
+Control9 = pin, 131, -, -, -;
+Control8 = pin, 124, -, -, -;
+Control7 = pin, 123, -, -, -;
+Control6 = pin, 122, -, -, -;
+Control5 = pin, 121, -, -, -;
+Control4 = pin, 120, -, -, -;
+Control3 = pin, 116, -, -, -;
+Control2 = pin, 115, -, -, -;
+Control1 = pin, 114, -, -, -;
+Control0 = pin, 113, -, -, -;
+Reset = pin, 40, -, -, -;
+Clock = pin, 128, -, -, -;
+AccumAddr12 = pin, 29, -, -, -;
+AccumAddr11 = pin, 30, -, -, -;
+AccumAddr10 = pin, 31, -, -, -;
+AccumAddr9 = pin, 32, -, -, -;
+AccumAddr8 = pin, 33, -, -, -;
+AccumAddr7 = pin, 16, -, -, -;
+AccumAddr6 = pin, 21, -, -, -;
+AccumAddr5 = pin, 22, -, -, -;
+AccumAddr4 = pin, 23, -, -, -;
+AccumAddr3 = pin, 24, -, -, -;
+AccumAddr2 = pin, 25, -, -, -;
+AccumAddr1 = pin, 26, -, -, -;
+AccumAddr0 = pin, 28, -, -, -;
+XReg7 = pin, 68, -, -, -;
+XReg6 = pin, 69, -, -, -;
+XReg5 = pin, 70, -, -, -;
+XReg4 = pin, 71, -, -, -;
+XReg3 = pin, 76, -, -, -;
+XReg2 = pin, 77, -, -, -;
+XReg1 = pin, 78, -, -, -;
+XReg0 = pin, 79, -, -, -;
+SReg7 = pin, 58, -, -, -;
+SReg6 = pin, 59, -, -, -;
+SReg5 = pin, 60, -, -, -;
+SReg4 = pin, 61, -, -, -;
+SReg3 = pin, 62, -, -, -;
+SReg2 = pin, 63, -, -, -;
+SReg1 = pin, 66, -, -, -;
+SReg0 = pin, 67, -, -, -;
+Flags7 = pin, 42, -, -, -;
+Flags6 = pin, 43, -, -, -;
+Flags5 = pin, 44, -, -, -;
+Flags4 = pin, 48, -, -, -;
+Flags3 = pin, 49, -, -, -;
+Flags2 = pin, 50, -, -, -;
+Flags1 = pin, 51, -, -, -;
+Flags0 = pin, 52, -, -, -;
+
+[Group Assignments]
+layer = OFF;
+
+[Resource Reservations]
+layer = OFF;
+
+[Fitter Report Format]
+
+[Power]
+
+[Source Constraint Option]
+
+[Fast Bypass]
+
+[OSM Bypass]
+
+[Input Registers]
+
+[Netlist/Delay Format]
+
+[IO Types]
+layer = OFF;
+
+[Pullup]
+
+[Slewrate]
+
+[Region]
+
+[Timing Constraints]
+
+[HSI Attributes]
+
+[Input Delay]
+
+[opt global constraints list]
+
+[Explorer User Settings]
+
+[Pin attributes list]
+
+[global constraints list]
+
+[Global Constraints Process Update]
+
+[pin lock limitation]
+
+[LOCATION ASSIGNMENTS LIST]
+
+[RESOURCE RESERVATIONS LIST]
+
+[individual constraints list]
+
+[Attributes list setting]
+
+[Timing Analyzer]
+
+[PLL Assignments]
+
+[Dual Function Macrocell]
+
+[Explorer Results]
+
+[VHDL synplify constraints]
+
+[VHDL spectrum constraints]
+
+[verilog synplify constraints]
+
+[verilog spectrum constraints]
+
+[VHDL synplify constraints list]
+
+[VHDL spectrum constraints list]
+
+[verilog synplify constraints list]
+
+[verilog spectrum constraints list]
+
+[ORP Bypass]
+
+[Register Powerup]
+
+[Constraint Version]
+version = 1.0;

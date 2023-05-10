@@ -1,0 +1,788 @@
+#$ TOOL ispLEVER Classic 2.0.00.17.20.15
+#$ DATE Thu Mar 19 02:40:12 2015
+#$ TITLE Caltech10 CPU
+#$ MODULE cpu
+#$ JEDECFILE cpu
+#$ PINS 82 ProgramDB15 ProgramDB14 ProgramDB13 ProgramDB12 ProgramDB11 ProgramDB10 \
+#  ProgramDB9 ProgramDB8 ProgramDB7 ProgramDB6 ProgramDB5 ProgramDB4 ProgramDB3 \
+#  ProgramDB2 ProgramDB1 ProgramDB0 Reset Clock DataDB7 DataDB6 DataDB5 DataDB4 DataDB3 \
+#  DataDB2 DataDB1 DataDB0 ProgramAB12 ProgramAB11 ProgramAB10 ProgramAB9 ProgramAB8 \
+#  ProgramAB7 ProgramAB6 ProgramAB5 ProgramAB4 ProgramAB3 ProgramAB2 ProgramAB1 \
+#  ProgramAB0 DataAB7 DataAB6 DataAB5 DataAB4 DataAB3 DataAB2 DataAB1 DataAB0 RD WR IO Accum7 \
+#  Accum6 Accum5 Accum4 Accum3 Accum2 Accum1 Accum0 Flags7 Flags6 Flags5 Flags4 Flags3 Flags2 \
+#  Flags1 Flags0 XReg7 XReg6 XReg5 XReg4 XReg3 XReg2 XReg1 XReg0 SReg7 SReg6 SReg5 SReg4 SReg3 \
+#  SReg2 SReg1 SReg0
+#$ NODES 213 PAUnit>Clock'co'  PAUnit>Direct0'co'  PAUnit>Direct1'co'  PAUnit>Direct10'co'  \
+#  PAUnit>Direct11'co'  PAUnit>Direct12'co'  PAUnit>Direct2'co'  PAUnit>Direct3'co'  \
+#  PAUnit>Direct4'co'  PAUnit>Direct5'co'  PAUnit>Direct6'co'  PAUnit>Direct7'co'  \
+#  PAUnit>Direct8'co'  PAUnit>Direct9'co'  PAUnit>Load'co'  PAUnit>Offset0'co'  PAUnit>Offset1'co'  \
+#  PAUnit>Offset2'co'  PAUnit>Offset3'co'  PAUnit>Offset4'co'  PAUnit>Offset5'co'  \
+#  PAUnit>Offset6'co'  PAUnit>Offset7'co'  PAUnit>Reset'co'  PAUnit>Select0'co'  PAUnit>Select1'co'  \
+#  PAUnit>Select2'co'  PAUnit>PC0'co'  PAUnit>PC1'co'  PAUnit>PC10'co'  PAUnit>PC11'co'  \
+#  PAUnit>PC12'co'  PAUnit>PC2'co'  PAUnit>PC3'co'  PAUnit>PC4'co'  PAUnit>PC5'co'  PAUnit>PC6'co'  \
+#  PAUnit>PC7'co'  PAUnit>PC8'co'  PAUnit>PC9'co'  PAUnit>ProgAddr0'co'  PAUnit>ProgAddr1'co'  \
+#  PAUnit>ProgAddr10'co'  PAUnit>ProgAddr11'co'  PAUnit>ProgAddr12'co'  PAUnit>ProgAddr2'co'  \
+#  PAUnit>ProgAddr3'co'  PAUnit>ProgAddr4'co'  PAUnit>ProgAddr5'co'  PAUnit>ProgAddr6'co'  \
+#  PAUnit>ProgAddr7'co'  PAUnit>ProgAddr8'co'  PAUnit>ProgAddr9'co'  DAUnit>Accum0'co'  \
+#  DAUnit>Accum1'co'  DAUnit>Accum2'co'  DAUnit>Accum3'co'  DAUnit>Accum4'co'  DAUnit>Accum5'co'  \
+#  DAUnit>Accum6'co'  DAUnit>Accum7'co'  DAUnit>Clock'co'  DAUnit>IDOn'co'  DAUnit>Inc'co'  \
+#  DAUnit>Offset0'co'  DAUnit>Offset1'co'  DAUnit>Offset2'co'  DAUnit>Offset3'co'  \
+#  DAUnit>Offset4'co'  DAUnit>Offset5'co'  DAUnit>Offset6'co'  DAUnit>Offset7'co'  DAUnit>Post'co'  \
+#  DAUnit>Reset'co'  DAUnit>ResetOff'co'  DAUnit>UseX'co'  DAUnit>DataAddr0'co'  \
+#  DAUnit>DataAddr1'co'  DAUnit>DataAddr2'co'  DAUnit>DataAddr3'co'  DAUnit>DataAddr4'co'  \
+#  DAUnit>DataAddr5'co'  DAUnit>DataAddr6'co'  DAUnit>DataAddr7'co'  DAUnit>SReg0'co'  \
+#  DAUnit>SReg1'co'  DAUnit>SReg2'co'  DAUnit>SReg3'co'  DAUnit>SReg4'co'  DAUnit>SReg5'co'  \
+#  DAUnit>SReg6'co'  DAUnit>SReg7'co'  DAUnit>XReg0'co'  DAUnit>XReg1'co'  DAUnit>XReg2'co'  \
+#  DAUnit>XReg3'co'  DAUnit>XReg4'co'  DAUnit>XReg5'co'  DAUnit>XReg6'co'  DAUnit>XReg7'co'  \
+#  ALUnit>Clock'co'  ALUnit>Data0'co'  ALUnit>Data1'co'  ALUnit>Data2'co'  ALUnit>Data3'co'  \
+#  ALUnit>Data4'co'  ALUnit>Data5'co'  ALUnit>Data6'co'  ALUnit>Data7'co'  ALUnit>F0'co'  ALUnit>F1'co'  \
+#  ALUnit>F2'co'  ALUnit>F3'co'  ALUnit>LoadFlags'co'  ALUnit>MaskC'co'  ALUnit>MaskS'co'  \
+#  ALUnit>MaskV'co'  ALUnit>MaskZ'co'  ALUnit>Mode0'co'  ALUnit>Mode1'co'  ALUnit>Mode2'co'  \
+#  ALUnit>Mode3'co'  ALUnit>Reset'co'  ALUnit>WC'co'  ALUnit>Accum0'co'  ALUnit>Accum1'co'  \
+#  ALUnit>Accum2'co'  ALUnit>Accum3'co'  ALUnit>Accum4'co'  ALUnit>Accum5'co'  ALUnit>Accum6'co'  \
+#  ALUnit>Accum7'co'  ALUnit>Flags0'co'  ALUnit>Flags1'co'  ALUnit>Flags2'co'  ALUnit>Flags3'co'  \
+#  ALUnit>Flags4'co'  ALUnit>Flags5'co'  ALUnit>Flags6'co'  ALUnit>Flags7'co'  CUnit>Clock'co'  \
+#  CUnit>Flags0'co'  CUnit>Flags1'co'  CUnit>Flags2'co'  CUnit>Flags3'co'  CUnit>Flags4'co'  \
+#  CUnit>Flags5'co'  CUnit>Flags6'co'  CUnit>Flags7'co'  CUnit>PDB0'co'  CUnit>PDB1'co'  \
+#  CUnit>PDB10'co'  CUnit>PDB11'co'  CUnit>PDB12'co'  CUnit>PDB13'co'  CUnit>PDB14'co'  CUnit>PDB15'co'  \
+#  CUnit>PDB2'co'  CUnit>PDB3'co'  CUnit>PDB4'co'  CUnit>PDB5'co'  CUnit>PDB6'co'  CUnit>PDB7'co'  \
+#  CUnit>PDB8'co'  CUnit>PDB9'co'  CUnit>Reset'co'  CUnit>ALU_F0'co'  CUnit>ALU_F1'co'  \
+#  CUnit>ALU_F2'co'  CUnit>ALU_F3'co'  CUnit>ALU_LF'co'  CUnit>ALU_M0'co'  CUnit>ALU_M1'co'  \
+#  CUnit>ALU_M2'co'  CUnit>ALU_M3'co'  CUnit>ALU_WC'co'  CUnit>CALL0'co'  CUnit>CALL1'co'  \
+#  CUnit>CALL2'co'  CUnit>DA_IDOn'co'  CUnit>DA_Inc'co'  CUnit>DA_Post'co'  CUnit>DA_ResetOff'co'  \
+#  CUnit>DA_UseX'co'  CUnit>IDLE'co'  CUnit>IO'co'  CUnit>IR0'co'  CUnit>IR1'co'  CUnit>IR10'co'  \
+#  CUnit>IR11'co'  CUnit>IR12'co'  CUnit>IR13'co'  CUnit>IR14'co'  CUnit>IR15'co'  CUnit>IR2'co'  \
+#  CUnit>IR3'co'  CUnit>IR4'co'  CUnit>IR5'co'  CUnit>IR6'co'  CUnit>IR7'co'  CUnit>IR8'co'  CUnit>IR9'co'  \
+#  CUnit>Imm'co'  CUnit>PA_Load'co'  CUnit>PA_Select0'co'  CUnit>PA_Select1'co'  \
+#  CUnit>PA_Select2'co'  CUnit>PopF'co'  CUnit>PushF'co'  CUnit>RD'co'  CUnit>RTS0'co'  CUnit>RTS1'co'  \
+#  CUnit>WR'co' 
+#$ INTERFACE programaccess  53 Clock'i'  Direct0'i'  Direct1'i'  Direct10'i'  Direct11'i'  Direct12'i'  \
+#  Direct2'i'  Direct3'i'  Direct4'i'  Direct5'i'  Direct6'i'  Direct7'i'  Direct8'i'  Direct9'i'  Load'i'  Offset0'i'  Offset1'i'  \
+#  Offset2'i'  Offset3'i'  Offset4'i'  Offset5'i'  Offset6'i'  Offset7'i'  Reset'i'  Select0'i'  Select1'i'  Select2'i'  PC0'o'  PC1'o'  PC10'o'  \
+#  PC11'o'  PC12'o'  PC2'o'  PC3'o'  PC4'o'  PC5'o'  PC6'o'  PC7'o'  PC8'o'  PC9'o'  ProgAddr0'o'  ProgAddr1'o'  ProgAddr10'o'  ProgAddr11'o'  \
+#  ProgAddr12'o'  ProgAddr2'o'  ProgAddr3'o'  ProgAddr4'o'  ProgAddr5'o'  ProgAddr6'o'  ProgAddr7'o'  ProgAddr8'o'  \
+#  ProgAddr9'o' 
+#$ INTERFACE dataaccess  47 Accum0'i'  Accum1'i'  Accum2'i'  Accum3'i'  Accum4'i'  Accum5'i'  Accum6'i'  Accum7'i'  \
+#  Clock'i'  IDOn'i'  Inc'i'  Offset0'i'  Offset1'i'  Offset2'i'  Offset3'i'  Offset4'i'  Offset5'i'  Offset6'i'  Offset7'i'  Post'i'  Reset'i'  \
+#  ResetOff'i'  UseX'i'  DataAddr0'o'  DataAddr1'o'  DataAddr2'o'  DataAddr3'o'  DataAddr4'o'  DataAddr5'o'  DataAddr6'o'  \
+#  DataAddr7'o'  SReg0'o'  SReg1'o'  SReg2'o'  SReg3'o'  SReg4'o'  SReg5'o'  SReg6'o'  SReg7'o'  XReg0'o'  XReg1'o'  XReg2'o'  XReg3'o'  XReg4'o'  \
+#  XReg5'o'  XReg6'o'  XReg7'o' 
+#$ INTERFACE alu  40 Clock'i'  Data0'i'  Data1'i'  Data2'i'  Data3'i'  Data4'i'  Data5'i'  Data6'i'  Data7'i'  F0'i'  F1'i'  F2'i'  F3'i'  \
+#  LoadFlags'i'  MaskC'i'  MaskS'i'  MaskV'i'  MaskZ'i'  Mode0'i'  Mode1'i'  Mode2'i'  Mode3'i'  Reset'i'  WC'i'  Accum0'o'  Accum1'o'  Accum2'o'  \
+#  Accum3'o'  Accum4'o'  Accum5'o'  Accum6'o'  Accum7'o'  Flags0'o'  Flags1'o'  Flags2'o'  Flags3'o'  Flags4'o'  Flags5'o'  Flags6'o'  Flags7'o' 
+#$ INTERFACE controlunit  73 Clock'i'  Flags0'i'  Flags1'i'  Flags2'i'  Flags3'i'  Flags4'i'  Flags5'i'  Flags6'i'  \
+#  Flags7'i'  PDB0'i'  PDB1'i'  PDB10'i'  PDB11'i'  PDB12'i'  PDB13'i'  PDB14'i'  PDB15'i'  PDB2'i'  PDB3'i'  PDB4'i'  PDB5'i'  PDB6'i'  PDB7'i'  PDB8'i'  PDB9'i'  \
+#  Reset'i'  ALU_F0'o'  ALU_F1'o'  ALU_F2'o'  ALU_F3'o'  ALU_LF'o'  ALU_M0'o'  ALU_M1'o'  ALU_M2'o'  ALU_M3'o'  ALU_WC'o'  CALL0'o'  CALL1'o'  \
+#  CALL2'o'  DA_IDOn'o'  DA_Inc'o'  DA_Post'o'  DA_ResetOff'o'  DA_UseX'o'  IDLE'o'  IO'o'  IR0'o'  IR1'o'  IR10'o'  IR11'o'  IR12'o'  IR13'o'  IR14'o'  \
+#  IR15'o'  IR2'o'  IR3'o'  IR4'o'  IR5'o'  IR6'o'  IR7'o'  IR8'o'  IR9'o'  Imm'o'  PA_Load'o'  PA_Select0'o'  PA_Select1'o'  PA_Select2'o'  PopF'o'  PushF'o'  \
+#  RD'o'  RTS0'o'  RTS1'o'  WR'o' 
+#$ INSTANCE PAUnit programaccess 53 PAUnit>Clock PAUnit>Direct0 PAUnit>Direct1 \
+#  PAUnit>Direct10 PAUnit>Direct11 PAUnit>Direct12 PAUnit>Direct2 PAUnit>Direct3 \
+#  PAUnit>Direct4 PAUnit>Direct5 PAUnit>Direct6 PAUnit>Direct7 PAUnit>Direct8 \
+#  PAUnit>Direct9 PAUnit>Load PAUnit>Offset0 PAUnit>Offset1 PAUnit>Offset2 \
+#  PAUnit>Offset3 PAUnit>Offset4 PAUnit>Offset5 PAUnit>Offset6 PAUnit>Offset7 \
+#  PAUnit>Reset PAUnit>Select0 PAUnit>Select1 PAUnit>Select2 PAUnit>PC0 PAUnit>PC1 \
+#  PAUnit>PC10 PAUnit>PC11 PAUnit>PC12 PAUnit>PC2 PAUnit>PC3 PAUnit>PC4 PAUnit>PC5 \
+#  PAUnit>PC6 PAUnit>PC7 PAUnit>PC8 PAUnit>PC9 PAUnit>ProgAddr0 PAUnit>ProgAddr1 \
+#  PAUnit>ProgAddr10 PAUnit>ProgAddr11 PAUnit>ProgAddr12 PAUnit>ProgAddr2 \
+#  PAUnit>ProgAddr3 PAUnit>ProgAddr4 PAUnit>ProgAddr5 PAUnit>ProgAddr6 \
+#  PAUnit>ProgAddr7 PAUnit>ProgAddr8 PAUnit>ProgAddr9
+#$ INSTANCE DAUnit dataaccess 47 DAUnit>Accum0 DAUnit>Accum1 DAUnit>Accum2 \
+#  DAUnit>Accum3 DAUnit>Accum4 DAUnit>Accum5 DAUnit>Accum6 DAUnit>Accum7 DAUnit>Clock \
+#  DAUnit>IDOn DAUnit>Inc DAUnit>Offset0 DAUnit>Offset1 DAUnit>Offset2 DAUnit>Offset3 \
+#  DAUnit>Offset4 DAUnit>Offset5 DAUnit>Offset6 DAUnit>Offset7 DAUnit>Post \
+#  DAUnit>Reset DAUnit>ResetOff DAUnit>UseX DAUnit>DataAddr0 DAUnit>DataAddr1 \
+#  DAUnit>DataAddr2 DAUnit>DataAddr3 DAUnit>DataAddr4 DAUnit>DataAddr5 \
+#  DAUnit>DataAddr6 DAUnit>DataAddr7 DAUnit>SReg0 DAUnit>SReg1 DAUnit>SReg2 \
+#  DAUnit>SReg3 DAUnit>SReg4 DAUnit>SReg5 DAUnit>SReg6 DAUnit>SReg7 DAUnit>XReg0 \
+#  DAUnit>XReg1 DAUnit>XReg2 DAUnit>XReg3 DAUnit>XReg4 DAUnit>XReg5 DAUnit>XReg6 \
+#  DAUnit>XReg7
+#$ INSTANCE ALUnit alu 40 ALUnit>Clock ALUnit>Data0 ALUnit>Data1 ALUnit>Data2 \
+#  ALUnit>Data3 ALUnit>Data4 ALUnit>Data5 ALUnit>Data6 ALUnit>Data7 ALUnit>F0 ALUnit>F1 \
+#  ALUnit>F2 ALUnit>F3 ALUnit>LoadFlags ALUnit>MaskC ALUnit>MaskS ALUnit>MaskV \
+#  ALUnit>MaskZ ALUnit>Mode0 ALUnit>Mode1 ALUnit>Mode2 ALUnit>Mode3 ALUnit>Reset \
+#  ALUnit>WC ALUnit>Accum0 ALUnit>Accum1 ALUnit>Accum2 ALUnit>Accum3 ALUnit>Accum4 \
+#  ALUnit>Accum5 ALUnit>Accum6 ALUnit>Accum7 ALUnit>Flags0 ALUnit>Flags1 ALUnit>Flags2 \
+#  ALUnit>Flags3 ALUnit>Flags4 ALUnit>Flags5 ALUnit>Flags6 ALUnit>Flags7
+#$ INSTANCE CUnit controlunit 73 CUnit>Clock CUnit>Flags0 CUnit>Flags1 CUnit>Flags2 \
+#  CUnit>Flags3 CUnit>Flags4 CUnit>Flags5 CUnit>Flags6 CUnit>Flags7 CUnit>PDB0 \
+#  CUnit>PDB1 CUnit>PDB10 CUnit>PDB11 CUnit>PDB12 CUnit>PDB13 CUnit>PDB14 CUnit>PDB15 \
+#  CUnit>PDB2 CUnit>PDB3 CUnit>PDB4 CUnit>PDB5 CUnit>PDB6 CUnit>PDB7 CUnit>PDB8 \
+#  CUnit>PDB9 CUnit>Reset CUnit>ALU_F0 CUnit>ALU_F1 CUnit>ALU_F2 CUnit>ALU_F3 \
+#  CUnit>ALU_LF CUnit>ALU_M0 CUnit>ALU_M1 CUnit>ALU_M2 CUnit>ALU_M3 CUnit>ALU_WC \
+#  CUnit>CALL0 CUnit>CALL1 CUnit>CALL2 CUnit>DA_IDOn CUnit>DA_Inc CUnit>DA_Post \
+#  CUnit>DA_ResetOff CUnit>DA_UseX CUnit>IDLE CUnit>IO CUnit>IR0 CUnit>IR1 CUnit>IR10 \
+#  CUnit>IR11 CUnit>IR12 CUnit>IR13 CUnit>IR14 CUnit>IR15 CUnit>IR2 CUnit>IR3 CUnit>IR4 \
+#  CUnit>IR5 CUnit>IR6 CUnit>IR7 CUnit>IR8 CUnit>IR9 CUnit>Imm CUnit>PA_Load \
+#  CUnit>PA_Select0 CUnit>PA_Select1 CUnit>PA_Select2 CUnit>PopF CUnit>PushF CUnit>RD \
+#  CUnit>RTS0 CUnit>RTS1 CUnit>WR
+.model cpu
+.inputs ProgramDB15.BLIF ProgramDB14.BLIF ProgramDB13.BLIF ProgramDB12.BLIF \
+ProgramDB11.BLIF ProgramDB10.BLIF ProgramDB9.BLIF ProgramDB8.BLIF \
+ProgramDB7.BLIF ProgramDB6.BLIF ProgramDB5.BLIF ProgramDB4.BLIF \
+ProgramDB3.BLIF ProgramDB2.BLIF ProgramDB1.BLIF ProgramDB0.BLIF WR.BLIF \
+CUnit>IO.BLIF CUnit>RD.BLIF CUnit>WR.BLIF CUnit>PA_Load.BLIF \
+CUnit>PA_Select2.BLIF CUnit>PA_Select1.BLIF CUnit>PA_Select0.BLIF \
+CUnit>ALU_M3.BLIF CUnit>ALU_M2.BLIF CUnit>ALU_M1.BLIF CUnit>ALU_M0.BLIF \
+CUnit>ALU_LF.BLIF CUnit>ALU_WC.BLIF CUnit>ALU_F3.BLIF CUnit>ALU_F2.BLIF \
+CUnit>ALU_F1.BLIF CUnit>ALU_F0.BLIF CUnit>DA_UseX.BLIF CUnit>DA_ResetOff.BLIF \
+CUnit>DA_IDOn.BLIF CUnit>DA_Post.BLIF CUnit>DA_Inc.BLIF ALUnit>Flags7.BLIF \
+ALUnit>Flags6.BLIF ALUnit>Flags5.BLIF ALUnit>Flags4.BLIF ALUnit>Flags3.BLIF \
+ALUnit>Flags2.BLIF ALUnit>Flags1.BLIF ALUnit>Flags0.BLIF CUnit>Imm.BLIF \
+DataDB7.BLIF CUnit>IR7.BLIF DataDB6.BLIF CUnit>IR6.BLIF DataDB5.BLIF \
+CUnit>IR5.BLIF DataDB4.BLIF CUnit>IR4.BLIF DataDB3.BLIF CUnit>IR3.BLIF \
+DataDB2.BLIF CUnit>IR2.BLIF DataDB1.BLIF CUnit>IR1.BLIF DataDB0.BLIF \
+CUnit>IR0.BLIF CUnit>PushF.BLIF CUnit>CALL0.BLIF CUnit>CALL1.BLIF \
+ALUnit>Accum7.BLIF PAUnit>PC12.BLIF PAUnit>PC7.BLIF ALUnit>Accum6.BLIF \
+PAUnit>PC11.BLIF PAUnit>PC6.BLIF ALUnit>Accum5.BLIF PAUnit>PC10.BLIF \
+PAUnit>PC5.BLIF ALUnit>Accum4.BLIF PAUnit>PC9.BLIF PAUnit>PC4.BLIF \
+ALUnit>Accum3.BLIF PAUnit>PC8.BLIF PAUnit>PC3.BLIF ALUnit>Accum2.BLIF \
+SReg5.BLIF PAUnit>PC2.BLIF ALUnit>Accum1.BLIF SReg4.BLIF PAUnit>PC1.BLIF \
+ALUnit>Accum0.BLIF SReg3.BLIF PAUnit>PC0.BLIF DAUnit>DataAddr7.BLIF \
+DAUnit>DataAddr6.BLIF DAUnit>DataAddr5.BLIF DAUnit>DataAddr4.BLIF \
+DAUnit>DataAddr3.BLIF DAUnit>DataAddr2.BLIF DAUnit>DataAddr1.BLIF \
+DAUnit>DataAddr0.BLIF DAUnit>XReg7.BLIF DAUnit>XReg6.BLIF DAUnit>XReg5.BLIF \
+DAUnit>XReg4.BLIF DAUnit>XReg3.BLIF DAUnit>XReg2.BLIF DAUnit>XReg1.BLIF \
+DAUnit>XReg0.BLIF DAUnit>SReg7.BLIF DAUnit>SReg6.BLIF DAUnit>SReg5.BLIF \
+DAUnit>SReg4.BLIF DAUnit>SReg3.BLIF DAUnit>SReg2.BLIF DAUnit>SReg1.BLIF \
+DAUnit>SReg0.BLIF CUnit>IR12.BLIF CUnit>IR11.BLIF CUnit>IR10.BLIF \
+CUnit>IR9.BLIF CUnit>IR8.BLIF PAUnit>ProgAddr12.BLIF PAUnit>ProgAddr11.BLIF \
+PAUnit>ProgAddr10.BLIF PAUnit>ProgAddr9.BLIF PAUnit>ProgAddr8.BLIF \
+PAUnit>ProgAddr7.BLIF PAUnit>ProgAddr6.BLIF PAUnit>ProgAddr5.BLIF \
+PAUnit>ProgAddr4.BLIF PAUnit>ProgAddr3.BLIF PAUnit>ProgAddr2.BLIF \
+PAUnit>ProgAddr1.BLIF PAUnit>ProgAddr0.BLIF Reset.BLIF Clock.BLIF
+.outputs DataDB7 DataDB6 DataDB5 DataDB4 DataDB3 DataDB2 DataDB1 DataDB0 \
+ProgramAB12 ProgramAB11 ProgramAB10 ProgramAB9 ProgramAB8 ProgramAB7 \
+ProgramAB6 ProgramAB5 ProgramAB4 ProgramAB3 ProgramAB2 ProgramAB1 ProgramAB0 \
+DataAB7 DataAB6 DataAB5 DataAB4 DataAB3 DataAB2 DataAB1 DataAB0 RD WR IO \
+Flags7 Flags6 Flags5 Flags4 Flags3 Flags2 Flags1 Flags0 XReg7 XReg6 XReg5 \
+XReg4 XReg3 XReg2 XReg1 XReg0 SReg7 SReg6 SReg5 SReg4 SReg3 SReg2 SReg1 SReg0 \
+PAUnit>Clock PAUnit>Direct0 PAUnit>Direct1 PAUnit>Direct10 PAUnit>Direct11 \
+PAUnit>Direct12 PAUnit>Direct2 PAUnit>Direct3 PAUnit>Direct4 PAUnit>Direct5 \
+PAUnit>Direct6 PAUnit>Direct7 PAUnit>Direct8 PAUnit>Direct9 PAUnit>Load \
+PAUnit>Offset0 PAUnit>Offset1 PAUnit>Offset2 PAUnit>Offset3 PAUnit>Offset4 \
+PAUnit>Offset5 PAUnit>Offset6 PAUnit>Offset7 PAUnit>Reset PAUnit>Select0 \
+PAUnit>Select1 PAUnit>Select2 DAUnit>Accum0 DAUnit>Accum1 DAUnit>Accum2 \
+DAUnit>Accum3 DAUnit>Accum4 DAUnit>Accum5 DAUnit>Accum6 DAUnit>Accum7 \
+DAUnit>Clock DAUnit>IDOn DAUnit>Inc DAUnit>Offset0 DAUnit>Offset1 \
+DAUnit>Offset2 DAUnit>Offset3 DAUnit>Offset4 DAUnit>Offset5 DAUnit>Offset6 \
+DAUnit>Offset7 DAUnit>Post DAUnit>Reset DAUnit>ResetOff DAUnit>UseX \
+ALUnit>Clock ALUnit>Data0 ALUnit>Data1 ALUnit>Data2 ALUnit>Data3 ALUnit>Data4 \
+ALUnit>Data5 ALUnit>Data6 ALUnit>Data7 ALUnit>F0 ALUnit>F1 ALUnit>F2 ALUnit>F3 \
+ALUnit>LoadFlags ALUnit>MaskC ALUnit>MaskS ALUnit>MaskV ALUnit>MaskZ \
+ALUnit>Mode0 ALUnit>Mode1 ALUnit>Mode2 ALUnit>Mode3 ALUnit>Reset ALUnit>WC \
+CUnit>Clock CUnit>Flags0 CUnit>Flags1 CUnit>Flags2 CUnit>Flags3 CUnit>Flags4 \
+CUnit>Flags5 CUnit>Flags6 CUnit>Flags7 CUnit>PDB0 CUnit>PDB1 CUnit>PDB10 \
+CUnit>PDB11 CUnit>PDB12 CUnit>PDB13 CUnit>PDB14 CUnit>PDB15 CUnit>PDB2 \
+CUnit>PDB3 CUnit>PDB4 CUnit>PDB5 CUnit>PDB6 CUnit>PDB7 CUnit>PDB8 CUnit>PDB9 \
+CUnit>Reset DataDB7.OE DataDB6.OE DataDB5.OE DataDB4.OE DataDB3.OE DataDB2.OE \
+DataDB1.OE DataDB0.OE ProgramAB12.OE ProgramAB11.OE ProgramAB10.OE \
+ProgramAB9.OE ProgramAB8.OE ProgramAB7.OE ProgramAB6.OE ProgramAB5.OE \
+ProgramAB4.OE ProgramAB3.OE ProgramAB2.OE ProgramAB1.OE ProgramAB0.OE \
+DataAB7.OE DataAB6.OE DataAB5.OE DataAB4.OE DataAB3.OE DataAB2.OE DataAB1.OE \
+DataAB0.OE RD.OE WR.OE IO.OE Accum7.OE Accum6.OE Accum5.OE Accum4.OE Accum3.OE \
+Accum2.OE Accum1.OE Accum0.OE Flags7.OE Flags6.OE Flags5.OE Flags4.OE \
+Flags3.OE Flags2.OE Flags1.OE Flags0.OE XReg7.OE XReg6.OE XReg5.OE XReg4.OE \
+XReg3.OE XReg2.OE XReg1.OE XReg0.OE SReg7.OE SReg6.OE SReg5.OE SReg4.OE \
+SReg3.OE SReg2.OE SReg1.OE SReg0.OE
+.names WR.BLIF ALUnit>Flags7.BLIF CUnit>PushF.BLIF CUnit>CALL0.BLIF \
+CUnit>CALL1.BLIF ALUnit>Accum7.BLIF PAUnit>PC12.BLIF PAUnit>PC7.BLIF DataDB7
+111----- 1
+1-01--1- 1
+1-0-1--1 1
+1-0001-- 1
+.names WR.BLIF ALUnit>Flags6.BLIF CUnit>PushF.BLIF CUnit>CALL0.BLIF \
+CUnit>CALL1.BLIF ALUnit>Accum6.BLIF PAUnit>PC11.BLIF PAUnit>PC6.BLIF DataDB6
+111----- 1
+1-01--1- 1
+1-0-1--1 1
+1-0001-- 1
+.names WR.BLIF ALUnit>Flags5.BLIF CUnit>PushF.BLIF CUnit>CALL0.BLIF \
+CUnit>CALL1.BLIF ALUnit>Accum5.BLIF PAUnit>PC10.BLIF PAUnit>PC5.BLIF DataDB5
+111----- 1
+1-01--1- 1
+1-0-1--1 1
+1-0001-- 1
+.names WR.BLIF ALUnit>Flags4.BLIF CUnit>PushF.BLIF CUnit>CALL0.BLIF \
+CUnit>CALL1.BLIF ALUnit>Accum4.BLIF PAUnit>PC9.BLIF PAUnit>PC4.BLIF DataDB4
+111----- 1
+1-01--1- 1
+1-0-1--1 1
+1-0001-- 1
+.names WR.BLIF ALUnit>Flags3.BLIF CUnit>PushF.BLIF CUnit>CALL0.BLIF \
+CUnit>CALL1.BLIF ALUnit>Accum3.BLIF PAUnit>PC8.BLIF PAUnit>PC3.BLIF DataDB3
+111----- 1
+1-01--1- 1
+1-0-1--1 1
+1-0001-- 1
+.names WR.BLIF ALUnit>Flags2.BLIF CUnit>PushF.BLIF CUnit>CALL0.BLIF \
+CUnit>CALL1.BLIF ALUnit>Accum2.BLIF SReg5.BLIF PAUnit>PC2.BLIF DataDB2
+111----- 1
+1-01--1- 1
+1-0-1--1 1
+1-0001-- 1
+.names WR.BLIF ALUnit>Flags1.BLIF CUnit>PushF.BLIF CUnit>CALL0.BLIF \
+CUnit>CALL1.BLIF ALUnit>Accum1.BLIF SReg4.BLIF PAUnit>PC1.BLIF DataDB1
+111----- 1
+1-01--1- 1
+1-0-1--1 1
+1-0001-- 1
+.names WR.BLIF ALUnit>Flags0.BLIF CUnit>PushF.BLIF CUnit>CALL0.BLIF \
+CUnit>CALL1.BLIF ALUnit>Accum0.BLIF SReg3.BLIF PAUnit>PC0.BLIF DataDB0
+111----- 1
+1-01--1- 1
+1-0-1--1 1
+1-0001-- 1
+.names Reset.BLIF PAUnit>Reset
+0 1
+.names DAUnit>Accum0
+.names DAUnit>Accum1
+.names DAUnit>Accum2
+.names DAUnit>Accum3
+.names DAUnit>Accum4
+.names DAUnit>Accum5
+.names DAUnit>Accum6
+.names DAUnit>Accum7
+.names Reset.BLIF DAUnit>Reset
+0 1
+.names CUnit>Imm.BLIF DataDB0.BLIF CUnit>IR0.BLIF ALUnit>Data0
+01- 1
+1-1 1
+.names CUnit>Imm.BLIF DataDB1.BLIF CUnit>IR1.BLIF ALUnit>Data1
+01- 1
+1-1 1
+.names CUnit>Imm.BLIF DataDB2.BLIF CUnit>IR2.BLIF ALUnit>Data2
+01- 1
+1-1 1
+.names CUnit>Imm.BLIF DataDB3.BLIF CUnit>IR3.BLIF ALUnit>Data3
+01- 1
+1-1 1
+.names CUnit>Imm.BLIF DataDB4.BLIF CUnit>IR4.BLIF ALUnit>Data4
+01- 1
+1-1 1
+.names CUnit>Imm.BLIF DataDB5.BLIF CUnit>IR5.BLIF ALUnit>Data5
+01- 1
+1-1 1
+.names CUnit>Imm.BLIF DataDB6.BLIF CUnit>IR6.BLIF ALUnit>Data6
+01- 1
+1-1 1
+.names CUnit>Imm.BLIF DataDB7.BLIF CUnit>IR7.BLIF ALUnit>Data7
+01- 1
+1-1 1
+.names ALUnit>MaskC
+.names ALUnit>MaskS
+.names ALUnit>MaskV
+.names ALUnit>MaskZ
+.names Reset.BLIF ALUnit>Reset
+0 1
+.names Reset.BLIF CUnit>Reset
+0 1
+.names ProgramAB12.OE
+ 1
+.names ProgramAB11.OE
+ 1
+.names ProgramAB10.OE
+ 1
+.names ProgramAB9.OE
+ 1
+.names ProgramAB8.OE
+ 1
+.names ProgramAB7.OE
+ 1
+.names ProgramAB6.OE
+ 1
+.names ProgramAB5.OE
+ 1
+.names ProgramAB4.OE
+ 1
+.names ProgramAB3.OE
+ 1
+.names ProgramAB2.OE
+ 1
+.names ProgramAB1.OE
+ 1
+.names ProgramAB0.OE
+ 1
+.names DataAB7.OE
+ 1
+.names DataAB6.OE
+ 1
+.names DataAB5.OE
+ 1
+.names DataAB4.OE
+ 1
+.names DataAB3.OE
+ 1
+.names DataAB2.OE
+ 1
+.names DataAB1.OE
+ 1
+.names DataAB0.OE
+ 1
+.names RD.OE
+ 1
+.names WR.OE
+ 1
+.names IO.OE
+ 1
+.names Accum7.OE
+ 1
+.names Accum6.OE
+ 1
+.names Accum5.OE
+ 1
+.names Accum4.OE
+ 1
+.names Accum3.OE
+ 1
+.names Accum2.OE
+ 1
+.names Accum1.OE
+ 1
+.names Accum0.OE
+ 1
+.names Flags7.OE
+ 1
+.names Flags6.OE
+ 1
+.names Flags5.OE
+ 1
+.names Flags4.OE
+ 1
+.names Flags3.OE
+ 1
+.names Flags2.OE
+ 1
+.names Flags1.OE
+ 1
+.names Flags0.OE
+ 1
+.names XReg7.OE
+ 1
+.names XReg6.OE
+ 1
+.names XReg5.OE
+ 1
+.names XReg4.OE
+ 1
+.names XReg3.OE
+ 1
+.names XReg2.OE
+ 1
+.names XReg1.OE
+ 1
+.names XReg0.OE
+ 1
+.names SReg7.OE
+ 1
+.names SReg6.OE
+ 1
+.names SReg5.OE
+ 1
+.names SReg4.OE
+ 1
+.names SReg3.OE
+ 1
+.names SReg2.OE
+ 1
+.names SReg1.OE
+ 1
+.names SReg0.OE
+ 1
+.names PAUnit>ProgAddr12.BLIF ProgramAB12
+1 1
+0 0
+.names PAUnit>ProgAddr11.BLIF ProgramAB11
+1 1
+0 0
+.names PAUnit>ProgAddr10.BLIF ProgramAB10
+1 1
+0 0
+.names PAUnit>ProgAddr9.BLIF ProgramAB9
+1 1
+0 0
+.names PAUnit>ProgAddr8.BLIF ProgramAB8
+1 1
+0 0
+.names PAUnit>ProgAddr7.BLIF ProgramAB7
+1 1
+0 0
+.names PAUnit>ProgAddr6.BLIF ProgramAB6
+1 1
+0 0
+.names PAUnit>ProgAddr5.BLIF ProgramAB5
+1 1
+0 0
+.names PAUnit>ProgAddr4.BLIF ProgramAB4
+1 1
+0 0
+.names PAUnit>ProgAddr3.BLIF ProgramAB3
+1 1
+0 0
+.names PAUnit>ProgAddr2.BLIF ProgramAB2
+1 1
+0 0
+.names PAUnit>ProgAddr1.BLIF ProgramAB1
+1 1
+0 0
+.names PAUnit>ProgAddr0.BLIF ProgramAB0
+1 1
+0 0
+.names DAUnit>DataAddr7.BLIF DataAB7
+1 1
+0 0
+.names DAUnit>DataAddr6.BLIF DataAB6
+1 1
+0 0
+.names DAUnit>DataAddr5.BLIF DataAB5
+1 1
+0 0
+.names DAUnit>DataAddr4.BLIF DataAB4
+1 1
+0 0
+.names DAUnit>DataAddr3.BLIF DataAB3
+1 1
+0 0
+.names DAUnit>DataAddr2.BLIF DataAB2
+1 1
+0 0
+.names DAUnit>DataAddr1.BLIF DataAB1
+1 1
+0 0
+.names DAUnit>DataAddr0.BLIF DataAB0
+1 1
+0 0
+.names CUnit>RD.BLIF RD
+1 1
+0 0
+.names CUnit>WR.BLIF WR
+1 1
+0 0
+.names CUnit>IO.BLIF IO
+1 1
+0 0
+.names ALUnit>Flags7.BLIF Flags7
+1 1
+0 0
+.names ALUnit>Flags6.BLIF Flags6
+1 1
+0 0
+.names ALUnit>Flags5.BLIF Flags5
+1 1
+0 0
+.names ALUnit>Flags4.BLIF Flags4
+1 1
+0 0
+.names ALUnit>Flags3.BLIF Flags3
+1 1
+0 0
+.names ALUnit>Flags2.BLIF Flags2
+1 1
+0 0
+.names ALUnit>Flags1.BLIF Flags1
+1 1
+0 0
+.names ALUnit>Flags0.BLIF Flags0
+1 1
+0 0
+.names DAUnit>XReg7.BLIF XReg7
+1 1
+0 0
+.names DAUnit>XReg6.BLIF XReg6
+1 1
+0 0
+.names DAUnit>XReg5.BLIF XReg5
+1 1
+0 0
+.names DAUnit>XReg4.BLIF XReg4
+1 1
+0 0
+.names DAUnit>XReg3.BLIF XReg3
+1 1
+0 0
+.names DAUnit>XReg2.BLIF XReg2
+1 1
+0 0
+.names DAUnit>XReg1.BLIF XReg1
+1 1
+0 0
+.names DAUnit>XReg0.BLIF XReg0
+1 1
+0 0
+.names DAUnit>SReg7.BLIF SReg7
+1 1
+0 0
+.names DAUnit>SReg6.BLIF SReg6
+1 1
+0 0
+.names DAUnit>SReg5.BLIF SReg5
+1 1
+0 0
+.names DAUnit>SReg4.BLIF SReg4
+1 1
+0 0
+.names DAUnit>SReg3.BLIF SReg3
+1 1
+0 0
+.names DAUnit>SReg2.BLIF SReg2
+1 1
+0 0
+.names DAUnit>SReg1.BLIF SReg1
+1 1
+0 0
+.names DAUnit>SReg0.BLIF SReg0
+1 1
+0 0
+.names Clock.BLIF PAUnit>Clock
+1 1
+0 0
+.names CUnit>IR0.BLIF PAUnit>Direct0
+1 1
+0 0
+.names CUnit>IR1.BLIF PAUnit>Direct1
+1 1
+0 0
+.names CUnit>IR10.BLIF PAUnit>Direct10
+1 1
+0 0
+.names CUnit>IR11.BLIF PAUnit>Direct11
+1 1
+0 0
+.names CUnit>IR12.BLIF PAUnit>Direct12
+1 1
+0 0
+.names CUnit>IR2.BLIF PAUnit>Direct2
+1 1
+0 0
+.names CUnit>IR3.BLIF PAUnit>Direct3
+1 1
+0 0
+.names CUnit>IR4.BLIF PAUnit>Direct4
+1 1
+0 0
+.names CUnit>IR5.BLIF PAUnit>Direct5
+1 1
+0 0
+.names CUnit>IR6.BLIF PAUnit>Direct6
+1 1
+0 0
+.names CUnit>IR7.BLIF PAUnit>Direct7
+1 1
+0 0
+.names CUnit>IR8.BLIF PAUnit>Direct8
+1 1
+0 0
+.names CUnit>IR9.BLIF PAUnit>Direct9
+1 1
+0 0
+.names CUnit>PA_Load.BLIF PAUnit>Load
+1 1
+0 0
+.names CUnit>IR0.BLIF PAUnit>Offset0
+1 1
+0 0
+.names CUnit>IR1.BLIF PAUnit>Offset1
+1 1
+0 0
+.names CUnit>IR2.BLIF PAUnit>Offset2
+1 1
+0 0
+.names CUnit>IR3.BLIF PAUnit>Offset3
+1 1
+0 0
+.names CUnit>IR4.BLIF PAUnit>Offset4
+1 1
+0 0
+.names CUnit>IR5.BLIF PAUnit>Offset5
+1 1
+0 0
+.names CUnit>IR6.BLIF PAUnit>Offset6
+1 1
+0 0
+.names CUnit>IR7.BLIF PAUnit>Offset7
+1 1
+0 0
+.names CUnit>PA_Select0.BLIF PAUnit>Select0
+1 1
+0 0
+.names CUnit>PA_Select1.BLIF PAUnit>Select1
+1 1
+0 0
+.names CUnit>PA_Select2.BLIF PAUnit>Select2
+1 1
+0 0
+.names Clock.BLIF DAUnit>Clock
+1 1
+0 0
+.names CUnit>DA_IDOn.BLIF DAUnit>IDOn
+1 1
+0 0
+.names CUnit>DA_Inc.BLIF DAUnit>Inc
+1 1
+0 0
+.names CUnit>IR0.BLIF DAUnit>Offset0
+1 1
+0 0
+.names CUnit>IR1.BLIF DAUnit>Offset1
+1 1
+0 0
+.names CUnit>IR2.BLIF DAUnit>Offset2
+1 1
+0 0
+.names CUnit>IR3.BLIF DAUnit>Offset3
+1 1
+0 0
+.names CUnit>IR4.BLIF DAUnit>Offset4
+1 1
+0 0
+.names CUnit>IR5.BLIF DAUnit>Offset5
+1 1
+0 0
+.names CUnit>IR6.BLIF DAUnit>Offset6
+1 1
+0 0
+.names CUnit>IR7.BLIF DAUnit>Offset7
+1 1
+0 0
+.names CUnit>DA_Post.BLIF DAUnit>Post
+1 1
+0 0
+.names CUnit>DA_ResetOff.BLIF DAUnit>ResetOff
+1 1
+0 0
+.names CUnit>DA_UseX.BLIF DAUnit>UseX
+1 1
+0 0
+.names Clock.BLIF ALUnit>Clock
+1 1
+0 0
+.names CUnit>ALU_F0.BLIF ALUnit>F0
+1 1
+0 0
+.names CUnit>ALU_F1.BLIF ALUnit>F1
+1 1
+0 0
+.names CUnit>ALU_F2.BLIF ALUnit>F2
+1 1
+0 0
+.names CUnit>ALU_F3.BLIF ALUnit>F3
+1 1
+0 0
+.names CUnit>ALU_LF.BLIF ALUnit>LoadFlags
+1 1
+0 0
+.names CUnit>ALU_M0.BLIF ALUnit>Mode0
+1 1
+0 0
+.names CUnit>ALU_M1.BLIF ALUnit>Mode1
+1 1
+0 0
+.names CUnit>ALU_M2.BLIF ALUnit>Mode2
+1 1
+0 0
+.names CUnit>ALU_M3.BLIF ALUnit>Mode3
+1 1
+0 0
+.names CUnit>ALU_WC.BLIF ALUnit>WC
+1 1
+0 0
+.names Clock.BLIF CUnit>Clock
+1 1
+0 0
+.names ALUnit>Flags0.BLIF CUnit>Flags0
+1 1
+0 0
+.names ALUnit>Flags1.BLIF CUnit>Flags1
+1 1
+0 0
+.names ALUnit>Flags2.BLIF CUnit>Flags2
+1 1
+0 0
+.names ALUnit>Flags3.BLIF CUnit>Flags3
+1 1
+0 0
+.names ALUnit>Flags4.BLIF CUnit>Flags4
+1 1
+0 0
+.names ALUnit>Flags5.BLIF CUnit>Flags5
+1 1
+0 0
+.names ALUnit>Flags6.BLIF CUnit>Flags6
+1 1
+0 0
+.names ALUnit>Flags7.BLIF CUnit>Flags7
+1 1
+0 0
+.names ProgramDB0.BLIF CUnit>PDB0
+1 1
+0 0
+.names ProgramDB1.BLIF CUnit>PDB1
+1 1
+0 0
+.names ProgramDB10.BLIF CUnit>PDB10
+1 1
+0 0
+.names ProgramDB11.BLIF CUnit>PDB11
+1 1
+0 0
+.names ProgramDB12.BLIF CUnit>PDB12
+1 1
+0 0
+.names ProgramDB13.BLIF CUnit>PDB13
+1 1
+0 0
+.names ProgramDB14.BLIF CUnit>PDB14
+1 1
+0 0
+.names ProgramDB15.BLIF CUnit>PDB15
+1 1
+0 0
+.names ProgramDB2.BLIF CUnit>PDB2
+1 1
+0 0
+.names ProgramDB3.BLIF CUnit>PDB3
+1 1
+0 0
+.names ProgramDB4.BLIF CUnit>PDB4
+1 1
+0 0
+.names ProgramDB5.BLIF CUnit>PDB5
+1 1
+0 0
+.names ProgramDB6.BLIF CUnit>PDB6
+1 1
+0 0
+.names ProgramDB7.BLIF CUnit>PDB7
+1 1
+0 0
+.names ProgramDB8.BLIF CUnit>PDB8
+1 1
+0 0
+.names ProgramDB9.BLIF CUnit>PDB9
+1 1
+0 0
+.names WR.BLIF DataDB7.OE
+1 1
+0 0
+.names WR.BLIF DataDB6.OE
+1 1
+0 0
+.names WR.BLIF DataDB5.OE
+1 1
+0 0
+.names WR.BLIF DataDB4.OE
+1 1
+0 0
+.names WR.BLIF DataDB3.OE
+1 1
+0 0
+.names WR.BLIF DataDB2.OE
+1 1
+0 0
+.names WR.BLIF DataDB1.OE
+1 1
+0 0
+.names WR.BLIF DataDB0.OE
+1 1
+0 0
+.end

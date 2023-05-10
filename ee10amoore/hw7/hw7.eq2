@@ -1,0 +1,353 @@
+ ispLEVER Classic 2.0.00.17.20.15 Linked Equations File
+Copyright(C), 1992-2015, Lattice Semiconductor Corp.
+All Rights Reserved.
+
+Design aludemo created  Thu Feb 27 21:26:03 2020
+
+Title:  ALU Unit Demo
+
+ P-Terms   Fan-in  Fan-out  Type  Name (attributes)
+---------  ------  -------  ----  -----------------
+   0          0        1    Pin   AccumAddr12 
+   0          0        1    Pin   AccumAddr11 
+   0          0        1    Pin   AccumAddr10 
+   0          0        1    Pin   AccumAddr9 
+   0          0        1    Pin   AccumAddr8 
+   1/1        1        1    Pin   XReg7 
+   1/1        1        1    Pin   XReg6 
+   1/1        1        1    Pin   XReg5 
+   1/1        1        1    Pin   XReg4 
+   1/1        1        1    Pin   XReg3 
+   1/1        1        1    Pin   XReg2 
+   1/1        1        1    Pin   XReg1 
+   1/1        1        1    Pin   XReg0 
+   1/1        1        1    Pin   SReg7 
+   1/1        1        1    Pin   SReg6 
+   1/1        1        1    Pin   SReg5 
+   1/1        1        1    Pin   SReg4 
+   1/1        1        1    Pin   SReg3 
+   1/1        1        1    Pin   SReg2 
+   1/1        1        1    Pin   SReg1 
+   1/1        1        1    Pin   SReg0 
+   9          8        1    Pin   AccumAddr7.D 
+   1/1        1        1    Pin   AccumAddr7.C 
+   6          8        1    Pin   AccumAddr6.D 
+   1/1        1        1    Pin   AccumAddr6.C 
+   9          8        1    Pin   AccumAddr5.D 
+   1/1        1        1    Pin   AccumAddr5.C 
+   9          8        1    Pin   AccumAddr4.D 
+   1/1        1        1    Pin   AccumAddr4.C 
+   9          8        1    Pin   AccumAddr3.D 
+   1/1        1        1    Pin   AccumAddr3.C 
+   9          8        1    Pin   AccumAddr2.D 
+   1/1        1        1    Pin   AccumAddr2.C 
+   9          8        1    Pin   AccumAddr1.D 
+   1/1        1        1    Pin   AccumAddr1.C 
+   3          7        1    Pin   AccumAddr0.D 
+   1/1        1        1    Pin   AccumAddr0.C 
+   0          0        1    Pin   Flags7.D 
+   1/1        1        1    Pin   Flags7.C 
+   0          0        1    Pin   Flags6.D 
+   1/1        1        1    Pin   Flags6.C 
+   0          0        1    Pin   Flags5.D 
+   1/1        1        1    Pin   Flags5.C 
+   0          0        1    Pin   Flags4.D 
+   1/1        1        1    Pin   Flags4.C 
+   0          0        1    Pin   Flags3.D 
+   1/1        1        1    Pin   Flags3.C 
+   0          0        1    Pin   Flags2.D 
+   1/1        1        1    Pin   Flags2.C 
+   0          0        1    Pin   Flags1.D 
+   1/1        1        1    Pin   Flags1.C 
+   0          0        1    Pin   Flags0.D 
+   1/1        1        1    Pin   Flags0.C 
+  14          7        1    Node  X0_CarryOut7- 
+   5          4        1    Node  X0_CarryOut5 
+   5          4        1    Node  X0_CarryOut4 
+   5          4        1    Node  X0_CarryOut3 
+   5          4        1    Node  X0_CarryOut2 
+   7          5        1    Node  X0_CarryOut1 
+=========
+ 136/32         Best P-Term Total: 136
+                       Total Pins: 90
+                      Total Nodes: 22
+            Average P-Term/Output: 2
+
+
+Equations:
+
+AccumAddr12 = (0);
+
+AccumAddr11 = (0);
+
+AccumAddr10 = (0);
+
+AccumAddr9 = (0);
+
+AccumAddr8 = (0);
+
+XReg7 = (DataOff7);
+
+XReg6 = (DataOff6);
+
+XReg5 = (DataOff5);
+
+XReg4 = (DataOff4);
+
+XReg3 = (DataOff3);
+
+XReg2 = (DataOff2);
+
+XReg1 = (DataOff1);
+
+XReg0 = (DataOff0);
+
+SReg7 = (DataOff7);
+
+SReg6 = (DataOff6);
+
+SReg5 = (DataOff5);
+
+SReg4 = (DataOff4);
+
+SReg3 = (DataOff3);
+
+SReg2 = (DataOff2);
+
+SReg1 = (DataOff1);
+
+SReg0 = (DataOff0);
+
+AccumAddr7.D = (Control1 & !Control0 & Reset & !X0_A7 & !X0_B7 & !X0_CarryOut7
+     # !Control1 & !Control0 & Reset & X0_A7 & !X0_B7 & !X0_CarryOut7
+     # !Control1 & !Control0 & Reset & !X0_A7 & X0_B7 & !X0_CarryOut7
+     # Control1 & !Control0 & Reset & X0_A7 & X0_B7 & !X0_CarryOut7
+     # !Control1 & !Control0 & Reset & !X0_A7 & !X0_B7 & X0_CarryOut7
+     # Control1 & !Control0 & Reset & X0_A7 & !X0_B7 & X0_CarryOut7
+     # Control1 & !Control0 & Reset & !X0_A7 & X0_B7 & X0_CarryOut7
+     # !Control1 & !Control0 & Reset & X0_A7 & X0_B7 & X0_CarryOut7
+     # DataOff7 & Reset & AccumAddr7.Q);
+
+AccumAddr7.C = (Clock);
+
+AccumAddr6.D = (Control1 & !Control0 & Reset & X0_A6 & !X0_B6
+     # !Control1 & !Control0 & Reset & X0_A6 & X0_B6
+     # Control1 & !Control0 & Reset & !X0_B6 & !X0_CarryOut5
+     # !Control1 & !Control0 & Reset & X0_B6 & !X0_CarryOut5
+     # DataOff6 & Reset & AccumAddr6.Q
+     # !Control0 & Reset & X0_A6 & !X0_CarryOut5);
+
+AccumAddr6.C = (Clock);
+
+AccumAddr5.D = (Control1 & !Control0 & Reset & !X0_A5 & !X0_B5 & !X0_CarryOut5
+     # !Control1 & !Control0 & Reset & X0_A5 & !X0_B5 & !X0_CarryOut5
+     # !Control1 & !Control0 & Reset & !X0_A5 & X0_B5 & !X0_CarryOut5
+     # Control1 & !Control0 & Reset & X0_A5 & X0_B5 & !X0_CarryOut5
+     # !Control1 & !Control0 & Reset & !X0_A5 & !X0_B5 & X0_CarryOut5
+     # Control1 & !Control0 & Reset & X0_A5 & !X0_B5 & X0_CarryOut5
+     # Control1 & !Control0 & Reset & !X0_A5 & X0_B5 & X0_CarryOut5
+     # !Control1 & !Control0 & Reset & X0_A5 & X0_B5 & X0_CarryOut5
+     # DataOff5 & Reset & AccumAddr5.Q);
+
+AccumAddr5.C = (Clock);
+
+AccumAddr4.D = (Control1 & !Control0 & Reset & !X0_A4 & !X0_B4 & !X0_CarryOut4
+     # !Control1 & !Control0 & Reset & X0_A4 & !X0_B4 & !X0_CarryOut4
+     # !Control1 & !Control0 & Reset & !X0_A4 & X0_B4 & !X0_CarryOut4
+     # Control1 & !Control0 & Reset & X0_A4 & X0_B4 & !X0_CarryOut4
+     # !Control1 & !Control0 & Reset & !X0_A4 & !X0_B4 & X0_CarryOut4
+     # Control1 & !Control0 & Reset & X0_A4 & !X0_B4 & X0_CarryOut4
+     # Control1 & !Control0 & Reset & !X0_A4 & X0_B4 & X0_CarryOut4
+     # !Control1 & !Control0 & Reset & X0_A4 & X0_B4 & X0_CarryOut4
+     # DataOff4 & Reset & AccumAddr4.Q);
+
+AccumAddr4.C = (Clock);
+
+AccumAddr3.D = (Control1 & !Control0 & Reset & !X0_A3 & !X0_B3 & !X0_CarryOut3
+     # !Control1 & !Control0 & Reset & X0_A3 & !X0_B3 & !X0_CarryOut3
+     # !Control1 & !Control0 & Reset & !X0_A3 & X0_B3 & !X0_CarryOut3
+     # Control1 & !Control0 & Reset & X0_A3 & X0_B3 & !X0_CarryOut3
+     # !Control1 & !Control0 & Reset & !X0_A3 & !X0_B3 & X0_CarryOut3
+     # Control1 & !Control0 & Reset & X0_A3 & !X0_B3 & X0_CarryOut3
+     # Control1 & !Control0 & Reset & !X0_A3 & X0_B3 & X0_CarryOut3
+     # !Control1 & !Control0 & Reset & X0_A3 & X0_B3 & X0_CarryOut3
+     # DataOff3 & Reset & AccumAddr3.Q);
+
+AccumAddr3.C = (Clock);
+
+AccumAddr2.D = (Control1 & !Control0 & Reset & !X0_A2 & !X0_B2 & !X0_CarryOut2
+     # !Control1 & !Control0 & Reset & X0_A2 & !X0_B2 & !X0_CarryOut2
+     # !Control1 & !Control0 & Reset & !X0_A2 & X0_B2 & !X0_CarryOut2
+     # Control1 & !Control0 & Reset & X0_A2 & X0_B2 & !X0_CarryOut2
+     # !Control1 & !Control0 & Reset & !X0_A2 & !X0_B2 & X0_CarryOut2
+     # Control1 & !Control0 & Reset & X0_A2 & !X0_B2 & X0_CarryOut2
+     # Control1 & !Control0 & Reset & !X0_A2 & X0_B2 & X0_CarryOut2
+     # !Control1 & !Control0 & Reset & X0_A2 & X0_B2 & X0_CarryOut2
+     # DataOff2 & Reset & AccumAddr2.Q);
+
+AccumAddr2.C = (Clock);
+
+AccumAddr1.D = (Control1 & !Control0 & Reset & !X0_A1 & !X0_B1 & !X0_CarryOut1
+     # !Control1 & !Control0 & Reset & X0_A1 & !X0_B1 & !X0_CarryOut1
+     # !Control1 & !Control0 & Reset & !X0_A1 & X0_B1 & !X0_CarryOut1
+     # Control1 & !Control0 & Reset & X0_A1 & X0_B1 & !X0_CarryOut1
+     # !Control1 & !Control0 & Reset & !X0_A1 & !X0_B1 & X0_CarryOut1
+     # Control1 & !Control0 & Reset & X0_A1 & !X0_B1 & X0_CarryOut1
+     # Control1 & !Control0 & Reset & !X0_A1 & X0_B1 & X0_CarryOut1
+     # !Control1 & !Control0 & Reset & X0_A1 & X0_B1 & X0_CarryOut1
+     # DataOff1 & Reset & AccumAddr1.Q);
+
+AccumAddr1.C = (Clock);
+
+AccumAddr0.D = (!Control0 & Reset & X0_A0 & !X0_B0
+     # !Control1 & !Control0 & Reset & X0_B0
+     # DataOff0 & Reset & AccumAddr0.Q);
+
+AccumAddr0.C = (Clock);
+
+Flags7.D = (0);
+
+Flags7.C = (Clock);
+
+Flags6.D = (0);
+
+Flags6.C = (Clock);
+
+Flags5.D = (0);
+
+Flags5.C = (Clock);
+
+Flags4.D = (0);
+
+Flags4.C = (Clock);
+
+Flags3.D = (0);
+
+Flags3.C = (Clock);
+
+Flags2.D = (0);
+
+Flags2.C = (Clock);
+
+Flags1.D = (0);
+
+Flags1.C = (Clock);
+
+Flags0.D = (0);
+
+Flags0.C = (Clock);
+
+!X0_CarryOut7 = (!Control1 & !X0_A6 & !X0_B7 & !X0_B6 & !X0_CarryOut7
+     # Control1 & !X0_A6 & X0_B7 & X0_B6 & X0_CarryOut7
+     # !Control1 & !X0_A7 & !X0_A6 & !X0_B6 & !X0_CarryOut7
+     # Control1 & !X0_A7 & !X0_A6 & X0_B6 & X0_CarryOut7
+     # !Control1 & !X0_B7 & !X0_B6 & !X0_CarryOut7 & !X0_CarryOut5
+     # Control1 & X0_B7 & X0_B6 & X0_CarryOut7 & !X0_CarryOut5
+     # !Control1 & !X0_A7 & !X0_B7 & !X0_CarryOut7
+     # Control1 & !X0_A7 & X0_B7 & X0_CarryOut7
+     # !Control1 & !X0_A6 & !X0_B7 & !X0_CarryOut7 & !X0_CarryOut5
+     # Control1 & !X0_A6 & X0_B7 & X0_CarryOut7 & !X0_CarryOut5
+     # !Control1 & !X0_A7 & !X0_B6 & !X0_CarryOut7 & !X0_CarryOut5
+     # Control1 & !X0_A7 & X0_B6 & X0_CarryOut7 & !X0_CarryOut5
+     # !Control1 & !X0_A7 & !X0_A6 & !X0_CarryOut7 & !X0_CarryOut5
+     # Control1 & !X0_A7 & !X0_A6 & X0_CarryOut7 & !X0_CarryOut5);
+
+X0_CarryOut5 = (Control1 & X0_A5 & !X0_B5
+     # !Control1 & X0_A5 & X0_B5
+     # Control1 & !X0_B5 & X0_CarryOut4
+     # !Control1 & X0_B5 & X0_CarryOut4
+     # X0_A5 & X0_CarryOut4);
+
+X0_CarryOut4 = (Control1 & X0_A4 & !X0_B4
+     # !Control1 & X0_A4 & X0_B4
+     # Control1 & !X0_B4 & X0_CarryOut3
+     # !Control1 & X0_B4 & X0_CarryOut3
+     # X0_A4 & X0_CarryOut3);
+
+X0_CarryOut3 = (Control1 & X0_A3 & !X0_B3
+     # !Control1 & X0_A3 & X0_B3
+     # Control1 & !X0_B3 & X0_CarryOut2
+     # !Control1 & X0_B3 & X0_CarryOut2
+     # X0_A3 & X0_CarryOut2);
+
+X0_CarryOut2 = (Control1 & X0_A2 & !X0_B2
+     # !Control1 & X0_A2 & X0_B2
+     # Control1 & !X0_B2 & X0_CarryOut1
+     # !Control1 & X0_B2 & X0_CarryOut1
+     # X0_A2 & X0_CarryOut1);
+
+X0_CarryOut1 = (X0_A1 & X0_B1 & !X0_B0
+     # !Control1 & X0_A0 & X0_B1 & X0_B0
+     # Control1 & X0_A0 & !X0_B1
+     # !Control1 & X0_A1 & X0_B1
+     # Control1 & !X0_B1 & !X0_B0
+     # Control1 & X0_A1 & !X0_B1
+     # X0_A1 & X0_A0 & X0_B0);
+
+
+Reverse-Polarity Equations:
+
+!XReg7 = (!DataOff7);
+
+!XReg6 = (!DataOff6);
+
+!XReg5 = (!DataOff5);
+
+!XReg4 = (!DataOff4);
+
+!XReg3 = (!DataOff3);
+
+!XReg2 = (!DataOff2);
+
+!XReg1 = (!DataOff1);
+
+!XReg0 = (!DataOff0);
+
+!SReg7 = (!DataOff7);
+
+!SReg6 = (!DataOff6);
+
+!SReg5 = (!DataOff5);
+
+!SReg4 = (!DataOff4);
+
+!SReg3 = (!DataOff3);
+
+!SReg2 = (!DataOff2);
+
+!SReg1 = (!DataOff1);
+
+!SReg0 = (!DataOff0);
+
+!AccumAddr7.C = (!Clock);
+
+!AccumAddr6.C = (!Clock);
+
+!AccumAddr5.C = (!Clock);
+
+!AccumAddr4.C = (!Clock);
+
+!AccumAddr3.C = (!Clock);
+
+!AccumAddr2.C = (!Clock);
+
+!AccumAddr1.C = (!Clock);
+
+!AccumAddr0.C = (!Clock);
+
+!Flags7.C = (!Clock);
+
+!Flags6.C = (!Clock);
+
+!Flags5.C = (!Clock);
+
+!Flags4.C = (!Clock);
+
+!Flags3.C = (!Clock);
+
+!Flags2.C = (!Clock);
+
+!Flags1.C = (!Clock);
+
+!Flags0.C = (!Clock);
+

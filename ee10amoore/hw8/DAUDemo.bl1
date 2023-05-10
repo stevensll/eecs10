@@ -1,0 +1,230 @@
+#$ TOOL ispLEVER Classic 2.0.00.17.20.15
+#$ DATE Sat Mar 04 15:44:53 1995
+#$ TITLE Data Address Unit Unit Demo
+#$ MODULE daudemo
+#$ JEDECFILE daudemo
+#$ PINS 90 DataOff7:80 DataOff6:81 DataOff5:83 DataOff4:84 DataOff3:85 DataOff2:86 \
+#  DataOff1:87 DataOff0:88 AddrData12:102 AddrData11:103 AddrData10:104 AddrData9:105 \
+#  AddrData8:111 AddrData7:93 AddrData6:94 AddrData5:95 AddrData4:96 AddrData3:97 \
+#  AddrData2:98 AddrData1:100 AddrData0:101 Control29:14 Control28:13 Control27:12 \
+#  Control26:11 Control25:9 Control24:8 Control23:7 Control22:6 Control21:5 Control20:4 \
+#  Control19:143 Control18:142 Control17:141 Control16:140 Control15:139 Control14:138 \
+#  Control13:135 Control12:134 Control11:133 Control10:132 Control9:131 Control8:124 \
+#  Control7:123 Control6:122 Control5:121 Control4:120 Control3:116 Control2:115 \
+#  Control1:114 Control0:113 Reset:40 Clock:128 AccumAddr12:29 AccumAddr11:30 \
+#  AccumAddr10:31 AccumAddr9:32 AccumAddr8:33 AccumAddr7:16 AccumAddr6:21 \
+#  AccumAddr5:22 AccumAddr4:23 AccumAddr3:24 AccumAddr2:25 AccumAddr1:26 AccumAddr0:28 \
+#  XReg7:68 XReg6:69 XReg5:70 XReg4:71 XReg3:76 XReg2:77 XReg1:78 XReg0:79 SReg7:58 \
+#  SReg6:59 SReg5:60 SReg4:61 SReg3:62 SReg2:63 SReg1:66 SReg0:67 Flags7:42 Flags6:43 \
+#  Flags5:44 Flags4:48 Flags3:49 Flags2:50 Flags1:51 Flags0:52
+#$ NODES 47 DAUnit>Accum0'co'  DAUnit>Accum1'co'  DAUnit>Accum2'co'  DAUnit>Accum3'co'  \
+#  DAUnit>Accum4'co'  DAUnit>Accum5'co'  DAUnit>Accum6'co'  DAUnit>Accum7'co'  DAUnit>Clock'co'  \
+#  DAUnit>IDOn'co'  DAUnit>Inc'co'  DAUnit>Offset0'co'  DAUnit>Offset1'co'  DAUnit>Offset2'co'  \
+#  DAUnit>Offset3'co'  DAUnit>Offset4'co'  DAUnit>Offset5'co'  DAUnit>Offset6'co'  \
+#  DAUnit>Offset7'co'  DAUnit>Post'co'  DAUnit>Reset'co'  DAUnit>ResetOff'co'  DAUnit>UseX'co'  \
+#  DAUnit>DataAddr0'co'  DAUnit>DataAddr1'co'  DAUnit>DataAddr2'co'  DAUnit>DataAddr3'co'  \
+#  DAUnit>DataAddr4'co'  DAUnit>DataAddr5'co'  DAUnit>DataAddr6'co'  DAUnit>DataAddr7'co'  \
+#  DAUnit>SReg0'co'  DAUnit>SReg1'co'  DAUnit>SReg2'co'  DAUnit>SReg3'co'  DAUnit>SReg4'co'  \
+#  DAUnit>SReg5'co'  DAUnit>SReg6'co'  DAUnit>SReg7'co'  DAUnit>XReg0'co'  DAUnit>XReg1'co'  \
+#  DAUnit>XReg2'co'  DAUnit>XReg3'co'  DAUnit>XReg4'co'  DAUnit>XReg5'co'  DAUnit>XReg6'co'  \
+#  DAUnit>XReg7'co' 
+#$ INTERFACE dataaccess  47 Accum0'i'  Accum1'i'  Accum2'i'  Accum3'i'  Accum4'i'  Accum5'i'  Accum6'i'  Accum7'i'  \
+#  Clock'i'  IDOn'i'  Inc'i'  Offset0'i'  Offset1'i'  Offset2'i'  Offset3'i'  Offset4'i'  Offset5'i'  Offset6'i'  Offset7'i'  Post'i'  Reset'i'  \
+#  ResetOff'i'  UseX'i'  DataAddr0'o'  DataAddr1'o'  DataAddr2'o'  DataAddr3'o'  DataAddr4'o'  DataAddr5'o'  DataAddr6'o'  \
+#  DataAddr7'o'  SReg0'o'  SReg1'o'  SReg2'o'  SReg3'o'  SReg4'o'  SReg5'o'  SReg6'o'  SReg7'o'  XReg0'o'  XReg1'o'  XReg2'o'  XReg3'o'  XReg4'o'  \
+#  XReg5'o'  XReg6'o'  XReg7'o' 
+#$ INSTANCE DAUnit dataaccess 47 DAUnit>Accum0 DAUnit>Accum1 DAUnit>Accum2 \
+#  DAUnit>Accum3 DAUnit>Accum4 DAUnit>Accum5 DAUnit>Accum6 DAUnit>Accum7 DAUnit>Clock \
+#  DAUnit>IDOn DAUnit>Inc DAUnit>Offset0 DAUnit>Offset1 DAUnit>Offset2 DAUnit>Offset3 \
+#  DAUnit>Offset4 DAUnit>Offset5 DAUnit>Offset6 DAUnit>Offset7 DAUnit>Post \
+#  DAUnit>Reset DAUnit>ResetOff DAUnit>UseX DAUnit>DataAddr0 DAUnit>DataAddr1 \
+#  DAUnit>DataAddr2 DAUnit>DataAddr3 DAUnit>DataAddr4 DAUnit>DataAddr5 \
+#  DAUnit>DataAddr6 DAUnit>DataAddr7 DAUnit>SReg0 DAUnit>SReg1 DAUnit>SReg2 \
+#  DAUnit>SReg3 DAUnit>SReg4 DAUnit>SReg5 DAUnit>SReg6 DAUnit>SReg7 DAUnit>XReg0 \
+#  DAUnit>XReg1 DAUnit>XReg2 DAUnit>XReg3 DAUnit>XReg4 DAUnit>XReg5 DAUnit>XReg6 \
+#  DAUnit>XReg7
+.model daudemo
+.inputs AddrData7.BLIF AddrData6.BLIF AddrData5.BLIF AddrData4.BLIF \
+AddrData3.BLIF AddrData2.BLIF AddrData1.BLIF AddrData0.BLIF DataOff7.BLIF \
+DataOff6.BLIF DataOff5.BLIF DataOff4.BLIF DataOff3.BLIF DataOff2.BLIF \
+DataOff1.BLIF DataOff0.BLIF Control2.BLIF Control1.BLIF Control0.BLIF \
+Control3.BLIF Control4.BLIF Reset.BLIF Clock.BLIF DAUnit>DataAddr7.BLIF \
+DAUnit>DataAddr6.BLIF DAUnit>DataAddr5.BLIF DAUnit>DataAddr4.BLIF \
+DAUnit>DataAddr3.BLIF DAUnit>DataAddr2.BLIF DAUnit>DataAddr1.BLIF \
+DAUnit>DataAddr0.BLIF DAUnit>XReg7.BLIF DAUnit>XReg6.BLIF DAUnit>XReg5.BLIF \
+DAUnit>XReg4.BLIF DAUnit>XReg3.BLIF DAUnit>XReg2.BLIF DAUnit>XReg1.BLIF \
+DAUnit>XReg0.BLIF DAUnit>SReg7.BLIF DAUnit>SReg6.BLIF DAUnit>SReg5.BLIF \
+DAUnit>SReg4.BLIF DAUnit>SReg3.BLIF DAUnit>SReg2.BLIF DAUnit>SReg1.BLIF \
+DAUnit>SReg0.BLIF
+.outputs AccumAddr12 AccumAddr11 AccumAddr10 AccumAddr9 AccumAddr8 AccumAddr7 \
+AccumAddr6 AccumAddr5 AccumAddr4 AccumAddr3 AccumAddr2 AccumAddr1 AccumAddr0 \
+XReg7 XReg6 XReg5 XReg4 XReg3 XReg2 XReg1 XReg0 SReg7 SReg6 SReg5 SReg4 SReg3 \
+SReg2 SReg1 SReg0 Flags7 Flags6 Flags5 Flags4 Flags3 Flags2 Flags1 Flags0 \
+DAUnit>Accum0 DAUnit>Accum1 DAUnit>Accum2 DAUnit>Accum3 DAUnit>Accum4 \
+DAUnit>Accum5 DAUnit>Accum6 DAUnit>Accum7 DAUnit>Clock DAUnit>IDOn DAUnit>Inc \
+DAUnit>Offset0 DAUnit>Offset1 DAUnit>Offset2 DAUnit>Offset3 DAUnit>Offset4 \
+DAUnit>Offset5 DAUnit>Offset6 DAUnit>Offset7 DAUnit>Post DAUnit>Reset \
+DAUnit>ResetOff DAUnit>UseX
+.names AccumAddr12
+.names AccumAddr11
+.names AccumAddr10
+.names AccumAddr9
+.names AccumAddr8
+.names Flags7
+ 1
+.names Flags6
+ 1
+.names Flags5
+ 1
+.names Flags4
+ 1
+.names Flags3
+ 1
+.names Flags2
+ 1
+.names Flags1
+ 1
+.names Flags0
+ 1
+.names DAUnit>DataAddr7.BLIF AccumAddr7
+1 1
+0 0
+.names DAUnit>DataAddr6.BLIF AccumAddr6
+1 1
+0 0
+.names DAUnit>DataAddr5.BLIF AccumAddr5
+1 1
+0 0
+.names DAUnit>DataAddr4.BLIF AccumAddr4
+1 1
+0 0
+.names DAUnit>DataAddr3.BLIF AccumAddr3
+1 1
+0 0
+.names DAUnit>DataAddr2.BLIF AccumAddr2
+1 1
+0 0
+.names DAUnit>DataAddr1.BLIF AccumAddr1
+1 1
+0 0
+.names DAUnit>DataAddr0.BLIF AccumAddr0
+1 1
+0 0
+.names DAUnit>XReg7.BLIF XReg7
+1 1
+0 0
+.names DAUnit>XReg6.BLIF XReg6
+1 1
+0 0
+.names DAUnit>XReg5.BLIF XReg5
+1 1
+0 0
+.names DAUnit>XReg4.BLIF XReg4
+1 1
+0 0
+.names DAUnit>XReg3.BLIF XReg3
+1 1
+0 0
+.names DAUnit>XReg2.BLIF XReg2
+1 1
+0 0
+.names DAUnit>XReg1.BLIF XReg1
+1 1
+0 0
+.names DAUnit>XReg0.BLIF XReg0
+1 1
+0 0
+.names DAUnit>SReg7.BLIF SReg7
+1 1
+0 0
+.names DAUnit>SReg6.BLIF SReg6
+1 1
+0 0
+.names DAUnit>SReg5.BLIF SReg5
+1 1
+0 0
+.names DAUnit>SReg4.BLIF SReg4
+1 1
+0 0
+.names DAUnit>SReg3.BLIF SReg3
+1 1
+0 0
+.names DAUnit>SReg2.BLIF SReg2
+1 1
+0 0
+.names DAUnit>SReg1.BLIF SReg1
+1 1
+0 0
+.names DAUnit>SReg0.BLIF SReg0
+1 1
+0 0
+.names AddrData0.BLIF DAUnit>Accum0
+1 1
+0 0
+.names AddrData1.BLIF DAUnit>Accum1
+1 1
+0 0
+.names AddrData2.BLIF DAUnit>Accum2
+1 1
+0 0
+.names AddrData3.BLIF DAUnit>Accum3
+1 1
+0 0
+.names AddrData4.BLIF DAUnit>Accum4
+1 1
+0 0
+.names AddrData5.BLIF DAUnit>Accum5
+1 1
+0 0
+.names AddrData6.BLIF DAUnit>Accum6
+1 1
+0 0
+.names AddrData7.BLIF DAUnit>Accum7
+1 1
+0 0
+.names Clock.BLIF DAUnit>Clock
+1 1
+0 0
+.names Control2.BLIF DAUnit>IDOn
+1 1
+0 0
+.names Control0.BLIF DAUnit>Inc
+1 1
+0 0
+.names DataOff0.BLIF DAUnit>Offset0
+1 1
+0 0
+.names DataOff1.BLIF DAUnit>Offset1
+1 1
+0 0
+.names DataOff2.BLIF DAUnit>Offset2
+1 1
+0 0
+.names DataOff3.BLIF DAUnit>Offset3
+1 1
+0 0
+.names DataOff4.BLIF DAUnit>Offset4
+1 1
+0 0
+.names DataOff5.BLIF DAUnit>Offset5
+1 1
+0 0
+.names DataOff6.BLIF DAUnit>Offset6
+1 1
+0 0
+.names DataOff7.BLIF DAUnit>Offset7
+1 1
+0 0
+.names Control1.BLIF DAUnit>Post
+1 1
+0 0
+.names Reset.BLIF DAUnit>Reset
+1 1
+0 0
+.names Control4.BLIF DAUnit>ResetOff
+1 1
+0 0
+.names Control3.BLIF DAUnit>UseX
+1 1
+0 0
+.end

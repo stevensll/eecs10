@@ -1,0 +1,58 @@
+Signal Name Cross Reference File
+
+ispLEVER Classic 2.0.00.17.20.15
+
+Design 'hw7' created Thu Mar 01 15:36:58 2007
+
+Title:  ALU Unit Demo
+
+ LEGEND:  '>'  Functional Block Port Separator
+          '/'  Hierarchy Path Separator
+          '@'  Automatically Generated Node
+
+
+Short Name                              Hierarchical Name
+----------                              -----------------
+X0_A0                                	ALUnit/A0
+X0_A1                                	ALUnit/A1
+X0_A2                                	ALUnit/A2
+X0_A3                                	ALUnit/A3
+X0_A4                                	ALUnit/A4
+X0_A5                                	ALUnit/A5
+X0_A6                                	ALUnit/A6
+X0_A7                                	ALUnit/A7
+X0_B0                                	ALUnit/B0
+X0_B1                                	ALUnit/B1
+X0_B2                                	ALUnit/B2
+X0_B3                                	ALUnit/B3
+X0_B4                                	ALUnit/B4
+X0_B5                                	ALUnit/B5
+X0_B6                                	ALUnit/B6
+X0_B7                                	ALUnit/B7
+X0_CIn                               	ALUnit/CIn
+X0_CarryOut0                         	ALUnit/CarryOut0
+X0_CarryOut1                         	ALUnit/CarryOut1
+X0_CarryOut2                         	ALUnit/CarryOut2
+X0_CarryOut3                         	ALUnit/CarryOut3
+X0_CarryOut4                         	ALUnit/CarryOut4
+X0_CarryOut5                         	ALUnit/CarryOut5
+X0_CarryOut6                         	ALUnit/CarryOut6
+X0_FOut0                             	ALUnit/FOut0
+X0_FOut1                             	ALUnit/FOut1
+X0_FOut2                             	ALUnit/FOut2
+X0_FOut3                             	ALUnit/FOut3
+X0_FOut4                             	ALUnit/FOut4
+X0_FOut5                             	ALUnit/FOut5
+X0_FOut6                             	ALUnit/FOut6
+X0_FOut7                             	ALUnit/FOut7
+X0_KeepC                             	ALUnit/KeepC
+X0_KeepS                             	ALUnit/KeepS
+X0_Subtract                          	ALUnit/Subtract
+X0_Sum0                              	ALUnit/Sum0
+X0_Sum1                              	ALUnit/Sum1
+X0_Sum2                              	ALUnit/Sum2
+X0_Sum3                              	ALUnit/Sum3
+X0_Sum4                              	ALUnit/Sum4
+X0_Sum5                              	ALUnit/Sum5
+X0_Sum6                              	ALUnit/Sum6
+X0_Sum7                              	ALUnit/Sum7

@@ -1,0 +1,93 @@
+#$ TOOL ispLEVER Classic 2.0.00.17.20.15
+#$ DATE Fri Feb 03 05:36:21 2012
+#$ TITLE Adder/Subtracter with Flags
+#$ MODULE counter
+#$ JEDECFILE addsub
+#$ PINS 24 Subtract:37 A3:31 A2:30 A1:29 A0:26 B3:22 B2:21 B1:20 B0:19 Sum4:13 Sum3:3 \
+#  Sum2:2 Sum1:44 Sum0:43 Carry:9 Overflow:8 Sign:7 Zero:4 UnsignedGT:15 UnsignedEQ:41 \
+#  UnsignedLT:24 SignedGT:16 SignedEQ:42 SignedLT:25
+#$ NODES 7 C0 C1 C2 C3 CarryOut0 CarryOut1 CarryOut2
+.model addsub
+.inputs B0.BLIF Subtract.BLIF B1.BLIF B2.BLIF B3.BLIF A0.BLIF C0.BLIF A1.BLIF \
+C1.BLIF CarryOut0.BLIF A2.BLIF C2.BLIF CarryOut1.BLIF A3.BLIF C3.BLIF \
+CarryOut2.BLIF Sum4.BLIF Sum3.BLIF Sum0.BLIF Sum1.BLIF Sum2.BLIF Zero.BLIF \
+Carry.BLIF UnsignedGT.BLIF UnsignedEQ.BLIF Sign.BLIF Overflow.BLIF \
+SignedGT.BLIF SignedEQ.BLIF
+.outputs Sum4 Sum3 Sum2 Sum1 Sum0 Carry Overflow Sign Zero UnsignedGT \
+UnsignedEQ UnsignedLT SignedGT SignedEQ SignedLT C0 C1 C2 C3 CarryOut0 \
+CarryOut1 CarryOut2
+.names A3.BLIF C3.BLIF CarryOut2.BLIF Sum4
+11- 1
+011 1
+101 1
+.names A3.BLIF C3.BLIF CarryOut2.BLIF Sum3
+111 1
+001 1
+010 1
+100 1
+.names A2.BLIF C2.BLIF CarryOut1.BLIF Sum2
+111 1
+001 1
+010 1
+100 1
+.names A1.BLIF C1.BLIF CarryOut0.BLIF Sum1
+111 1
+001 1
+010 1
+100 1
+.names Subtract.BLIF A0.BLIF C0.BLIF Sum0
+111 1
+001 1
+010 1
+100 1
+.names CarryOut2.BLIF Sum4.BLIF Overflow
+01 1
+10 1
+.names Sum3.BLIF Sum0.BLIF Sum1.BLIF Sum2.BLIF Zero
+0000 1
+.names Carry.BLIF UnsignedGT
+0 1
+.names UnsignedGT.BLIF UnsignedEQ.BLIF UnsignedLT
+00 1
+.names Sign.BLIF Overflow.BLIF SignedGT
+11 1
+00 1
+.names SignedGT.BLIF SignedEQ.BLIF SignedLT
+00 1
+.names B0.BLIF Subtract.BLIF C0
+1- 1
+-1 1
+.names Subtract.BLIF B1.BLIF C1
+1- 1
+-1 1
+.names Subtract.BLIF B2.BLIF C2
+1- 1
+-1 1
+.names Subtract.BLIF B3.BLIF C3
+1- 1
+-1 1
+.names Subtract.BLIF A0.BLIF C0.BLIF CarryOut0
+-11 1
+101 1
+110 1
+.names A0.BLIF C0.BLIF A1.BLIF C1.BLIF CarryOut0.BLIF CarryOut1
+--11- 1
+01--1 1
+10--1 1
+.names A2.BLIF C2.BLIF CarryOut1.BLIF CarryOut2
+11- 1
+011 1
+101 1
+.names Sum4.BLIF Carry
+1 1
+0 0
+.names Sum3.BLIF Sign
+1 1
+0 0
+.names Zero.BLIF UnsignedEQ
+1 1
+0 0
+.names Zero.BLIF SignedEQ
+1 1
+0 0
+.end

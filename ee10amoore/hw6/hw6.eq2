@@ -1,0 +1,653 @@
+ ispLEVER Classic 2.0.00.17.20.15 Linked Equations File
+Copyright(C), 1992-2015, Lattice Semiconductor Corp.
+All Rights Reserved.
+
+Design paudemo created  Sun Feb 23 00:02:07 2020
+
+Title:  Program Address Unit Unit Demo
+
+ P-Terms   Fan-in  Fan-out  Type  Name (attributes)
+---------  ------  -------  ----  -----------------
+   1/1        1        1    Pin   XReg7 
+   1/1        1        1    Pin   XReg6 
+   1/1        1        1    Pin   XReg5 
+   1/1        1        1    Pin   XReg4 
+   1/1        1        1    Pin   XReg3 
+   0          0        1    Pin   XReg2 
+   0          0        1    Pin   XReg1 
+   0          0        1    Pin   XReg0 
+   1/1        1        1    Pin   SReg7 
+   1/1        1        1    Pin   SReg6 
+   1/1        1        1    Pin   SReg5 
+   1/1        1        1    Pin   SReg4 
+   1/1        1        1    Pin   SReg3 
+   1/1        1        1    Pin   SReg2 
+   1/1        1        1    Pin   SReg1 
+   1/1        1        1    Pin   SReg0 
+   1          0        1    Pin   Flags7 
+   1          0        1    Pin   Flags6 
+   1          0        1    Pin   Flags5 
+   1          0        1    Pin   Flags4 
+   1          0        1    Pin   Flags3 
+   1          0        1    Pin   Flags2 
+   1          0        1    Pin   Flags1 
+   1          0        1    Pin   Flags0 
+   1          2        1    Pin   AccumAddr12.D 
+   1/1        1        1    Pin   AccumAddr12.C 
+   1          2        1    Pin   AccumAddr11.D 
+   1/1        1        1    Pin   AccumAddr11.C 
+   1          2        1    Pin   AccumAddr10.D 
+   1/1        1        1    Pin   AccumAddr10.C 
+   1          2        1    Pin   AccumAddr9.D 
+   1/1        1        1    Pin   AccumAddr9.C 
+   1          2        1    Pin   AccumAddr8.D 
+   1/1        1        1    Pin   AccumAddr8.C 
+   1          2        1    Pin   AccumAddr7.D 
+   1/1        1        1    Pin   AccumAddr7.C 
+   1          2        1    Pin   AccumAddr6.D 
+   1/1        1        1    Pin   AccumAddr6.C 
+   1          2        1    Pin   AccumAddr5.D 
+   1/1        1        1    Pin   AccumAddr5.C 
+   1          2        1    Pin   AccumAddr4.D 
+   1/1        1        1    Pin   AccumAddr4.C 
+   1          2        1    Pin   AccumAddr3.D 
+   1/1        1        1    Pin   AccumAddr3.C 
+   1          2        1    Pin   AccumAddr2.D 
+   1/1        1        1    Pin   AccumAddr2.C 
+   1          2        1    Pin   AccumAddr1.D 
+   1/1        1        1    Pin   AccumAddr1.C 
+   1          2        1    Pin   AccumAddr0.D 
+   1/1        1        1    Pin   AccumAddr0.C 
+   1/1        1        1    Node  P0_SOffset12 
+   1/1        1        1    Node  P0_SOffset11 
+   1/1        1        1    Node  P0_SOffset10 
+   1/1        1        1    Node  P0_SOffset9 
+   1/1        1        1    Node  P0_SOffset8 
+   1/1        1        1    Node  P0_SOffset7 
+   1/1        1        1    Node  P0_SOffset6 
+   1/1        1        1    Node  P0_SOffset5 
+   1/1        1        1    Node  P0_SOffset4 
+   1/1        1        1    Node  P0_SOffset3 
+   1/1        1        1    Node  P0_SOffset2 
+   1/1        1        1    Node  P0_SOffset1 
+   1/1        1        1    Node  P0_SOffset0 
+   1/1        1        1    Node  P0_SFOffset12 
+   1/1        1        1    Node  P0_SFOffset11 
+   1/1        1        1    Node  P0_SFOffset10 
+   1/1        1        1    Node  P0_SFOffset9 
+   1/1        1        1    Node  P0_SFOffset8 
+   0          0        1    Node  P0_SFOffset7 
+   0          0        1    Node  P0_SFOffset6 
+   0          0        1    Node  P0_SFOffset5 
+   0          0        1    Node  P0_SFOffset4 
+   0          0        1    Node  P0_SFOffset3 
+   0          0        1    Node  P0_SFOffset2 
+   0          0        1    Node  P0_SFOffset1 
+   0          0        1    Node  P0_SFOffset0 
+   0          0        1    Node  P0_SLOffset12 
+   0          0        1    Node  P0_SLOffset11 
+   0          0        1    Node  P0_SLOffset10 
+   0          0        1    Node  P0_SLOffset9 
+   0          0        1    Node  P0_SLOffset8 
+   1/1        1        1    Node  P0_SLOffset7 
+   1/1        1        1    Node  P0_SLOffset6 
+   1/1        1        1    Node  P0_SLOffset5 
+   1/1        1        1    Node  P0_SLOffset4 
+   1/1        1        1    Node  P0_SLOffset3 
+   1/1        1        1    Node  P0_SLOffset2 
+   1/1        1        1    Node  P0_SLOffset1 
+   1/1        1        1    Node  P0_SLOffset0 
+   3          3        1    Node  P0_CarryOut12 
+   3          3        1    Node  P0_CarryOut11 
+   3          3        1    Node  P0_CarryOut10 
+   3          3        1    Node  P0_CarryOut9 
+   3          3        1    Node  P0_CarryOut8 
+   3          3        1    Node  P0_CarryOut7 
+   3          3        1    Node  P0_CarryOut6 
+   3          3        1    Node  P0_CarryOut5 
+   3          3        1    Node  P0_CarryOut4 
+   3          3        1    Node  P0_CarryOut3 
+   3          3        1    Node  P0_CarryOut2 
+   3          3        1    Node  P0_CarryOut1 
+   1/1        1        1    Node  P0_CarryOut0 
+   1          2        1    Node  P0_A12 
+   1          2        1    Node  P0_A11 
+   1          2        1    Node  P0_A10 
+   1          2        1    Node  P0_A9 
+   1          2        1    Node  P0_A8 
+   1          2        1    Node  P0_A7 
+   1          2        1    Node  P0_A6 
+   1          2        1    Node  P0_A5 
+   1          2        1    Node  P0_A4 
+   1          2        1    Node  P0_A3 
+   1          2        1    Node  P0_A2 
+   1          2        1    Node  P0_A1 
+   1          2        1    Node  P0_A0 
+   4          7        1    Node  P0_B12 
+   4          7        1    Node  P0_B11 
+   4          7        1    Node  P0_B10 
+   4          7        1    Node  P0_B9 
+   4          7        1    Node  P0_B8 
+   4          7        1    Node  P0_B7 
+   4          7        1    Node  P0_B6 
+   4          7        1    Node  P0_B5 
+   4          7        1    Node  P0_B4 
+   4          7        1    Node  P0_B3 
+   4          7        1    Node  P0_B2 
+   4          7        1    Node  P0_B1 
+   4          7        1    Node  P0_B0 
+   4          3        1    Node  P0_Sum12 
+   4          3        1    Node  P0_Sum11 
+   4          3        1    Node  P0_Sum10 
+   4          3        1    Node  P0_Sum9 
+   4          3        1    Node  P0_Sum8 
+   4          3        1    Node  P0_Sum7 
+   4          3        1    Node  P0_Sum6 
+   4          3        1    Node  P0_Sum5 
+   4          3        1    Node  P0_Sum4 
+   4          3        1    Node  P0_Sum3 
+   4          3        1    Node  P0_Sum2 
+   4          3        1    Node  P0_Sum1 
+   4          3        1    Node  P0_Sum0 
+=========
+ 227/53         Best P-Term Total: 227
+                       Total Pins: 90
+                      Total Nodes: 91
+            Average P-Term/Output: 1
+
+
+Equations:
+
+XReg7 = (DataOff4);
+
+XReg6 = (DataOff3);
+
+XReg5 = (DataOff2);
+
+XReg4 = (DataOff1);
+
+XReg3 = (DataOff0);
+
+XReg2 = (0);
+
+XReg1 = (0);
+
+XReg0 = (0);
+
+SReg7 = (DataOff7);
+
+SReg6 = (DataOff6);
+
+SReg5 = (DataOff5);
+
+SReg4 = (DataOff4);
+
+SReg3 = (DataOff3);
+
+SReg2 = (DataOff2);
+
+SReg1 = (DataOff1);
+
+SReg0 = (DataOff0);
+
+Flags7 = (1);
+
+Flags6 = (1);
+
+Flags5 = (1);
+
+Flags4 = (1);
+
+Flags3 = (1);
+
+Flags2 = (1);
+
+Flags1 = (1);
+
+Flags0 = (1);
+
+AccumAddr12.D = (Reset & P0_Sum12);
+
+AccumAddr12.C = (Clock);
+
+AccumAddr11.D = (Reset & P0_Sum11);
+
+AccumAddr11.C = (Clock);
+
+AccumAddr10.D = (Reset & P0_Sum10);
+
+AccumAddr10.C = (Clock);
+
+AccumAddr9.D = (Reset & P0_Sum9);
+
+AccumAddr9.C = (Clock);
+
+AccumAddr8.D = (Reset & P0_Sum8);
+
+AccumAddr8.C = (Clock);
+
+AccumAddr7.D = (Reset & P0_Sum7);
+
+AccumAddr7.C = (Clock);
+
+AccumAddr6.D = (Reset & P0_Sum6);
+
+AccumAddr6.C = (Clock);
+
+AccumAddr5.D = (Reset & P0_Sum5);
+
+AccumAddr5.C = (Clock);
+
+AccumAddr4.D = (Reset & P0_Sum4);
+
+AccumAddr4.C = (Clock);
+
+AccumAddr3.D = (Reset & P0_Sum3);
+
+AccumAddr3.C = (Clock);
+
+AccumAddr2.D = (Reset & P0_Sum2);
+
+AccumAddr2.C = (Clock);
+
+AccumAddr1.D = (Reset & P0_Sum1);
+
+AccumAddr1.C = (Clock);
+
+AccumAddr0.D = (Reset & P0_Sum0);
+
+AccumAddr0.C = (Clock);
+
+P0_SOffset12 = (DataOff7);
+
+P0_SOffset11 = (DataOff7);
+
+P0_SOffset10 = (DataOff7);
+
+P0_SOffset9 = (DataOff7);
+
+P0_SOffset8 = (DataOff7);
+
+P0_SOffset7 = (DataOff7);
+
+P0_SOffset6 = (DataOff6);
+
+P0_SOffset5 = (DataOff5);
+
+P0_SOffset4 = (DataOff4);
+
+P0_SOffset3 = (DataOff3);
+
+P0_SOffset2 = (DataOff2);
+
+P0_SOffset1 = (DataOff1);
+
+P0_SOffset0 = (DataOff0);
+
+P0_SFOffset12 = (DataOff4);
+
+P0_SFOffset11 = (DataOff3);
+
+P0_SFOffset10 = (DataOff2);
+
+P0_SFOffset9 = (DataOff1);
+
+P0_SFOffset8 = (DataOff0);
+
+P0_SFOffset7 = (0);
+
+P0_SFOffset6 = (0);
+
+P0_SFOffset5 = (0);
+
+P0_SFOffset4 = (0);
+
+P0_SFOffset3 = (0);
+
+P0_SFOffset2 = (0);
+
+P0_SFOffset1 = (0);
+
+P0_SFOffset0 = (0);
+
+P0_SLOffset12 = (0);
+
+P0_SLOffset11 = (0);
+
+P0_SLOffset10 = (0);
+
+P0_SLOffset9 = (0);
+
+P0_SLOffset8 = (0);
+
+P0_SLOffset7 = (DataOff7);
+
+P0_SLOffset6 = (DataOff6);
+
+P0_SLOffset5 = (DataOff5);
+
+P0_SLOffset4 = (DataOff4);
+
+P0_SLOffset3 = (DataOff3);
+
+P0_SLOffset2 = (DataOff2);
+
+P0_SLOffset1 = (DataOff1);
+
+P0_SLOffset0 = (DataOff0);
+
+P0_CarryOut12 = (P0_A11 & P0_B11
+     # P0_CarryOut11 & P0_A11
+     # P0_CarryOut11 & P0_B11);
+
+P0_CarryOut11 = (P0_A10 & P0_B10
+     # P0_CarryOut10 & P0_A10
+     # P0_CarryOut10 & P0_B10);
+
+P0_CarryOut10 = (P0_A9 & P0_B9
+     # P0_CarryOut9 & P0_A9
+     # P0_CarryOut9 & P0_B9);
+
+P0_CarryOut9 = (P0_A8 & P0_B8
+     # P0_CarryOut8 & P0_A8
+     # P0_CarryOut8 & P0_B8);
+
+P0_CarryOut8 = (P0_A7 & P0_B7
+     # P0_CarryOut7 & P0_A7
+     # P0_CarryOut7 & P0_B7);
+
+P0_CarryOut7 = (P0_A6 & P0_B6
+     # P0_CarryOut6 & P0_A6
+     # P0_CarryOut6 & P0_B6);
+
+P0_CarryOut6 = (P0_A5 & P0_B5
+     # P0_CarryOut5 & P0_A5
+     # P0_CarryOut5 & P0_B5);
+
+P0_CarryOut5 = (P0_A4 & P0_B4
+     # P0_CarryOut4 & P0_A4
+     # P0_CarryOut4 & P0_B4);
+
+P0_CarryOut4 = (P0_A3 & P0_B3
+     # P0_CarryOut3 & P0_A3
+     # P0_CarryOut3 & P0_B3);
+
+P0_CarryOut3 = (P0_A2 & P0_B2
+     # P0_CarryOut2 & P0_A2
+     # P0_CarryOut2 & P0_B2);
+
+P0_CarryOut2 = (P0_A1 & P0_B1
+     # P0_CarryOut1 & P0_A1
+     # P0_CarryOut1 & P0_B1);
+
+P0_CarryOut1 = (P0_A0 & P0_B0
+     # P0_CarryOut0 & P0_A0
+     # P0_CarryOut0 & P0_B0);
+
+P0_CarryOut0 = (Control1);
+
+P0_A12 = (!Control3 & AccumAddr12.Q);
+
+P0_A11 = (!Control3 & AccumAddr11.Q);
+
+P0_A10 = (!Control3 & AccumAddr10.Q);
+
+P0_A9 = (!Control3 & AccumAddr9.Q);
+
+P0_A8 = (!Control3 & AccumAddr8.Q);
+
+P0_A7 = (!Control3 & AccumAddr7.Q);
+
+P0_A6 = (!Control3 & AccumAddr6.Q);
+
+P0_A5 = (!Control3 & AccumAddr5.Q);
+
+P0_A4 = (!Control3 & AccumAddr4.Q);
+
+P0_A3 = (!Control3 & AccumAddr3.Q);
+
+P0_A2 = (!Control3 & AccumAddr2.Q);
+
+P0_A1 = (!Control3 & AccumAddr1.Q);
+
+P0_A0 = (!Control3 & AccumAddr0.Q);
+
+P0_B12 = (Control2 & Control1 & Control0 & P0_SFOffset12
+     # AddrData12 & !Control2 & !Control1 & !Control0
+     # !Control2 & Control1 & !Control0 & P0_SOffset12
+     # Control2 & Control1 & !Control0 & P0_SLOffset12);
+
+P0_B11 = (Control2 & Control1 & Control0 & P0_SFOffset11
+     # AddrData11 & !Control2 & !Control1 & !Control0
+     # !Control2 & Control1 & !Control0 & P0_SOffset11
+     # Control2 & Control1 & !Control0 & P0_SLOffset11);
+
+P0_B10 = (Control2 & Control1 & Control0 & P0_SFOffset10
+     # AddrData10 & !Control2 & !Control1 & !Control0
+     # !Control2 & Control1 & !Control0 & P0_SOffset10
+     # Control2 & Control1 & !Control0 & P0_SLOffset10);
+
+P0_B9 = (Control2 & Control1 & Control0 & P0_SFOffset9
+     # AddrData9 & !Control2 & !Control1 & !Control0
+     # !Control2 & Control1 & !Control0 & P0_SOffset9
+     # Control2 & Control1 & !Control0 & P0_SLOffset9);
+
+P0_B8 = (Control2 & Control1 & Control0 & P0_SFOffset8
+     # AddrData8 & !Control2 & !Control1 & !Control0
+     # !Control2 & Control1 & !Control0 & P0_SOffset8
+     # Control2 & Control1 & !Control0 & P0_SLOffset8);
+
+P0_B7 = (Control2 & Control1 & Control0 & P0_SFOffset7
+     # AddrData7 & !Control2 & !Control1 & !Control0
+     # !Control2 & Control1 & !Control0 & P0_SOffset7
+     # Control2 & Control1 & !Control0 & P0_SLOffset7);
+
+P0_B6 = (Control2 & Control1 & Control0 & P0_SFOffset6
+     # AddrData6 & !Control2 & !Control1 & !Control0
+     # !Control2 & Control1 & !Control0 & P0_SOffset6
+     # Control2 & Control1 & !Control0 & P0_SLOffset6);
+
+P0_B5 = (Control2 & Control1 & Control0 & P0_SFOffset5
+     # AddrData5 & !Control2 & !Control1 & !Control0
+     # !Control2 & Control1 & !Control0 & P0_SOffset5
+     # Control2 & Control1 & !Control0 & P0_SLOffset5);
+
+P0_B4 = (Control2 & Control1 & Control0 & P0_SFOffset4
+     # AddrData4 & !Control2 & !Control1 & !Control0
+     # !Control2 & Control1 & !Control0 & P0_SOffset4
+     # Control2 & Control1 & !Control0 & P0_SLOffset4);
+
+P0_B3 = (Control2 & Control1 & Control0 & P0_SFOffset3
+     # AddrData3 & !Control2 & !Control1 & !Control0
+     # !Control2 & Control1 & !Control0 & P0_SOffset3
+     # Control2 & Control1 & !Control0 & P0_SLOffset3);
+
+P0_B2 = (Control2 & Control1 & Control0 & P0_SFOffset2
+     # AddrData2 & !Control2 & !Control1 & !Control0
+     # !Control2 & Control1 & !Control0 & P0_SOffset2
+     # Control2 & Control1 & !Control0 & P0_SLOffset2);
+
+P0_B1 = (Control2 & Control1 & Control0 & P0_SFOffset1
+     # AddrData1 & !Control2 & !Control1 & !Control0
+     # !Control2 & Control1 & !Control0 & P0_SOffset1
+     # Control2 & Control1 & !Control0 & P0_SLOffset1);
+
+P0_B0 = (Control2 & Control1 & Control0 & P0_SFOffset0
+     # AddrData0 & !Control2 & !Control1 & !Control0
+     # !Control2 & Control1 & !Control0 & P0_SOffset0
+     # Control2 & Control1 & !Control0 & P0_SLOffset0);
+
+P0_Sum12 = (!P0_CarryOut12 & P0_A12 & !P0_B12
+     # !P0_CarryOut12 & !P0_A12 & P0_B12
+     # P0_CarryOut12 & !P0_A12 & !P0_B12
+     # P0_CarryOut12 & P0_A12 & P0_B12);
+
+P0_Sum11 = (!P0_CarryOut11 & P0_A11 & !P0_B11
+     # !P0_CarryOut11 & !P0_A11 & P0_B11
+     # P0_CarryOut11 & !P0_A11 & !P0_B11
+     # P0_CarryOut11 & P0_A11 & P0_B11);
+
+P0_Sum10 = (!P0_CarryOut10 & P0_A10 & !P0_B10
+     # !P0_CarryOut10 & !P0_A10 & P0_B10
+     # P0_CarryOut10 & !P0_A10 & !P0_B10
+     # P0_CarryOut10 & P0_A10 & P0_B10);
+
+P0_Sum9 = (!P0_CarryOut9 & P0_A9 & !P0_B9
+     # !P0_CarryOut9 & !P0_A9 & P0_B9
+     # P0_CarryOut9 & !P0_A9 & !P0_B9
+     # P0_CarryOut9 & P0_A9 & P0_B9);
+
+P0_Sum8 = (!P0_CarryOut8 & P0_A8 & !P0_B8
+     # !P0_CarryOut8 & !P0_A8 & P0_B8
+     # P0_CarryOut8 & !P0_A8 & !P0_B8
+     # P0_CarryOut8 & P0_A8 & P0_B8);
+
+P0_Sum7 = (!P0_CarryOut7 & P0_A7 & !P0_B7
+     # !P0_CarryOut7 & !P0_A7 & P0_B7
+     # P0_CarryOut7 & !P0_A7 & !P0_B7
+     # P0_CarryOut7 & P0_A7 & P0_B7);
+
+P0_Sum6 = (!P0_CarryOut6 & P0_A6 & !P0_B6
+     # !P0_CarryOut6 & !P0_A6 & P0_B6
+     # P0_CarryOut6 & !P0_A6 & !P0_B6
+     # P0_CarryOut6 & P0_A6 & P0_B6);
+
+P0_Sum5 = (!P0_CarryOut5 & P0_A5 & !P0_B5
+     # !P0_CarryOut5 & !P0_A5 & P0_B5
+     # P0_CarryOut5 & !P0_A5 & !P0_B5
+     # P0_CarryOut5 & P0_A5 & P0_B5);
+
+P0_Sum4 = (!P0_CarryOut4 & P0_A4 & !P0_B4
+     # !P0_CarryOut4 & !P0_A4 & P0_B4
+     # P0_CarryOut4 & !P0_A4 & !P0_B4
+     # P0_CarryOut4 & P0_A4 & P0_B4);
+
+P0_Sum3 = (!P0_CarryOut3 & P0_A3 & !P0_B3
+     # !P0_CarryOut3 & !P0_A3 & P0_B3
+     # P0_CarryOut3 & !P0_A3 & !P0_B3
+     # P0_CarryOut3 & P0_A3 & P0_B3);
+
+P0_Sum2 = (!P0_CarryOut2 & P0_A2 & !P0_B2
+     # !P0_CarryOut2 & !P0_A2 & P0_B2
+     # P0_CarryOut2 & !P0_A2 & !P0_B2
+     # P0_CarryOut2 & P0_A2 & P0_B2);
+
+P0_Sum1 = (!P0_CarryOut1 & P0_A1 & !P0_B1
+     # !P0_CarryOut1 & !P0_A1 & P0_B1
+     # P0_CarryOut1 & !P0_A1 & !P0_B1
+     # P0_CarryOut1 & P0_A1 & P0_B1);
+
+P0_Sum0 = (!P0_CarryOut0 & P0_A0 & !P0_B0
+     # !P0_CarryOut0 & !P0_A0 & P0_B0
+     # P0_CarryOut0 & !P0_A0 & !P0_B0
+     # P0_CarryOut0 & P0_A0 & P0_B0);
+
+
+Reverse-Polarity Equations:
+
+!XReg7 = (!DataOff4);
+
+!XReg6 = (!DataOff3);
+
+!XReg5 = (!DataOff2);
+
+!XReg4 = (!DataOff1);
+
+!XReg3 = (!DataOff0);
+
+!SReg7 = (!DataOff7);
+
+!SReg6 = (!DataOff6);
+
+!SReg5 = (!DataOff5);
+
+!SReg4 = (!DataOff4);
+
+!SReg3 = (!DataOff3);
+
+!SReg2 = (!DataOff2);
+
+!SReg1 = (!DataOff1);
+
+!SReg0 = (!DataOff0);
+
+!AccumAddr12.C = (!Clock);
+
+!AccumAddr11.C = (!Clock);
+
+!AccumAddr10.C = (!Clock);
+
+!AccumAddr9.C = (!Clock);
+
+!AccumAddr8.C = (!Clock);
+
+!AccumAddr7.C = (!Clock);
+
+!AccumAddr6.C = (!Clock);
+
+!AccumAddr5.C = (!Clock);
+
+!AccumAddr4.C = (!Clock);
+
+!AccumAddr3.C = (!Clock);
+
+!AccumAddr2.C = (!Clock);
+
+!AccumAddr1.C = (!Clock);
+
+!AccumAddr0.C = (!Clock);
+
+!P0_SOffset12 = (!DataOff7);
+
+!P0_SOffset11 = (!DataOff7);
+
+!P0_SOffset10 = (!DataOff7);
+
+!P0_SOffset9 = (!DataOff7);
+
+!P0_SOffset8 = (!DataOff7);
+
+!P0_SOffset7 = (!DataOff7);
+
+!P0_SOffset6 = (!DataOff6);
+
+!P0_SOffset5 = (!DataOff5);
+
+!P0_SOffset4 = (!DataOff4);
+
+!P0_SOffset3 = (!DataOff3);
+
+!P0_SOffset2 = (!DataOff2);
+
+!P0_SOffset1 = (!DataOff1);
+
+!P0_SOffset0 = (!DataOff0);
+
+!P0_SFOffset12 = (!DataOff4);
+
+!P0_SFOffset11 = (!DataOff3);
+
+!P0_SFOffset10 = (!DataOff2);
+
+!P0_SFOffset9 = (!DataOff1);
+
+!P0_SFOffset8 = (!DataOff0);
+
+!P0_SLOffset7 = (!DataOff7);
+
+!P0_SLOffset6 = (!DataOff6);
+
+!P0_SLOffset5 = (!DataOff5);
+
+!P0_SLOffset4 = (!DataOff4);
+
+!P0_SLOffset3 = (!DataOff3);
+
+!P0_SLOffset2 = (!DataOff2);
+
+!P0_SLOffset1 = (!DataOff1);
+
+!P0_SLOffset0 = (!DataOff0);
+
+!P0_CarryOut0 = (!Control1);
+

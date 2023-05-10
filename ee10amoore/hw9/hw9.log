@@ -1,0 +1,8 @@
+Prefit Logic Optimizer (May 31 2012)  Wed Mar 18 18:48:28 2015
+
+C:\ispLEVER_Classic2_0\ispcpld\bin\prefit.exe -blif -inp hw9.bl4 -out hw9.bl5 -err automake.err -log hw9.log -mod CPU @hw9.l0 -gui -sc 
+Number of pins (IO)    :    82
+Number of outputs (MC) :   208
+Number of registers    :    61
+Number of logic pterms :   897
+C:\ispLEVER_Classic2_0\ispcpld\bin\prefit.exe complete - Time 1 seconds

@@ -1,0 +1,30 @@
+SOut[6..1] = ([Accum5..Accum0] &  Direction)          " Shift left 
+           # ([Accum7..Accum2] & !Direction);         " Shift right
+
+SOut[0] = (0        & Shift  &  Direction)             " LSL/ASL
+        # (Accum[1] & Shift  & !Direction)             " LSR/ASR
+        # (Accum[7] & Rotate &  Direction)             " ROL
+        # (Accum[1] & Rotate & !Direction)             " ROR
+        # (CarryF   & Rotate &  Direction & WC)        " RLC
+        # (Accum[1] & Rotate & !Direction & WC)        " RRC                                          
+        );
+SOut[7] = (Accum[6] & Shift  &  Direction)            "LSL/ASL
+        # (0        & Shift  & !Direction)            "LSR
+        # (Accum[7] & Shift  &  Direction & !WC)      "ASR
+        # (Accum[6] & Rotate &  Direction)            "ROL
+        # (Accum[0] & Rotate & !Direction)            "ROR
+        # (Accum[6] & Rotate &  Direction & WC)       "RLC
+        # (CarryF   & Rotate & !Direction & WC)       "RRC
+        );
+
+CarrySR = (Accum[0] & Shift &       
+
+" Direction = 1 for LEFT
+
+" Shift, Rotate, Direction, WC pins
+
+
+" OLD ADDER
+
+" Sum = (A $ (B $ Subtract)) $ [CarryOut6..CarryOut0,Subtract];
+" CarryOut = (A & (B $ Subtract)) # ((A $ (B $ Subtract)) & [CarryOut6..CarryOut0,Subtract]);

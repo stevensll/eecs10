@@ -1,0 +1,99 @@
+|--------------------------------------------------- ----------|
+|- ispLEVER Classic 2.0.00.17.20.15 Equations File            -|
+|- Copyright(C), 1992-2012, Lattice Semiconductor Corporation -|
+|- All Rights Reserved.                                       -|
+|--------------------------------------------------------------|
+
+
+Equations:
+
+Q0.D = !Q0.Q ; (1 pterm, 1 signal)
+Q0.C = Clock ; (1 pterm, 1 signal)
+
+Q1.D = !CountDown & !Q3.Q & !Q1.Q & Q0.Q
+    # CountDown & Q3.Q & !Q0.Q
+    # !CountDown & Q1.Q & !Q0.Q
+    # CountDown & Q1.Q & Q0.Q
+    # CountDown & Q2.Q & !Q1.Q & !Q0.Q ; (5 pterms, 5 signals)
+Q1.C = Clock ; (1 pterm, 1 signal)
+
+Q10.T = CountDown & Q11.Q & !Q10.Q & !Q8.Q & !Q7.Q & !Q6.Q & !Q5.Q & !Q4.Q
+       & !Q3.Q & !Q2.Q & !Q1.Q & !Q0.Q
+    # CountDown & Q10.Q & !Q9.Q & !Q8.Q & !Q7.Q & !Q6.Q & !Q5.Q & !Q4.Q
+       & !Q3.Q & !Q2.Q & !Q1.Q & !Q0.Q
+    # !CountDown & Q9.Q & Q8.Q & Q7.Q & !Q6.Q & !Q5.Q & Q4.Q & Q3.Q & !Q2.Q
+       & !Q1.Q & Q0.Q ; (3 pterms, 13 signals)
+Q10.C = Clock ; (1 pterm, 1 signal)
+
+Q11.T = !CountDown & !Q11.Q & Q10.Q & Q9.Q & Q8.Q & Q7.Q & !Q6.Q & !Q5.Q
+       & Q4.Q & Q3.Q & !Q2.Q & !Q1.Q & Q0.Q
+    # !CountDown & Q11.Q & !Q9.Q & Q8.Q & Q7.Q & !Q6.Q & !Q5.Q & Q4.Q & Q3.Q
+       & !Q2.Q & !Q1.Q & Q0.Q
+    # !CountDown & Q11.Q & !Q10.Q & Q8.Q & Q7.Q & !Q6.Q & !Q5.Q & Q4.Q & Q3.Q
+       & !Q2.Q & !Q1.Q & Q0.Q
+    # CountDown & !Q10.Q & !Q9.Q & !Q8.Q & !Q7.Q & !Q6.Q & !Q5.Q & !Q4.Q
+       & !Q3.Q & !Q2.Q & !Q1.Q & !Q0.Q
+    # CountDown & Q11.Q & Q9.Q & !Q7.Q & !Q6.Q & !Q5.Q & !Q4.Q & !Q3.Q & !Q2.Q
+       & !Q1.Q & !Q0.Q
+    # CountDown & Q11.Q & !Q8.Q & !Q7.Q & !Q6.Q & !Q5.Q & !Q4.Q & !Q3.Q
+       & !Q2.Q & !Q1.Q & !Q0.Q ; (6 pterms, 13 signals)
+Q11.C = Clock ; (1 pterm, 1 signal)
+
+Q2.D = !CountDown & Q2.Q & !Q1.Q
+    # Q2.Q & Q1.Q & !Q0.Q
+    # CountDown & Q2.Q & Q0.Q
+    # CountDown & Q3.Q & !Q2.Q & !Q0.Q
+    # !CountDown & !Q2.Q & Q1.Q & Q0.Q ; (5 pterms, 5 signals)
+Q2.C = Clock ; (1 pterm, 1 signal)
+
+Q3.D = CountDown & !Q3.Q & !Q2.Q & !Q1.Q & !Q0.Q
+    # CountDown & Q3.Q & !Q1.Q & Q0.Q
+    # !CountDown & Q2.Q & Q1.Q & Q0.Q
+    # !CountDown & Q3.Q & !Q0.Q ; (4 pterms, 5 signals)
+Q3.C = Clock ; (1 pterm, 1 signal)
+
+Q4.T = CountDown & !Q3.Q & !Q2.Q & !Q1.Q & !Q0.Q
+    # !CountDown & Q3.Q & !Q2.Q & !Q1.Q & Q0.Q ; (2 pterms, 5 signals)
+Q4.C = Clock ; (1 pterm, 1 signal)
+
+Q5.T = CountDown & !Q7.Q & Q6.Q & !Q4.Q & !Q3.Q & !Q2.Q & !Q1.Q & !Q0.Q
+    # CountDown & Q7.Q & !Q5.Q & !Q4.Q & !Q3.Q & !Q2.Q & !Q1.Q & !Q0.Q
+    # CountDown & !Q7.Q & Q5.Q & !Q4.Q & !Q3.Q & !Q2.Q & !Q1.Q & !Q0.Q
+    # !CountDown & Q5.Q & Q4.Q & Q3.Q & !Q2.Q & !Q1.Q & Q0.Q
+    # !CountDown & !Q7.Q & Q4.Q & Q3.Q & !Q2.Q & !Q1.Q & Q0.Q ; (5 pterms, 9 signals)
+Q5.C = Clock ; (1 pterm, 1 signal)
+
+Q6.T = CountDown & Q7.Q & !Q6.Q & !Q4.Q & !Q3.Q & !Q2.Q & !Q1.Q & !Q0.Q
+    # CountDown & Q6.Q & !Q5.Q & !Q4.Q & !Q3.Q & !Q2.Q & !Q1.Q & !Q0.Q
+    # !CountDown & Q5.Q & Q4.Q & Q3.Q & !Q2.Q & !Q1.Q & Q0.Q ; (3 pterms, 9 signals)
+Q6.C = Clock ; (1 pterm, 1 signal)
+
+Q7.D = Q7.Q & !Q5.Q & Q4.Q & !Q3.Q
+    # !CountDown & Q7.Q & !Q4.Q
+    # Q7.Q & !Q3.Q & Q0.Q
+    # CountDown & Q7.Q & Q3.Q
+    # !CountDown & Q7.Q & !Q0.Q
+    # CountDown & !Q7.Q & !Q6.Q & !Q5.Q & !Q4.Q & !Q3.Q & !Q2.Q & !Q1.Q
+       & !Q0.Q
+    # !CountDown & Q6.Q & Q5.Q & Q4.Q & Q3.Q & !Q2.Q & !Q1.Q & Q0.Q
+    # Q7.Q & Q2.Q
+    # Q7.Q & Q1.Q ; (9 pterms, 9 signals)
+Q7.C = Clock ; (1 pterm, 1 signal)
+
+Q8.T = CountDown & !Q7.Q & !Q6.Q & !Q5.Q & !Q4.Q & !Q3.Q & !Q2.Q & !Q1.Q
+       & !Q0.Q
+    # !CountDown & Q7.Q & !Q6.Q & !Q5.Q & Q4.Q & Q3.Q & !Q2.Q & !Q1.Q & Q0.Q ; (2 pterms, 9 signals)
+Q8.C = Clock ; (1 pterm, 1 signal)
+
+Q9.T = CountDown & !Q11.Q & Q10.Q & !Q8.Q & !Q7.Q & !Q6.Q & !Q5.Q & !Q4.Q
+       & !Q3.Q & !Q2.Q & !Q1.Q & !Q0.Q
+    # CountDown & Q11.Q & !Q9.Q & !Q8.Q & !Q7.Q & !Q6.Q & !Q5.Q & !Q4.Q
+       & !Q3.Q & !Q2.Q & !Q1.Q & !Q0.Q
+    # CountDown & !Q11.Q & Q9.Q & !Q8.Q & !Q7.Q & !Q6.Q & !Q5.Q & !Q4.Q
+       & !Q3.Q & !Q2.Q & !Q1.Q & !Q0.Q
+    # !CountDown & Q9.Q & Q8.Q & Q7.Q & !Q6.Q & !Q5.Q & Q4.Q & Q3.Q & !Q2.Q
+       & !Q1.Q & Q0.Q
+    # !CountDown & !Q11.Q & Q8.Q & Q7.Q & !Q6.Q & !Q5.Q & Q4.Q & Q3.Q & !Q2.Q
+       & !Q1.Q & Q0.Q ; (5 pterms, 13 signals)
+Q9.C = Clock ; (1 pterm, 1 signal)
+

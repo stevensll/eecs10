@@ -1,0 +1,371 @@
+// Node Statistic Information File
+// Tool:  ispLEVER Classic 2.0.00.17.20.15
+// Design 'deccntr' created   Tue Jan 22 18:32:21 2019
+
+// Fmax Logic Level: 1.
+
+// Path: Q4.Q
+//    -> Q9.T
+
+// Signal Name: Q11.D.X1
+// Type: Output_reg
+BEGIN Q11.D.X1
+Fanin Number		10
+Pterm Number		6
+Fanin per Macrocell	N/A
+Cluster PT		N/A
+Logic Levels		1
+Fanin Input     	CountDown.BLIF      	0
+Fanin Input     	CountEn1.BLIF       	0
+Fanin Output    	Q4.Q                	2
+Fanin Output    	Q7.Q                	5
+Fanin Output    	Q5.Q                	5
+Fanin Output    	Q6.Q                	3
+Fanin Output    	Q8.Q                	2
+Fanin Output    	Q11.Q               	6
+Fanin Output    	Q9.Q                	5
+Fanin Output    	Q10.Q               	3
+END
+
+// Signal Name: Q11.D.X2
+// Type: Output_reg
+BEGIN Q11.D.X2
+Fanin Number		10
+Pterm Number		1
+Fanin per Macrocell	N/A
+Cluster PT		N/A
+Logic Levels		1
+Fanin Input     	CountDown.BLIF      	0
+Fanin Input     	CountEn1.BLIF       	0
+Fanin Output    	Q4.Q                	2
+Fanin Output    	Q7.Q                	5
+Fanin Output    	Q5.Q                	5
+Fanin Output    	Q6.Q                	3
+Fanin Output    	Q8.Q                	2
+Fanin Output    	Q11.Q               	6
+Fanin Output    	Q9.Q                	5
+Fanin Output    	Q10.Q               	3
+END
+
+// Signal Name: Q11.C
+// Type: Output_reg
+BEGIN Q11.C
+Fanin Number		1
+Pterm Number		1
+Fanin per Macrocell	N/A
+Cluster PT		N/A
+Logic Levels		N/A
+Fanin Input     	Clock.BLIF          	0
+END
+
+// Signal Name: Q10.T
+// Type: Output_reg
+BEGIN Q10.T
+Fanin Number		10
+Pterm Number		3
+Fanin per Macrocell	N/A
+Cluster PT		N/A
+Logic Levels		1
+Fanin Input     	CountDown.BLIF      	0
+Fanin Input     	CountEn1.BLIF       	0
+Fanin Output    	Q4.Q                	2
+Fanin Output    	Q7.Q                	5
+Fanin Output    	Q5.Q                	5
+Fanin Output    	Q6.Q                	3
+Fanin Output    	Q8.Q                	2
+Fanin Output    	Q11.Q               	6
+Fanin Output    	Q9.Q                	5
+Fanin Output    	Q10.Q               	3
+END
+
+// Signal Name: Q10.C
+// Type: Output_reg
+BEGIN Q10.C
+Fanin Number		1
+Pterm Number		1
+Fanin per Macrocell	N/A
+Cluster PT		N/A
+Logic Levels		N/A
+Fanin Input     	Clock.BLIF          	0
+END
+
+// Signal Name: Q9.T
+// Type: Output_reg
+BEGIN Q9.T
+Fanin Number		10
+Pterm Number		5
+Fanin per Macrocell	N/A
+Cluster PT		N/A
+Logic Levels		1
+Fanin Input     	CountDown.BLIF      	0
+Fanin Input     	CountEn1.BLIF       	0
+Fanin Output    	Q4.Q                	2
+Fanin Output    	Q7.Q                	5
+Fanin Output    	Q5.Q                	5
+Fanin Output    	Q6.Q                	3
+Fanin Output    	Q8.Q                	2
+Fanin Output    	Q11.Q               	6
+Fanin Output    	Q9.Q                	5
+Fanin Output    	Q10.Q               	3
+END
+
+// Signal Name: Q9.C
+// Type: Output_reg
+BEGIN Q9.C
+Fanin Number		1
+Pterm Number		1
+Fanin per Macrocell	N/A
+Cluster PT		N/A
+Logic Levels		N/A
+Fanin Input     	Clock.BLIF          	0
+END
+
+// Signal Name: Q8.T
+// Type: Output_reg
+BEGIN Q8.T
+Fanin Number		6
+Pterm Number		2
+Fanin per Macrocell	N/A
+Cluster PT		N/A
+Logic Levels		1
+Fanin Input     	CountDown.BLIF      	0
+Fanin Input     	CountEn1.BLIF       	0
+Fanin Output    	Q4.Q                	2
+Fanin Output    	Q7.Q                	5
+Fanin Output    	Q5.Q                	5
+Fanin Output    	Q6.Q                	3
+END
+
+// Signal Name: Q8.C
+// Type: Output_reg
+BEGIN Q8.C
+Fanin Number		1
+Pterm Number		1
+Fanin per Macrocell	N/A
+Cluster PT		N/A
+Logic Levels		N/A
+Fanin Input     	Clock.BLIF          	0
+END
+
+// Signal Name: Q7.D
+// Type: Output_reg
+BEGIN Q7.D
+Fanin Number		6
+Pterm Number		5
+Fanin per Macrocell	N/A
+Cluster PT		N/A
+Logic Levels		1
+Fanin Input     	CountDown.BLIF      	0
+Fanin Input     	CountEn1.BLIF       	0
+Fanin Output    	Q4.Q                	2
+Fanin Output    	Q7.Q                	5
+Fanin Output    	Q5.Q                	5
+Fanin Output    	Q6.Q                	3
+END
+
+// Signal Name: Q7.C
+// Type: Output_reg
+BEGIN Q7.C
+Fanin Number		1
+Pterm Number		1
+Fanin per Macrocell	N/A
+Cluster PT		N/A
+Logic Levels		N/A
+Fanin Input     	Clock.BLIF          	0
+END
+
+// Signal Name: Q6.T
+// Type: Output_reg
+BEGIN Q6.T
+Fanin Number		6
+Pterm Number		3
+Fanin per Macrocell	N/A
+Cluster PT		N/A
+Logic Levels		1
+Fanin Input     	CountDown.BLIF      	0
+Fanin Input     	CountEn1.BLIF       	0
+Fanin Output    	Q4.Q                	2
+Fanin Output    	Q7.Q                	5
+Fanin Output    	Q5.Q                	5
+Fanin Output    	Q6.Q                	3
+END
+
+// Signal Name: Q6.C
+// Type: Output_reg
+BEGIN Q6.C
+Fanin Number		1
+Pterm Number		1
+Fanin per Macrocell	N/A
+Cluster PT		N/A
+Logic Levels		N/A
+Fanin Input     	Clock.BLIF          	0
+END
+
+// Signal Name: Q5.T
+// Type: Output_reg
+BEGIN Q5.T
+Fanin Number		6
+Pterm Number		5
+Fanin per Macrocell	N/A
+Cluster PT		N/A
+Logic Levels		1
+Fanin Input     	CountDown.BLIF      	0
+Fanin Input     	CountEn1.BLIF       	0
+Fanin Output    	Q4.Q                	2
+Fanin Output    	Q7.Q                	5
+Fanin Output    	Q5.Q                	5
+Fanin Output    	Q6.Q                	3
+END
+
+// Signal Name: Q5.C
+// Type: Output_reg
+BEGIN Q5.C
+Fanin Number		1
+Pterm Number		1
+Fanin per Macrocell	N/A
+Cluster PT		N/A
+Logic Levels		N/A
+Fanin Input     	Clock.BLIF          	0
+END
+
+// Signal Name: Q4.D
+// Type: Output_reg
+BEGIN Q4.D
+Fanin Number		2
+Pterm Number		2
+Fanin per Macrocell	N/A
+Cluster PT		N/A
+Logic Levels		1
+Fanin Input     	CountEn1.BLIF       	0
+Fanin Output    	Q4.Q                	2
+END
+
+// Signal Name: Q4.C
+// Type: Output_reg
+BEGIN Q4.C
+Fanin Number		1
+Pterm Number		1
+Fanin per Macrocell	N/A
+Cluster PT		N/A
+Logic Levels		N/A
+Fanin Input     	Clock.BLIF          	0
+END
+
+// Signal Name: Q3.D
+// Type: Output_reg
+BEGIN Q3.D
+Fanin Number		5
+Pterm Number		4
+Fanin per Macrocell	N/A
+Cluster PT		N/A
+Logic Levels		1
+Fanin Output    	Q0.Q                	1
+Fanin Input     	CountDown.BLIF      	0
+Fanin Output    	Q3.Q                	4
+Fanin Output    	Q1.Q                	5
+Fanin Output    	Q2.Q                	3
+END
+
+// Signal Name: Q3.C
+// Type: Output_reg
+BEGIN Q3.C
+Fanin Number		1
+Pterm Number		1
+Fanin per Macrocell	N/A
+Cluster PT		N/A
+Logic Levels		N/A
+Fanin Input     	Clock.BLIF          	0
+END
+
+// Signal Name: Q2.D.X1
+// Type: Output_reg
+BEGIN Q2.D.X1
+Fanin Number		5
+Pterm Number		3
+Fanin per Macrocell	N/A
+Cluster PT		N/A
+Logic Levels		1
+Fanin Output    	Q0.Q                	1
+Fanin Input     	CountDown.BLIF      	0
+Fanin Output    	Q3.Q                	4
+Fanin Output    	Q1.Q                	5
+Fanin Output    	Q2.Q                	3
+END
+
+// Signal Name: Q2.D.X2
+// Type: Output_reg
+BEGIN Q2.D.X2
+Fanin Number		5
+Pterm Number		1
+Fanin per Macrocell	N/A
+Cluster PT		N/A
+Logic Levels		1
+Fanin Output    	Q0.Q                	1
+Fanin Input     	CountDown.BLIF      	0
+Fanin Output    	Q3.Q                	4
+Fanin Output    	Q1.Q                	5
+Fanin Output    	Q2.Q                	3
+END
+
+// Signal Name: Q2.C
+// Type: Output_reg
+BEGIN Q2.C
+Fanin Number		1
+Pterm Number		1
+Fanin per Macrocell	N/A
+Cluster PT		N/A
+Logic Levels		N/A
+Fanin Input     	Clock.BLIF          	0
+END
+
+// Signal Name: Q1.D
+// Type: Output_reg
+BEGIN Q1.D
+Fanin Number		5
+Pterm Number		5
+Fanin per Macrocell	N/A
+Cluster PT		N/A
+Logic Levels		1
+Fanin Output    	Q0.Q                	1
+Fanin Input     	CountDown.BLIF      	0
+Fanin Output    	Q3.Q                	4
+Fanin Output    	Q1.Q                	5
+Fanin Output    	Q2.Q                	3
+END
+
+// Signal Name: Q1.C
+// Type: Output_reg
+BEGIN Q1.C
+Fanin Number		1
+Pterm Number		1
+Fanin per Macrocell	N/A
+Cluster PT		N/A
+Logic Levels		N/A
+Fanin Input     	Clock.BLIF          	0
+END
+
+// Signal Name: Q0.D
+// Type: Output_reg
+BEGIN Q0.D
+Fanin Number		1
+Pterm Number		1
+Fanin per Macrocell	N/A
+Cluster PT		N/A
+Logic Levels		1
+Fanin Output    	Q0.Q                	1
+END
+
+// Signal Name: Q0.C
+// Type: Output_reg
+BEGIN Q0.C
+Fanin Number		1
+Pterm Number		1
+Fanin per Macrocell	N/A
+Cluster PT		N/A
+Logic Levels		N/A
+Fanin Input     	Clock.BLIF          	0
+END
+
+// Design 'deccntr' used clock signal list:
+CLOCK	Clock
+

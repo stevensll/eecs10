@@ -1,0 +1,5 @@
+. CPU CPU.abl u:\slei\hw9\CPU.abl
+ALUnit ALU ALU.abl u:\slei\hw9\ALU.abl
+DAUnit DataAccess DataAccess.abl u:\slei\hw9\DataAccess.abl
+PAUnit ProgramAccess ProgramAccess.abl u:\slei\hw9\ProgramAccess.abl
+CUnit ControlUnit ControlUnit.abl u:\slei\hw9\ControlUnit.abl

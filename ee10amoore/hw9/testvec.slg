@@ -1,0 +1,45 @@
+ticksize 100 ps
+stepsize 100000 ps
+mode unit
+Loading netlist......
+Loading netlist successfully.
+run 5,000.0 ns
+Instable circuit at time 700.000ns (step 8) and occurs at step 6
+Please push RUN button to go on simulating
+Operation RUN ends.
+run 4,300.0 ns
+Instable circuit at time 1300.000ns (step 10) and occurs at step 8
+Please push RUN button to go on simulating
+Operation RUN ends.
+run 3,700.0 ns
+Instable circuit at time 1700.000ns (step 9) and occurs at step 7
+Please push RUN button to go on simulating
+Operation RUN ends.
+run 3,300.0 ns
+Instable circuit at time 2100.000ns (step 10) and occurs at step 8
+Please push RUN button to go on simulating
+Operation RUN ends.
+run 2,900.0 ns
+Instable circuit at time 2500.000ns (step 9) and occurs at step 7
+Please push RUN button to go on simulating
+Operation RUN ends.
+run 2,500.0 ns
+Instable circuit at time 3300.000ns (step 10) and occurs at step 8
+Please push RUN button to go on simulating
+Operation RUN ends.
+run 1,700.0 ns
+Instable circuit at time 3900.000ns (step 8) and occurs at step 6
+Please push RUN button to go on simulating
+Operation RUN ends.
+run 1,100.0 ns
+at 4200.000 ns, DATADB7  expected: 1, actual: 0
+at 4200.000 ns, DATADB5  expected: 1, actual: 0
+Instable circuit at time 4300.000ns (step 10) and occurs at step 8
+Please push RUN button to go on simulating
+Operation RUN ends.
+run 700.0 ns
+at 4600.000 ns, DATADB7  expected: 1, actual: 0
+at 4600.000 ns, DATADB5  expected: 1, actual: 0
+It reaches the running time defined by user.
+Operation RUN ends.
+quit

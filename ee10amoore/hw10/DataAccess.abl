@@ -1,0 +1,134 @@
+MODULE DataAccess
+DataAccess INTERFACE (Accum7..Accum0, Offset7..Offset0,
+				   	  UseX, ResetOff,
+				      IDOn, Post, Inc, 
+		              Reset, Clock
+		              -> DataAddr7..DataAddr0, XReg7..XReg0, SReg7..SReg0);
+
+" Description:  This module implements the DataAccess unit for the Caltech10 CPU.
+" It takes in 8 bits of accumulator data and 8 bits of offset data, and returns
+" 8 bits of address data which is put in the DataAdress Bus and selected X/S register.
+" There are 5 control signals which are explained below. In combination these signals
+" produce the necessary operations for the DataAccess.
+
+" C3 		C2 	C1 	 C0
+" ResetOff  IDon Post Inc 	Out  R
+"  0		1  1  1 			R++O Post Increment 
+"  0		1  0  1 			+R+O Pre Increment 
+"  0		1  1  0 			R-+O Post Decrement 
+"  0		1  0  0 			-R+O Pre Decrement 
+"  0 		0  X  1 			O    R stays the same  	 
+"  0 		0  0  0 			R+O  R stays the same
+"  1		0  0  0 			R 	 R stays the same
+
+" UseX selects the Register R to used (1 for X, 0 for S)
+" RestOff determines if the offset is used (1 for NOT using offset, 0 for using)
+
+" Revision History:
+" 03/03/23	 Steven Lei   Created file and pseudo code
+" 03/04/23   Steven Lei   Tested DataAccess implementation
+" 03/04/23   Steven Lei   Updated comments
+
+
+" Inputs
+
+Accum7..Accum0              pin;			" 8 bits of accumulator data
+Offset7..Offset0            pin;			" 8 bits of offset data
+
+UseX						pin;			" 1 for X register, 0 for S
+ResetOff					pin;			" 1 if NOT using offset, 0 for using offset
+
+IDOn						pin;			" 1 for any post/pre/inc/dec, 0 else
+Post						pin;			" 1 for post, 0 for pre
+Inc                         pin;			" 1 for increment, 0 decrement
+
+Reset                       pin;		
+Clock                       pin;
+
+
+" Intermediate Terms
+
+IncA7..IncA0				node;			" use for the incrementing/decrementing register adder
+IncB7..IncB0				node;
+IDSum7..IDSum0				node;
+IDCOut7..IDCOut0			node;
+
+AddrA7..AddrA0				node;			" use for the address offset adder
+AddrB7..AddrB0				node;
+AddrSum7..AddrSum0			node;
+AddrCOut7..AddrCOut0		node;
+
+
+" Outputs
+
+DataAddr7..DataAddr0        pin;				"8 bits of address data
+XReg7..XReg0                pin ISTYPE 'REG';	"8 bits of XReg data
+SReg7..SReg0                pin ISTYPE 'REG';	"8 bits of SReg data
+
+
+" Buses
+Acc = 	   [Accum7..Accum0];
+Offset =   [Offset7..Offset0];
+DataAddr = [DataAddr7..DataAddr0];
+XReg =     [XReg7..XReg0];
+SReg =     [SReg7..SReg0];
+
+IncA = [IncA7..IncA0];
+IncB = [IncB7..IncB0];
+IDCOut = [IDCOut7..IDCOut0];
+IDSum = [IDSum7..IDSum0];
+
+AddrA = [AddrA7..AddrA0];				
+AddrB = [AddrB7..AddrB0];
+AddrCOut = [AddrCOut7..AddrCOut0];
+AddrSum = [AddrSum7..AddrSum0];
+
+" Constants
+ZEROES = [0,0,0,0,0,0,0,0];
+ONES =   [1,1,1,1,1,1,1,1];
+
+EQUATIONS
+
+" adder for the selected register
+
+IncA = (UseX & XReg) # (!UseX & SReg);
+IncB = ( IDOn &  Inc & ZEROES)			"Inc  
+  	 # ( IDOn & !Inc & ONES)			"Dec
+  	 # (!IDOn & 	  ZEROES)			"Else reg stays the same
+  	 ;
+
+" use high CarryIn if incrementing (since we're adding zeroes)  
+
+IDSum = (IncA $ IncB) $ [IDCOut6..IDCOut0, (IDOn & Inc)];		
+IDCOut = (IncA & IncB) # ((IncA$IncB) & [IDCOut6..IDCOut0, (IDOn & Inc)]);
+
+AddrA = (!ResetOff & Offset) # (ResetOff & ZEROES);		" Disable offset depending on ResetOff
+AddrB = ( IDOn & !Post & IDSum)							" Pre: add the new address		
+	  # ( IDOn &  Post & IncA)							" Post: add the old address 
+	  # (!IDOn & !Post & !Inc & IncA)					" Load X+O: add old address
+	  # (!IDOn & ZEROES)								" Load O: add ZERO to offset 
+	  ;
+
+" adder for the address
+AddrSum = (AddrA $ AddrB) $ [AddrCOut6..AddrCOut0, 0];	 
+AddrCOut = (AddrA & AddrB) # ((AddrA $ AddrB) & [AddrCOut6..AddrCOut0, 0]);
+
+
+DataAddr = AddrSum;
+
+" only change the X register if using it, same for S
+
+XReg:= ( UseX & IDSum)
+	 # (!UseX & XReg)
+	 ;
+SReg:= (!UseX & IDSum)
+	 # ( UseX & SReg) 
+	 ;
+
+XReg.CLK = Clock;
+XReg.CLR = !Reset;
+
+SReg.CLK = Clock;
+SReg.CLR = !Reset;
+
+END DataAccess

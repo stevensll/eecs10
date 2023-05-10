@@ -1,0 +1,524 @@
+MODULE ControlUnit
+TITLE 'ControlUnit'
+ControlUnit INTERFACE (PDB15..PDB0, Flags7..Flags0, Reset, Clock
+		->  IR15..IR0,
+			PushF,PopF,
+			ALU_M3..ALU_M0, ALU_LF, ALU_WC, ALU_F3..ALU_F0, 
+			PA_Load, PA_Select2..PA_Select0,
+			DA_UseX, DA_ResetOff, DA_IDOn, DA_Post, DA_Inc,
+			Imm,
+			RD, WR, IO,
+			CALL2..CALL0, RTS1..RTS0, IDLE
+			);
+" ----------------------------------------------
+" Description
+" This is the Control Unit implementation for the Caltech 10 CPU / HW 10. The control unit 
+" takes in 16 bits of instruction data and 8 bits of flag data to generate the 
+" control signals for the other ALU/PAU/DAU units to perform the correct operations.
+
+" This implementation uses three truth_tables (one for each unit) to directly 
+" convert each instruction code to the necessary control signals. It essentially uses instruction
+" based decoding (similar to WHEN THEN statements) in a more concise way.
+" Since most sets of instructions only affect specifically one unit, we can use three
+" separate tables.
+
+" This version implements the FSM for the CALL/RTS states.
+" Compared to HW10, the truth tables are modified to account for the FSM for CALL/RTS instructions.
+" The ControlUnit also outputs the next CALL/RTS step if in the CALL/RTS cycle.
+
+" Inputs:       PDB[15..0]  										- 16-bit of instruction data from the Program Data Bus
+"				Flags[7..0]											- 8 bit of flag data
+"               Reset, Clock 										- for clocking/resetting IR
+
+"
+" Outputs:      
+"				IR15..IR10											-Instruction Register, used for clocking
+"				PushF,PopF											-Control Signal when using PushF/PopF operation
+"				ALU_M3..ALU_M0,										-controls for selecting ALU operations 	
+"				ALU_LF, ALU_WC, 									-controls for loading ALU flags and carry signal
+"				ALU_F3..ALU_F0, 									-controls for ALU FBlock
+"				
+"				PA_Load, PA_Select2..PA_Select0,					-controls for PAU Operations
+"			
+"				DA_UseX, DA_ResetOff, DA_IDOn, DA_Post, DA_Inc, 	-controls for DAU operations
+"				Imm													-signal for immediate adressing
+
+"				RD, WR, IO  										-read, write, and input/output signals
+"				CALL2..CALL0, RTS1..RTS0, NONCR 					- state bits for CALL/RTS
+" Revision History:
+" 03/16/23  	Steven Lei  Initial Revision
+" 03/16/23   	Steven Lei  Updated comments
+" 03/17/23		Steven Lei  Testing
+" 03/19/23      Steven Lei  Implemented FSM but does not work.
+
+" Pin/Signal Declarations
+
+" ---------------------------------------------
+" Inputs
+" ---------------------------------------------
+
+PDB15..PDB0					pin ISTYPE 'COM'; "instruction data
+Flags7..Flags0				pin ISTYPE 'COM';
+Reset 						pin;				
+Clock 						pin;
+
+
+" ---------------------------------------------
+" Outputs
+" ---------------------------------------------
+
+IR15..IR0 					pin ISTYPE 'REG';	"16 bits of instruction register data
+
+PopF						pin ISTYPE 'COM'; 	" 1 pushf instruction 0 else
+PushF						pin ISTYPE 'COM';	" 1 popf instrcution 0 else
+
+CALL2..CALL0 				pin ISTYPE 'REG';	"1 for [n]step in call cycle
+RTS1..RTS0 					pin ISTYPE 'REG';	"1 for [n]step in rts cycle
+IDLE 						pin ISTYPE 'REG';	"1 for waiting for call/rts
+
+" ######### PAU CONTROL SIGNALS #######
+
+PA_Load						pin ISTYPE 'COM'; 
+PA_Select2..PA_Select0		pin ISTYPE 'COM';
+
+"######### ALU CONTROL SIGNALS #######
+
+ALU_M3..ALU_M0				pin ISTYPE 'COM';	" MUX for selecting ALU operations
+ALU_LF						pin ISTYPE 'COM';	" 1 for loading in FLAGs 
+ALU_WC						pin ISTYPE 'COM';	" 1 for using carry in operations
+ALU_F3..ALU_F0				pin ISTYPE 'COM'; 	" MUX for FBlock	
+
+
+"######### DAU CONTROL SIGNALS #######"
+
+DA_UseX 					pin ISTYPE 'COM';   " 1 for using X register, 0 for S
+DA_ResetOff					pin ISTYPE 'COM';   " 1 for not using offset, 0 for using offset data
+DA_IDOn						pin ISTYPE 'COM';   " 1 for any post/pre/inc/dec op, 0 else
+DA_Post						pin ISTYPE 'COM';   " 1 for post, 0 for pre
+DA_Inc						pin ISTYPE 'COM';	" 1 for inc, 0 for dec
+
+Imm							pin ISTYPE 'COM';	" 1 for immediate addressing (k), 0 else
+
+RD 							pin ISTYPE 'COM';	" 1 for any operations that read from DAU
+WR 							pin ISTYPE 'COM'; 	" 1 for any operations that write to DAU (ST)
+IO 							pin ISTYPE 'COM';	" 0 always (not doing EC)
+
+" Intermediate terms
+CFlag						node;		"Carry flag
+VFlag						node;		"Overflow flag
+SFlag						node;		"Sign flag
+ZFlag						node;		"Zero flag
+
+" Buses
+PDB = [PDB15..PDB0];
+IR =  [IR15..IR0];
+
+" Macros
+X=.X.;
+
+
+" State bits
+
+      " since there aren't that many states and for simplicity, we will use one hot state machine
+
+StateBits = [CALL2..CALL0, RTS1..RTS0, IDLE];
+
+" define the states
+
+IDLE_STATE  =   [0,0,0,0,0,1];				"IDLE state, waiting for call/rts
+RTS1_STATE  =   [0,0,0,0,1,0];				"1st RTS instruction
+RTS2_STATE  =   [0,0,0,1,0,0];				"2nd RTS instruction 
+CALL1_STATE =   [0,0,1,0,0,0];				"1st CALL instruction
+CALL2_STATE =   [0,1,0,0,0,0];				"2nd CALL instruction
+CALL3_STATE =   [1,0,0,0,0,0];				"3rd CALL instruction
+
+" ---------------------------------------------
+EQUATIONS
+" ---------------------------------------------
+
+
+StateBits.CLK = Clock;
+StateBits.CLR = !Reset;
+
+IO = 0;				"Low since IO not used
+IR:= PDB;			"IR needs to be clocked, same as PDB
+IR.CLK = Clock;
+IR.CLR = !Reset;
+					" Set Flags
+CFlag = Flags3;
+VFlag = Flags2;
+SFlag = Flags1;
+ZFlag = Flags0;
+
+					" hard encoding of popf/pushf using CHKDECOD
+
+PopF =  (!IR15 & !IR14 & !IR13 & !IR12 & !IR11 & !IR10 & IR9);
+PushF = (!IR15 & !IR14 & !IR13 & !IR12 & IR11 & IR10 & IR9 & !IR8 & !IR7 & !IR6);
+
+"########################
+"######### PAU ##########
+"########################
+
+" Since the majority of PAU operations only concern the first 8 bits, we just need to examine those.
+" An additional 9th bit is examined since NOP is the same as RTS for the first 8 Bits
+" In this case, almost every instruction tells the PAU to jump with PC = PC+r+1,
+" which we can generate with just a few PAU signals. We must account for the flags however.
+" None of the ALU/DAU instructions affect the PAU, so we can leave the signals as don't cares.
+" We must still include the other instructions and make sure they're set to X, instead of 0.
+" For NOP/DONT Cares, we still need to send a increment signal to Program Address.
+" FOR CALL/RTS, the table needs to account for the CALL/RTS states and output the new ones.
+
+TRUTH_TABLE([IR15..IR7,CFlag,VFlag,SFlag,ZFlag,CALL2..CALL0, RTS1..RTS0, IDLE] -> [PA_Load, PA_Select2..PA_Select0])
+		 												   "PA Controls
+		 	[1,1,1,X,X,X,X,X,X,	X,X,X,X,	0,0,0,0,0,1]-> [0,0,1,1];  		 	"CALL step 1: S=PC12..8, go to step 2
+		 	[1,1,1,X,X,X,X,X,X,	X,X,X,X,	0,0,1,0,0,0]-> [0,0,1,1];  		 	"CALL step 2: S=PC7..0, go to step 3
+		 	[1,1,1,X,X,X,X,X,X,	X,X,X,X,	0,1,0,0,0,0]-> [1,0,0,0];  		 	"CALL step 3: PC = a, go to accepting instructions
+
+			[0,0,0,1,1,1,1,1,0,	X,X,X,X,	0,0,0,0,0,1]-> [1,1,0,0];			"RTS step1: S=PC7..0, go to step 2
+			[0,0,0,1,1,1,1,1,0,	X,X,X,X,	0,0,0,0,1,0]-> [1,1,0,1];			"RTS step2: S=PC12..7, go to accepting instructions
+
+			[0,0,0,1,1,1,1,1,1,	X,X,X,X,	0,0,0,0,0,1]-> [0,0,1,1]; 			"NOP
+			[1,1,0,X,X,X,X,X,X,	X,X,X,X,	0,0,0,0,0,1]-> [1,0,0,0];           "JMP - need to check PC+r+1	
+			[1,0,0,0,1,0,0,0,X,	0,X,X,0,	0,0,0,0,0,1]-> [0,1,1,0];          	"JA  -> C & Z = 0
+			[1,0,0,0,1,1,0,0,X,	0,X,X,X,	0,0,0,0,0,1]-> [0,1,1,0];           "JAE -> C = 0
+			[1,0,0,0,1,1,1,1,X,	1,X,X,X,	0,0,0,0,0,1]-> [0,1,1,0];           "JB  -> C = 1 
+			[1,0,0,0,1,0,1,1,X,	1,X,X,X,	0,0,0,0,0,1]-> [0,1,1,0];           "JBE -> (C = 1)
+			[1,0,0,0,1,0,1,1,X,	X,X,X,1,	0,0,0,0,0,1]-> [0,1,1,0];           "JBE -> or ( Z = 1) second case
+			[1,0,0,1,1,1,1,1,X,	X,X,X,0,	0,0,0,0,0,1]-> [0,1,1,0];           "JE  -> (Z = 0)
+			[1,0,1,0,1,1,1,1,X,	X,0,0,0,	0,0,0,0,0,1]-> [0,1,1,0];           "JG  -> (S = V) and (Z=0)			
+			[1,0,1,0,1,1,1,1,X,	X,1,1,0,	0,0,0,0,0,1]-> [0,1,1,0];           "JG  second case
+			[1,0,1,1,1,0,1,1,X,	X,1,1,X,	0,0,0,0,0,1]-> [0,1,1,0];           "JGE -> (S = V)
+			[1,0,1,1,1,0,1,1,X,	X,0,0,X,	0,0,0,0,0,1]-> [0,1,1,0];           "JGE second case
+			[1,0,1,1,1,0,0,0,X,	X,0,1,X,	0,0,0,0,0,1]-> [0,1,1,0];           "JL  -> (S!=V) 
+			[1,0,1,1,1,0,0,0,X,	X,1,0,X,	0,0,0,0,0,1]-> [0,1,1,0];           "JL  second case
+			[1,0,1,0,1,1,0,0,X, X,0,1,X,	0,0,0,0,0,1]-> [0,1,1,0];           "JLE -> (S!=V) or (Z=1)
+			[1,0,1,0,1,1,0,0,X, X,1,0,X,	0,0,0,0,0,1]-> [0,1,1,0];           "JLE second case
+			[1,0,1,0,1,1,0,0,X, X,X,X,1,	0,0,0,0,0,1]-> [0,1,1,0];           "JLE third case
+			[1,0,0,1,1,1,0,0,X,	X,X,X,0,	0,0,0,0,0,1]-> [0,1,1,0];           "JNE -> (Z = 0)
+			[1,0,0,1,1,0,0,0,X,	X,X,0,X,	0,0,0,0,0,1]-> [0,1,1,0];           "JNS -> (S = 0)
+			[1,0,1,0,1,0,0,0,X,	X,1,0,X,	0,0,0,0,0,1]-> [0,1,1,0];           "JNV -> (V = 0)
+			[1,0,0,1,1,0,1,1,X,	X,X,1,X,	0,0,0,0,0,1]-> [0,1,1,0];           "JS  -> (S = 1)
+			[1,0,1,0,1,0,1,1,X,	X,1,X,X,	0,0,0,0,0,1]-> [0,1,1,0];           "JV  -> (V = 1)
+
+			"============================DONT CARES======================================
+			" HOLD SIGNAL
+			[0,0,0,0,0,0,1,0,X,	X,X,X,X,	0,0,0,0,0,1]-> [0,0,1,1];			"POPF
+			[0,0,0,0,1,1,1,0,X,	X,X,X,X,	0,0,0,0,0,1]-> [0,0,1,1];			"PUSHF 
+			"ALU Instructions
+			[0,1,1,0,0,0,0,0,X,	X,X,X,X,	0,0,0,0,0,1] ->[0,0,1,1];       	"ADC m
+			[0,1,1,0,0,0,0,1,X,	X,X,X,X,	0,0,0,0,0,1] ->[0,0,1,1];       	"ADC XO
+			[0,1,1,0,0,0,1,0,X,	X,X,X,X,	0,0,0,0,0,1] ->[0,0,1,1];        	"ADC SO
+			[0,1,1,0,0,0,1,1,X,	X,X,X,X,	0,0,0,0,0,1] ->[0,0,1,1];        	"ADC k
+			[0,1,1,0,1,0,0,0,X,	X,X,X,X,	0,0,0,0,0,1] ->[0,0,1,1];        	"ADD m
+			[0,1,1,0,1,0,0,1,X,	X,X,X,X,	0,0,0,0,0,1] ->[0,0,1,1];        	"ADD XO
+			[0,1,1,0,1,0,1,0,X,	X,X,X,X,	0,0,0,0,0,1] ->[0,0,1,1];        	"ADD SO
+			[0,1,1,0,1,0,1,1,X,	X,X,X,X,	0,0,0,0,0,1] ->[0,0,1,1];        	"ADD k
+			[0,1,0,0,0,1,0,0,X,	X,X,X,X,	0,0,0,0,0,1] ->[0,0,1,1];        	"AND m
+			[0,1,0,0,0,1,0,1,X,	X,X,X,X,	0,0,0,0,0,1] ->[0,0,1,1];        	"AND XO
+			[0,1,0,0,0,1,1,0,X,	X,X,X,X,	0,0,0,0,0,1] ->[0,0,1,1];        	"AND SO
+			[0,1,0,0,0,1,1,1,X,	X,X,X,X,	0,0,0,0,0,1] ->[0,0,1,1]; 		  	"AND K
+			[0,0,1,1,0,0,0,0,X,	X,X,X,X,	0,0,0,0,0,1] ->[0,0,1,1];        	"CMP m
+			[0,0,1,1,0,0,0,1,X,	X,X,X,X,	0,0,0,0,0,1] ->[0,0,1,1];        	"CMP XO
+			[0,0,1,1,0,0,1,0,X,	X,X,X,X,	0,0,0,0,0,1] ->[0,0,1,1];        	"CMP SO
+			[0,0,1,1,0,0,1,1,X,	X,X,X,X,	0,0,0,0,0,1] ->[0,0,1,1];        	"CMP k
+			[0,1,1,1,1,0,1,1,X,	X,X,X,X,	0,0,0,0,0,1] ->[0,0,1,1];        	"DEC 
+			[0,0,0,0,0,0,0,0,X,	X,X,X,X,	0,0,0,0,0,1] ->[0,0,1,1];        	"INC
+			[0,1,0,1,1,0,0,0,X,	X,X,X,X,	0,0,0,0,0,1] ->[0,0,1,1];        	"LSL
+			[0,0,1,0,1,1,0,1,X,	X,X,X,X,	0,0,0,0,0,1] ->[0,0,1,1];        	"NOT A
+			[0,1,1,1,0,1,0,0,X,	X,X,X,X,	0,0,0,0,0,1] ->[0,0,1,1];        	"OR m
+			[0,1,1,1,0,1,0,1,X,	X,X,X,X,	0,0,0,0,0,1] ->[0,0,1,1];        	"OR XO
+			[0,1,1,1,0,1,1,0,X,	X,X,X,X,	0,0,0,0,0,1] ->[0,0,1,1];        	"OR SO
+			[0,1,1,1,0,1,1,1,X,	X,X,X,X,	0,0,0,0,0,1] ->[0,0,1,1];        	"OR k
+			[0,1,0,1,0,0,0,0,X,	X,X,X,X,	0,0,0,0,0,1] ->[0,0,1,1];        	"RLC
+			[0,0,0,1,1,0,0,0,X,	X,X,X,X,	0,0,0,0,0,1] ->[0,0,1,1];        	"SBB m
+			[0,0,0,1,1,0,0,1,X,	X,X,X,X,	0,0,0,0,0,1] ->[0,0,1,1];        	"SBB XO
+			[0,0,0,1,1,0,1,0,X,	X,X,X,X,	0,0,0,0,0,1] ->[0,0,1,1];        	"SBB SO
+			[0,0,0,1,1,0,1,1,X,	X,X,X,X,	0,0,0,0,0,1] ->[0,0,1,1];        	"SBB k
+			[0,0,0,1,0,0,0,0,X,	X,X,X,X,	0,0,0,0,0,1] ->[0,0,1,1];        	"SUB m
+			[0,0,0,1,0,0,0,1,X,	X,X,X,X,	0,0,0,0,0,1] ->[0,0,1,1];        	"SUB XO
+			[0,0,0,1,0,0,1,0,X,	X,X,X,X,	0,0,0,0,0,1] ->[0,0,1,1];        	"SUB SO
+			[0,0,0,1,0,0,1,1,X,	X,X,X,X,	0,0,0,0,0,1] ->[0,0,1,1];        	"SUB k
+			[0,1,0,0,1,1,0,0,X,	X,X,X,X,	0,0,0,0,0,1] ->[0,0,1,1];        	"TST m
+			[0,1,0,0,1,1,0,1,X,	X,X,X,X,	0,0,0,0,0,1] ->[0,0,1,1];        	"TST XO
+			[0,1,0,0,1,1,1,0,X,	X,X,X,X,	0,0,0,0,0,1] ->[0,0,1,1];        	"TST SO
+			[0,1,0,0,1,1,1,1,X,	X,X,X,X,	0,0,0,0,0,1] ->[0,0,1,1];        	"TST k
+			[0,0,1,1,0,1,0,0,X,	X,X,X,X,	0,0,0,0,0,1] ->[0,0,1,1];        	"XOR m
+			[0,0,1,1,0,1,0,1,X,	X,X,X,X,	0,0,0,0,0,1] ->[0,0,1,1];        	"XOR XO
+			[0,0,1,1,0,1,1,0,X,	X,X,X,X,	0,0,0,0,0,1] ->[0,0,1,1];        	"XOR SO
+			[0,0,1,1,0,1,1,1,X,	X,X,X,X,	0,0,0,0,0,1] ->[0,0,1,1];        	"XOR k
+			"DAU instructions
+			[1,0,0,0,1,0,0,1,X,	X,X,X,X,	0,0,0,0,0,1] -> [0,0,1,1];          "LD k 
+			[1,0,0,0,0,0,0,0,X,	X,X,X,X,	0,0,0,0,0,1] -> [0,0,1,1];          "LDD m 
+			[1,0,0,1,0,1,1,1,X,	X,X,X,X,	0,0,0,0,0,1] -> [0,0,1,1];          "LD X+o
+			[1,0,0,1,0,1,1,0,X,	X,X,X,X,	0,0,0,0,0,1] -> [0,0,1,1];          "LD X++o
+			[1,0,0,1,1,1,1,0,X,	X,X,X,X,	0,0,0,0,0,1] -> [0,0,1,1];          "LD X-+o
+			[1,0,0,0,0,1,1,0,X,	X,X,X,X,	0,0,0,0,0,1] -> [0,0,1,1];          "LD +X+o
+			[1,0,0,0,1,1,1,0,X,	X,X,X,X,	0,0,0,0,0,1] -> [0,0,1,1];          "LD -X+o
+			[1,0,0,1,0,0,1,1,X,	X,X,X,X,	0,0,0,0,0,1] -> [0,0,1,1];        	"LD S+o
+			[1,0,0,1,0,0,1,0,X,	X,X,X,X,	0,0,0,0,0,1] -> [0,0,1,1];          "LD S++o
+			[1,0,0,1,1,0,1,0,X,	X,X,X,X,	0,0,0,0,0,1] -> [0,0,1,1];          "LD S-+o
+			[1,0,0,0,0,0,1,0,X,	X,X,X,X,	0,0,0,0,0,1] -> [0,0,1,1];          "LD +S+o
+			[1,0,0,0,1,0,1,0,X,	X,X,X,X,	0,0,0,0,0,1] -> [0,0,1,1];          "LD -S+o
+			[1,0,1,0,0,0,0,0,X,	X,X,X,X,	0,0,0,0,0,1] -> [0,0,1,1];        	"STD m 
+			[1,0,1,1,0,1,1,1,X,	X,X,X,X,	0,0,0,0,0,1] -> [0,0,1,1];          "ST X+o
+			[1,0,1,1,0,1,1,0,X,	X,X,X,X,	0,0,0,0,0,1] -> [0,0,1,1];          "ST X++o
+			[1,0,1,1,1,1,1,0,X,	X,X,X,X,	0,0,0,0,0,1] -> [0,0,1,1];          "ST X-+o
+			[1,0,1,0,0,1,1,0,X,	X,X,X,X,	0,0,0,0,0,1] -> [0,0,1,1];          "ST +X+o
+			[1,0,1,0,1,1,1,0,X,	X,X,X,X,	0,0,0,0,0,1] -> [0,0,1,1];          "ST -X+o
+			[1,0,1,1,0,0,1,1,X,	X,X,X,X,	0,0,0,0,0,1] -> [0,0,1,1];        	"ST S+o
+			[1,0,1,1,0,0,1,0,X,	X,X,X,X,	0,0,0,0,0,1] -> [0,0,1,1];          "ST S++o
+			[1,0,1,1,1,0,1,0,X,	X,X,X,X,	0,0,0,0,0,1] -> [0,0,1,1];          "ST S-+o
+			[1,0,1,0,0,0,1,0,X,	X,X,X,X,	0,0,0,0,0,1] -> [0,0,1,1];          "ST +S+o
+			[1,0,1,0,1,0,1,0,X,	X,X,X,X,	0,0,0,0,0,1] -> [0,0,1,1];          "ST -S+o
+
+"########################
+"######### ALU ##########
+"########################
+
+" The ALU truth table is more complicated, but works in the same manner.
+" The truth table has been indented for ease of editing. 
+" Output: 1st 4 bits: selecting the ALU operation
+" next 2 bits: ALU_LF, ALU_WC for loading flags and setting carry
+" next 4 bits: FBlock
+" Since DAU LD instructions were built into the ALU then they must be accounted for.
+" All other instructions, don't care, but again need to be included.
+" For NOP/Don't cares, we still need to send a HOLD singal for the bits.
+
+" FOR CALL/RTS, the ALU remains unaffected no matter what step.
+
+TRUTH_TABLE([IR15..IR7,CALL2..CALL0, RTS1..RTS0, IDLE]->	 [ALU_M3..ALU_M0, ALU_LF, ALU_WC, ALU_F3..ALU_F0])
+													" MODE      LF/WC   FBLOCK
+
+			[1,1,1,X,X,X,X,X,X,		0,0,0,X,X,0]-> [0,0,0,0,	X,X,	X,X,X,X];  		 	"CALL
+			[0,0,0,1,1,1,1,1,0,		0,0,0,X,X,0]-> [0,0,0,0,	X,X, 	X,X,X,X];		 	"RTS
+
+			[0,0,0,1,1,1,1,1,1,		0,0,0,0,0,1]-> [0,0,0,0,	X,X,	X,X,X,X];			"NOP
+			[0,1,1,0,0,0,0,0,X,		0,0,0,0,0,1] ->[0,0,1,0,	0,1,	0,0,0,0];           "ADC m
+			[0,1,1,0,0,0,0,1,X,		0,0,0,0,0,1] ->[0,0,1,0,	0,1,	0,0,0,0];           "ADC XO
+			[0,1,1,0,0,0,1,0,X,		0,0,0,0,0,1] ->[0,0,1,0,	0,1,	0,0,0,0];           "ADC SO
+			[0,1,1,0,0,0,1,1,X,		0,0,0,0,0,1] ->[0,0,1,0,	0,1,	0,0,0,0];           "ADC k
+			[0,1,1,0,1,0,0,0,X,		0,0,0,0,0,1] ->[0,0,1,0,	0,0,	0,0,0,0];           "ADD m
+			[0,1,1,0,1,0,0,1,X,		0,0,0,0,0,1] ->[0,0,1,0,	0,0,	0,0,0,0];           "ADD XO
+			[0,1,1,0,1,0,1,0,X,		0,0,0,0,0,1] ->[0,0,1,0,	0,0,	0,0,0,0];           "ADD SO
+			[0,1,1,0,1,0,1,1,X,		0,0,0,0,0,1] ->[0,0,1,0,	0,0,	0,0,0,0];           "ADD k
+			[0,1,0,0,0,1,0,0,X,		0,0,0,0,0,1] ->[0,0,0,1,	0,0,	0,0,0,0];           "AND m
+			[0,1,0,0,0,1,0,1,X,		0,0,0,0,0,1] ->[0,0,0,1,	0,0,	0,0,0,0];           "AND XO
+			[0,1,0,0,0,1,1,0,X,		0,0,0,0,0,1] ->[0,0,0,1,	0,0,	0,0,0,0];           "AND SO
+			[0,1,0,0,0,1,1,1,X,		0,0,0,0,0,1] ->[0,0,0,1,	0,0,	0,0,0,0];           "AND K
+			[0,0,1,1,0,0,0,0,X,		0,0,0,0,0,1] ->[1,1,0,0,	0,0,	0,0,0,0];           "CMP m
+			[0,0,1,1,0,0,0,1,X,		0,0,0,0,0,1] ->[1,1,0,0,	0,0,	0,0,0,0];           "CMP XO
+			[0,0,1,1,0,0,1,0,X,		0,0,0,0,0,1] ->[1,1,0,0,	0,0,	0,0,0,0];           "CMP SO
+			[0,0,1,1,0,0,1,1,X,		0,0,0,0,0,1] ->[1,1,0,0,	0,0,	0,0,0,0];           "CMP k
+			[0,1,1,1,1,0,1,1,X,		0,0,0,0,0,1] ->[1,0,0,0,	0,1,	0,1,0,1];           "DEC 
+			[0,0,0,0,0,0,0,0,X,		0,0,0,0,0,1] ->[0,1,0,0,	0,0,	0,0,0,0];           "INC
+			[0,1,0,1,1,0,0,0,X,		0,0,0,0,0,1] ->[0,0,1,1,	0,0,	0,0,0,0];           "LSL
+			[0,0,1,0,1,1,0,1,X,		0,0,0,0,0,1] ->[0,0,0,1,	0,0,	0,0,1,1];           "NOT A
+			[0,1,1,1,0,1,0,0,X,		0,0,0,0,0,1] ->[0,0,0,1,	0,0,	1,1,1,0];           "OR m
+			[0,1,1,1,0,1,0,1,X,		0,0,0,0,0,1] ->[0,0,0,1,	0,0,	1,1,1,0];           "OR XO
+			[0,1,1,1,0,1,1,0,X,		0,0,0,0,0,1] ->[0,0,0,1,	0,0,	1,1,1,0];           "OR SO
+			[0,1,1,1,0,1,1,1,X,		0,0,0,0,0,1] ->[0,0,0,1, 	0,0,	1,1,1,0];           "OR k
+			[0,1,0,1,0,0,0,0,X,		0,0,0,0,0,1] ->[0,0,1,1,	0,1,	0,0,0,0];           "RLC
+			[0,0,0,1,1,0,0,0,X,		0,0,0,0,0,1] ->[0,0,1,0,	0,1,	0,1,0,1];           "SBB m
+			[0,0,0,1,1,0,0,1,X,		0,0,0,0,0,1] ->[0,0,1,0,	0,1,	0,1,0,1];           "SBB XO
+			[0,0,0,1,1,0,1,0,X,		0,0,0,0,0,1] ->[0,0,1,0,	0,1,	0,1,0,1];           "SBB SO
+			[0,0,0,1,1,0,1,1,X,		0,0,0,0,0,1] ->[0,0,1,0,	0,1,	0,1,0,1];           "SBB k
+			[0,0,0,1,0,0,0,0,X,		0,0,0,0,0,1] ->[0,0,1,0,	0,0,	0,1,0,1];           "SUB m
+			[0,0,0,1,0,0,0,1,X,		0,0,0,0,0,1] ->[0,0,1,0,	0,0,	0,1,0,1];           "SUB XO
+			[0,0,0,1,0,0,1,0,X,		0,0,0,0,0,1] ->[0,0,1,0,	0,0,	0,1,0,1];           "SUB SO
+			[0,0,0,1,0,0,1,1,X,		0,0,0,0,0,1] ->[0,0,1,0,	0,0,	0,1,0,1];           "SUB k
+			[0,1,0,0,1,1,0,0,X,		0,0,0,0,0,1] ->[1,1,1,0,	0,0,	1,0,0,0];           "TST m
+			[0,1,0,0,1,1,0,1,X,		0,0,0,0,0,1] ->[1,1,1,0,	0,0,	1,0,0,0];           "TST XO
+			[0,1,0,0,1,1,1,0,X,		0,0,0,0,0,1] ->[1,1,1,0,	0,0,	1,0,0,0];           "TST SO
+			[0,1,0,0,1,1,1,1,X,		0,0,0,0,0,1] ->[1,1,1,0,	0,0,	1,0,0,0];           "TST k
+			[0,0,1,1,0,1,0,0,X,		0,0,0,0,0,1] ->[0,0,0,1,	0,0,	0,1,1,0];           "XOR m
+			[0,0,1,1,0,1,0,1,X,		0,0,0,0,0,1] ->[0,0,0,1,	0,0,	0,1,1,0];           "XOR XO
+			[0,0,1,1,0,1,1,0,X,		0,0,0,0,0,1] ->[0,0,0,1,	0,0,	0,1,1,0];           "XOR SO
+			[0,0,1,1,0,1,1,1,X,		0,0,0,0,0,1] ->[0,0,0,1,	0,0,	0,1,1,0];           "XOR k
+			
+			"DAU Load instructions all do the same thing to the ALU - just loads data
+			[1,0,0,0,1,0,0,1,X,		0,0,0,0,0,1]->[1,1,1,1,	0,0,	0,0,0,0];           "LDD k
+			[1,0,0,0,0,0,0,0,X,		0,0,0,0,0,1]->[1,1,1,1,	0,0,	0,0,0,0];           "LDD m 
+			[1,0,0,1,0,1,1,1,X,		0,0,0,0,0,1]->[1,1,1,1,	0,0,	0,0,0,0];           "LD X+o
+			[1,0,0,1,0,1,1,0,X,		0,0,0,0,0,1]->[1,1,1,1,	0,0,	0,0,0,0];           "LD X++o
+			[1,0,0,1,1,1,1,0,X,		0,0,0,0,0,1]->[1,1,1,1,	0,0,	0,0,0,0];           "LD X-+o
+			[1,0,0,0,0,1,1,0,X,		0,0,0,0,0,1]->[1,1,1,1,	0,0,	0,0,0,0];           "LD +X+o
+			[1,0,0,0,1,1,1,0,X,		0,0,0,0,0,1]->[1,1,1,1,	0,0,	0,0,0,0];           "LD -X+o
+			[1,0,0,1,0,0,1,1,X,		0,0,0,0,0,1]->[1,1,1,1,	0,0,	0,0,0,0];           "LD S+o
+			[1,0,0,1,0,0,1,0,X,		0,0,0,0,0,1]->[1,1,1,1,	0,0,	0,0,0,0];           "LD S++o
+			[1,0,0,1,1,0,1,0,X,		0,0,0,0,0,1]->[1,1,1,1,	0,0,	0,0,0,0];           "LD S-+o
+			[1,0,0,0,0,0,1,0,X,		0,0,0,0,0,1]->[1,1,1,1,	0,0,	0,0,0,0];           "LD +S+o
+			[1,0,0,0,1,0,1,0,X,		0,0,0,0,0,1]->[1,1,1,1,	0,0,	0,0,0,0];           "LD -S+o
+			[0,0,0,0,0,0,1,0,X,		0,0,0,0,0,1]->[0,0,0,0,	1,0,	X,X,X,X];			"POPF - need to load flags
+			[0,0,0,0,1,1,1,0,X,		0,0,0,0,0,1]->[0,0,0,0,	0,0,	X,X,X,X];			"PUSHF 
+			"============================DONT CARES======================================
+			"DAU Store instructions 
+			[1,0,1,0,0,0,0,0,X,		0,0,0,0,0,1]->[0,0,0,0,	X,X,	X,X,X,X];           "STD m -> 
+			[1,0,1,1,0,1,1,1,X,		0,0,0,0,0,1]->[0,0,0,0,	X,X,	X,X,X,X];           "ST X+o
+			[1,0,1,1,0,1,1,0,X,		0,0,0,0,0,1]->[0,0,0,0,	X,X,	X,X,X,X];           "ST X++o
+			[1,0,1,1,1,1,1,0,X,		0,0,0,0,0,1]->[0,0,0,0,	X,X,	X,X,X,X];           "ST X-+o
+			[1,0,1,0,0,1,1,0,X,		0,0,0,0,0,1]->[0,0,0,0,	X,X,	X,X,X,X];           "ST +X+o
+			[1,0,1,0,1,1,1,0,X,		0,0,0,0,0,1]->[0,0,0,0,	X,X,	X,X,X,X];           "ST -X+o
+			[1,0,1,1,0,0,1,1,X,		0,0,0,0,0,1]->[0,0,0,0,	X,X,	X,X,X,X];           "ST S+o
+			[1,0,1,1,0,0,1,0,X,		0,0,0,0,0,1]->[0,0,0,0,	X,X,	X,X,X,X];           "ST S++o
+			[1,0,1,1,1,0,1,0,X,		0,0,0,0,0,1]->[0,0,0,0,	X,X,	X,X,X,X];           "ST S-+o
+			[1,0,1,0,0,0,1,0,X,		0,0,0,0,0,1]->[0,0,0,0,	X,X,	X,X,X,X];           "ST +S+o
+			[1,0,1,0,1,0,1,0,X,		0,0,0,0,0,1]->[0,0,0,0,	X,X,	X,X,X,X];           "ST -S+o
+			"PAU Instructions
+			[1,1,0,X,X,X,X,X,X,		0,0,0,0,0,1]->[0,0,0,0,	X,X,	X,X,X,X];			"JMP
+			[1,0,0,0,1,0,0,0,X,		0,0,0,0,0,1]->[0,0,0,0,	X,X,	X,X,X,X];			"JA  -> C & Z = 0
+			[1,0,0,0,1,1,0,0,X,		0,0,0,0,0,1]->[0,0,0,0,	X,X,	X,X,X,X];			"JAE -> C = 0
+			[1,0,0,0,1,1,1,1,X,		0,0,0,0,0,1]->[0,0,0,0,	X,X,	X,X,X,X];			"JB  -> C = 1  
+			[1,0,0,0,1,0,1,1,X,		0,0,0,0,0,1]->[0,0,0,0,	X,X,	X,X,X,X];			"JBE -> (C = 1)
+			[1,0,0,1,1,1,1,1,X,		0,0,0,0,0,1]->[0,0,0,0,	X,X,	X,X,X,X];			"JE  -> (Z = 0)
+			[1,0,1,0,1,1,1,1,X,		0,0,0,0,0,1]->[0,0,0,0,	X,X,	X,X,X,X];			"JG  -> (S = V) and (Z=0)
+			[1,0,1,1,1,0,1,1,X,		0,0,0,0,0,1]->[0,0,0,0,	X,X,	X,X,X,X];			"JGE -> (S = V)
+			[1,0,1,1,1,0,0,0,X,		0,0,0,0,0,1]->[0,0,0,0,	X,X,	X,X,X,X];			"JL  -> (S!=V) 
+			[1,0,1,0,1,1,0,0,X,		0,0,0,0,0,1]->[0,0,0,0,	X,X,	X,X,X,X];			"JLE -> (S!=V) or (Z=1)
+			[1,0,0,1,1,1,0,0,X,		0,0,0,0,0,1]->[0,0,0,0,	X,X,	X,X,X,X];			"JNE -> (Z = 0)
+			[1,0,0,1,1,0,0,0,X,		0,0,0,0,0,1]->[0,0,0,0,	X,X,	X,X,X,X];			"JNS -> (S = 0)
+			[1,0,1,0,1,0,0,0,X,		0,0,0,0,0,1]->[0,0,0,0,	X,X,	X,X,X,X];			"JNV -> (V = 0)
+			[1,0,0,1,1,0,1,1,X,		0,0,0,0,0,1]->[0,0,0,0,	X,X,	X,X,X,X];			"JS  -> (S = 1)
+			[1,0,1,0,1,0,1,1,X,		0,0,0,0,0,1]->[0,0,0,0,	X,X,	X,X,X,X];			"JV  -> (V = 1)
+
+
+"########################
+"######### DAU ##########
+"########################
+
+" For the DAUnit, similar scheme. However we have a bit signals to account for
+" Output: 1st bit: whether we want to Load (1) or store (0)
+" Next two bits: register(1 for X, 0 for S) used and offset used (0 for using offset, 1 for not)
+" Next three bits determine the DAU operation
+" Last two bits: RD and WR (must be set for every instruction)
+" Since ALU operations require the DAU to output offset data (e.g. S+O, X+O) then they must be accounted for as well.    
+" For NOP/Don't cares, we still need to send a HOLD signal for the bits.
+" FOR CALL/RTS, we need to select the appropriate DAU behavior dependin on the CALL/RTS step.
+TRUTH_TABLE([IR15..IR7,CALL2..CALL0, RTS1..RTS0, IDLE] -> [DA_UseX, DA_ResetOff, DA_IDOn, DA_Post, DA_Inc, Imm, RD, WR])
+									"CALL RTS N   X/S,Off  DAU Ctrl Imm RD WR
+
+			[1,1,1,X,X,X,X,X,X,		0,0,0,0,0,1]->[0,1, 1,0,0, 		0,0,1];  		  "CALL 1st step: -S, S=PC+1
+			[1,1,1,X,X,X,X,X,X,		0,0,1,0,0,0]->[0,1, 1,0,0, 		0,0,1];  		  "CALL 2nd step: -S, S=PC+1
+			[1,1,1,X,X,X,X,X,X,		0,1,0,0,0,0]->[0,1, 0,0,0, 		0,0,1];  		  "CALL 3rd step: S holds, PC reads immediate
+			[0,0,0,1,1,1,1,1,0,		0,0,0,0,0,1]->[0,1, 1,1,1, 		0,1,0];			  "RTS 1st step: PC = S, S+ 
+			[0,0,0,1,1,1,1,1,0,		0,0,0,0,1,0]->[0,1, 1,1,1, 		0,1,0];			  "RTS 2nd step: PC = S, S+ 
+
+			[0,0,0,1,1,1,1,1,1,		0,0,0,0,0,1]->[0,1, 0,0,0, 		0,0,0];  		  "NOP, should just HOLD 
+			[1,0,0,0,1,0,0,1,X,		0,0,0,0,0,1]->[0,1, 0,1,1, 		1,0,0];           "LD k -> does not rd/wr
+			[1,0,0,0,0,0,0,0,X,		0,0,0,0,0,1]->[0,0,	0,0,1,		0,1,0];           "LDD m 
+			[1,0,0,1,0,1,1,1,X,		0,0,0,0,0,1]->[1,0,	0,0,0,		0,1,0];           "LD X+o
+			[1,0,0,1,0,1,1,0,X,		0,0,0,0,0,1]->[1,0,	1,1,1,		0,1,0];           "LD X++o
+			[1,0,0,1,1,1,1,0,X,		0,0,0,0,0,1]->[1,0,	1,1,0,		0,1,0];           "LD X-+o
+			[1,0,0,0,0,1,1,0,X,		0,0,0,0,0,1]->[1,0,	1,0,1,		0,1,0];           "LD +X+o
+			[1,0,0,0,1,1,1,0,X,		0,0,0,0,0,1]->[1,0,	1,0,0,		0,1,0];           "LD -X+o
+			[1,0,0,1,0,0,1,1,X,		0,0,0,0,0,1]->[0,0,	0,0,0,		0,1,0];           "LD S+o
+			[1,0,0,1,0,0,1,0,X,		0,0,0,0,0,1]->[0,0,	1,1,1,		0,1,0];           "LD S++o
+			[1,0,0,1,1,0,1,0,X,		0,0,0,0,0,1]->[0,0,	1,1,0,		0,1,0];           "LD S-+o
+			[1,0,0,0,0,0,1,0,X,		0,0,0,0,0,1]->[0,0,	1,0,1,		0,1,0];           "LD +S+o
+			[1,0,0,0,1,0,1,0,X,		0,0,0,0,0,1]->[0,0,	1,0,0,		0,1,0];           "LD -S+o
+			[1,0,1,0,0,0,0,0,X,		0,0,0,0,0,1]->[0,0,	0,0,1,		0,0,1];           "STD m
+			[1,0,1,1,0,1,1,1,X,		0,0,0,0,0,1]->[1,0,	0,0,0,		0,0,1];           "ST X+o
+			[1,0,1,1,0,1,1,0,X,		0,0,0,0,0,1]->[1,0,	1,1,1,		0,0,1];           "ST X++o
+			[1,0,1,1,1,1,1,0,X,		0,0,0,0,0,1]->[1,0,	1,1,0,		0,0,1];           "ST X-+o
+			[1,0,1,0,0,1,1,0,X,		0,0,0,0,0,1]->[1,0,	1,0,1,		0,0,1];           "ST +X+o
+			[1,0,1,0,1,1,1,0,X,		0,0,0,0,0,1]->[1,0,	1,0,0,		0,0,1];           "ST -X+o
+			[1,0,1,1,0,0,1,1,X,		0,0,0,0,0,1]->[0,0,	0,0,0,		0,0,1];           "ST S+o
+			[1,0,1,1,0,0,1,0,X,		0,0,0,0,0,1]->[0,0,	1,1,1,		0,0,1];           "ST S++o
+			[1,0,1,1,1,0,1,0,X,		0,0,0,0,0,1]->[0,0,	1,1,0,		0,0,1];           "ST S-+o
+			[1,0,1,0,0,0,1,0,X,		0,0,0,0,0,1]->[0,0,	1,0,1,		0,0,1];           "ST +S+o
+			[1,0,1,0,1,0,1,0,X,		0,0,0,0,0,1]->[0,0,	1,0,0,		0,0,1];           "ST -S+o
+			[0,0,0,0,0,0,1,0,X,		0,0,0,0,0,1]->[0,1, 1,1,1,  	0,1,0]; 		  "POPF  S is read, then +S
+			[0,0,0,0,1,1,1,0,X,		0,0,0,0,0,1]->[0,1, 1,0,0,  	0,0,1];			  "PUSHF -S, then S is written
+
+			" ALU Instructions. Need to generate DAU ctrl signals depending on addressing
+			[0,1,1,0,0,0,0,0,X,		0,0,0,0,0,1] ->[0,0,	0,0,1,		0,1,0];        "ADC m
+			[0,1,1,0,0,0,0,1,X,		0,0,0,0,0,1] ->[1,0,	0,0,0,		0,1,0];        "ADC XO
+			[0,1,1,0,0,0,1,0,X,		0,0,0,0,0,1] ->[0,0,	0,0,0,		0,1,0];        "ADC SO
+			[0,1,1,0,0,0,1,1,X,		0,0,0,0,0,1] ->[0,1,	0,0,1,		1,0,0];        "ADC k
+			[0,1,1,0,1,0,0,0,X,		0,0,0,0,0,1] ->[0,0,	0,0,1,		0,1,0];        "ADD m
+			[0,1,1,0,1,0,0,1,X,		0,0,0,0,0,1] ->[1,0,	0,0,0,		0,1,0];        "ADD XO
+			[0,1,1,0,1,0,1,0,X,		0,0,0,0,0,1] ->[0,0,	0,0,0,		0,1,0];        "ADD SO
+			[0,1,1,0,1,0,1,1,X,		0,0,0,0,0,1] ->[0,1,	0,0,0,		1,0,0];        "ADD k
+			[0,1,0,0,0,1,0,0,X,		0,0,0,0,0,1] ->[0,0,	0,0,1,		0,1,0];        "AND m
+			[0,1,0,0,0,1,0,1,X,		0,0,0,0,0,1] ->[1,0,	0,0,0,		0,1,0];        "AND XO
+			[0,1,0,0,0,1,1,0,X,		0,0,0,0,0,1] ->[0,0,	0,0,0,		0,1,0];        "AND SO
+			[0,1,0,0,0,1,1,1,X,		0,0,0,0,0,1] ->[0,1,	0,0,0,		1,0,0];    	   "AND K
+			[0,0,1,1,0,0,0,0,X,		0,0,0,0,0,1] ->[0,0,	0,0,1,		0,1,0];        "CMP m
+			[0,0,1,1,0,0,0,1,X,		0,0,0,0,0,1] ->[1,0,	0,0,0,		0,1,0];        "CMP XO
+			[0,0,1,1,0,0,1,0,X,		0,0,0,0,0,1] ->[0,0,	0,0,0,		0,1,0];        "CMP SO
+			[0,0,1,1,0,0,1,1,X,		0,0,0,0,0,1] ->[0,1,	0,0,1,		1,0,0];        "CMP k
+														"Dont care but need to set RD/WR
+			[0,1,1,1,1,0,1,1,X,		0,0,0,0,0,1] ->[X,X, 	0,0,0, 		0,0,0];        "DEC 
+			[0,0,0,0,0,0,0,0,X,		0,0,0,0,0,1] ->[X,X, 	0,0,0, 		0,0,0];        "INC
+			[0,1,0,1,1,0,0,0,X,		0,0,0,0,0,1] ->[X,X, 	0,0,0, 		0,0,0];        "LSL
+			[0,0,1,0,1,1,0,1,X,		0,0,0,0,0,1] ->[X,X, 	0,0,0, 		0,0,0];        "NOT A
+			[0,1,1,1,0,1,0,0,X,		0,0,0,0,0,1] ->[0,0,	0,0,1,		0,1,0];        "OR m
+			[0,1,1,1,0,1,0,1,X,		0,0,0,0,0,1] ->[1,0,	0,0,0,		0,1,0];        "OR XO
+			[0,1,1,1,0,1,1,0,X,		0,0,0,0,0,1] ->[0,0,	0,0,0,		0,1,0];        "OR SO
+			[0,1,1,1,0,1,1,1,X,		0,0,0,0,0,1] ->[0,1,	0,0,0,		1,0,0];        "OR k
+			[0,1,0,1,0,0,0,0,X,		0,0,0,0,0,1] ->[X,X, 	0,0,1, 		0,0,0];        "RLC
+			[0,0,0,1,1,0,0,0,X,		0,0,0,0,0,1] ->[0,0,	0,0,1,		0,1,0];        "SBB m
+			[0,0,0,1,1,0,0,1,X,		0,0,0,0,0,1] ->[1,0,	0,0,0,		0,1,0];        "SBB XO
+			[0,0,0,1,1,0,1,0,X,		0,0,0,0,0,1] ->[0,0,	0,0,0,		0,1,0];        "SBB SO
+			[0,0,0,1,1,0,1,1,X,		0,0,0,0,0,1] ->[0,1,	0,0,0,		1,0,0];        "SBB k
+			[0,0,0,1,0,0,0,0,X,		0,0,0,0,0,1] ->[0,0,	0,0,1,		0,1,0];        "SUB m
+			[0,0,0,1,0,0,0,1,X,		0,0,0,0,0,1] ->[1,0,	0,0,0,		0,1,0];        "SUB XO
+			[0,0,0,1,0,0,1,0,X,		0,0,0,0,0,1] ->[0,0,	0,0,0,		0,1,0];        "SUB SO
+			[0,0,0,1,0,0,1,1,X,		0,0,0,0,0,1] ->[0,1,	0,0,0,		1,0,0];        "SUB k
+			[0,1,0,0,1,1,0,0,X,		0,0,0,0,0,1] ->[0,0,	0,0,1,		0,1,0];        "TST m
+			[0,1,0,0,1,1,0,1,X,		0,0,0,0,0,1] ->[1,0,	0,0,0,		0,1,0];        "TST XO
+			[0,1,0,0,1,1,1,0,X,		0,0,0,0,0,1] ->[0,0,	0,0,0,		0,1,0];        "TST SO
+			[0,1,0,0,1,1,1,1,X,		0,0,0,0,0,1] ->[0,1,	0,0,0,		1,1,0];        "TST k
+			[0,0,1,1,0,1,0,0,X,		0,0,0,0,0,1] ->[0,0,	0,0,1,		0,1,0];        "XOR m
+			[0,0,1,1,0,1,0,1,X,		0,0,0,0,0,1] ->[1,0,	0,0,0,		0,1,0];        "XOR XO
+			[0,0,1,1,0,1,1,0,X,		0,0,0,0,0,1] ->[0,0,	0,0,0,		0,1,0];        "XOR SO
+			[0,0,1,1,0,1,1,1,X,		0,0,0,0,0,1] ->[0,1,	0,0,0,		1,0,0];        "XOR k
+
+			"============================DONT CARES======================================
+			"PAU Instructions 
+														" need to set RD/WR though
+			[1,1,0,X,X,X,X,X,X,		0,0,0,0,0,1]->[X,0, 	0,0,0, 		X,0,0]; "JMP
+			[1,0,0,0,1,0,0,0,X,		0,0,0,0,0,1]->[X,0, 	0,0,0, 		X,0,0]; "JA  -> C & Z = 0
+			[1,0,0,0,1,1,0,0,X,		0,0,0,0,0,1]->[X,0, 	0,0,0, 		X,0,0]; "JAE -> C = 0
+			[1,0,0,0,1,1,1,1,X,		0,0,0,0,0,1]->[X,0, 	0,0,0, 		X,0,0]; "JB  -> C = 1  
+			[1,0,0,0,1,0,1,1,X,		0,0,0,0,0,1]->[X,0, 	0,0,0, 		X,0,0]; "JBE -> (C = 1)
+			[1,0,0,1,1,1,1,1,X,		0,0,0,0,0,1]->[X,0, 	0,0,0, 		X,0,0]; "JE  -> (Z = 0)
+			[1,0,1,0,1,1,1,1,X,		0,0,0,0,0,1]->[X,0, 	0,0,0, 		X,0,0]; "JG  -> (S = V) and (Z=0)			
+			[1,0,1,1,1,0,1,1,X,		0,0,0,0,0,1]->[X,0, 	0,0,0, 		X,0,0]; "JGE -> (S = V)
+			[1,0,1,1,1,0,0,0,X,		0,0,0,0,0,1]->[X,0, 	0,0,0, 		X,0,0]; "JL  -> (S!=V) 
+			[1,0,1,0,1,1,0,0,X,		0,0,0,0,0,1]->[X,0, 	0,0,0, 		X,0,0]; "JLE -> (S!=V) or (Z=1)
+			[1,0,0,1,1,1,0,0,X,		0,0,0,0,0,1]->[X,0, 	0,0,0, 		X,0,0]; "JNE -> (Z = 0)
+			[1,0,0,1,1,0,0,0,X,		0,0,0,0,0,1]->[X,0, 	0,0,0, 		X,0,0]; "JNS -> (S = 0)
+			[1,0,1,0,1,0,0,0,X,		0,0,0,0,0,1]->[X,0, 	0,0,0, 		X,0,0]; "JNV -> (V = 0)
+			[1,0,0,1,1,0,1,1,X,		0,0,0,0,0,1]->[X,0, 	0,0,0, 		X,0,0]; "JS  -> (S = 1)
+			[1,0,1,0,1,0,1,1,X,		0,0,0,0,0,1]->[X,0, 	0,0,0, 		X,0,0]; "JV  -> (V = 1)
+
+" The state machine is fairly simple: if we're receiving a non CALL/RTS 
+ "instruction, we proceed with the instruction; however, if we receive CALL/RTS, 
+" we enter one of those states. At each CALL/RTS state, we ignore instructions
+" that are not CALL/RTS. If it is CALL/RTS respectively, we can continue through
+" the operation. At the last CALL/RTS state, we can return to accepting non CALL/RTS
+" instructions.
+
+STATE_DIAGRAM		StateBits					"Moore state machine
+
+STATE IDLE_STATE:								"Waiting for CALL/RTS 			
+		IF RTS0 		  THEN RTS1_STATE		"If given a RTS instruction then we go to RTS state
+  		ELSE IF (CALL0)   THEN CALL1_STATE		"If given a CALL instruction then we go to CALL state
+  		ELSE       		  IDLE_STATE;			"Else just idle since no RTS/CALL trigger
+
+STATE CALL1_STATE:						"First Step of CALL
+ 		GOTO CALL2_STATE;						
+ 
+STATE CALL2_STATE:						"2nd step of CALL, advance
+		GOTO CALL3_STATE;
+
+STATE CALL3_STATE:						"3rd step of CALL, done so return to idle
+		GOTO IDLE_STATE;				 
+
+STATE RTS1_STATE:
+		GOTO RTS2_STATE;				"1st step of RTS, advance
+
+STATE RTS2_STATE:						"2nd step of RTS, done so return to idle
+		GOTO IDLE_STATE;
+
+END ControlUnit

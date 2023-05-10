@@ -1,0 +1,1 @@
+-nodal -src hw6.bl5 -type BLIF -presrc hw6.bl3 -crf hw6.crf -sif hw6.sif -devfile "C:/ispLEVER_Classic2_0/ispcpld/dat/lc4k/m4s_128_96.dev" -lci hw6.lct

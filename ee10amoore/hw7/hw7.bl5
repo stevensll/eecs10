@@ -1,0 +1,474 @@
+#$ TOOL  ispLEVER Classic 2.0.00.17.20.15
+#$ DATE  Thu Mar 01 15:36:58 2007
+#$ JEDECFILE  aludemo
+#$ MODULE  ALUDemo
+#$ TITLE  ALU Unit Demo
+#$ PINS 90 DataOff7:80 DataOff6:81 DataOff5:83 DataOff4:84 DataOff3:85
+ DataOff2:86 DataOff1:87 DataOff0:88 AddrData12:102 AddrData11:103 AddrData10:104
+ AddrData9:105 AddrData8:111 AddrData7:93 AddrData6:94 AddrData5:95 AddrData4:96
+ AddrData3:97 AddrData2:98 AddrData1:100 AddrData0:101 Control29:14 Control28:13
+ Control27:12 Control26:11 Control25:9 Control24:8 Control23:7 Control22:6
+ Control21:5 Control20:4 Control19:143 Control18:142 Control17:141 Control16:140
+ Control15:139 Control14:138 Control13:135 Control12:134 Control11:133
+ Control10:132 Control9:131 Control8:124 Control7:123 Control6:122 Control5:121
+ Control4:120 Control3:116 Control2:115 Control1:114 Control0:113 Reset:40
+ Clock:128 AccumAddr12:29 AccumAddr11:30 AccumAddr10:31 AccumAddr9:32
+ AccumAddr8:33 XReg7:68 XReg6:69 XReg5:70 XReg4:71 XReg3:76 XReg2:77 XReg1:78
+ XReg0:79 SReg7:58 SReg6:59 SReg5:60 SReg4:61 SReg3:62 SReg2:63 SReg1:66 SReg0:67
+ AccumAddr7:16 AccumAddr6:21 AccumAddr5:22 AccumAddr4:23 AccumAddr3:24
+ AccumAddr2:25 AccumAddr1:26 AccumAddr0:28 Flags7:42 Flags6:43 Flags5:44
+ Flags4:48 Flags3:49 Flags2:50 Flags1:51 Flags0:52
+#$ NODES 43 X0_FOut7 X0_FOut6 X0_FOut5 X0_FOut4 X0_FOut3 X0_FOut2 X0_FOut1
+ X0_FOut0 X0_Subtract X0_CIn X0_A7 X0_A6 X0_A5 X0_A4 X0_A3 X0_A2 X0_A1 X0_A0
+ X0_B7 X0_B6 X0_B5 X0_B4 X0_B3 X0_B2 X0_B1 X0_B0 X0_Sum7 X0_Sum6 X0_Sum5 X0_Sum4
+ X0_Sum3 X0_Sum2 X0_Sum1 X0_Sum0 X0_CarryOut6 X0_CarryOut5 X0_CarryOut4
+ X0_CarryOut3 X0_CarryOut2 X0_CarryOut1 X0_CarryOut0 X0_KeepC X0_KeepS
+.model aludemo 
+.inputs DataOff7.BLIF DataOff6.BLIF DataOff5.BLIF DataOff4.BLIF DataOff3.BLIF \
+ DataOff2.BLIF DataOff1.BLIF DataOff0.BLIF Control7.BLIF Control6.BLIF \
+ Control5.BLIF Control4.BLIF Control3.BLIF Control2.BLIF Control1.BLIF \
+ Control0.BLIF Control9.BLIF Control8.BLIF Control13.BLIF Control12.BLIF \
+ Control11.BLIF Control10.BLIF Reset.BLIF Clock.BLIF AccumAddr7.Q AccumAddr6.Q \
+ AccumAddr5.Q AccumAddr4.Q AccumAddr3.Q AccumAddr2.Q AccumAddr1.Q AccumAddr0.Q \
+ Flags3.Q Flags2.Q Flags1.Q Flags0.Q X0_FOut7.BLIF X0_FOut6.BLIF X0_FOut5.BLIF \
+ X0_FOut4.BLIF X0_FOut3.BLIF X0_FOut2.BLIF X0_FOut1.BLIF X0_FOut0.BLIF \
+ X0_Subtract.BLIF X0_CIn.BLIF X0_A7.BLIF X0_A6.BLIF X0_A5.BLIF X0_A4.BLIF \
+ X0_A3.BLIF X0_A2.BLIF X0_A1.BLIF X0_A0.BLIF X0_B7.BLIF X0_B6.BLIF X0_B5.BLIF \
+ X0_B4.BLIF X0_B3.BLIF X0_B2.BLIF X0_B1.BLIF X0_B0.BLIF X0_Sum7.BLIF X0_Sum6.BLIF \
+ X0_Sum5.BLIF X0_Sum4.BLIF X0_Sum3.BLIF X0_Sum2.BLIF X0_Sum1.BLIF X0_Sum0.BLIF \
+ X0_CarryOut6.BLIF X0_CarryOut5.BLIF X0_CarryOut4.BLIF X0_CarryOut3.BLIF \
+ X0_CarryOut2.BLIF X0_CarryOut1.BLIF X0_CarryOut0.BLIF X0_KeepC.BLIF \
+ X0_KeepS.BLIF
+.outputs AccumAddr12 AccumAddr11 AccumAddr10 AccumAddr9 AccumAddr8 XReg7 XReg6 \
+ XReg5 XReg4 XReg3 XReg2 XReg1 XReg0 SReg7 SReg6 SReg5 SReg4 SReg3 SReg2 SReg1 \
+ SReg0 AccumAddr7.D AccumAddr7.C AccumAddr6.D AccumAddr6.C AccumAddr5.D \
+ AccumAddr5.C AccumAddr4.D AccumAddr4.C AccumAddr3.D AccumAddr3.C AccumAddr2.D \
+ AccumAddr2.C AccumAddr1.D AccumAddr1.C AccumAddr0.D AccumAddr0.C Flags7.D \
+ Flags7.C Flags6.D Flags6.C Flags5.D Flags5.C Flags4.D Flags4.C Flags3.D Flags3.C \
+ Flags2.D Flags2.C Flags1.D Flags1.C Flags0.D Flags0.C X0_FOut7.X1 X0_FOut7.X2 \
+ X0_FOut6.X1 X0_FOut6.X2 X0_FOut5.X1 X0_FOut5.X2 X0_FOut4.X1 X0_FOut4.X2 \
+ X0_FOut3.X1 X0_FOut3.X2 X0_FOut2.X1 X0_FOut2.X2 X0_FOut1.X1 X0_FOut1.X2 \
+ X0_FOut0.X1 X0_FOut0.X2 X0_Subtract X0_CIn.X1 X0_CIn.X2 X0_A7 X0_A6 X0_A5 X0_A4 \
+ X0_A3 X0_A2 X0_A1 X0_A0 X0_B7 X0_B6 X0_B5 X0_B4 X0_B3 X0_B2 X0_B1 X0_B0 X0_Sum7 \
+ X0_Sum6 X0_Sum5 X0_Sum4 X0_Sum3 X0_Sum2 X0_Sum1 X0_Sum0 X0_CarryOut6 \
+ X0_CarryOut5 X0_CarryOut4 X0_CarryOut3 X0_CarryOut2 X0_CarryOut1 X0_CarryOut0 \
+ X0_KeepC X0_KeepS
+.names AccumAddr12
+.names AccumAddr11
+.names AccumAddr10
+.names AccumAddr9
+.names AccumAddr8
+.names XReg7
+.names XReg6
+.names XReg5
+.names XReg4
+.names DataOff3.BLIF XReg3
+1 1
+.names DataOff2.BLIF XReg2
+1 1
+.names DataOff1.BLIF XReg1
+1 1
+.names DataOff0.BLIF XReg0
+1 1
+.names SReg7
+.names SReg6
+.names SReg5
+.names SReg4
+.names Control7.BLIF SReg3
+1 1
+.names Control6.BLIF SReg2
+1 1
+.names Control5.BLIF SReg1
+1 1
+.names Control4.BLIF SReg0
+1 1
+.names DataOff7.BLIF Control3.BLIF Control2.BLIF Control1.BLIF Control0.BLIF Reset.BLIF AccumAddr7.Q X0_Sum7.BLIF AccumAddr7.D
+-0-1-1-1 1
+-000011- 1
+111111-- 1
+-11-011- 1
+---011-1 1
+-01--1-1 1
+-10--1-1 1
+.names Clock.BLIF AccumAddr7.C
+1 1
+.names DataOff6.BLIF Control3.BLIF Control2.BLIF Control1.BLIF Control0.BLIF Reset.BLIF AccumAddr6.Q X0_Sum6.BLIF AccumAddr6.D
+-0-1-1-1 1
+-000011- 1
+111111-- 1
+-11-011- 1
+---011-1 1
+-01--1-1 1
+-10--1-1 1
+.names Clock.BLIF AccumAddr6.C
+1 1
+.names DataOff5.BLIF Control3.BLIF Control2.BLIF Control1.BLIF Control0.BLIF Reset.BLIF AccumAddr5.Q X0_Sum5.BLIF AccumAddr5.D
+-0-1-1-1 1
+-000011- 1
+111111-- 1
+-11-011- 1
+---011-1 1
+-01--1-1 1
+-10--1-1 1
+.names Clock.BLIF AccumAddr5.C
+1 1
+.names DataOff4.BLIF Control3.BLIF Control2.BLIF Control1.BLIF Control0.BLIF Reset.BLIF AccumAddr4.Q X0_Sum4.BLIF AccumAddr4.D
+-0-1-1-1 1
+-000011- 1
+111111-- 1
+-11-011- 1
+---011-1 1
+-01--1-1 1
+-10--1-1 1
+.names Clock.BLIF AccumAddr4.C
+1 1
+.names DataOff3.BLIF Control3.BLIF Control2.BLIF Control1.BLIF Control0.BLIF Reset.BLIF AccumAddr3.Q X0_Sum3.BLIF AccumAddr3.D
+-0-1-1-1 1
+-000011- 1
+111111-- 1
+-11-011- 1
+---011-1 1
+-01--1-1 1
+-10--1-1 1
+.names Clock.BLIF AccumAddr3.C
+1 1
+.names DataOff2.BLIF Control3.BLIF Control2.BLIF Control1.BLIF Control0.BLIF Reset.BLIF AccumAddr2.Q X0_Sum2.BLIF AccumAddr2.D
+-0-1-1-1 1
+-000011- 1
+111111-- 1
+-11-011- 1
+---011-1 1
+-01--1-1 1
+-10--1-1 1
+.names Clock.BLIF AccumAddr2.C
+1 1
+.names DataOff1.BLIF Control3.BLIF Control2.BLIF Control1.BLIF Control0.BLIF Reset.BLIF AccumAddr1.Q X0_Sum1.BLIF AccumAddr1.D
+-0-1-1-1 1
+-000011- 1
+111111-- 1
+-11-011- 1
+---011-1 1
+-01--1-1 1
+-10--1-1 1
+.names Clock.BLIF AccumAddr1.C
+1 1
+.names DataOff0.BLIF Control3.BLIF Control2.BLIF Control1.BLIF Control0.BLIF Reset.BLIF AccumAddr0.Q X0_Sum0.BLIF AccumAddr0.D
+-0-1-1-1 1
+-000011- 1
+111111-- 1
+-11-011- 1
+---011-1 1
+-01--1-1 1
+-10--1-1 1
+.names Clock.BLIF AccumAddr0.C
+1 1
+.names DataOff7.BLIF Control8.BLIF Reset.BLIF Flags7.D
+111 1
+.names Clock.BLIF Flags7.C
+1 1
+.names DataOff6.BLIF Control8.BLIF Reset.BLIF Flags6.D
+111 1
+.names Clock.BLIF Flags6.C
+1 1
+.names DataOff5.BLIF Control8.BLIF Reset.BLIF Flags5.D
+111 1
+.names Clock.BLIF Flags5.C
+1 1
+.names DataOff4.BLIF Control8.BLIF Reset.BLIF Flags4.D
+111 1
+.names Clock.BLIF Flags4.C
+1 1
+.names DataOff3.BLIF Control8.BLIF Control13.BLIF Reset.BLIF Flags3.Q X0_Subtract.BLIF X0_A7.BLIF X0_B7.BLIF X0_CarryOut6.BLIF X0_KeepC.BLIF Flags3.D
+-001-1-000 1
+-001-10-00 1
+-001-0-110 1
+-001-01-10 1
+-001-100-0 1
+-001-011-0 1
+11-1------ 1
+-0111----- 1
+-0-11----1 1
+.names Clock.BLIF Flags3.C
+1 1
+.names DataOff2.BLIF Control8.BLIF Control12.BLIF Reset.BLIF Flags2.Q X0_A7.BLIF X0_B7.BLIF X0_CarryOut6.BLIF X0_KeepC.BLIF Flags2.D
+-001-1100 1
+-001-0010 1
+-0111---- 1
+11-1----- 1
+-0-11---1 1
+.names Clock.BLIF Flags2.C
+1 1
+.names DataOff1.BLIF Control8.BLIF Control11.BLIF Reset.BLIF Flags1.Q X0_Sum7.BLIF X0_KeepS.BLIF Flags1.D
+-001-10 1
+-0111-- 1
+11-1--- 1
+-0-11-1 1
+.names Clock.BLIF Flags1.C
+1 1
+.names DataOff0.BLIF Control8.BLIF Control10.BLIF Reset.BLIF Flags0.Q X0_Sum7.BLIF X0_Sum6.BLIF X0_Sum5.BLIF X0_Sum4.BLIF X0_Sum3.BLIF X0_Sum2.BLIF X0_Sum1.BLIF X0_Sum0.BLIF X0_KeepS.BLIF Flags0.D
+-001-000000000 1
+-0111--------- 1
+11-1---------- 1
+-0-11--------1 1
+.names Clock.BLIF Flags0.C
+1 1
+.names DataOff7.BLIF Control7.BLIF Control6.BLIF Control5.BLIF Control4.BLIF AccumAddr7.Q X0_FOut7.X1
+0-0010 1
+1100-1 1
+-00110 1
+00101- 1
+0-1100 1
+1011-1 1
+.names Control6.BLIF Control5.BLIF X0_FOut7.X2
+11 1
+.names DataOff6.BLIF Control7.BLIF Control6.BLIF Control5.BLIF Control4.BLIF AccumAddr6.Q X0_FOut6.X1
+0-0010 1
+1100-1 1
+-00110 1
+00101- 1
+0-1100 1
+1011-1 1
+.names Control6.BLIF Control5.BLIF X0_FOut6.X2
+11 1
+.names DataOff5.BLIF Control7.BLIF Control6.BLIF Control5.BLIF Control4.BLIF AccumAddr5.Q X0_FOut5.X1
+0-0010 1
+1100-1 1
+-00110 1
+00101- 1
+0-1100 1
+1011-1 1
+.names Control6.BLIF Control5.BLIF X0_FOut5.X2
+11 1
+.names DataOff4.BLIF Control7.BLIF Control6.BLIF Control5.BLIF Control4.BLIF AccumAddr4.Q X0_FOut4.X1
+0-0010 1
+1100-1 1
+-00110 1
+00101- 1
+0-1100 1
+1011-1 1
+.names Control6.BLIF Control5.BLIF X0_FOut4.X2
+11 1
+.names DataOff3.BLIF Control7.BLIF Control6.BLIF Control5.BLIF Control4.BLIF AccumAddr3.Q X0_FOut3.X1
+0-0010 1
+1100-1 1
+-00110 1
+00101- 1
+0-1100 1
+1011-1 1
+.names Control6.BLIF Control5.BLIF X0_FOut3.X2
+11 1
+.names DataOff2.BLIF Control7.BLIF Control6.BLIF Control5.BLIF Control4.BLIF AccumAddr2.Q X0_FOut2.X1
+0-0010 1
+1100-1 1
+-00110 1
+00101- 1
+0-1100 1
+1011-1 1
+.names Control6.BLIF Control5.BLIF X0_FOut2.X2
+11 1
+.names DataOff1.BLIF Control7.BLIF Control6.BLIF Control5.BLIF Control4.BLIF AccumAddr1.Q X0_FOut1.X1
+0-0010 1
+1100-1 1
+-00110 1
+00101- 1
+0-1100 1
+1011-1 1
+.names Control6.BLIF Control5.BLIF X0_FOut1.X2
+11 1
+.names DataOff0.BLIF Control7.BLIF Control6.BLIF Control5.BLIF Control4.BLIF AccumAddr0.Q X0_FOut0.X1
+0-0010 1
+1100-1 1
+-00110 1
+00101- 1
+0-1100 1
+1011-1 1
+.names Control6.BLIF Control5.BLIF X0_FOut0.X2
+11 1
+.names Control7.BLIF Control6.BLIF Control5.BLIF Control4.BLIF X0_Subtract
+0101 1
+.names Control3.BLIF Control2.BLIF Control1.BLIF Control0.BLIF Control9.BLIF X0_Subtract.BLIF X0_CIn.X1
+0010-1 1
+110001 1
+.names Control3.BLIF Control2.BLIF Control1.BLIF Control9.BLIF Flags3.Q X0_CIn.X2
+00111 1
+.names Control3.BLIF Control2.BLIF Control1.BLIF Control0.BLIF AccumAddr7.Q X0_FOut7.BLIF X0_A7
+-0-01- 1
+--111- 1
+1-0-1- 1
+01--1- 1
+1110-1 1
+0001-1 1
+.names Control3.BLIF Control2.BLIF Control1.BLIF Control0.BLIF AccumAddr6.Q X0_FOut6.BLIF X0_A6
+-0-01- 1
+--111- 1
+1-0-1- 1
+01--1- 1
+1110-1 1
+0001-1 1
+.names Control3.BLIF Control2.BLIF Control1.BLIF Control0.BLIF AccumAddr5.Q X0_FOut5.BLIF X0_A5
+-0-01- 1
+--111- 1
+1-0-1- 1
+01--1- 1
+1110-1 1
+0001-1 1
+.names Control3.BLIF Control2.BLIF Control1.BLIF Control0.BLIF AccumAddr4.Q X0_FOut4.BLIF X0_A4
+-0-01- 1
+--111- 1
+1-0-1- 1
+01--1- 1
+1110-1 1
+0001-1 1
+.names Control3.BLIF Control2.BLIF Control1.BLIF Control0.BLIF AccumAddr3.Q X0_FOut3.BLIF X0_A3
+-0-01- 1
+--111- 1
+1-0-1- 1
+01--1- 1
+1110-1 1
+0001-1 1
+.names Control3.BLIF Control2.BLIF Control1.BLIF Control0.BLIF AccumAddr2.Q X0_FOut2.BLIF X0_A2
+-0-01- 1
+--111- 1
+1-0-1- 1
+01--1- 1
+1110-1 1
+0001-1 1
+.names Control3.BLIF Control2.BLIF Control1.BLIF Control0.BLIF AccumAddr1.Q X0_FOut1.BLIF X0_A1
+-0-01- 1
+--111- 1
+1-0-1- 1
+01--1- 1
+1110-1 1
+0001-1 1
+.names Control3.BLIF Control2.BLIF Control1.BLIF Control0.BLIF AccumAddr0.Q X0_FOut0.BLIF X0_A0
+-0-01- 1
+--111- 1
+1-0-1- 1
+01--1- 1
+1110-1 1
+0001-1 1
+.names DataOff7.BLIF Control3.BLIF Control2.BLIF Control1.BLIF Control0.BLIF AccumAddr7.Q X0_FOut7.BLIF X0_Subtract.BLIF X0_B7
+-1-00-11 1
+-00111-- 1
+10010--0 1
+-0010-11 1
+-1000--- 1
+.names DataOff6.BLIF Control3.BLIF Control2.BLIF Control1.BLIF Control0.BLIF AccumAddr6.Q X0_FOut6.BLIF X0_Subtract.BLIF X0_B6
+-1-00-11 1
+-00111-- 1
+10010--0 1
+-0010-11 1
+-1000--- 1
+.names DataOff5.BLIF Control3.BLIF Control2.BLIF Control1.BLIF Control0.BLIF AccumAddr5.Q X0_FOut5.BLIF X0_Subtract.BLIF X0_B5
+-1-00-11 1
+-00111-- 1
+10010--0 1
+-0010-11 1
+-1000--- 1
+.names DataOff4.BLIF Control3.BLIF Control2.BLIF Control1.BLIF Control0.BLIF AccumAddr4.Q X0_FOut4.BLIF X0_Subtract.BLIF X0_B4
+-1-00-11 1
+-00111-- 1
+10010--0 1
+-0010-11 1
+-1000--- 1
+.names DataOff3.BLIF Control3.BLIF Control2.BLIF Control1.BLIF Control0.BLIF AccumAddr3.Q X0_FOut3.BLIF X0_Subtract.BLIF X0_B3
+-1-00-11 1
+-00111-- 1
+10010--0 1
+-0010-11 1
+-1000--- 1
+.names DataOff2.BLIF Control3.BLIF Control2.BLIF Control1.BLIF Control0.BLIF AccumAddr2.Q X0_FOut2.BLIF X0_Subtract.BLIF X0_B2
+-1-00-11 1
+-00111-- 1
+10010--0 1
+-0010-11 1
+-1000--- 1
+.names DataOff1.BLIF Control3.BLIF Control2.BLIF Control1.BLIF Control0.BLIF AccumAddr1.Q X0_FOut1.BLIF X0_Subtract.BLIF X0_B1
+-1-00-11 1
+-00111-- 1
+10010--0 1
+-0010-11 1
+-1000--- 1
+.names DataOff0.BLIF Control3.BLIF Control2.BLIF Control1.BLIF Control0.BLIF AccumAddr0.Q X0_FOut0.BLIF X0_Subtract.BLIF X0_B0
+-1-00-11 1
+-00111-- 1
+10010--0 1
+-0010-11 1
+-1000--- 1
+-0100--- 1
+.names X0_A7.BLIF X0_B7.BLIF X0_CarryOut6.BLIF X0_Sum7
+100 1
+010 1
+001 1
+111 1
+.names X0_A6.BLIF X0_B6.BLIF X0_CarryOut5.BLIF X0_Sum6
+100 1
+010 1
+001 1
+111 1
+.names X0_A5.BLIF X0_B5.BLIF X0_CarryOut4.BLIF X0_Sum5
+100 1
+010 1
+001 1
+111 1
+.names X0_A4.BLIF X0_B4.BLIF X0_CarryOut3.BLIF X0_Sum4
+100 1
+010 1
+001 1
+111 1
+.names X0_A3.BLIF X0_B3.BLIF X0_CarryOut2.BLIF X0_Sum3
+100 1
+010 1
+001 1
+111 1
+.names X0_A2.BLIF X0_B2.BLIF X0_CarryOut1.BLIF X0_Sum2
+100 1
+010 1
+001 1
+111 1
+.names X0_A1.BLIF X0_B1.BLIF X0_CarryOut0.BLIF X0_Sum1
+100 1
+010 1
+001 1
+111 1
+.names X0_CIn.BLIF X0_A0.BLIF X0_B0.BLIF X0_Sum0
+010 1
+001 1
+100 1
+111 1
+.names X0_A6.BLIF X0_B6.BLIF X0_CarryOut5.BLIF X0_CarryOut6
+11- 1
+1-1 1
+-11 1
+.names X0_A5.BLIF X0_B5.BLIF X0_CarryOut4.BLIF X0_CarryOut5
+11- 1
+1-1 1
+-11 1
+.names X0_A4.BLIF X0_B4.BLIF X0_CarryOut3.BLIF X0_CarryOut4
+11- 1
+1-1 1
+-11 1
+.names X0_A3.BLIF X0_B3.BLIF X0_CarryOut2.BLIF X0_CarryOut3
+11- 1
+1-1 1
+-11 1
+.names X0_A2.BLIF X0_B2.BLIF X0_CarryOut1.BLIF X0_CarryOut2
+11- 1
+1-1 1
+-11 1
+.names X0_A1.BLIF X0_B1.BLIF X0_CarryOut0.BLIF X0_CarryOut1
+11- 1
+1-1 1
+-11 1
+.names X0_CIn.BLIF X0_A0.BLIF X0_B0.BLIF X0_CarryOut0
+-11 1
+11- 1
+1-1 1
+.names Control3.BLIF Control2.BLIF Control1.BLIF Control0.BLIF X0_KeepS.BLIF X0_KeepC
+1110- 1
+0001- 1
+----1 1
+.names Control3.BLIF Control2.BLIF Control1.BLIF Control0.BLIF X0_KeepS
+0000 1
+1111 1
+.end

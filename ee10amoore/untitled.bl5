@@ -1,0 +1,99 @@
+#$ TOOL  ispLEVER Classic 2.0.00.17.20.15
+#$ DATE  Tue Jan 24 16:05:15 2017
+#$ JEDECFILE  deccntr
+#$ MODULE  deccntr
+#$ TITLE  Up/Down Decade Counter
+#$ PINS 15 Mode:41 CountDown:14 Q11:31 Q10:35 Q9:36 Q8:37 Q7:24 Q6:25 Q5:26
+ Q4:29 Q3:18 Q2:19 Q1:20 Q0:21 Clock:39
+.model deccntr 
+.inputs Clock.BLIF Q0.Q CountDown.BLIF Q3.Q Q1.Q Q2.Q Q4.Q Q7.Q Q5.Q Q6.Q Q8.Q \
+ Q11.Q Q9.Q Q10.Q
+.outputs Q11.T Q11.C Q10.T Q10.C Q9.T Q9.C Q8.T Q8.C Q7.D Q7.C Q6.T Q6.C Q5.T \
+ Q5.C Q4.T Q4.C Q3.D Q3.C Q2.D Q2.C Q1.D Q1.C Q0.D Q0.C
+.names Q0.Q CountDown.BLIF Q3.Q Q1.Q Q2.Q Q4.Q Q7.Q Q5.Q Q6.Q Q8.Q Q11.Q Q9.Q Q10.Q Q11.T
+1010011001011 1
+101001100110- 1
+10100110011-0 1
+0100000000-00 1
+010000000-11- 1
+01000000001-- 1
+.names Clock.BLIF Q11.C
+1 1
+.names Q0.Q CountDown.BLIF Q3.Q Q1.Q Q2.Q Q4.Q Q7.Q Q5.Q Q6.Q Q8.Q Q11.Q Q9.Q Q10.Q Q10.T
+01000000001-0 1
+0100000000-01 1
+1010011001-1- 1
+.names Clock.BLIF Q10.C
+1 1
+.names Q0.Q CountDown.BLIF Q3.Q Q1.Q Q2.Q Q4.Q Q7.Q Q5.Q Q6.Q Q8.Q Q11.Q Q9.Q Q10.Q Q9.T
+01000000000-1 1
+010000000010- 1
+010000000001- 1
+1010011001-1- 1
+10100110010-- 1
+.names Clock.BLIF Q9.C
+1 1
+.names Q0.Q CountDown.BLIF Q3.Q Q1.Q Q2.Q Q4.Q Q7.Q Q5.Q Q6.Q Q8.T
+010000000 1
+101001100 1
+.names Clock.BLIF Q8.C
+1 1
+.names Q0.Q CountDown.BLIF Q3.Q Q1.Q Q2.Q Q4.Q Q7.Q Q5.Q Q6.Q Q7.D
+--0--110- 1
+-0---01-- 1
+1-0---1-- 1
+-11---1-- 1
+00----1-- 1
+010000000 1
+101001-11 1
+----1-1-- 1
+---1--1-- 1
+.names Clock.BLIF Q7.C
+1 1
+.names Q0.Q CountDown.BLIF Q3.Q Q1.Q Q2.Q Q4.Q Q7.Q Q5.Q Q6.Q Q6.T
+0100001-0 1
+010000-01 1
+101001-1- 1
+.names Clock.BLIF Q6.C
+1 1
+.names Q0.Q CountDown.BLIF Q3.Q Q1.Q Q2.Q Q4.Q Q7.Q Q5.Q Q6.Q Q5.T
+0100000-1 1
+01000010- 1
+01000001- 1
+101001-1- 1
+1010010-- 1
+.names Clock.BLIF Q5.C
+1 1
+.names Q0.Q CountDown.BLIF Q3.Q Q1.Q Q2.Q Q4.T
+01000 1
+10100 1
+.names Clock.BLIF Q4.C
+1 1
+.names Q0.Q CountDown.BLIF Q3.Q Q1.Q Q2.Q Q3.D
+01000 1
+1110- 1
+10-11 1
+001-- 1
+.names Clock.BLIF Q3.C
+1 1
+.names Q0.Q CountDown.BLIF Q3.Q Q1.Q Q2.Q Q2.D
+-0-01 1
+0--11 1
+11--1 1
+011-0 1
+10-10 1
+.names Clock.BLIF Q2.C
+1 1
+.names Q0.Q CountDown.BLIF Q3.Q Q1.Q Q2.Q Q1.D
+1000- 1
+011-- 1
+00-1- 1
+11-1- 1
+01-01 1
+.names Clock.BLIF Q1.C
+1 1
+.names Q0.Q Q0.D
+0 1
+.names Clock.BLIF Q0.C
+1 1
+.end

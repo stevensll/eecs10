@@ -1,0 +1,131 @@
+ ispLEVER Classic 2.0.00.17.20.15 Linked Equations File
+Copyright(C), 1992-2015, Lattice Semiconductor Corp.
+All Rights Reserved.
+
+Design deccntr created  Mon Jan 21 15:47:20 2019
+
+Title:  Up/Down Decade Counter
+
+ P-Terms   Fan-in  Fan-out  Type  Name (attributes)
+---------  ------  -------  ----  -----------------
+   1          0        1    Pin   Q11.D 
+   1/1        1        1    Pin   Q11.C 
+   1          0        1    Pin   Q10.D 
+   1/1        1        1    Pin   Q10.C 
+   1          0        1    Pin   Q9.D 
+   1/1        1        1    Pin   Q9.C 
+   1          0        1    Pin   Q8.D 
+   1/1        1        1    Pin   Q8.C 
+   1          0        1    Pin   Q7.D 
+   1/1        1        1    Pin   Q7.C 
+   1          0        1    Pin   Q6.D 
+   1/1        1        1    Pin   Q6.C 
+   1          0        1    Pin   Q5.D 
+   1/1        1        1    Pin   Q5.C 
+   1          0        1    Pin   Q4.D 
+   1/1        1        1    Pin   Q4.C 
+   3          5        1    Pin   Q3.D 
+   1/1        1        1    Pin   Q3.C 
+   3          5        1    PinX1  Q2.D.X1 
+   1/1        1        1    PinX2  Q2.D.X2 
+   1/1        1        1    Pin   Q2.C 
+   4          5        1    Pin   Q1.D 
+   1/1        1        1    Pin   Q1.C 
+   2          2        1    Pin   Q0.D 
+   1/1        1        1    Pin   Q0.C 
+=========
+  33/13         Best P-Term Total: 33
+                       Total Pins: 15
+                      Total Nodes: 0
+            Average P-Term/Output: 1
+
+
+Equations:
+
+Q11.D = (1);
+
+Q11.C = (Clock);
+
+Q10.D = (1);
+
+Q10.C = (Clock);
+
+Q9.D = (1);
+
+Q9.C = (Clock);
+
+Q8.D = (1);
+
+Q8.C = (Clock);
+
+Q7.D = (1);
+
+Q7.C = (Clock);
+
+Q6.D = (1);
+
+Q6.C = (Clock);
+
+Q5.D = (1);
+
+Q5.C = (Clock);
+
+Q4.D = (1);
+
+Q4.C = (Clock);
+
+Q3.D = (!Q1.Q & !Q0.Q & !Q2.Q & !CountDown & Q3.Q
+     # Q1.Q & Q2.Q & !CountDown & !Q3.Q
+     # Q1.Q & CountDown & Q3.Q);
+
+Q3.C = (Clock);
+
+Q2.D.X1 = (Q2.Q & !CountDown & Q3.Q
+     # Q1.Q & Q0.Q & !CountDown & !Q3.Q
+     # !Q1.Q & !Q0.Q & Q2.Q & CountDown);
+
+Q2.D.X2 = (Q2.Q);
+
+Q2.C = (Clock);
+
+Q1.D = (Q1.Q & Q0.Q & !Q2.Q & !CountDown
+     # !Q1.Q & !Q0.Q & Q2.Q & CountDown
+     # Q1.Q & Q0.Q & CountDown & !Q3.Q
+     # !Q1.Q & Q0.Q & CountDown & Q3.Q);
+
+Q1.C = (Clock);
+
+Q0.D = (!Q1.Q & !Q0.Q
+     # Q1.Q & Q0.Q);
+
+Q0.C = (Clock);
+
+
+Reverse-Polarity Equations:
+
+!Q11.C = (!Clock);
+
+!Q10.C = (!Clock);
+
+!Q9.C = (!Clock);
+
+!Q8.C = (!Clock);
+
+!Q7.C = (!Clock);
+
+!Q6.C = (!Clock);
+
+!Q5.C = (!Clock);
+
+!Q4.C = (!Clock);
+
+!Q3.C = (!Clock);
+
+!Q2.D.X2 = (!Q2.Q);
+
+!Q2.C = (!Clock);
+
+!Q1.C = (!Clock);
+
+!Q0.C = (!Clock);
+

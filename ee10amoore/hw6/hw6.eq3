@@ -1,0 +1,234 @@
+|--------------------------------------------------- ----------|
+|- ispLEVER Classic 2.0.00.17.20.15 Equations File            -|
+|- Copyright(C), 1992-2012, Lattice Semiconductor Corporation -|
+|- All Rights Reserved.                                       -|
+|--------------------------------------------------------------|
+
+
+Equations:
+
+AccumAddr0.D = !Control3 & Reset & AccumAddr0.Q & !P0_B0
+    # Reset & !AccumAddr0.Q & P0_B0
+    # Control3 & Reset & P0_B0 ; (3 pterms, 4 signals)
+AccumAddr0.C = Clock ; (1 pterm, 1 signal)
+
+AccumAddr1.D.X1 = !Control3 & Reset & AccumAddr1.Q & !P0_B0
+    # !Control3 & Reset & AccumAddr1.Q & !AccumAddr0.Q
+    # !Control3 & Reset & !AccumAddr1.Q & AccumAddr0.Q & P0_B0 ; (3 pterms, 5 signals)
+AccumAddr1.D.X2 = Reset & P0_B1 ; (1 pterm, 2 signals)
+AccumAddr1.C = Clock ; (1 pterm, 1 signal)
+
+AccumAddr10.D.X1 = Reset & P0_CarryIn10 & !P0_B10
+    # Reset & !P0_CarryIn10 & P0_B10 ; (2 pterms, 3 signals)
+AccumAddr10.D.X2 = !Control3 & Reset & AccumAddr10.Q ; (1 pterm, 3 signals)
+AccumAddr10.C = Clock ; (1 pterm, 1 signal)
+
+AccumAddr11.D.X1 = Reset & P0_CarryIn11 & !P0_B11
+    # Reset & !P0_CarryIn11 & P0_B11 ; (2 pterms, 3 signals)
+AccumAddr11.D.X2 = !Control3 & Reset & AccumAddr11.Q ; (1 pterm, 3 signals)
+AccumAddr11.C = Clock ; (1 pterm, 1 signal)
+
+AccumAddr12.D.X1 = Control3 & Reset & P0_CarryIn11 & P0_B11
+    # !Control3 & Reset & !AccumAddr12.Q & P0_CarryIn11 & P0_B11
+    # !Control3 & Reset & !AccumAddr12.Q & AccumAddr11.Q & P0_B11
+    # !Control3 & Reset & AccumAddr12.Q & !P0_CarryIn11 & !P0_B11
+    # !Control3 & Reset & AccumAddr12.Q & !AccumAddr11.Q & !P0_CarryIn11
+    # !Control3 & Reset & AccumAddr12.Q & !AccumAddr11.Q & !P0_B11
+    # !Control3 & Reset & !AccumAddr12.Q & AccumAddr11.Q & P0_CarryIn11 ; (7 pterms, 6 signals)
+AccumAddr12.D.X2 = Reset & P0_B12 ; (1 pterm, 2 signals)
+AccumAddr12.C = Clock ; (1 pterm, 1 signal)
+
+AccumAddr2.D.X1 = Reset & P0_CarryIn2 & !P0_B2
+    # Reset & !P0_CarryIn2 & P0_B2 ; (2 pterms, 3 signals)
+AccumAddr2.D.X2 = !Control3 & Reset & AccumAddr2.Q ; (1 pterm, 3 signals)
+AccumAddr2.C = Clock ; (1 pterm, 1 signal)
+
+AccumAddr3.D.X1 = Reset & P0_CarryIn3 & !P0_B3
+    # Reset & !P0_CarryIn3 & P0_B3 ; (2 pterms, 3 signals)
+AccumAddr3.D.X2 = !Control3 & Reset & AccumAddr3.Q ; (1 pterm, 3 signals)
+AccumAddr3.C = Clock ; (1 pterm, 1 signal)
+
+AccumAddr4.D.X1 = Reset & P0_CarryIn4 & !P0_B4
+    # Reset & !P0_CarryIn4 & P0_B4 ; (2 pterms, 3 signals)
+AccumAddr4.D.X2 = !Control3 & Reset & AccumAddr4.Q ; (1 pterm, 3 signals)
+AccumAddr4.C = Clock ; (1 pterm, 1 signal)
+
+AccumAddr5.D.X1 = Reset & P0_CarryIn5 & !P0_B5
+    # Reset & !P0_CarryIn5 & P0_B5 ; (2 pterms, 3 signals)
+AccumAddr5.D.X2 = !Control3 & Reset & AccumAddr5.Q ; (1 pterm, 3 signals)
+AccumAddr5.C = Clock ; (1 pterm, 1 signal)
+
+AccumAddr6.D.X1 = Reset & P0_CarryIn6 & !P0_B6
+    # Reset & !P0_CarryIn6 & P0_B6 ; (2 pterms, 3 signals)
+AccumAddr6.D.X2 = !Control3 & Reset & AccumAddr6.Q ; (1 pterm, 3 signals)
+AccumAddr6.C = Clock ; (1 pterm, 1 signal)
+
+AccumAddr7.D.X1 = Reset & P0_CarryIn7 & !P0_B7
+    # Reset & !P0_CarryIn7 & P0_B7 ; (2 pterms, 3 signals)
+AccumAddr7.D.X2 = !Control3 & Reset & AccumAddr7.Q ; (1 pterm, 3 signals)
+AccumAddr7.C = Clock ; (1 pterm, 1 signal)
+
+AccumAddr8.D.X1 = Reset & P0_CarryIn8 & !P0_B8
+    # Reset & !P0_CarryIn8 & P0_B8 ; (2 pterms, 3 signals)
+AccumAddr8.D.X2 = !Control3 & Reset & AccumAddr8.Q ; (1 pterm, 3 signals)
+AccumAddr8.C = Clock ; (1 pterm, 1 signal)
+
+AccumAddr9.D.X1 = Reset & P0_CarryIn9 & !P0_B9
+    # Reset & !P0_CarryIn9 & P0_B9 ; (2 pterms, 3 signals)
+AccumAddr9.D.X2 = !Control3 & Reset & AccumAddr9.Q ; (1 pterm, 3 signals)
+AccumAddr9.C = Clock ; (1 pterm, 1 signal)
+
+Flags0 = 1 ; (1 pterm, 0 signal)
+
+Flags1 = 1 ; (1 pterm, 0 signal)
+
+Flags2 = 1 ; (1 pterm, 0 signal)
+
+Flags3 = 1 ; (1 pterm, 0 signal)
+
+Flags4 = 1 ; (1 pterm, 0 signal)
+
+Flags5 = 1 ; (1 pterm, 0 signal)
+
+Flags6 = 1 ; (1 pterm, 0 signal)
+
+Flags7 = 1 ; (1 pterm, 0 signal)
+
+P0_B0 = DataOff0 & !Control2 & Control1
+    # AddrData0 & !Control2 & !Control1 & !Control0
+    # DataOff0 & Control2 & !Control0
+    # !Control2 & Control1 & Control0
+    # Control2 & Control0 & AccumAddr0.Q ; (5 pterms, 6 signals)
+
+P0_B1 = AddrData1 & !Control2 & !Control1 & !Control0
+    # DataOff1 & Control1 & !Control0
+    # Control2 & Control0 & AccumAddr1.Q
+    # DataOff1 & Control2 & !Control0 ; (4 pterms, 6 signals)
+
+P0_B10 = AddrData10 & !Control2 & !Control1 & !Control0
+    # DataOff7 & !Control2 & Control1 & !Control0
+    # DataOff2 & Control2 & Control0
+    # Control2 & !Control0 & AccumAddr10.Q ; (4 pterms, 7 signals)
+
+P0_B11 = AddrData11 & !Control2 & !Control1 & !Control0
+    # DataOff7 & !Control2 & Control1 & !Control0
+    # DataOff3 & Control2 & Control0
+    # Control2 & !Control0 & AccumAddr11.Q ; (4 pterms, 7 signals)
+
+P0_B12 = AddrData12 & !Control2 & !Control1 & !Control0
+    # DataOff7 & !Control2 & Control1 & !Control0
+    # DataOff4 & Control2 & Control0
+    # Control2 & !Control0 & AccumAddr12.Q ; (4 pterms, 7 signals)
+
+P0_B2 = AddrData2 & !Control2 & !Control1 & !Control0
+    # DataOff2 & Control1 & !Control0
+    # Control2 & Control0 & AccumAddr2.Q
+    # DataOff2 & Control2 & !Control0 ; (4 pterms, 6 signals)
+
+P0_B3 = AddrData3 & !Control2 & !Control1 & !Control0
+    # DataOff3 & Control1 & !Control0
+    # Control2 & Control0 & AccumAddr3.Q
+    # DataOff3 & Control2 & !Control0 ; (4 pterms, 6 signals)
+
+P0_B4 = AddrData4 & !Control2 & !Control1 & !Control0
+    # DataOff4 & Control1 & !Control0
+    # Control2 & Control0 & AccumAddr4.Q
+    # DataOff4 & Control2 & !Control0 ; (4 pterms, 6 signals)
+
+P0_B5 = AddrData5 & !Control2 & !Control1 & !Control0
+    # DataOff5 & Control1 & !Control0
+    # Control2 & Control0 & AccumAddr5.Q
+    # DataOff5 & Control2 & !Control0 ; (4 pterms, 6 signals)
+
+P0_B6 = AddrData6 & !Control2 & !Control1 & !Control0
+    # DataOff6 & Control1 & !Control0
+    # Control2 & Control0 & AccumAddr6.Q
+    # DataOff6 & Control2 & !Control0 ; (4 pterms, 6 signals)
+
+P0_B7 = AddrData7 & !Control2 & !Control1 & !Control0
+    # DataOff7 & Control1 & !Control0
+    # Control2 & Control0 & AccumAddr7.Q
+    # DataOff7 & Control2 & !Control0 ; (4 pterms, 6 signals)
+
+P0_B8 = AddrData8 & !Control2 & !Control1 & !Control0
+    # DataOff7 & !Control2 & Control1 & !Control0
+    # DataOff0 & Control2 & Control0
+    # Control2 & !Control0 & AccumAddr8.Q ; (4 pterms, 7 signals)
+
+P0_B9 = AddrData9 & !Control2 & !Control1 & !Control0
+    # DataOff7 & !Control2 & Control1 & !Control0
+    # DataOff1 & Control2 & Control0
+    # Control2 & !Control0 & AccumAddr9.Q ; (4 pterms, 7 signals)
+
+P0_CarryIn10 = !Control3 & AccumAddr9.Q & P0_CarryIn9
+    # !Control3 & AccumAddr9.Q & P0_B9
+    # P0_CarryIn9 & P0_B9 ; (3 pterms, 4 signals)
+
+P0_CarryIn11 = !Control3 & AccumAddr10.Q & P0_CarryIn10
+    # !Control3 & AccumAddr10.Q & P0_B10
+    # P0_CarryIn10 & P0_B10 ; (3 pterms, 4 signals)
+
+P0_CarryIn2 = !Control3 & AccumAddr1.Q & P0_B1
+    # !Control3 & AccumAddr0.Q & P0_B1 & P0_B0
+    # !Control3 & AccumAddr1.Q & AccumAddr0.Q & P0_B0 ; (3 pterms, 5 signals)
+
+P0_CarryIn3 = !Control3 & AccumAddr2.Q & P0_CarryIn2
+    # !Control3 & AccumAddr2.Q & P0_B2
+    # P0_CarryIn2 & P0_B2 ; (3 pterms, 4 signals)
+
+P0_CarryIn4 = !Control3 & AccumAddr3.Q & P0_CarryIn3
+    # !Control3 & AccumAddr3.Q & P0_B3
+    # P0_CarryIn3 & P0_B3 ; (3 pterms, 4 signals)
+
+P0_CarryIn5 = !Control3 & AccumAddr4.Q & P0_CarryIn4
+    # !Control3 & AccumAddr4.Q & P0_B4
+    # P0_CarryIn4 & P0_B4 ; (3 pterms, 4 signals)
+
+P0_CarryIn6 = !Control3 & AccumAddr5.Q & P0_CarryIn5
+    # !Control3 & AccumAddr5.Q & P0_B5
+    # P0_CarryIn5 & P0_B5 ; (3 pterms, 4 signals)
+
+P0_CarryIn7 = !Control3 & AccumAddr6.Q & P0_CarryIn6
+    # !Control3 & AccumAddr6.Q & P0_B6
+    # P0_CarryIn6 & P0_B6 ; (3 pterms, 4 signals)
+
+P0_CarryIn8 = !Control3 & AccumAddr7.Q & P0_CarryIn7
+    # !Control3 & AccumAddr7.Q & P0_B7
+    # P0_CarryIn7 & P0_B7 ; (3 pterms, 4 signals)
+
+P0_CarryIn9 = !Control3 & AccumAddr8.Q & P0_CarryIn8
+    # !Control3 & AccumAddr8.Q & P0_B8
+    # P0_CarryIn8 & P0_B8 ; (3 pterms, 4 signals)
+
+SReg0 = DataOff0 ; (1 pterm, 1 signal)
+
+SReg1 = DataOff1 ; (1 pterm, 1 signal)
+
+SReg2 = DataOff2 ; (1 pterm, 1 signal)
+
+SReg3 = DataOff3 ; (1 pterm, 1 signal)
+
+SReg4 = DataOff4 ; (1 pterm, 1 signal)
+
+SReg5 = DataOff5 ; (1 pterm, 1 signal)
+
+SReg6 = DataOff6 ; (1 pterm, 1 signal)
+
+SReg7 = DataOff7 ; (1 pterm, 1 signal)
+
+XReg0 = 0 ; (0 pterm, 0 signal)
+
+XReg1 = 0 ; (0 pterm, 0 signal)
+
+XReg2 = 0 ; (0 pterm, 0 signal)
+
+XReg3 = DataOff0 ; (1 pterm, 1 signal)
+
+XReg4 = DataOff1 ; (1 pterm, 1 signal)
+
+XReg5 = DataOff2 ; (1 pterm, 1 signal)
+
+XReg6 = DataOff3 ; (1 pterm, 1 signal)
+
+XReg7 = DataOff4 ; (1 pterm, 1 signal)
+

@@ -1,0 +1,29 @@
+//
+// Software Version :  ispLEVER Classic 2.0.00.17.20.15  
+// Project Name	    :  untitled
+// Targeted Device  :  LC4032V-10T44I
+// Date             :  Tue Jan 24 16:05:24 2017
+//
+                   GNDIO0          SYS           5
+                   VCCIO0          SYS           6
+                      VCC          SYS           11
+                      GND          SYS           12
+                CountDown          IN            14
+                       Q3          OUT           18
+                       Q2          OUT           19
+                       Q1          OUT           20
+                       Q0          OUT           21
+                       Q7          OUT           24
+                       Q6          OUT           25
+                       Q5          OUT           26
+                   GNDIO1          SYS           27
+                   VCCIO1          SYS           28
+                       Q4          OUT           29
+                      Q11          OUT           31
+                      VCC          SYS           33
+                      GND          SYS           34
+                      Q10          OUT           35
+                       Q9          OUT           36
+                       Q8          OUT           37
+                    Clock          IN            39
+                     Mode          IN            41

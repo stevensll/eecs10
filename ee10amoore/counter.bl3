@@ -1,0 +1,120 @@
+#$ TOOL ispLEVER Classic 2.0.00.17.20.15
+#$ DATE Fri Feb 03 05:36:21 2012
+#$ TITLE Adder/Subtracter with Flags
+#$ MODULE counter
+#$ JEDECFILE addsub
+#$ PINS 24 Subtract:37 A3:31 A2:30 A1:29 A0:26 B3:22 B2:21 B1:20 B0:19 Sum4:13 Sum3:3 \
+#  Sum2:2 Sum1:44 Sum0:43 Carry:9 Overflow:8 Sign:7 Zero:4 UnsignedGT:15 UnsignedEQ:41 \
+#  UnsignedLT:24 SignedGT:16 SignedEQ:42 SignedLT:25
+#$ NODES 1 CarryOut2
+.model addsub
+.inputs B0.BLIF Subtract.BLIF B1.BLIF B2.BLIF B3.BLIF A0.BLIF A1.BLIF A2.BLIF \
+A3.BLIF CarryOut2.BLIF Sum4.BLIF Sum3.BLIF Sum0.BLIF Sum1.BLIF Sum2.BLIF \
+Zero.BLIF Carry.BLIF UnsignedGT.BLIF UnsignedEQ.BLIF Sign.BLIF Overflow.BLIF \
+SignedGT.BLIF SignedEQ.BLIF
+.outputs Sum4 Sum0 Carry Overflow Sign Zero UnsignedGT UnsignedEQ UnsignedLT \
+SignedGT SignedEQ SignedLT CarryOut2 Sum3.X1 Sum3.X2 Sum2.X1 Sum2.X2 Sum1.X1 \
+Sum1.X2
+.names Subtract.BLIF B3.BLIF A3.BLIF CarryOut2.BLIF Sum4
+--11 1
+-11- 1
+1-1- 1
+-1-1 1
+1--1 1
+000- 0
+00-0 0
+--00 0
+.names B0.BLIF Subtract.BLIF A0.BLIF Sum0
+100 1
+0-1 1
+-11 1
+101 0
+-10 0
+0-0 0
+.names CarryOut2.BLIF Sum4.BLIF Overflow
+10 1
+01 1
+00 0
+11 0
+.names Sum3.BLIF Sum0.BLIF Sum1.BLIF Sum2.BLIF Zero
+0000 1
+--1- 0
+-1-- 0
+1--- 0
+---1 0
+.names Carry.BLIF UnsignedGT
+0 1
+1 0
+.names UnsignedGT.BLIF UnsignedEQ.BLIF UnsignedLT
+00 1
+1- 0
+-1 0
+.names Sign.BLIF Overflow.BLIF SignedGT
+00 1
+11 1
+10 0
+01 0
+.names SignedGT.BLIF SignedEQ.BLIF SignedLT
+00 1
+1- 0
+-1 0
+.names Subtract.BLIF B1.BLIF B2.BLIF A0.BLIF A1.BLIF A2.BLIF CarryOut2
+-1--11 1
+-11-1- 1
+1--0-- 1
+1---1- 1
+--1--1 1
+1----1 1
+000--- 0
+0-0-0- 0
+---100 0
+00---0 0
+0---00 0
+0-0--0 0
+.names Sum4.BLIF Carry
+1 1
+0 0
+.names Sum3.BLIF Sign
+1 1
+0 0
+.names Zero.BLIF UnsignedEQ
+1 1
+0 0
+.names Zero.BLIF SignedEQ
+1 1
+0 0
+.names A3.BLIF Sum3.X1
+0 1
+1 0
+.names Subtract.BLIF B3.BLIF A3.BLIF CarryOut2.BLIF Sum3.X2
+00-0 1
+1--1 1
+-1-1 1
+1--0 0
+-1-0 0
+00-1 0
+.names A2.BLIF Sum2.X1
+1 1
+0 0
+.names Subtract.BLIF B1.BLIF B2.BLIF A0.BLIF A1.BLIF A2.BLIF Sum2.X2
+010-1- 1
+001--- 1
+0-1-0- 1
+1--10- 1
+1--0-- 0
+1---1- 0
+000--- 0
+-11-1- 0
+0-0-0- 0
+.names A1.BLIF Sum1.X1
+1 1
+0 0
+.names B0.BLIF Subtract.BLIF B1.BLIF A0.BLIF A1.BLIF Sum1.X2
+1001- 1
+001-- 1
+-010- 1
+-1--- 0
+0-0-- 0
+--00- 0
+1-11- 0
+.end

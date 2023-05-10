@@ -1,0 +1,50 @@
+ ispLEVER Classic 2.0.00.17.20.15 Fitter Report File 
+Project Name,untitled
+Project Path,U:\slei
+Project Fitted on,Tue Jan 24 16:05:24 2017
+
+Pin,Pin_Type,Bank,GLB_Pad,Assigned,I/O_Type,Signal_Type,Signal_Name
+1,TDI,-,,,,,
+2,I_O,0,A5,,,,
+3,I_O,0,A6,,,,
+4,I_O,0,A7,,,,
+5,GNDIO0,-,,,,,
+6,VCCIO0,-,,,,,
+7,I_O,0,A8,,,,
+8,I_O,0,A9,,,,
+9,I_O,0,A10,,,,
+10,TCK,-,,,,,
+11,VCC,-,,,,,
+12,GND,-,,,,,
+13,I_O,0,A12,,,,
+14,I_O,0,A13,*,LVCMOS18,Input,CountDown
+15,I_O,0,A14,,,,
+16,I_O,0,A15,,,,
+17,INCLK2,1,,,,,
+18,I_O,1,B0,*,LVCMOS18,Output,Q3
+19,I_O,1,B1,*,LVCMOS18,Output,Q2
+20,I_O,1,B2,*,LVCMOS18,Output,Q1
+21,I_O,1,B3,*,LVCMOS18,Output,Q0
+22,I_O,1,B4,,,,
+23,TMS,-,,,,,
+24,I_O,1,B5,*,LVCMOS18,Output,Q7
+25,I_O,1,B6,*,LVCMOS18,Output,Q6
+26,I_O,1,B7,*,LVCMOS18,Output,Q5
+27,GNDIO1,-,,,,,
+28,VCCIO1,-,,,,,
+29,I_O,1,B8,*,LVCMOS18,Output,Q4
+30,I_O,1,B9,,,,
+31,I_O,1,B10,*,LVCMOS18,Output,Q11
+32,TDO,-,,,,,
+33,VCC,-,,,,,
+34,GND,-,,,,,
+35,I_O,1,B12,*,LVCMOS18,Output,Q10
+36,I_O,1,B13,*,LVCMOS18,Output,Q9
+37,I_O,1,B14,*,LVCMOS18,Output,Q8
+38,I_O/OE,1,B15,,,,
+39,INCLK0,0,,*,LVCMOS18,Input,Clock
+40,I_O/OE,0,A0,,,,
+41,I_O,0,A1,*,LVCMOS18,Input,Mode
+42,I_O,0,A2,,,,
+43,I_O,0,A3,,,,
+44,I_O,0,A4,,,,

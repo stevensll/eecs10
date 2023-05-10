@@ -1,0 +1,3 @@
+MODULE PAUDemo
+	SUBMODULE programaccess
+		INSTANCE PAUnit
