@@ -1,0 +1,27 @@
+1) Negation
+;R16 <- -R16
+NEG                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
+
+COM R16
+INC R16
+
+2) Reading Memory (5 points)
+;R16 <- value stored at Buffer + WIN_DIGIT
+LDI YL, LOW(Buffer)
+LDI YH, HIGH(Buffer)
+LDI R17, WIN_DIGIT
+LDI R18, 0
+ADD YL, R17
+ADC YH, R18
+LD R16, Y
+
+3) Set SREG bit (5 points)
+;set bit 7 in SREG
+IN R16, SREG
+ORI R16, 0b10000000
+OUT R16, SREG
+
+4) Shifting R17|R16 by 4 bits (15 points)
+Given:	 	R17|R16 - 16-bit unsigned value (FEDCBA98 | 76543210) to shift right by 4 bits
+Result:	 	R17|R16 shifted right by 4 bits (xxxxFEDC | BA987654, the upper nibble of R17 can be any value)
+Code:	 	must use fewer than 8 instructions
