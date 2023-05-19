@@ -25,7 +25,7 @@
 ; Revision History:
 ;    3/23/23  Glen George               initial revision
 ;    5/05/23  Glen George               updated comments
-
+;   05/19/23  Steven Lei				added procedure and inc files for testing
 
 
 
@@ -39,11 +39,7 @@
 .include  "m64def.inc"
 
 ;include all the .inc files since all .asm files are needed here (no linker)
-.include  "Hexer.inc"
 .include  "HexerHW.inc"
-.include  "switch.inc"
-
-
 
 
 .cseg
@@ -289,11 +285,13 @@ KeyBuf:         .BYTE   256
 
 
 ; the stack - 128 bytes
-		.BYTE	127
+			.BYTE	127
 TopOfStack:	.BYTE	1		;top of the stack
 
 
 
 
 ; since don't have a linker, include all the .asm files
-;.include "file.asm"
+.include "HexerInit.asm"
+.include "Switches.asm"
+

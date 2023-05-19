@@ -57,22 +57,24 @@
 ; Last Modified:	 5/18/23
 
 GetSwitches:			
+	IN		R0, SREG			; save interrupt flag status
+	CLI							; can't interrupt this code
 
 CheckDebounce:					; check if there is a debounced switch pattern 
 	RCALL	SwitchAvailable			; zero flag reset if debounced pattern exists
 	BREQ 	CheckDebounce			; loop back (blocking) if zero flag set
-	;BRNE	LoadDebounce			;lbranch if zero flag reset
+	;BRNE	LoadDebounce			; branch if zero flag reset
 
 LoadDebounce:					; load the switch pattern and reset the debounce flag
 	LDS 	R19, switchNewPatt		; load the switch pattern
 	LDS 	R16, swDebounced		; reset debounce flag
 	LDS		R17, 0x00					; 0 is reset
 	STS		swDebounced, R17		
+	
+	OUT 	SREG, R0			;restore flags (possibly re-enabling interrupts)
 
 DoneGetSwitches:				; done so return
 	RET
-
-
 
 ; SwitchAvailable()
 ;
@@ -80,16 +82,16 @@ DoneGetSwitches:				; done so return
 ;					 returns the zero flag reset (available) and set (not available).
 ;
 ; Operation:         Resets the zero flag if there is a debounced switch pattern
-;					 and sets the zero flag if there is not a debounced witch pattern
+;					 and sets the zero flag if there is not a debounced switch pattern
 ;					 by checking if the swDebounced flag is set.
 ;
 ;                    
 ; Arguments:         None.
-; Return Value:      
+; Return Value:      Zero flag reset/set if debounce flag set/reset respectively.
 ;
 ; Local Variables:   None.
-; Shared Variables:  Zero Flag:		(W only): Reset if swDebounced flag is set. set otheriwse 
-;					 swDebounced: 	(R only): Loaded into R16 and read to set/reset zero flag
+; Shared Variables:  Zero Flag:		(W only): Reset if swDebounced flag is set. Set otheriwse 
+;					 swDebounced: 	(R only): Loaded into R16 and READ to set/reset zero flag
 ; Global Variables:  None.
 ;
 ; Input:             None.
@@ -109,11 +111,10 @@ DoneGetSwitches:				; done so return
 
 SwitchAvailable:			; load and check if swDebounced flag is set
 	LDS		R16, swDebounced		; load the flag
-	CPI 	R16, 0x00				; zero flag set if equal (swDebounced is not set)
-									; else reset 
+	CPI 	R16, 0x00				; zero flag set if swDebounced = 00
+									; else zero flag reset 
 
 	RET 						; done so return
-
 
 ; InitSwitches()
 ;
@@ -138,11 +139,28 @@ SwitchAvailable:			; load and check if swDebounced flag is set
 ; Algorithms:        None.
 ; Data Structures:   None.
 ;
-; Registers Changed: 
-; Stack Depth:       
+; Registers Changed: R16
+; Stack Depth:       None.
 ;
 ; Author:            Steven Lei
 ; Last Modified:	 5/18/23
+
+InitSwitches:
+
+ResetDebounceCounter:					; reset the debounce counter to the debounce time (10ms)
+	LDI 	R16, LOW(DEBOUNCE_TIME)			; load low and high bit of debounce time to counter
+	STS 	debounceCntr, R16				; store
+	LDI 	R16, HIGH(DEBOUNCE_TIME)			
+	STS 	debounceCntr+1, R16 		
+
+ResetDebounceFlag:						; reset the debounce flag
+	LDI 	R16, 0x00						; load flag reset value (00)
+	STS 	swDebounced,R16					; store
+
+InitOldPatt:							; init the old switch pattern to the bit mask
+	LDI		R16, SWITCH_MASK				; mask is 10000001 since bits 7,0 are not used
+	STS		switchOldPatt, R16				; store 		
+
 
 ; DebounceSwitches()
 ;
@@ -164,12 +182,16 @@ SwitchAvailable:			; load and check if swDebounced flag is set
 ;
 ; Local Variables:   None.
 ; Shared Variables:  switchOldPatt (R,W): the previous switch pattern, 
-;					 READ to check if equal to new pattern and WRITTEN 
-;					 
-;					 swDebounced   (W):
-;					 switchNewPatt (W):
-;					 debounceCntr  (R,W):
-;
+;										  READ to check if equal to input pattern and WRITTEN 
+;										  to update to input pattern					 
+;					 swDebounced   (W):   the debounce flag, set if debounce counter
+;										  hits 0
+;					 switchNewPatt (W):   the new debounced pattern, set to input pattern
+;										  debounce counter hits 0
+;					 debounceCntr  (R,W): the debounce counter, READ to check if
+;										  0, set to DEBOUNCE_TIME if new pattern
+;										  != old pattern, else set to REPEAT RATE
+;										  if successful debounce
 ; Global Variables:  None.
 ;
 ; Input:             None.
@@ -188,16 +210,16 @@ SwitchAvailable:			; load and check if swDebounced flag is set
 
 DebounceSwitches:
 
-GetInput:								; get input switch pattern
+GetInput:								; get new input switch pattern
 	IN		R17, SWITCH_PORT				; load it
 	ORI		R17, SWITCH_MASK				; mask bits 0 and 7
 
 CompareNewOldPatts:						; check if current switch pattern is same as previous
-	LDS 	R16, switchOldPatt				; load the previous pattern
-	CP 		R16, R17						; check if old  = new pattern
-	STS		switchOldPatt, R17				; update the old pattern
-	BREQ	DecDebounceCounter				; if equal, decrement debounce counter			
-	;BRNE	ResetDebounceCounter			; else reset debounce counter
+	LDS 	R16, switchOldPatt				; load the previous pattern	
+	STS		switchOldPatt, R17				; update the old pattern 
+	CP 		R16, R17						; check if old = new pattern
+	BREQ	DecDebounceCounter				; if old = new, decrement the debounce counter time			
+	;BRNE	ResetDebounceCounter			; else reset the debounce counter time
 
 ResetDebounceCounter:					; reset the debounce counter to the debounce time (10ms)
 	LDI 	R16, LOW(DEBOUNCE_TIME)			; load low and high bit of debounce time to counter
@@ -211,10 +233,10 @@ DecDebounceCounter:						; decrement the debounce counter and check if 0
 	SBIW	Z, 1							; dec 
 	STS 	debounceCntr, ZL				; store it back 
 	STS 	debounceCntr+1, ZH			
-	BREQ	SetDebounceFlag					; if 0, set debounce flag and set debounce counter
-	;BRNE									; else, return
+	BREQ	UpdateFlagPatt					; if counter is 0, update flag and pattern
+	;BRNE	DebounceSwitchesDone			; else, return
 
-UpdateFlag&Switch:						; set debounce flag and update switch pattern
+UpdateFlagPatt:							; set debounce flag and update switch pattern
 	STS		switchNewPatt, R17				; store the new pattern
 	LDS 	R16, 0xFF						; set the flag to FF
 	STS		swDebounced, R16				; 
@@ -223,7 +245,7 @@ UpdateFlag&Switch:						; set debounce flag and update switch pattern
 	LDS		R16, HIGH(REPEAT_RATE)
 	STS 	debounceCntr+1, R16
 
-DebounceSwitchesDone					; done handling debouncing
+DebounceSwitchesDone:					; done handling debouncing
 	RET										; and return
 
 .dseg
