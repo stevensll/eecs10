@@ -1,0 +1,75 @@
+<ASSEMBLER_INFO>
+ <VERSION>2.1.41</VERSION>
+ <DEVICE>ATmega64</DEVICE>
+ <WORKING_DIR>U:\slei\eecs10\ee10b\hw2 switches</WORKING_DIR>
+ <INCLUDE_PATH>
+  <DIR>C:\Program Files (x86)\Atmel\AVR Tools\AvrAssembler2\Appnotes</DIR>
+ </INCLUDE_PATH>
+ <SOURCE_FILE>U:\slei\eecs10\ee10b\hw2 switches\HW2TEST.asm</SOURCE_FILE>
+ <INCLUDED_FILES>
+  <FILE>C:\Program Files (x86)\Atmel\AVR Tools\AvrAssembler2\Appnotes\m64def.inc</FILE>
+  <FILE>U:\slei\eecs10\ee10b\hw2 switches\HexerHW.inc</FILE>
+  <FILE>U:\slei\eecs10\ee10b\hw2 switches\HexerSwitches.inc</FILE>
+  <FILE>U:\slei\eecs10\ee10b\hw2 switches\HexerInit.asm</FILE>
+  <FILE>U:\slei\eecs10\ee10b\hw2 switches\Switches.asm</FILE>
+  <FILE>U:\slei\eecs10\ee10b\hw2 switches\HexerIRQ.asm</FILE>
+ </INCLUDED_FILES>
+ <OBJECT_FILES>
+  <FILE>U:\slei\eecs10\ee10b\hw2 switches\hw2.obj</FILE>
+ </OBJECT_FILES>
+ <HEX_FILES>
+  <FILE>U:\slei\eecs10\ee10b\hw2 switches\hw2.hex</FILE>
+ </HEX_FILES>
+ <OUTPUT_FILES>
+  <FILE>U:\slei\eecs10\ee10b\hw2 switches\hw2.map</FILE>
+ </OUTPUT_FILES>
+ <LABELS>
+  <Start><FILE>U:\slei\eecs10\ee10b\hw2 switches\HW2TEST.asm</FILE><LINE>96</LINE></Start>
+  <Timer0CompareHandler><FILE>U:\slei\eecs10\ee10b\hw2 switches\HexerIRQ.asm</FILE><LINE>71</LINE></Timer0CompareHandler>
+  <TopOfStack><FILE>U:\slei\eecs10\ee10b\hw2 switches\HW2TEST.asm</FILE><LINE>290</LINE></TopOfStack>
+  <InitPorts><FILE>U:\slei\eecs10\ee10b\hw2 switches\HexerInit.asm</FILE><LINE>53</LINE></InitPorts>
+  <InitTimer0><FILE>U:\slei\eecs10\ee10b\hw2 switches\HexerInit.asm</FILE><LINE>94</LINE></InitTimer0>
+  <InitSwitches><FILE>U:\slei\eecs10\ee10b\hw2 switches\Switches.asm</FILE><LINE>56</LINE></InitSwitches>
+  <SwitchTest><FILE>U:\slei\eecs10\ee10b\hw2 switches\HW2TEST.asm</FILE><LINE>162</LINE></SwitchTest>
+  <STClearBuffer><FILE>U:\slei\eecs10\ee10b\hw2 switches\HW2TEST.asm</FILE><LINE>164</LINE></STClearBuffer>
+  <KeyBuf><FILE>U:\slei\eecs10\ee10b\hw2 switches\HW2TEST.asm</FILE><LINE>285</LINE></KeyBuf>
+  <STClearBufferLoop><FILE>U:\slei\eecs10\ee10b\hw2 switches\HW2TEST.asm</FILE><LINE>170</LINE></STClearBufferLoop>
+  <SwitchTestLoop><FILE>U:\slei\eecs10\ee10b\hw2 switches\HW2TEST.asm</FILE><LINE>177</LINE></SwitchTestLoop>
+  <STCheckGetSwitches1><FILE>U:\slei\eecs10\ee10b\hw2 switches\HW2TEST.asm</FILE><LINE>179</LINE></STCheckGetSwitches1>
+  <STWaitLoop><FILE>U:\slei\eecs10\ee10b\hw2 switches\HW2TEST.asm</FILE><LINE>182</LINE></STWaitLoop>
+  <SwitchAvailable><FILE>U:\slei\eecs10\ee10b\hw2 switches\Switches.asm</FILE><LINE>284</LINE></SwitchAvailable>
+  <GetSwitches><FILE>U:\slei\eecs10\ee10b\hw2 switches\Switches.asm</FILE><LINE>229</LINE></GetSwitches>
+  <STStoreBuffer><FILE>U:\slei\eecs10\ee10b\hw2 switches\HW2TEST.asm</FILE><LINE>259</LINE></STStoreBuffer>
+  <STCheckSwitchAvailable1><FILE>U:\slei\eecs10\ee10b\hw2 switches\HW2TEST.asm</FILE><LINE>190</LINE></STCheckSwitchAvailable1>
+  <STSkipFFwrite1><FILE>U:\slei\eecs10\ee10b\hw2 switches\HW2TEST.asm</FILE><LINE>198</LINE></STSkipFFwrite1>
+  <STCheckGetSwitches2><FILE>U:\slei\eecs10\ee10b\hw2 switches\HW2TEST.asm</FILE><LINE>202</LINE></STCheckGetSwitches2>
+  <STCheckSwitchAvailable2><FILE>U:\slei\eecs10\ee10b\hw2 switches\HW2TEST.asm</FILE><LINE>208</LINE></STCheckSwitchAvailable2>
+  <STSkipFFwrite2><FILE>U:\slei\eecs10\ee10b\hw2 switches\HW2TEST.asm</FILE><LINE>216</LINE></STSkipFFwrite2>
+  <EndInitPorts><FILE>U:\slei\eecs10\ee10b\hw2 switches\HexerInit.asm</FILE><LINE>58</LINE></EndInitPorts>
+  <EndInitTimer0><FILE>U:\slei\eecs10\ee10b\hw2 switches\HexerInit.asm</FILE><LINE>112</LINE></EndInitTimer0>
+  <ResetDebCounter><FILE>U:\slei\eecs10\ee10b\hw2 switches\Switches.asm</FILE><LINE>58</LINE></ResetDebCounter>
+  <debounceCntr><FILE>U:\slei\eecs10\ee10b\hw2 switches\Switches.asm</FILE><LINE>295</LINE></debounceCntr>
+  <ResetDebounceFlag><FILE>U:\slei\eecs10\ee10b\hw2 switches\Switches.asm</FILE><LINE>64</LINE></ResetDebounceFlag>
+  <swDebounced><FILE>U:\slei\eecs10\ee10b\hw2 switches\Switches.asm</FILE><LINE>294</LINE></swDebounced>
+  <ResetSwitchPatt><FILE>U:\slei\eecs10\ee10b\hw2 switches\Switches.asm</FILE><LINE>68</LINE></ResetSwitchPatt>
+  <switchOldPatt><FILE>U:\slei\eecs10\ee10b\hw2 switches\Switches.asm</FILE><LINE>300</LINE></switchOldPatt>
+  <switchNewPatt><FILE>U:\slei\eecs10\ee10b\hw2 switches\Switches.asm</FILE><LINE>299</LINE></switchNewPatt>
+  <DebounceSwitches><FILE>U:\slei\eecs10\ee10b\hw2 switches\Switches.asm</FILE><LINE>120</LINE></DebounceSwitches>
+  <GetInput><FILE>U:\slei\eecs10\ee10b\hw2 switches\Switches.asm</FILE><LINE>122</LINE></GetInput>
+  <CompareNewOldPatts><FILE>U:\slei\eecs10\ee10b\hw2 switches\Switches.asm</FILE><LINE>126</LINE></CompareNewOldPatts>
+  <DecDebounceCounter><FILE>U:\slei\eecs10\ee10b\hw2 switches\Switches.asm</FILE><LINE>146</LINE></DecDebounceCounter>
+  <ResetCounters><FILE>U:\slei\eecs10\ee10b\hw2 switches\Switches.asm</FILE><LINE>132</LINE></ResetCounters>
+  <repeatRate><FILE>U:\slei\eecs10\ee10b\hw2 switches\Switches.asm</FILE><LINE>297</LINE></repeatRate>
+  <repeatCntr><FILE>U:\slei\eecs10\ee10b\hw2 switches\Switches.asm</FILE><LINE>296</LINE></repeatCntr>
+  <UpdateFlagPatt><FILE>U:\slei\eecs10\ee10b\hw2 switches\Switches.asm</FILE><LINE>155</LINE></UpdateFlagPatt>
+  <DecRepeatCounter><FILE>U:\slei\eecs10\ee10b\hw2 switches\Switches.asm</FILE><LINE>164</LINE></DecRepeatCounter>
+  <UpdateRepeatRate><FILE>U:\slei\eecs10\ee10b\hw2 switches\Switches.asm</FILE><LINE>173</LINE></UpdateRepeatRate>
+  <DebounceSwitchesDone><FILE>U:\slei\eecs10\ee10b\hw2 switches\Switches.asm</FILE><LINE>179</LINE></DebounceSwitchesDone>
+  <CheckDebounce><FILE>U:\slei\eecs10\ee10b\hw2 switches\Switches.asm</FILE><LINE>231</LINE></CheckDebounce>
+  <LoadDebounce><FILE>U:\slei\eecs10\ee10b\hw2 switches\Switches.asm</FILE><LINE>236</LINE></LoadDebounce>
+  <DoneGetSwitches><FILE>U:\slei\eecs10\ee10b\hw2 switches\Switches.asm</FILE><LINE>248</LINE></DoneGetSwitches>
+  <StartTimer0CompareHandler><FILE>U:\slei\eecs10\ee10b\hw2 switches\HexerIRQ.asm</FILE><LINE>73</LINE></StartTimer0CompareHandler>
+  <DoSwitches><FILE>U:\slei\eecs10\ee10b\hw2 switches\HexerIRQ.asm</FILE><LINE>83</LINE></DoSwitches>
+  <DoneTimer0CompareHandler><FILE>U:\slei\eecs10\ee10b\hw2 switches\HexerIRQ.asm</FILE><LINE>86</LINE></DoneTimer0CompareHandler>
+ </LABELS>
+</ASSEMBLER_INFO>

@@ -39,7 +39,8 @@
 .include  "m64def.inc"
 
 ;include all the .inc files since all .asm files are needed here (no linker)
-.include  "HexerHW.inc"
+.include  "HexerHW.inc"				; Timer/IO 
+.include  "HexerSwitches.inc"		; Switches
 
 
 .cseg
@@ -51,7 +52,7 @@
 
 .org	$0000
 
-	JMP	Start			;reset vector
+	JMP	Start		;reset vector
 	JMP	PC			;external interrupt 0
 	JMP	PC			;external interrupt 1
 	JMP	PC			;external interrupt 2
@@ -66,8 +67,8 @@
 	JMP	PC			;timer 1 compare match A
 	JMP	PC			;timer 1 compare match B
 	JMP	PC			;timer 1 overflow
-	JMP	PC                      ;timer 0 compare match
-	JMP	PC		    	;timer 0 overflow
+	JMP	Timer0CompareHandler          ;timer 0 compare match
+	JMP	PC		    ;timer 0 overflow
 	JMP	PC			;SPI transfer complete
 	JMP	PC			;UART 0 Rx complete
 	JMP	PC			;UART 0 Tx empty
@@ -77,7 +78,7 @@
 	JMP	PC			;analog comparator
 	JMP	PC			;timer 1 compare match C
 	JMP	PC			;timer 3 capture
-	JMP	PC     			;timer 3 compare match A
+	JMP	PC     		;timer 3 compare match A
 	JMP	PC			;timer 3 compare match B
 	JMP	PC			;timer 3 compare match C
 	JMP	PC			;timer 3 overflow
@@ -92,20 +93,20 @@
 
 ; start of the actual program
 
-Start:					;start the CPU after a reset
-	LDI	R16, LOW(TopOfStack)	;initialize the stack pointer
+Start:							;start the CPU after a reset
+	LDI	R16, LOW(TopOfStack)		;initialize the stack pointer
 	OUT	SPL, R16
 	LDI	R16, HIGH(TopOfStack)
 	OUT	SPH, R16
 
+	RCALL	InitPorts				;initialize I/O ports 
+	RCALL 	InitTimer0				;initialize timer0
+	RCALL	InitSwitches			;initialize switch variables
 
-	;initialization of the system
-	;initialize I/O ports and timer
+	SEI								;ready to go, allow interrupts
 
-	SEI				;ready to go, allow interrupts
-
-        RCALL   SwitchTest              ;do the switch tests
-	RJMP	Start			;shouldn't return, but if it does, restart
+    RCALL   SwitchTest      		;do the switch tests
+	RJMP	Start					;shouldn't return, but if it does, restart
 
 
 
@@ -160,52 +161,52 @@ Start:					;start the CPU after a reset
 
 SwitchTest:
 
-STClearBuffer:			;first clear the buffer
-	LDI	YL, LOW(KeyBuf)	;get the start of the buffer
+STClearBuffer:				;first clear the buffer
+	LDI	YL, LOW(KeyBuf)			;get the start of the buffer
 	LDI	YH, HIGH(KeyBuf)
-	LDI	R17, 0x55	;will fill buffer with 55 to start
-	CLR	R4		;initialize the loop counter
+	LDI	R17, 0x55				;will fill buffer with 55 to start
+	CLR	R4						;initialize the loop counter
 
-STClearBufferLoop:		;loop clearing the buffer
-	ST	Y+, R17		;initialize one byte of the buffer
-	INC	R4  		;update the loop index
+STClearBufferLoop:			;loop clearing the buffer
+	ST	Y+, R17					;initialize one byte of the buffer
+	INC	R4  					;update the loop index
 	BRNE	STClearBufferLoop	;and loop until fill 256 bytes
 
-	CLR	R4		;initialize the buffer index
+	CLR	R4					;initialize the buffer index
 
-SwitchTestLoop:			;loop testing the functions
+SwitchTestLoop:				;loop testing the functions
 
 STCheckGetSwitches1:		;first call to GetSwitches uses SwitchAvailable
-	PUSH	R4		;save the buffer index
+	PUSH	R4					;save the buffer index
 
-STWaitLoop:			;loop until there is a switch press
+STWaitLoop:					;loop until there is a switch press
 	RCALL	SwitchAvailable
-	BREQ	STWaitLoop	;wait for there to be a switch press
+	BREQ	STWaitLoop			;wait for there to be a switch press
 
-	RCALL	GetSwitches	;switch pattern is available - get it
-	POP	R4		;get buffer index back
-	RCALL	STStoreBuffer	;store switch pattern in the buffer
+	RCALL	GetSwitches			;switch pattern is available - get it
+	POP	R4						;get buffer index back
+	RCALL	STStoreBuffer		;store switch pattern in the buffer
 
-STCheckSwitchAvailable1:	;now check that SwitchAvailable is working
-	PUSH	R4		;check if a switch pattern is still available
-	RCALL	SwitchAvailable	;   (don't trash buffer index)
+STCheckSwitchAvailable1:		;now check that SwitchAvailable is working
+	PUSH	R4					;check if a switch pattern is still available
+	RCALL	SwitchAvailable		;   (don't trash buffer index)
 	POP	R4
 
-	BRNE	STSkipFFwrite1	;if there is not a pattern, write FF to buffer
+	BRNE	STSkipFFwrite1		;if there is not a pattern, write FF to buffer
 	LDI	R16, 0xFF
-	RCALL	STStoreBuffer	;store 0xFF in the buffer
+	RCALL	STStoreBuffer		;store 0xFF in the buffer
 STSkipFFwrite1:
 	;RJMP	STCheckGetSwitches2	;do second test of GetSwitches
 
 
 STCheckGetSwitches2:		;second call to GetSwitches does not use SwitchAvailable
-	PUSH	R4		;save the buffer index
-	RCALL	GetSwitches	;should wait for a key
-	POP	R4		;get buffer index back
+	PUSH	R4				;save the buffer index
+	RCALL	GetSwitches		;should wait for a key
+	POP	R4					;get buffer index back
 	RCALL	STStoreBuffer	;store switch pattern in the buffer
 
 STCheckSwitchAvailable2:	;now check that SwitchAvailable is working again
-	PUSH	R4		;check if a switch pattern is still available
+	PUSH	R4				;check if a switch pattern is still available
 	RCALL	SwitchAvailable	;   (don't trash buffer index)
 	POP	R4
 
@@ -217,7 +218,7 @@ STSkipFFwrite2:
 
 	RJMP	SwitchTestLoop	;and keep looping forever
 
-	RET			;should never get here
+	RET						;should never get here
 
 
 
@@ -260,16 +261,16 @@ STStoreBuffer:
 	LDI	YL, LOW(KeyBuf)	;get buffer location to store switch at
 	LDI	YH, HIGH(KeyBuf)
 
-	LDI	R17, 0		;for carry propagation
-	ADD	YL, R4		;add the passed offset
+	LDI	R17, 0			;for carry propagation
+	ADD	YL, R4			;add the passed offset
 	ADC	YH, R17
 
-	ST	Y, R16		;store the passed byte in the buffer
+	ST	Y, R16			;store the passed byte in the buffer
 
-        INC     R4              ;update the buffer offset, wrapping at 256
+    INC     R4      	;update the buffer offset, wrapping at 256
 
 
-	RET			;all done, return
+	RET					;all done, return
 
 
 
@@ -294,4 +295,4 @@ TopOfStack:	.BYTE	1		;top of the stack
 ; since don't have a linker, include all the .asm files
 .include "HexerInit.asm"
 .include "Switches.asm"
-
+.include "HexerIRQ.asm"

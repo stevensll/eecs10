@@ -63,7 +63,7 @@ ResetDebCounter:					    ; reset the debounce counter to the debounce time (10ms
 
 ResetDebounceFlag:						; reset the debounce flag to 0x00
 	LDI 	R16, 0x00						
-	STS 	swDebounced,R16					
+	STS 	swDebounced, R16					
 
 ResetSwitchPatt:						; reset the old and new switch pattern to 0xFF
 	LDI		R16, 0xFF						 
@@ -128,53 +128,31 @@ CompareNewOldPatts:						; check if current switch pattern is same as previous
 	STS		switchOldPatt, R17				; update the old pattern 
 	CP 		R16, R17						; check if old = new pattern
 	BREQ	DecDebounceCounter				; if old = new, decrement the debounce counter time			
-	;BRNE	ResetCounters					; else reset the counters
-ResetCounters:							; reset the debounce counter and repeat counter
-	LDI 	R16, LOW(DEBOUNCE_TIME)			; reset debounce counter to debounce time
-	STS 	debounceCntr, R16				 
+	;BRNE	ResetDebounceCounter			; else reset the debounce counter time
+
+ResetDebounceCounter:					; reset the debounce counter to the debounce time (10ms)
+	LDI 	R16, LOW(DEBOUNCE_TIME)			; load low and high bit of debounce time to counter
+	STS 	debounceCntr, R16				; store
 	LDI 	R16, HIGH(DEBOUNCE_TIME)			
 	STS 	debounceCntr+1, R16 			
-	LDI 	R16, LOW(SLOW_RATE) 			; reset repeat rate to the slow rate
-	STS 	repeatRate, R16
-	LDI		R16, HIGH(SLOW_RATE)
-	STS		repeatRate+1, R16			
-	LDI		R16, LOW(REPEAT_TIME)			; reset repeat counter to the repeat time
-	STS		repeatCntr, R16
-	LDI		R16, HIGH(REPEAT_TIME)
-	STS		repeatCntr+1, R16
 
-DecDebounceCounter:						; decrement the debounce counter and check if = 0
+DecDebounceCounter:						; decrement the debounce counter and check if 0
 	LDS		ZL, debounceCntr				; use the 16 bit register
 	LDS 	ZH, debounceCntr+1		
 	SBIW	Z, 1							; dec 
 	STS 	debounceCntr, ZL				; store it back 
 	STS 	debounceCntr+1, ZH			
 	BREQ	UpdateFlagPatt					; if counter is 0, update flag and pattern
-	;BRNE	DecRepeatCounter				; else, decrement repeat counter
+	;BRNE	DebounceSwitchesDone			; else, return
 
 UpdateFlagPatt:							; set debounce flag and update switch pattern
-	STS		switchNewPatt, R17				; return the new pattern to R16
+	STS		switchNewPatt, R17				; store the new pattern
 	LDS 	R16, 0xFF						; set the flag to FF
-	STS		swDebounced, R16				 
-	LDS 	R16, repeatRate				; set the debounce counter to the repeat rate
+	STS		swDebounced, R16				; 
+	LDS 	R16, LOW(REPEAT_TIME)			; set the debounce counter to the repeat rate
 	STS		debounceCntr, R16				
-	LDS		R16, repeatRate+1
+	LDS		R16, HIGH(REPEAT_TIME)
 	STS 	debounceCntr+1, R16
-
-DecRepeatCounter:						; decrement the repeat counter and check if = 0
-	LDS		ZL, repeatCntr					; use the 16 bit register
-	LDS 	ZH, repeatCntr+1
-	SBIW	Z, 1							; dec
-	STS 	repeatCntr, ZL					; store it back
-	STS		repeatCntr+1, ZH
-	BREQ	UpdateRepeatRate				; if repeat counter is 0, update the repeat rate
-	;BRNE	DebounceSwitchesDone			; else, done
-
-UpdateRepeatRate:						; set the repeat rate to the fast rate
-	LDS		R16, LOW(FAST_RATE)				; load the fast rate
-	STS		repeatRate, R16					; and store
-	LDS 	R16, HIGH(FAST_RATE)		
-	STS		repeatRate, R16
 
 DebounceSwitchesDone:					; done handling debouncing
 	RET										; and return
@@ -293,8 +271,6 @@ SwitchAvailable:			; load and check if swDebounced flag is set
 
 swDebounced:		.BYTE	1		; The switch debounce flag
 debounceCntr:		.BYTE	2		; The switch debouncing counter
-repeatCntr:			.BYTE  	2		; The switch repeat rate counter (for variable repeat)
-repeatRate:			.BYTE 	2		; The switch repeat rate (can be 2Hz or 1/2 Hz
 
 switchNewPatt:		.BYTE	1		; The new debounced switch pattern
 switchOldPatt:		.BYTE	1		; The previous switch pattern

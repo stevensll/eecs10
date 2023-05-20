@@ -2,24 +2,26 @@
 ;                                                                            ;
 ;                                 HexerInit                                  ;
 ;                          Initialization Functions                          ;
-;                   Microprocessor-Based Clock (AVR version)                 ;
+;                   		Hexer Game (AVR version)                 	     ;
 ;                                                                            ;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-; This file contains the functions for initializing the LED-based clock
+; This file contains the functions for initializing the Hexer game clock and IO port
 ; hardware. The public functions included are:
-;    InitIO     - initialize the I/O ports
+;    InitPorts     - initialize the I/O ports
 ;    InitTimer0 - initialize timer 0 for interrupts
 ;
 ; Revision History:
 ;    05/18/23  Steven Lei      initial revision, 
 ;							   		code based on "clkinit.asm" in examples from website
-;									revised - Port E to all inputs and timer set to 1 ms
+;									revised: Port E set to all inputs
+;											 timer set to 1 ms in Output Compare mode.
+;
 ;    05/18/23  Steven Lei      updated comments
 
 .cseg 
 
-; InitIO
+; InitPorts
 ;
 ; Description:       This procedure initializes the I/O ports for the system.
 ;
@@ -48,7 +50,7 @@
 ; Author:            Steven Lei
 ; Last Modified:	 5/18/23
 
-InitIO:
+InitPorts:
                                         ;initialize I/O port directions
         LDI     R16, INDATA             ;Port E is all inputs
         OUT     DDRE, R16

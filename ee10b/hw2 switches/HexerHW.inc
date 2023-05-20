@@ -2,12 +2,12 @@
 ;                                                                            ;
 ;                                HexerHW.inc                                 ;
 ;                            Hardware Include File                           ;
-;                   Microprocessor-Based Clock (AVR version)                 ;
+;                   	    Hexer Game (AVR version)                 	     ;	
 ;                                                                            ;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-; This file contains the hardware definitions for the clock, IO ports, and 
-; switch routines.
+; This file contains the hardware definitions for the clock and IO ports for
+; the Hexer Game.
 ;
 ; Revision History:
 ;    12/09/12  Glen George      initial revision
@@ -17,9 +17,7 @@
 ;     5/02/18  Glen George      created from original clock.inc file
 ;     8/25/18  Glen George      added Timer 0 values
 ;     4/02/19  Glen George      removed PORTD_DIR, not needed in new hardware
-;	 05/18/23  Steven Lei		updated TIMERCLK32,64,256,1024 definitions
-;    05/19/23  Steven Lei       added switch routine definitions.
-
+;    05/18/23  Steven Lei	updated TIMERCLK32,64,256,1024 definitions
 
 
 ;setup values for Timer 0
@@ -38,20 +36,3 @@
 
 .EQU	OUTDATA    = 0b11111111		;data direction 1 is output
 .EQU    INDATA     = 0b00000000		;data direction 0 is input
-
-; Switch definitions
-
-;Timing parameters (assumes 1 ms interrupt)
-
-.EQU	DEBOUNCE_TIME = 10              ;debouncing time (10ms)
-.EQU	REPEAT_TIME   = 5000            ;time until start fast repeating (5s)
-.EQU	SLOW_RATE     = 2000            ;slow repeat rate (1/2 Hz)
-.EQU	FAST_RATE     = 500             ;fast repeat rate (2 Hz)
-
-; Port used is E
-
-.EQU      SWITCH_PORT = PINE            ;switches are on port D
-
-; Switch mask used to set bits 7 and 0, since only 6 buttons exist
-
-.EQU    SWITCH_MASK = 0b10000001
