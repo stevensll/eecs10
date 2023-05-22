@@ -1,5 +1,5 @@
 
-AVRASM ver. 2.1.41  U:\slei\eecs10\ee10b\hw2 switches\HW2TEST.asm Fri May 19 17:27:00 2023
+AVRASM ver. 2.1.41  U:\slei\eecs10\ee10b\hw2 switches\HW2TEST.asm Sun May 21 21:56:51 2023
 
 
 EQU  SIGNATURE_000 0000001e
@@ -887,8 +887,9 @@ EQU  SLOW_RATE    000007d0
 EQU  FAST_RATE    000001f4
 EQU  SWITCH_PORT  00000001
 EQU  SWITCH_MASK  00000081
+EQU  SWITCH_UP    000000ff
 CSEG Start        00000046
-CSEG Timer0CompareHandler 000000e8
+CSEG Timer0CompareHandler 000000c8
 DSEG TopOfStack   0000027f
 CSEG InitPorts    00000078
 CSEG InitTimer0   0000007b
@@ -900,8 +901,8 @@ CSEG STClearBufferLoop 00000054
 CSEG SwitchTestLoop 00000058
 CSEG STCheckGetSwitches1 00000058
 CSEG STWaitLoop   00000059
-CSEG SwitchAvailable 000000e4
-CSEG GetSwitches  000000d8
+CSEG SwitchAvailable 000000c4
+CSEG GetSwitches  000000b9
 CSEG STStoreBuffer 00000070
 CSEG STCheckSwitchAvailable1 0000005e
 CSEG STSkipFFwrite1 00000064
@@ -913,24 +914,20 @@ CSEG EndInitTimer0 00000084
 CSEG ResetDebCounter 00000085
 DSEG debounceCntr 00000281
 CSEG ResetDebounceFlag 0000008b
-DSEG swDebounced  00000280
+DSEG debounceFlag 00000280
 CSEG ResetSwitchPatt 0000008e
-DSEG switchOldPatt 00000288
-DSEG switchNewPatt 00000287
+DSEG switchOldPatt 00000284
+DSEG switchDebPatt 00000283
 CSEG DebounceSwitches 00000093
 CSEG GetInput     00000093
 CSEG CompareNewOldPatts 00000095
-CSEG DecDebounceCounter 000000ad
-CSEG ResetCounters 0000009b
-DSEG repeatRate   00000285
-DSEG repeatCntr   00000283
-CSEG UpdateFlagPatt 000000b7
-CSEG DecRepeatCounter 000000c5
-CSEG UpdateRepeatRate 000000cf
-CSEG DebounceSwitchesDone 000000d7
-CSEG CheckDebounce 000000d8
-CSEG LoadDebounce 000000da
-CSEG DoneGetSwitches 000000e3
-CSEG StartTimer0CompareHandler 000000e8
-CSEG DoSwitches   000000f0
-CSEG DoneTimer0CompareHandler 000000f1
+CSEG ResetDebounceCounter 0000009d
+CSEG DecDebounceCounter 000000a3
+CSEG DebounceSwitchesDone 000000b8
+CSEG UpdateFlagPatt 000000ad
+CSEG CheckDebounce 000000b9
+CSEG LoadDebounce 000000bb
+CSEG DoneGetSwitches 000000c3
+CSEG StartTimer0CompareHandler 000000c8
+CSEG DoSwitches   000000d0
+CSEG DoneTimer0CompareHandler 000000d1

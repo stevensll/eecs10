@@ -15,6 +15,7 @@
 ;     4/02/19  Glen George      fixed "Display" switch definitions
 ;    05/18/23  Steven Lei		retrieved file from website 
 ;    05/19/23  Steven Lei 		changed port definition and added mask definition
+; 	 05/21/23  Steven Lei		added switch up definition
 
 ; Switch definitions
 
@@ -27,8 +28,12 @@
 
 ; Port used is E
 
-.EQU      SWITCH_PORT = PINE            ;switches are on port E
+.EQU    SWITCH_PORT = PINE            ;switches are on port E
 
 ; Switch mask used to set bits 7 and 0, since only 6 buttons exist
 
 .EQU    SWITCH_MASK = 0b10000001
+
+; Switch is up when all bits are set 
+
+.EQU	SWITCH_UP = 0xFF
