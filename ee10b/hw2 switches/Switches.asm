@@ -6,9 +6,15 @@
 ;                                                                            ;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-; This file contains the 
+; This file contains the procedures for debouncing switches for the Hexer Game.
+; included public functions are:
+;	DebounceSwitches - debounces the switch pattern pressed  
+;	InitSwitches 	 - initializes variables used for debouncing
+; 	SwitchAvailable  - checks if a debounced switch is available
+;   GetSwitches		 - waits until a debounced switch is available and returns it
 
-
+; included local functions are:
+; 	none
 
 ; Revision history:
 ;	05/18/23	Steven Lei		Initial revision
@@ -16,6 +22,8 @@
 ;   05/19/23	Steven Lei		Updated comments    
 ;   05/21/23	Steven Lei		Fixed DebounceSwitches by adding switch up condition and
 ;						        correct instruction calls
+;	05/23/23	STeven Lei		Added Table of Contents
+
 
 .cseg
 

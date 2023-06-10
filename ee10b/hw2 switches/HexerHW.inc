@@ -17,7 +17,7 @@
 ;     5/02/18  Glen George      created from original clock.inc file
 ;     8/25/18  Glen George      added Timer 0 values
 ;     4/02/19  Glen George      removed PORTD_DIR, not needed in new hardware
-;    05/18/23  Steven Lei	updated TIMERCLK32,64,256,1024 definitions
+;    05/18/23  Steven Lei	    updated TIMERCLK32,64,256,1024 definitions
 
 
 ;setup values for Timer 0

@@ -8,7 +8,7 @@
 
 ; This file contains the functions for initializing the Hexer game clock and IO port
 ; hardware. The public functions included are:
-;    InitPorts     - initialize the I/O ports
+;    InitPorts  - initialize the I/O ports
 ;    InitTimer0 - initialize timer 0 for interrupts
 ;
 ; Revision History:
@@ -88,8 +88,6 @@ EndInitPorts:                           ;done so return
 ;
 ; Author:            Steven Lei
 ; Last Modified:     5/18/2023
-
-
 
 InitTimer0:
                                 	;setup timer 0
