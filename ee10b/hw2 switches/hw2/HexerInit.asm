@@ -93,7 +93,7 @@ InitTimer0:
                                 	;setup timer 0
 	CLR		R16							;clear the count register
 	OUT		TCNT0, R16					;   (not really necessary)
-									;use CLK/64 as timer source, gives
+									;use CLK/8 as timer source, gives
 	LDI		R16, TIMERCLK64				;   8 MHz / 64 / 125 interrupt
 	OUT		TCCR0, R16					;   rate = 1KHz (1ms)
 									;use compare interrupts

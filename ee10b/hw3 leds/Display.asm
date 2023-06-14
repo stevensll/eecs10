@@ -99,8 +99,8 @@ EndInitDisplay:                         ;done initializing the display - return
 
 ; ClearDisplay()
 ;
-; Description:       This function clears the 7 segment and game LEDS. After it is called,
-;                    all LEDs should be off.
+; Description:       This function clears the 7 segment and game LEDS. After it 
+;                    is called all LEDs should be off.
 ;
 ; Operation:         The function gets the digits from the passed time and
 ;                  
@@ -175,42 +175,42 @@ ClearDisplayDone:
 
 ; DisplayGameLEDs(m)
 ;
-; Description:       This functino is passed a 16 bit mask that indicates the game LEDs to turn off. 
-;                    If the bit in the mask is set, the corresponding game LED is turned on and 
-;                    if it is reset, the LED is turned off. The bits are defined as the follows:
-;                    MASK BITS: | 15 | 14 | 13 | 12 | 11 | 10 | 09 | 08 | 07 | 06 | 05 | 04 | 03 | 02 | 01 | 00 |
-;                    LEDS:      | L9 | L1 | L5 |NONE|L10 | L4 | L3 | L2 |L13 |L11 | L8 |L15 |L14 |L12 | L7 | L6 |
+; Description:       This function is passed a 16 bit mask that indicates the 
+;                    game LEDs to turn off/on. If the bit in the mask is set, 
+;                    the corresponding game LED is turned on and if it is reset, 
+;                    the LED is turned off. The bits are defined as the follows:
+
+;    MASK BITS: | 15 | 14 | 13 | 12 | 11 | 10 | 09 | 08 | 07 | 06 | 05 | 04 | 03 | 02 | 01 | 00 |
+;    GAME LEDS: | L9 | L1 | L5 |NONE|L10 | L4 | L3 | L2 |L13 |L11 | L8 |L15 |L14 |L12 | L7 | L6 |
 ;                    
-; Operation:         The function gets the digits from the passed time and
-;                    Unused  bits (NONE) have no effect on the display
+; Operation:         The mask is applied 
 ;
 ; Arguments:         R17 | R16 - the 16 bit mask (m) 
 ; Return Value:      None.
 ;
-; Local Variables:   R16 - the current row of the buffer
+; Local Variables:   None.
 
-; Shared Variables:  
+; Shared Variables:  LEDbuffer - the LEDbuffer is masked to the new bits to 
+;                                determine what LEDs will be turned/on off on 
+;                                the next multiplexing interrupt.
 ; Global Variables:  None.
 ;
 ; Input:             None.
 ; Output:            None.
 ;
 ; Error Handling:    None.
-;
 ; Algorithms:        None.
 ; Data Structures:   None.
-;
-; Registers Changed: 
+; Registers Changed: R16, R17
 ;                    
-;
 ; Author:            Steven Lei
 ; Last Modified:     June 9, 2023
 
 DisplayGameLEDs:
 
 MaskHiGameLED:                     ; high bit of (m) is in R17
-    ANDI    R17, GAME_LED_HI_MASK      ; mask the 4th bit of (m) to low since it is not used
-    LDS     LEDbuffer+GAME_LED_HI, R18 ;
+    ANDI    R17, GAME_LED_HI_MASK      ; mask the bit 4 of (m) to low since it is not used
+    LDS     LEDbuffer+GAME_LED_HI, R18 ; 
     ANDI    R18, -GAME_LED_HI_MASK     ;
     OR      R17, R18
     STS     LEDbuffer+GAME_LED_HI, R17 ; 
@@ -219,18 +219,17 @@ MaskLowGameLED:                    ; low bit of (m) is in R16
     STS     LEDbuffer+GAME_LED_LO, R16  ; doesn't need any masking since all bits in mask are used
     RET                             ; done so return
 
-
-
-
-; ClearDisplay()
+; DisplayHex()
 ;
-; Description:       This function clears the 7 segment and game LEDS. After it is called,
-;                    all LEDs should be off.
+; Description:       This function is passed a 16 bit unsigned value (n) to 
+;                    output in hexadecimal (at most 4 digits) to the 7 segment
+;                    display. (n) is passed in by R17 | R16.
 ;
-; Operation:         The function gets the digits from the passed time and
+; Operation:         Since 4 bits represent a hexadecimal digit, each nibble
+;                    of the passed bytes are interpreted to display the 4 digit
+;                    value in the 7 segment.
 ;                  
-;
-; Arguments:         None
+; Arguments:         R17 | R16 - the 16 bit unsigned value to output in hex
 ; Return Value:      None.
 ;
 ; Local Variables:   R16 - the current row of the buffer
@@ -240,17 +239,18 @@ MaskLowGameLED:                    ; low bit of (m) is in R16
 ;
 ; Input:             None.
 ; Output:            None.
-;
 ; Error Handling:    None.
-;
 ; Algorithms:        None.
 ; Data Structures:   None.
 ;
-; Registers Changed: flags, R0, R16, R17, R18, R19, R20, R21, R22, R23,
+; Registers Changed: 
 ;                    
 ;
 ; Author:            Steven Lei
 ; Last Modified:     June 9, 2023
+
+DisplayHex:
+
 
 
 
@@ -277,9 +277,9 @@ SegTable:
 .dseg
 
 
-LEDbuffer  :    .BYTE   BUFFER_SIZE ;the 7 byte LED buffer containing the game LED and 7 segment bits
+LEDbuffer:      .BYTE   BUFFER_SIZE ;the 7 byte LED buffer containing the game LED and 7 segment bits
 
-currRow    :    .BYTE   1           ;
+currRow:        .BYTE   1           ;
 
 
 currentSegs:    .BYTE   NUM_SEGS    ;buffer holding currently displayed segment patterns

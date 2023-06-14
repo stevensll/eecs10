@@ -18,11 +18,11 @@
 
 ; Revision history:
 ;	05/18/23	Steven Lei		Initial revision
-;	05/19/23    Steven Lei      Successful implementation with  snon variable repeat rate 
+;	05/19/23    Steven Lei      Successful implementation with non variable repeat rate 
 ;   05/19/23	Steven Lei		Updated comments    
 ;   05/21/23	Steven Lei		Fixed DebounceSwitches by adding switch up condition and
 ;						        correct instruction calls
-;	05/23/23	STeven Lei		Added Table of Contents
+;	05/23/23	Steven Lei		Added Table of Contents
 
 
 .cseg
