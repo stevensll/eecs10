@@ -75,10 +75,10 @@ StartTimer0CompareHandler:             ;save all touched registers
         IN      R0, SREG                ;save the status register too
         PUSH    R0
 
-DoSwitches:                             ;handle switch debouncing/repeating
-        RCALL   DebounceSwitches
+;DoSwitches:                             ;handle switch debouncing/repeating
+;       RCALL   DebounceSwitches
 DoLEDS:                                 ;handle LED muxing
-        RCALL   LEDMux
+        RCALL   LEDmux
 DoneTimer0CompareHandler:              ;done with handler
         POP     R0                      ;restore flags
         OUT     SREG, R0

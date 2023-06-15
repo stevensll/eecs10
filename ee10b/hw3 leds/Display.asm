@@ -32,7 +32,7 @@
 ;                    off and initializing the display multiplex variables.
 ;
 ; Operation:         Calls ClearDisplay() to turn of all LEDs. Variables
-;                    used in MultiplexLEDs() are initialized.
+;                    used in LEDMux() are initialized.
 ;
 ; Arguments:         None.
 ; Return Value:      None.
@@ -59,7 +59,7 @@ InitDisplay:
 StartInitDisplay:          ;start clearing the display
     RCALL ClearDisplay          
 
-InitLEDMux:                ;init variables for MultiplexLEDs
+InitLEDMux:                ;init variables for LEDMux
     LDI     R16, 0              ; reset digit number
     STS     currBuffDig, R16    
     LDI     R16, INIT_DIG_PATT  ; reset digit drive pattern
@@ -75,7 +75,7 @@ EndInitDisplay:            ;done initializing the display - return
 ;
 ; Operation:         The display and game LEDs are cleared by resetting each
 ;                    byte of the LEDbuffer. The LEDbuffer is then written to
-;                    the LEDs by MultiplexLEDs to turn off each LED.
+;                    the LEDs by LEDMux to turn off each LED.
 ;                  
 ; Arguments:         None
 ; Return Value:      None.
@@ -148,7 +148,7 @@ ClearDisplayDone:               ; done clearing
 ; Error Handling:    None.
 ; Algorithms:        None.
 ; Data Structures:   None.
-; Registers Changed: R16, R17
+; Registers Changed: R16, R17,Y
 ;                    
 ; Author:            Steven Lei
 ; Last Modified:     June 14, 2023
@@ -156,14 +156,17 @@ ClearDisplayDone:               ; done clearing
 DisplayGameLEDs:
 
 MaskHiGameLED:                     ; mask high byte of (m) in R17 to buffer
-    ANDI    R17, GAME_LED_HI_MASK      ; mask bit 4 of (m) to low since unused
-    STS     LEDbuffer+GAME_LED_HI, R17 
+    ANDI    R17, GAME_LED_HI_MASK      ; mask bit 12 of (m) to low since unused 
 
 MaskLowGameLED:                    ; mask low byte of (m) in R16 to buffer
     ANDI    R16, GAME_LED_LOW_MASK      
-    STS     LEDbuffer+GAME_LED_LO, R16
 
-DisplayGameLEDsDone:                ; done
+DisplayGameLEDsDone:                ; done so store
+    LDI     YL, LOW(LEDbuffer)
+    LDI     YH, HIGH(LEDbuffer)
+    ADIW    Y,  LED_DIG
+    ST      Y+, R17
+    ST      Y, R16         
     RET                             ; and return
 
 ; DisplayHex()
@@ -241,7 +244,7 @@ CheckIndexCount:               ; check if done iterating through 7-segs
 EndDisplayHex:                    ; done
     RET                             ; and return
 
-; MultiplexLEDs
+; LEDMux
 ;
 ; Description:       This procedure multiplexes the LED display under
 ;                    interrupt control.  It is meant to be called at a regular
@@ -284,14 +287,14 @@ EndDisplayHex:                    ; done
 ; Author:            Steven Lei, credit Glen George
 ; Last Modified:     June 14, 2023
 
-MultiplexLEDs:
+LEDMux:
 
 StartLEDMux:                    ; first turn off the LEDs
 	LDI	    R18, LED_BLANK		    ; turn off the LED digit drives
 	OUT	    DIGIT_PORT, R18
 
 	CLR	    R19			            ; zero constant for calculations
-	LDS	    R18, curBuffDig		    ; get current digit number
+	LDS	    R18, currBuffDig		; get current digit number
 
 MuxLED:		     			    ;get the pattern for the digit
 	LDI	    ZL, LOW(LEDbuffer)	    ; get the start of the buffer
@@ -313,11 +316,11 @@ MuxLED:		     			    ;get the pattern for the digit
 
 ResetDigitCnt:			        ;reset digit count and drive pattern
     CLR     R18                     ;on last digit, reset to first
-	LDI	    R19, INIT_SEG_PATT	    ;and the first drive pattern 
+	LDI	    R19, INIT_DIG_PATT	    ;and the first drive pattern 
 	;RJMP	UpdateDigitCnt
 
 UpdateDigitCnt:			        ;store new digit count and drive pattern values
-	STS	    curBuffDig, R18		    ;store the new digit number
+	STS	    currBuffDig, R18		    ;store the new digit number
 	STS	    currDrivePatt, R19	    ;store the new drive pattern
     ;RJMP   EndLEDMux               ;and all done
 

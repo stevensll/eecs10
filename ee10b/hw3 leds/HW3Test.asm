@@ -17,6 +17,8 @@
 ;   06/15/23  Steven Lei                retrieved from website
 
 
+;set the device
+.device ATMEGA64
 
 ;get the definitions for the device
 .include  "m64def.inc"
@@ -347,7 +349,7 @@ EndTestHexTab:
 .dseg
 ; the stack - 128 bytes
             .BYTE   127
-TopOfStack  .BYTE   1       ;top of stack
+TopOfStack: .BYTE   1       ;top of stack
 
 ; since don't have a linker, include all the .asm files
 .include "Display.asm"
