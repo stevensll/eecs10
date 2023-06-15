@@ -20,8 +20,6 @@
 ;    none
 
 
-
-
 ;table is in the code segment
         .cseg
 
@@ -140,7 +138,6 @@ ASCIISegTable:
 ; Last Modified:    May 18, 2023
 
 DigitSegTable:
-
 
 ;        DB       eaecgfdb    eaecgfdb   ; Hex Digit
 

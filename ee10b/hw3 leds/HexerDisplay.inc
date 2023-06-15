@@ -25,12 +25,11 @@
 ; Specific Digit/LED Definitions
 
 .EQU    LED_BLANK     = 0b00000000      ; a blank LED
-.EQU    INIT_SEG_PATT = 0b00000001      ; initial segment drive pattern
+.EQU    INIT_DIG_PATT = 0b00000001      ; initial digit drive pattern
 .EQU    LED_DIG = 0                     ; game LEDs start at digit 0
 .EQU    SEG_DIG = 3                     ; 7-segment displays start at digit 3
-
-.EQU    INIT_ON_TIME = 10               ; display on and off time
-.EQU    INIT_OFF_TIME = 0               
+            
+.EQU    LOW_NIBBLE_MASK = 0b00001111    ; mask to get low nibble of a byte 
 
 .EQU    GAME_LED_HI_MASK = 0b11101111   ; high byte mask, bit 12 unused
 .EQU    GAME_LED_LOW_MASK = 0b11111111  ; low byte mask

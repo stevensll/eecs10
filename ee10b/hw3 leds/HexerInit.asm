@@ -13,11 +13,12 @@
 ;
 ; Revision History:
 ;    05/18/23  Steven Lei      initial revision, 
-;							   		code based on "clkinit.asm" in examples from website
-;									revised: Port E set to all inputs
-;											 timer set to 1 ms in Output Compare mode.
+;							   code based on "clkinit.asm" in examples from website
+;							   revised: Port E set to all inputs
+;							   timer set to 1 ms in Output Compare mode.
 ;
 ;    05/18/23  Steven Lei      updated comments
+;	 06/25/23  Steven Lei	   added Port C and D (LED) initializetions
 
 .cseg 
 
@@ -55,6 +56,14 @@ InitPorts:
         LDI     R16, INDATA             ;Port E is all inputs
         OUT     DDRE, R16
 
+		LDI		R16, OUTDATA			;init Port C and D to all outputs
+		OUT		DDRC, R16
+		OUT		DDRD, R16
+
+		CLR		R16						; all outputs are low (turn off LEDs)
+		OUT		PORTC, R16
+		OUT		PORTD, R16
+
 EndInitPorts:                           ;done so return
         RET
 
@@ -91,15 +100,12 @@ EndInitPorts:                           ;done so return
 
 
 
-InitTimer0:
-                                	;setup timer 0
-	CLR		R16							;clear the count register
-	OUT		TCNT0, R16					;   (not really necessary)
-									;use CLK/8 as timer source, gives
+InitTimer0:						; setup timer 0
+									;use CLK/64 as timer source, gives
 	LDI		R16, TIMERCLK64				;   8 MHz / 64 / 125 interrupt
 	OUT		TCCR0, R16					;   rate = 1KHz (1ms)
 									;use compare interrupts
-	LDI 	R16, 125					; set the rate to 125
+	LDI 	R16, COMPARE_MATCH			; set the rate to compare match (125)
 	OUT 	OCR0, R16
 
 	IN		R16, TIMSK					;get current timer interrupt masks
@@ -107,7 +113,6 @@ InitTimer0:
 	OUT		TIMSK, R16
 
    	;RJMP   EndInitTimer0   		;done setting up the timer
-
 
 EndInitTimer0:                  	;done initializing the timer - return
 	RET

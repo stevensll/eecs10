@@ -23,15 +23,7 @@
 ;                               compare match events instead of overflow events.
 ;                               PUSH/POP R17 instead of R16, since R16 contains
 ;                               the debounced switch pattern.
-
-
-; device definitions
-;.include  "4414def.inc"
-
-; local include files
-;    none
-
-
+;   06/15/23   Steven Lei       added LEDmuxing
 
 
 .cseg
@@ -63,16 +55,19 @@
 ; Data Structures:   None.
 ;
 ; Registers Changed: None.
-; Stack Depth:       6 bytes
 ;
-; Author:            Glen George
-; Last Modified:     August 24, 2018
+; Author:            Steven Lei
+; Last Modified:     June 15, 2023
 
 Timer0CompareHandler:
 
 StartTimer0CompareHandler:             ;save all touched registers
         PUSH    ZH
         PUSH    ZL
+        PUSH    YH
+        PUSH    YL
+        PUSH    R19
+        PUSH    R18
         PUSH    R17
         PUSH    R16
         PUSH    R4
@@ -82,7 +77,8 @@ StartTimer0CompareHandler:             ;save all touched registers
 
 DoSwitches:                             ;handle switch debouncing/repeating
         RCALL   DebounceSwitches
-
+DoLEDS:                                 ;handle LED muxing
+        RCALL   LEDMux
 DoneTimer0CompareHandler:              ;done with handler
         POP     R0                      ;restore flags
         OUT     SREG, R0
@@ -90,6 +86,10 @@ DoneTimer0CompareHandler:              ;done with handler
         POP     R4
         POP     R16
         POP     R17
+        POP     R18
+        POP     R19
+        POP     YL
+        POP     YH
         POP     ZL
         POP     ZH
         RETI                            ;and return

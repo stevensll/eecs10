@@ -17,7 +17,8 @@
 ;     5/02/18  Glen George      created from original clock.inc file
 ;     8/25/18  Glen George      added Timer 0 values
 ;     4/02/19  Glen George      removed PORTD_DIR, not needed in new hardware
-;    05/18/23  Steven Lei	    updated TIMERCLK32,64,256,1024 definitions
+;    05/18/23  Steven Lei	    retrieved from website
+;    06/25/23  Steven Lei       added compare match value
 
 
 ;setup values for Timer 0
@@ -29,9 +30,7 @@
 .EQU    TIMERCLK64   = 0b00000100	;timer runs at CLK/64
 .EQU    TIMERCLK256  = 0b00000110	;timer runs at CLK/256
 .EQU    TIMERCLK1024 = 0b00000111	;timer runs at CLK/1024
-.EQU    TIMERCLKEXTF = 0b00000110	;timer clocks on falling edge of T0/T1
-.EQU    TIMERCLKEXTR = 0b00000111	;timer clocks on rising edge of T0/T1
-
+.EQU    COMPARE_MATCH = 125         ; compare match value = 125 for OCR
 ; I/O port definitions
 
 .EQU	OUTDATA    = 0b11111111		;data direction 1 is output

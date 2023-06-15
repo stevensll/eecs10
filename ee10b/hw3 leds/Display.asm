@@ -28,13 +28,11 @@
 
 ; InitDisplay
 ;
-; Description:       This function initializes the display (colon off, digits
-;                    blanked, alarm as set) and display multiplexing
-;                    variables.
+; Description:       This function initializes the display by turning all LEDs 
+;                    off and initializing the display multiplex variables.
 ;
-; Operation:         This function turns off the colon, blanks the digits, and
-;                    sets the alarm LED appropriately.  It also initializes
-;                    the display muxing variables.
+; Operation:         Calls ClearDisplay() to turn of all LEDs. Variables
+;                    used in MultiplexLEDs() are initialized.
 ;
 ; Arguments:         None.
 ; Return Value:      None.
@@ -45,51 +43,30 @@
 ; Global Variables:  None.
 ;
 ; Input:             None.
-; Output:            The LED display is blanked and the alarm LED is turned
-;                    on or off (depending on the alarm setting).
+; Output:            The LED display is blanked.
 ;
 ; Error Handling:    None.
-;
 ; Algorithms:        None.
 ; Data Structures:   None.
 ;
-; Registers Changed: flags, R16, R17, Y (YH | YL)
+; Registers Changed: R16, R17, Y (YH | YL)
 ;
 ; Author:            Steven Lei
 ; Last Modified:     June 9, 2023
 
 InitDisplay:
 
+StartInitDisplay:          ;start clearing the display
+    RCALL ClearDisplay          
 
-StartInitDisplay:                       ;start clearing the display
-        LDI     R16, NUM_SEGS           ;number of segments to clear
-        LDI YL, LOW(currentSegs)        ;point to the segments
-        LDI YH, HIGH(currentSegs)
-        LDI     R17, LED_BLANK          ;get the blank segment pattern
+InitLEDMux:                ;init variables for MultiplexLEDs
+    LDI     R16, 0              ; reset digit number
+    STS     currBuffDig, R16    
+    LDI     R16, INIT_DIG_PATT  ; reset digit drive pattern
+    STS     currDrivePatt, R16  
 
-InitBuffLoop:               ;loop clearing the segments
-        ST  Y+, R17         ;clear the segments
-    DEC R16         ;update loop counter
-    BRNE    InitBuffLoop        ;and loop until done
-        ;BREQ   InitColonAlarm          ;then initialize the colon and alarm
-
-
-InitColonAlarm:                         ;turn off colon and set alarm
-        RCALL   DisplayColonOff
-
-        RCALL   AlarmSet                ;next keep the alarm setting right
-        RCALL   DisplayAlarm
-
-        RCALL   InitLEDMux              ;finally, initialize muxing
-
-        ;RJMP   EndInitDisplay          ;all done now
-
-
-EndInitDisplay:                         ;done initializing the display - return
-        RET
-
-
-
+EndInitDisplay:            ;done initializing the display - return
+    RET
 
 ; ClearDisplay()
 ;
@@ -103,7 +80,9 @@ EndInitDisplay:                         ;done initializing the display - return
 ; Arguments:         None
 ; Return Value:      None.
 ;
-; Local Variables:   None.
+; Local Variables:   R16 - the value of each LEDbuffer byte (0) 
+;                    R17 - counter for iterating through entire LEDbuffer
+;                    Y   - the LEDbuffer address
 
 ; Shared Variables:  
 ; Global Variables:  None.
@@ -123,7 +102,7 @@ EndInitDisplay:                         ;done initializing the display - return
 
 ClearDisplay:
 
-ClearInit:                      ; setup the buffer counter and the Y pointer 
+StartClear:                      ; setup the buffer counter and the Y pointer 
     LDI     R16, LED_BLANK          ; blanks for clearing    
     LDI     R17, NUM_DIGITS        ; use R17 as a decrementing counter
     LDI     YL, LOW(LEDbuffer)      ; load the 16 bit buffer address
@@ -158,7 +137,7 @@ ClearDisplayDone:               ; done clearing
 ;
 ; Local Variables:   None.
 
-; Shared Variables:  LEDbuffer - the LEDbuffer is masked to the new bytes to 
+; Shared Variables:  LEDbuffer - (W) the LEDbuffer is masked to the new bytes to 
 ;                                determine what LEDs will be turned/on off on 
 ;                                the next multiplexing interrupt.
 ; Global Variables:  None.
@@ -169,7 +148,7 @@ ClearDisplayDone:               ; done clearing
 ; Error Handling:    None.
 ; Algorithms:        None.
 ; Data Structures:   None.
-; Registers Changed: R16, R17, R18
+; Registers Changed: R16, R17
 ;                    
 ; Author:            Steven Lei
 ; Last Modified:     June 14, 2023
@@ -185,7 +164,7 @@ MaskLowGameLED:                    ; mask low byte of (m) in R16 to buffer
     STS     LEDbuffer+GAME_LED_LO, R16
 
 DisplayGameLEDsDone:                ; done
-    RET                                     ; and return
+    RET                             ; and return
 
 ; DisplayHex()
 ;
@@ -194,14 +173,23 @@ DisplayGameLEDsDone:                ; done
 ;                    display. (n) is passed in by R17 | R16.
 ;
 ; Operation:         Since 4 bits represent a hexadecimal digit, each nibble
-;                    of the passed bytes are interpreted to display the 4 digit
-;                    value in the 7 segment.
+;                    of the passed bytes are interpreted through masking and
+;                    are looked up in the DigitSegTable to correctly display
+;                    the value in the 7 segment display.
 ;                  
 ; Arguments:         R17 | R16 - the 16 bit unsigned value to output in hex
 ; Return Value:      None.
 ;
-; Local Variables:   
-; Shared Variables:  LEDbuffer      - (W)
+; Local Variables:   R18 - counter for iterating through 7 seg display
+;                    R19 - the low nibble of interest representing the digit
+;                    R20 - for carry propogation
+;                    Y   - LEDbuffer address
+;                    Z   - DigitSegTable address 
+; Shared Variables:  LEDbuffer - (W) the segment pattern at each digit
+;                                for the 7 segment displays are updated 
+;                                to match the digit pattern provided by
+;                                the input digits
+;                           
 ; Global Variables:  None.
 ;
 ; Input:             None.
@@ -210,15 +198,45 @@ DisplayGameLEDsDone:                ; done
 ; Algorithms:        None.
 ; Data Structures:   None.
 ;
-; Registers Changed: 
+; Registers Changed: R16, R17, R18, R19, R20, Y (YH | YL), Z (ZH | ZL)
 ;                    
-;
 ; Author:            Steven Lei
 ; Last Modified:     June 14, 2023
 
 DisplayHex:
 
+StartDisplayHex:                ; setup the LEDbuffer address and counter
+    LDI     YL, LOW (LEDbuffer)    ; load the LEDbuffer address
+    LDI     YH, HIGH(LEDbuffer)
+    ADIW    Y, SEG_DIG             ; offset address to start at 7 segs
+    LDI     R18, NUM_SEG_DIGITS    ; counter to loop through amt of 7 segs
+    CLR     R20                    ; for carry
 
+
+DisplayHexLoop:                 ; get digit pattern
+    MOV     R19, R16                    ; copy the low byte
+    ANDI    R19, LOW_NIBBLE_MASK        ; mask to get the low nibble
+    LDI     ZL, LOW(2 * DigitSegTable)  ; get the start of the segment table
+    LDI     ZH, HIGH(2 * DigitSegTable)     ; times 2 to do byte addressing
+    ADD     ZL, R19                     ; offset in the seg table
+    ADC     ZH, R20
+    LPM                                 ; lookup the pattern and put in R0
+    ST      Y+, R0                      ; store pattern at buffer address
+
+ShiftBits:                      ; shift the next nibble into R16
+    LSR R17                         ; shift right and put shifted bit into carry
+    ROR R16                         ; shift right and put carry into high bit
+    LSR R17                         ; repeat 4 times
+    ROR R16
+    LSR R17 
+    ROR R16
+    LSR R17
+    ROR R16
+
+CheckIndexCount:               ; check if done iterating through 7-segs
+    DEC R18                         ; update loop counter
+    BRNE DisplayHexLoop             ; if not done keep looping
+   ;BRNE EndDisplayHex              ; else done
 
 EndDisplayHex:                    ; done
     RET                             ; and return
@@ -229,10 +247,10 @@ EndDisplayHex:                    ; done
 ;                    interrupt control.  It is meant to be called at a regular
 ;                    interval of about 1 ms.
 ;
-; Operation:         This procedure outputs the next segment (from the
-;                    currentSegs buffer) to the memory mapped LEDs each time
+; Operation:         This procedure outputs the next digit (from the
+;                    LEDbuffer) to the memory mapped LEDs each time
 ;                    it is called.  To do this it outputs the bits that
-;                    should have the current digit on.  The digit to
+;                    should have the current digit on. The digit to
 ;                    output is determined by currBuffDig and curBuffPatt which
 ;                    are also updated by this function. One digit is output
 ;                    each time the function is called.
@@ -240,16 +258,16 @@ EndDisplayHex:                    ; done
 ; Arguments:         None.
 ; Return Value:      None.
 ;
-; Local Variables:   R18 - current segment number.
-;                    R19 - current segment pattern.
-;                    Z   - pointer to segment patterns to output.
+; Local Variables:   R18 - current digit number.
+;                    R19 - current digit drive pattern.
+;                    Z   - pointer to digit patterns to output.
 ; Shared Variables:  LEDbuffer     - (R) an element of the buffer is written to
 ;                                    the LEDs and the buffer is not changed.
 ;                    currBuffDig   - (R,W) used to determine which buffer 
 ;                                    row to output and updated to the next 
 ;                                    buffer row
 ; 
-;                    currBuffPatt  - (R,W) digit drive pattern to output and
+;                    currDrivePatt  - (R,W) digit drive pattern to output and
 ;                                    and updated to the next drive pattern.
 ; Global Variables:  None.
 ;
@@ -268,71 +286,50 @@ EndDisplayHex:                    ; done
 
 MultiplexLEDs:
 
-StartLEDMux:                ; first turn off the LEDs
-	LDI	R18, LED_BLANK		    ; turn off the LED segment drives
-	OUT	DIGIT_PORT, R18
+StartLEDMux:                    ; first turn off the LEDs
+	LDI	    R18, LED_BLANK		    ; turn off the LED digit drives
+	OUT	    DIGIT_PORT, R18
 
-	CLR	R19			            ; zero constant for calculations
-	LDS	R18, curBuffDig		    ; get current digit to output
+	CLR	    R19			            ; zero constant for calculations
+	LDS	    R18, curBuffDig		    ; get current digit number
 
-MuxLED:		     			;get the pattern for the digit
-	LDI	ZL, LOW(LEDbuffer)	    ; get the start of the buffer
-	LDI	ZH, HIGH(LEDbuffer)
-	ADD	ZL, R18			        ; move to the current muxed digit
-	ADC	ZH, R19
+MuxLED:		     			    ;get the pattern for the digit
+	LDI	    ZL, LOW(LEDbuffer)	    ; get the start of the buffer
+	LDI	    ZH, HIGH(LEDbuffer)
+	ADD	    ZL, R18			        ; move to the current digit number
+	ADC	    ZH, R19
 
-	LD	R0, Z			        ; get the digit from buffer 
-	OUT	BIT_PORT, R0		        ; and output it to the display 
+	LD	    R0, Z			        ; get the pattern from buffer 
+	OUT	    BIT_PORT, R0		        ; and output it to the display 
 
-	LDS	R19, currBuffPatt	    ; get the current drive pattern
-	OUT	DIGIT_PORT, R19	            ; and output it 
+	LDS	    R19, currDrivePatt	    ; get the current drive pattern
+	OUT	    DIGIT_PORT, R19	            ; and output it 
 
-	LSL	R19			            ; get the next segment pattern
-    INC R18                     ; and next segment number
-	CPI	R18, NUM_SEGS		;check if have done all the segments
-        BRLO    UpdateSegmentCnt        ;if not, update with the new values
-	;BRSH	ResetSegmentCnt		;otherwise need to reset segments
+	LSL	    R19			            ; get the next digit drive pattern
+    INC     R18                     ; and next digit number
+	CPI	    R18, NUM_DIGITS		    ;check if have done all the digits
+    BRLO    UpdateDigitCnt          ;if not, update with the new values
+	;BRSH	ResetDigitCnt		    ;otherwise need to reset digit
 
-ResetSegmentCnt:			;reset segment count and pattern
-        CLR     R18                     ;on last segment, reset to first
-	LDI	R19, INIT_SEG_PATT	;and the first pattern too
-	;RJMP	UpdateSegmentCnt
+ResetDigitCnt:			        ;reset digit count and drive pattern
+    CLR     R18                     ;on last digit, reset to first
+	LDI	    R19, INIT_SEG_PATT	    ;and the first drive pattern 
+	;RJMP	UpdateDigitCnt
 
-UpdateSegmentCnt:			;store new segment count and pattern values
-	STS	curMuxSeg, R18		;store the new segment count
-	STS	curMuxSegPatt, R19	;store the new segment pattern
-        ;RJMP   EndLEDMux               ;and all done
+UpdateDigitCnt:			        ;store new digit count and drive pattern values
+	STS	    curBuffDig, R18		    ;store the new digit number
+	STS	    currDrivePatt, R19	    ;store the new drive pattern
+    ;RJMP   EndLEDMux               ;and all done
 
-
-EndLEDMux:                              ;done multiplexing LEDs - return
-        RET
-
-
-
-SegTable:
-
-;                  gfedcba     gfedcba
-        .DB 0b00111111, 0b00000110  ;digits 0, 1
-        .DB 0b01011011, 0b01001111  ;digits 2, 3
-        .DB 0b01100110, 0b01101101  ;digits 4, 5
-        .DB 0b01111100, 0b00000111  ;digits 6, 7
-        .DB 0b01111111, 0b01100111  ;digits 8, 9
-        .DB 0b00000000, 0b00000000  ;digits 10, 11 (unused)
-        .DB 0b00000000, 0b00000110  ;digit 12  1:00 AM - 9:59 AM
-                                    ;digit 13 10:00 AM - 12:59 AM
-        .DB 0b00000000, 0b00000110  ;digit 14  1:00 PM - 9:59 PM
-                                    ;digit 15 10:00 PM - 12:59 PM
-
-
-
+EndLEDMux:                  ;done multiplexing LEDs - return
+    RET
 
 ;the data segment
 
 .dseg
 
 
-LEDbuffer:      .BYTE   NUM_DIGITS  ; the 7 byte LED buffer with the currently
-                                        ; displayed game LEDs and 7-seg patterns
-
-currBuffDig:    .BYTE   1           ; current index of the buffer
-currBuffPatt:   .BYTE   1           ; current digit pattern to output 
+LEDbuffer:      .BYTE   NUM_DIGITS  ; the 7 byte LED buffer containing
+                                        ; game LEDs and 7 seg displays
+currBuffDig:    .BYTE   1           ; current digit number of the buffer
+currDrivePatt:  .BYTE   1           ; current digit drive pattern to output 
