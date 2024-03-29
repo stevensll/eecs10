@@ -1,82 +1,83 @@
 <ASSEMBLER_INFO>
- <VERSION>2.1.41</VERSION>
+ <VERSION>2.1.42</VERSION>
  <DEVICE>ATmega64</DEVICE>
- <WORKING_DIR>U:\slei\eecs10\ee10b\hw3 leds</WORKING_DIR>
+ <WORKING_DIR>C:\Users\delta\Documents\eecs10\ee10b\hw3 leds</WORKING_DIR>
  <INCLUDE_PATH>
   <DIR>C:\Program Files (x86)\Atmel\AVR Tools\AvrAssembler2\Appnotes</DIR>
  </INCLUDE_PATH>
- <SOURCE_FILE>U:\slei\eecs10\ee10b\hw3 leds\HW3Test.asm</SOURCE_FILE>
+ <SOURCE_FILE>C:\Users\delta\Documents\eecs10\ee10b\hw3 leds\HW3Test.asm</SOURCE_FILE>
  <INCLUDED_FILES>
   <FILE>C:\Program Files (x86)\Atmel\AVR Tools\AvrAssembler2\Appnotes\m64def.inc</FILE>
-  <FILE>U:\slei\eecs10\ee10b\hw3 leds\HexerDisplay.inc</FILE>
-  <FILE>U:\slei\eecs10\ee10b\hw3 leds\HexerHW.inc</FILE>
-  <FILE>U:\slei\eecs10\ee10b\hw3 leds\Display.asm</FILE>
-  <FILE>U:\slei\eecs10\ee10b\hw3 leds\HexerIRQ.asm</FILE>
-  <FILE>U:\slei\eecs10\ee10b\hw3 leds\HexerInit.asm</FILE>
-  <FILE>U:\slei\eecs10\ee10b\hw3 leds\Segtable.asm</FILE>
+  <FILE>C:\Users\delta\Documents\eecs10\ee10b\hw3 leds\HexerDisplay.inc</FILE>
+  <FILE>C:\Users\delta\Documents\eecs10\ee10b\hw3 leds\HexerHW.inc</FILE>
+  <FILE>C:\Users\delta\Documents\eecs10\ee10b\hw3 leds\Display.asm</FILE>
+  <FILE>C:\Users\delta\Documents\eecs10\ee10b\hw3 leds\HexerIRQ.asm</FILE>
+  <FILE>C:\Users\delta\Documents\eecs10\ee10b\hw3 leds\HexerInit.asm</FILE>
+  <FILE>C:\Users\delta\Documents\eecs10\ee10b\hw3 leds\Segtable.asm</FILE>
  </INCLUDED_FILES>
  <OBJECT_FILES>
-  <FILE>U:\slei\eecs10\ee10b\hw3 leds\hw3.obj</FILE>
+  <FILE>C:\Users\delta\Documents\eecs10\ee10b\hw3 leds\hw3.obj</FILE>
  </OBJECT_FILES>
  <HEX_FILES>
-  <FILE>U:\slei\eecs10\ee10b\hw3 leds\hw3.hex</FILE>
+  <FILE>C:\Users\delta\Documents\eecs10\ee10b\hw3 leds\hw3.hex</FILE>
  </HEX_FILES>
  <OUTPUT_FILES>
-  <FILE>U:\slei\eecs10\ee10b\hw3 leds\hw3.map</FILE>
+  <FILE>C:\Users\delta\Documents\eecs10\ee10b\hw3 leds\hw3.map</FILE>
  </OUTPUT_FILES>
  <LABELS>
-  <Start><FILE>U:\slei\eecs10\ee10b\hw3 leds\HW3Test.asm</FILE><LINE>77</LINE></Start>
-  <Timer0CompareHandler><FILE>U:\slei\eecs10\ee10b\hw3 leds\HexerIRQ.asm</FILE><LINE>62</LINE></Timer0CompareHandler>
-  <TopOfStack><FILE>U:\slei\eecs10\ee10b\hw3 leds\HW3Test.asm</FILE><LINE>352</LINE></TopOfStack>
-  <InitPorts><FILE>U:\slei\eecs10\ee10b\hw3 leds\HexerInit.asm</FILE><LINE>54</LINE></InitPorts>
-  <InitTimer0><FILE>U:\slei\eecs10\ee10b\hw3 leds\HexerInit.asm</FILE><LINE>103</LINE></InitTimer0>
-  <InitDisplay><FILE>U:\slei\eecs10\ee10b\hw3 leds\Display.asm</FILE><LINE>57</LINE></InitDisplay>
-  <DisplayTest><FILE>U:\slei\eecs10\ee10b\hw3 leds\HW3Test.asm</FILE><LINE>133</LINE></DisplayTest>
-  <ClearDisplay><FILE>U:\slei\eecs10\ee10b\hw3 leds\Display.asm</FILE><LINE>103</LINE></ClearDisplay>
-  <Delay16><FILE>U:\slei\eecs10\ee10b\hw3 leds\HW3Test.asm</FILE><LINE>236</LINE></Delay16>
-  <TestGameLEDs><FILE>U:\slei\eecs10\ee10b\hw3 leds\HW3Test.asm</FILE><LINE>140</LINE></TestGameLEDs>
-  <TestGTab><FILE>U:\slei\eecs10\ee10b\hw3 leds\HW3Test.asm</FILE><LINE>269</LINE></TestGTab>
-  <TestGameLEDsLoop><FILE>U:\slei\eecs10\ee10b\hw3 leds\HW3Test.asm</FILE><LINE>144</LINE></TestGameLEDsLoop>
-  <DisplayGameLEDs><FILE>U:\slei\eecs10\ee10b\hw3 leds\Display.asm</FILE><LINE>156</LINE></DisplayGameLEDs>
-  <EndTestGTab><FILE>U:\slei\eecs10\ee10b\hw3 leds\HW3Test.asm</FILE><LINE>316</LINE></EndTestGTab>
-  <TestDisplayHex><FILE>U:\slei\eecs10\ee10b\hw3 leds\HW3Test.asm</FILE><LINE>169</LINE></TestDisplayHex>
-  <TestHexTab><FILE>U:\slei\eecs10\ee10b\hw3 leds\HW3Test.asm</FILE><LINE>332</LINE></TestHexTab>
-  <TestDisplayHexLoop><FILE>U:\slei\eecs10\ee10b\hw3 leds\HW3Test.asm</FILE><LINE>173</LINE></TestDisplayHexLoop>
-  <DisplayHex><FILE>U:\slei\eecs10\ee10b\hw3 leds\Display.asm</FILE><LINE>209</LINE></DisplayHex>
-  <EndTestHexTab><FILE>U:\slei\eecs10\ee10b\hw3 leds\HW3Test.asm</FILE><LINE>345</LINE></EndTestHexTab>
-  <DoneDisplayTests><FILE>U:\slei\eecs10\ee10b\hw3 leds\HW3Test.asm</FILE><LINE>198</LINE></DoneDisplayTests>
-  <Delay16Loop><FILE>U:\slei\eecs10\ee10b\hw3 leds\HW3Test.asm</FILE><LINE>238</LINE></Delay16Loop>
-  <Delay16InnerLoop><FILE>U:\slei\eecs10\ee10b\hw3 leds\HW3Test.asm</FILE><LINE>241</LINE></Delay16InnerLoop>
-  <DoneDelay16><FILE>U:\slei\eecs10\ee10b\hw3 leds\HW3Test.asm</FILE><LINE>249</LINE></DoneDelay16>
-  <StartInitDisplay><FILE>U:\slei\eecs10\ee10b\hw3 leds\Display.asm</FILE><LINE>59</LINE></StartInitDisplay>
-  <InitLEDMux><FILE>U:\slei\eecs10\ee10b\hw3 leds\Display.asm</FILE><LINE>62</LINE></InitLEDMux>
-  <currBuffDig><FILE>U:\slei\eecs10\ee10b\hw3 leds\Display.asm</FILE><LINE>337</LINE></currBuffDig>
-  <currDrivePatt><FILE>U:\slei\eecs10\ee10b\hw3 leds\Display.asm</FILE><LINE>338</LINE></currDrivePatt>
-  <EndInitDisplay><FILE>U:\slei\eecs10\ee10b\hw3 leds\Display.asm</FILE><LINE>68</LINE></EndInitDisplay>
-  <StartClear><FILE>U:\slei\eecs10\ee10b\hw3 leds\Display.asm</FILE><LINE>105</LINE></StartClear>
-  <LEDbuffer><FILE>U:\slei\eecs10\ee10b\hw3 leds\Display.asm</FILE><LINE>335</LINE></LEDbuffer>
-  <ClearLoop><FILE>U:\slei\eecs10\ee10b\hw3 leds\Display.asm</FILE><LINE>111</LINE></ClearLoop>
-  <ClearDisplayDone><FILE>U:\slei\eecs10\ee10b\hw3 leds\Display.asm</FILE><LINE>117</LINE></ClearDisplayDone>
-  <MaskHiGameLED><FILE>U:\slei\eecs10\ee10b\hw3 leds\Display.asm</FILE><LINE>158</LINE></MaskHiGameLED>
-  <MaskLowGameLED><FILE>U:\slei\eecs10\ee10b\hw3 leds\Display.asm</FILE><LINE>161</LINE></MaskLowGameLED>
-  <DisplayGameLEDsDone><FILE>U:\slei\eecs10\ee10b\hw3 leds\Display.asm</FILE><LINE>164</LINE></DisplayGameLEDsDone>
-  <StartDisplayHex><FILE>U:\slei\eecs10\ee10b\hw3 leds\Display.asm</FILE><LINE>211</LINE></StartDisplayHex>
-  <DisplayHexLoop><FILE>U:\slei\eecs10\ee10b\hw3 leds\Display.asm</FILE><LINE>219</LINE></DisplayHexLoop>
-  <DigitSegTable><FILE>U:\slei\eecs10\ee10b\hw3 leds\Segtable.asm</FILE><LINE>140</LINE></DigitSegTable>
-  <ShiftBits><FILE>U:\slei\eecs10\ee10b\hw3 leds\Display.asm</FILE><LINE>229</LINE></ShiftBits>
-  <CheckIndexCount><FILE>U:\slei\eecs10\ee10b\hw3 leds\Display.asm</FILE><LINE>239</LINE></CheckIndexCount>
-  <EndDisplayHex><FILE>U:\slei\eecs10\ee10b\hw3 leds\Display.asm</FILE><LINE>244</LINE></EndDisplayHex>
-  <LEDMux><FILE>U:\slei\eecs10\ee10b\hw3 leds\Display.asm</FILE><LINE>290</LINE></LEDMux>
-  <StartLEDMux><FILE>U:\slei\eecs10\ee10b\hw3 leds\Display.asm</FILE><LINE>292</LINE></StartLEDMux>
-  <MuxLED><FILE>U:\slei\eecs10\ee10b\hw3 leds\Display.asm</FILE><LINE>299</LINE></MuxLED>
-  <UpdateDigitCnt><FILE>U:\slei\eecs10\ee10b\hw3 leds\Display.asm</FILE><LINE>322</LINE></UpdateDigitCnt>
-  <ResetDigitCnt><FILE>U:\slei\eecs10\ee10b\hw3 leds\Display.asm</FILE><LINE>317</LINE></ResetDigitCnt>
-  <EndLEDMux><FILE>U:\slei\eecs10\ee10b\hw3 leds\Display.asm</FILE><LINE>327</LINE></EndLEDMux>
-  <StartTimer0CompareHandler><FILE>U:\slei\eecs10\ee10b\hw3 leds\HexerIRQ.asm</FILE><LINE>64</LINE></StartTimer0CompareHandler>
-  <DoLEDS><FILE>U:\slei\eecs10\ee10b\hw3 leds\HexerIRQ.asm</FILE><LINE>80</LINE></DoLEDS>
-  <DoneTimer0CompareHandler><FILE>U:\slei\eecs10\ee10b\hw3 leds\HexerIRQ.asm</FILE><LINE>82</LINE></DoneTimer0CompareHandler>
-  <EndInitPorts><FILE>U:\slei\eecs10\ee10b\hw3 leds\HexerInit.asm</FILE><LINE>67</LINE></EndInitPorts>
-  <EndInitTimer0><FILE>U:\slei\eecs10\ee10b\hw3 leds\HexerInit.asm</FILE><LINE>117</LINE></EndInitTimer0>
-  <ASCIISegTable><FILE>U:\slei\eecs10\ee10b\hw3 leds\Segtable.asm</FILE><LINE>44</LINE></ASCIISegTable>
+  <Start><FILE>C:\Users\delta\Documents\eecs10\ee10b\hw3 leds\HW3Test.asm</FILE><LINE>77</LINE></Start>
+  <Timer0CompareHandler><FILE>C:\Users\delta\Documents\eecs10\ee10b\hw3 leds\HexerIRQ.asm</FILE><LINE>62</LINE></Timer0CompareHandler>
+  <TopOfStack><FILE>C:\Users\delta\Documents\eecs10\ee10b\hw3 leds\HW3Test.asm</FILE><LINE>352</LINE></TopOfStack>
+  <InitPorts><FILE>C:\Users\delta\Documents\eecs10\ee10b\hw3 leds\HexerInit.asm</FILE><LINE>54</LINE></InitPorts>
+  <InitTimer0><FILE>C:\Users\delta\Documents\eecs10\ee10b\hw3 leds\HexerInit.asm</FILE><LINE>103</LINE></InitTimer0>
+  <InitDisplay><FILE>C:\Users\delta\Documents\eecs10\ee10b\hw3 leds\Display.asm</FILE><LINE>57</LINE></InitDisplay>
+  <DisplayTest><FILE>C:\Users\delta\Documents\eecs10\ee10b\hw3 leds\HW3Test.asm</FILE><LINE>133</LINE></DisplayTest>
+  <ClearDisplay><FILE>C:\Users\delta\Documents\eecs10\ee10b\hw3 leds\Display.asm</FILE><LINE>103</LINE></ClearDisplay>
+  <Delay16><FILE>C:\Users\delta\Documents\eecs10\ee10b\hw3 leds\HW3Test.asm</FILE><LINE>236</LINE></Delay16>
+  <TestGameLEDs><FILE>C:\Users\delta\Documents\eecs10\ee10b\hw3 leds\HW3Test.asm</FILE><LINE>140</LINE></TestGameLEDs>
+  <TestGTab><FILE>C:\Users\delta\Documents\eecs10\ee10b\hw3 leds\HW3Test.asm</FILE><LINE>269</LINE></TestGTab>
+  <TestGameLEDsLoop><FILE>C:\Users\delta\Documents\eecs10\ee10b\hw3 leds\HW3Test.asm</FILE><LINE>144</LINE></TestGameLEDsLoop>
+  <DisplayGameLEDs><FILE>C:\Users\delta\Documents\eecs10\ee10b\hw3 leds\Display.asm</FILE><LINE>156</LINE></DisplayGameLEDs>
+  <EndTestGTab><FILE>C:\Users\delta\Documents\eecs10\ee10b\hw3 leds\HW3Test.asm</FILE><LINE>316</LINE></EndTestGTab>
+  <TestDisplayHex><FILE>C:\Users\delta\Documents\eecs10\ee10b\hw3 leds\HW3Test.asm</FILE><LINE>169</LINE></TestDisplayHex>
+  <TestHexTab><FILE>C:\Users\delta\Documents\eecs10\ee10b\hw3 leds\HW3Test.asm</FILE><LINE>332</LINE></TestHexTab>
+  <TestDisplayHexLoop><FILE>C:\Users\delta\Documents\eecs10\ee10b\hw3 leds\HW3Test.asm</FILE><LINE>173</LINE></TestDisplayHexLoop>
+  <DisplayHex><FILE>C:\Users\delta\Documents\eecs10\ee10b\hw3 leds\Display.asm</FILE><LINE>210</LINE></DisplayHex>
+  <EndTestHexTab><FILE>C:\Users\delta\Documents\eecs10\ee10b\hw3 leds\HW3Test.asm</FILE><LINE>345</LINE></EndTestHexTab>
+  <DoneDisplayTests><FILE>C:\Users\delta\Documents\eecs10\ee10b\hw3 leds\HW3Test.asm</FILE><LINE>198</LINE></DoneDisplayTests>
+  <Delay16Loop><FILE>C:\Users\delta\Documents\eecs10\ee10b\hw3 leds\HW3Test.asm</FILE><LINE>238</LINE></Delay16Loop>
+  <Delay16InnerLoop><FILE>C:\Users\delta\Documents\eecs10\ee10b\hw3 leds\HW3Test.asm</FILE><LINE>241</LINE></Delay16InnerLoop>
+  <DoneDelay16><FILE>C:\Users\delta\Documents\eecs10\ee10b\hw3 leds\HW3Test.asm</FILE><LINE>249</LINE></DoneDelay16>
+  <StartInitDisplay><FILE>C:\Users\delta\Documents\eecs10\ee10b\hw3 leds\Display.asm</FILE><LINE>59</LINE></StartInitDisplay>
+  <InitLEDMux><FILE>C:\Users\delta\Documents\eecs10\ee10b\hw3 leds\Display.asm</FILE><LINE>62</LINE></InitLEDMux>
+  <currBuffDig><FILE>C:\Users\delta\Documents\eecs10\ee10b\hw3 leds\Display.asm</FILE><LINE>338</LINE></currBuffDig>
+  <currDrivePatt><FILE>C:\Users\delta\Documents\eecs10\ee10b\hw3 leds\Display.asm</FILE><LINE>339</LINE></currDrivePatt>
+  <EndInitDisplay><FILE>C:\Users\delta\Documents\eecs10\ee10b\hw3 leds\Display.asm</FILE><LINE>68</LINE></EndInitDisplay>
+  <StartClear><FILE>C:\Users\delta\Documents\eecs10\ee10b\hw3 leds\Display.asm</FILE><LINE>105</LINE></StartClear>
+  <LEDbuffer><FILE>C:\Users\delta\Documents\eecs10\ee10b\hw3 leds\Display.asm</FILE><LINE>336</LINE></LEDbuffer>
+  <ClearLoop><FILE>C:\Users\delta\Documents\eecs10\ee10b\hw3 leds\Display.asm</FILE><LINE>111</LINE></ClearLoop>
+  <ClearDisplayDone><FILE>C:\Users\delta\Documents\eecs10\ee10b\hw3 leds\Display.asm</FILE><LINE>117</LINE></ClearDisplayDone>
+  <MaskHiGameLED><FILE>C:\Users\delta\Documents\eecs10\ee10b\hw3 leds\Display.asm</FILE><LINE>158</LINE></MaskHiGameLED>
+  <MaskLowGameLED><FILE>C:\Users\delta\Documents\eecs10\ee10b\hw3 leds\Display.asm</FILE><LINE>161</LINE></MaskLowGameLED>
+  <StoreMasks><FILE>C:\Users\delta\Documents\eecs10\ee10b\hw3 leds\Display.asm</FILE><LINE>164</LINE></StoreMasks>
+  <DisplayGameLEDsDone><FILE>C:\Users\delta\Documents\eecs10\ee10b\hw3 leds\Display.asm</FILE><LINE>170</LINE></DisplayGameLEDsDone>
+  <StartDisplayHex><FILE>C:\Users\delta\Documents\eecs10\ee10b\hw3 leds\Display.asm</FILE><LINE>212</LINE></StartDisplayHex>
+  <DisplayHexLoop><FILE>C:\Users\delta\Documents\eecs10\ee10b\hw3 leds\Display.asm</FILE><LINE>220</LINE></DisplayHexLoop>
+  <DigitSegTable><FILE>C:\Users\delta\Documents\eecs10\ee10b\hw3 leds\Segtable.asm</FILE><LINE>140</LINE></DigitSegTable>
+  <ShiftBits><FILE>C:\Users\delta\Documents\eecs10\ee10b\hw3 leds\Display.asm</FILE><LINE>230</LINE></ShiftBits>
+  <CheckIndexCount><FILE>C:\Users\delta\Documents\eecs10\ee10b\hw3 leds\Display.asm</FILE><LINE>240</LINE></CheckIndexCount>
+  <EndDisplayHex><FILE>C:\Users\delta\Documents\eecs10\ee10b\hw3 leds\Display.asm</FILE><LINE>245</LINE></EndDisplayHex>
+  <LEDMux><FILE>C:\Users\delta\Documents\eecs10\ee10b\hw3 leds\Display.asm</FILE><LINE>291</LINE></LEDMux>
+  <StartLEDMux><FILE>C:\Users\delta\Documents\eecs10\ee10b\hw3 leds\Display.asm</FILE><LINE>293</LINE></StartLEDMux>
+  <MuxLED><FILE>C:\Users\delta\Documents\eecs10\ee10b\hw3 leds\Display.asm</FILE><LINE>300</LINE></MuxLED>
+  <UpdateDigitCnt><FILE>C:\Users\delta\Documents\eecs10\ee10b\hw3 leds\Display.asm</FILE><LINE>323</LINE></UpdateDigitCnt>
+  <ResetDigitCnt><FILE>C:\Users\delta\Documents\eecs10\ee10b\hw3 leds\Display.asm</FILE><LINE>318</LINE></ResetDigitCnt>
+  <EndLEDMux><FILE>C:\Users\delta\Documents\eecs10\ee10b\hw3 leds\Display.asm</FILE><LINE>328</LINE></EndLEDMux>
+  <StartTimer0CompareHandler><FILE>C:\Users\delta\Documents\eecs10\ee10b\hw3 leds\HexerIRQ.asm</FILE><LINE>64</LINE></StartTimer0CompareHandler>
+  <DoLEDS><FILE>C:\Users\delta\Documents\eecs10\ee10b\hw3 leds\HexerIRQ.asm</FILE><LINE>80</LINE></DoLEDS>
+  <DoneTimer0CompareHandler><FILE>C:\Users\delta\Documents\eecs10\ee10b\hw3 leds\HexerIRQ.asm</FILE><LINE>82</LINE></DoneTimer0CompareHandler>
+  <EndInitPorts><FILE>C:\Users\delta\Documents\eecs10\ee10b\hw3 leds\HexerInit.asm</FILE><LINE>67</LINE></EndInitPorts>
+  <EndInitTimer0><FILE>C:\Users\delta\Documents\eecs10\ee10b\hw3 leds\HexerInit.asm</FILE><LINE>117</LINE></EndInitTimer0>
+  <ASCIISegTable><FILE>C:\Users\delta\Documents\eecs10\ee10b\hw3 leds\Segtable.asm</FILE><LINE>44</LINE></ASCIISegTable>
  </LABELS>
 </ASSEMBLER_INFO>

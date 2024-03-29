@@ -1,0 +1,2 @@
+@ECHO OFF
+"C:\Program Files (x86)\Atmel\AVR Tools\AvrAssembler2\avrasm2.exe" -S "C:\Users\delta\Documents\eecs10\ee10b\2024\switches2024\labels.tmp" -fI -W+ie -C V2E -o "C:\Users\delta\Documents\eecs10\ee10b\2024\switches2024\2024hw2.hex" -d "C:\Users\delta\Documents\eecs10\ee10b\2024\switches2024\2024hw2.obj" -e "C:\Users\delta\Documents\eecs10\ee10b\2024\switches2024\2024hw2.eep" -m "C:\Users\delta\Documents\eecs10\ee10b\2024\switches2024\2024hw2.map" "C:\Users\delta\Documents\eecs10\ee10b\2024\switches2024\hw2test.asm"
