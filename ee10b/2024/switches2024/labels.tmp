@@ -37,8 +37,8 @@
   <SwitchTestLoop><FILE>C:\Users\delta\Documents\eecs10\ee10b\2024\switches2024\hw2test.asm</FILE><LINE>183</LINE></SwitchTestLoop>
   <STCheckGetSwitches1><FILE>C:\Users\delta\Documents\eecs10\ee10b\2024\switches2024\hw2test.asm</FILE><LINE>185</LINE></STCheckGetSwitches1>
   <STWaitLoop><FILE>C:\Users\delta\Documents\eecs10\ee10b\2024\switches2024\hw2test.asm</FILE><LINE>188</LINE></STWaitLoop>
-  <SwitchAvailable><FILE>C:\Users\delta\Documents\eecs10\ee10b\2024\switches2024\HexerSwitches.asm</FILE><LINE>398</LINE></SwitchAvailable>
-  <GetSwitches><FILE>C:\Users\delta\Documents\eecs10\ee10b\2024\switches2024\HexerSwitches.asm</FILE><LINE>340</LINE></GetSwitches>
+  <SwitchAvailable><FILE>C:\Users\delta\Documents\eecs10\ee10b\2024\switches2024\HexerSwitches.asm</FILE><LINE>402</LINE></SwitchAvailable>
+  <GetSwitches><FILE>C:\Users\delta\Documents\eecs10\ee10b\2024\switches2024\HexerSwitches.asm</FILE><LINE>343</LINE></GetSwitches>
   <STStoreBuffer><FILE>C:\Users\delta\Documents\eecs10\ee10b\2024\switches2024\hw2test.asm</FILE><LINE>265</LINE></STStoreBuffer>
   <STCheckSwitchAvailable1><FILE>C:\Users\delta\Documents\eecs10\ee10b\2024\switches2024\hw2test.asm</FILE><LINE>196</LINE></STCheckSwitchAvailable1>
   <STSkipFFwrite1><FILE>C:\Users\delta\Documents\eecs10\ee10b\2024\switches2024\hw2test.asm</FILE><LINE>204</LINE></STSkipFFwrite1>
@@ -49,34 +49,34 @@
   <EndInitTimer0><FILE>C:\Users\delta\Documents\eecs10\ee10b\2024\switches2024\HexerInit.asm</FILE><LINE>108</LINE></EndInitTimer0>
   <StartTimer0CompareHandler><FILE>C:\Users\delta\Documents\eecs10\ee10b\2024\switches2024\HexerIRQ.asm</FILE><LINE>56</LINE></StartTimer0CompareHandler>
   <DoSwitches><FILE>C:\Users\delta\Documents\eecs10\ee10b\2024\switches2024\HexerIRQ.asm</FILE><LINE>66</LINE></DoSwitches>
-  <DebounceSwitches><FILE>C:\Users\delta\Documents\eecs10\ee10b\2024\switches2024\HexerSwitches.asm</FILE><LINE>225</LINE></DebounceSwitches>
+  <DebounceSwitches><FILE>C:\Users\delta\Documents\eecs10\ee10b\2024\switches2024\HexerSwitches.asm</FILE><LINE>224</LINE></DebounceSwitches>
   <DoneTimer0CompareHandler><FILE>C:\Users\delta\Documents\eecs10\ee10b\2024\switches2024\HexerIRQ.asm</FILE><LINE>69</LINE></DoneTimer0CompareHandler>
   <ResetCountersAndRate><FILE>C:\Users\delta\Documents\eecs10\ee10b\2024\switches2024\HexerSwitches.asm</FILE><LINE>76</LINE></ResetCountersAndRate>
   <ResetDebounceCounter><FILE>C:\Users\delta\Documents\eecs10\ee10b\2024\switches2024\HexerSwitches.asm</FILE><LINE>78</LINE></ResetDebounceCounter>
-  <debounceCounter><FILE>C:\Users\delta\Documents\eecs10\ee10b\2024\switches2024\HexerSwitches.asm</FILE><LINE>408</LINE></debounceCounter>
+  <debounceCounter><FILE>C:\Users\delta\Documents\eecs10\ee10b\2024\switches2024\HexerSwitches.asm</FILE><LINE>412</LINE></debounceCounter>
   <ResetRepeatCounter><FILE>C:\Users\delta\Documents\eecs10\ee10b\2024\switches2024\HexerSwitches.asm</FILE><LINE>84</LINE></ResetRepeatCounter>
-  <repeatCounter><FILE>C:\Users\delta\Documents\eecs10\ee10b\2024\switches2024\HexerSwitches.asm</FILE><LINE>409</LINE></repeatCounter>
+  <repeatCounter><FILE>C:\Users\delta\Documents\eecs10\ee10b\2024\switches2024\HexerSwitches.asm</FILE><LINE>413</LINE></repeatCounter>
   <ResetRepeatRate><FILE>C:\Users\delta\Documents\eecs10\ee10b\2024\switches2024\HexerSwitches.asm</FILE><LINE>90</LINE></ResetRepeatRate>
-  <repeatRate><FILE>C:\Users\delta\Documents\eecs10\ee10b\2024\switches2024\HexerSwitches.asm</FILE><LINE>410</LINE></repeatRate>
+  <repeatRate><FILE>C:\Users\delta\Documents\eecs10\ee10b\2024\switches2024\HexerSwitches.asm</FILE><LINE>414</LINE></repeatRate>
   <DoneResetCountersAndRate><FILE>C:\Users\delta\Documents\eecs10\ee10b\2024\switches2024\HexerSwitches.asm</FILE><LINE>96</LINE></DoneResetCountersAndRate>
   <ResetCountersRepeatRate><FILE>C:\Users\delta\Documents\eecs10\ee10b\2024\switches2024\HexerSwitches.asm</FILE><LINE>150</LINE></ResetCountersRepeatRate>
   <ResetDebounceFlag><FILE>C:\Users\delta\Documents\eecs10\ee10b\2024\switches2024\HexerSwitches.asm</FILE><LINE>153</LINE></ResetDebounceFlag>
-  <debounceFlag><FILE>C:\Users\delta\Documents\eecs10\ee10b\2024\switches2024\HexerSwitches.asm</FILE><LINE>407</LINE></debounceFlag>
+  <debounceFlag><FILE>C:\Users\delta\Documents\eecs10\ee10b\2024\switches2024\HexerSwitches.asm</FILE><LINE>411</LINE></debounceFlag>
   <ResetSwitchPatterns><FILE>C:\Users\delta\Documents\eecs10\ee10b\2024\switches2024\HexerSwitches.asm</FILE><LINE>157</LINE></ResetSwitchPatterns>
-  <newSwitchPatt><FILE>C:\Users\delta\Documents\eecs10\ee10b\2024\switches2024\HexerSwitches.asm</FILE><LINE>412</LINE></newSwitchPatt>
-  <prevSwitchPatt><FILE>C:\Users\delta\Documents\eecs10\ee10b\2024\switches2024\HexerSwitches.asm</FILE><LINE>413</LINE></prevSwitchPatt>
-  <GetSwitchPattern><FILE>C:\Users\delta\Documents\eecs10\ee10b\2024\switches2024\HexerSwitches.asm</FILE><LINE>227</LINE></GetSwitchPattern>
+  <newSwitchPatt><FILE>C:\Users\delta\Documents\eecs10\ee10b\2024\switches2024\HexerSwitches.asm</FILE><LINE>416</LINE></newSwitchPatt>
+  <prevSwitchPatt><FILE>C:\Users\delta\Documents\eecs10\ee10b\2024\switches2024\HexerSwitches.asm</FILE><LINE>417</LINE></prevSwitchPatt>
+  <GetSwitchPattern><FILE>C:\Users\delta\Documents\eecs10\ee10b\2024\switches2024\HexerSwitches.asm</FILE><LINE>226</LINE></GetSwitchPattern>
   <CheckSwitchPatternUp><FILE>C:\Users\delta\Documents\eecs10\ee10b\2024\switches2024\HexerSwitches.asm</FILE><LINE>231</LINE></CheckSwitchPatternUp>
   <CheckSwitchPatternSame><FILE>C:\Users\delta\Documents\eecs10\ee10b\2024\switches2024\HexerSwitches.asm</FILE><LINE>236</LINE></CheckSwitchPatternSame>
   <DecrementDebounceCounter><FILE>C:\Users\delta\Documents\eecs10\ee10b\2024\switches2024\HexerSwitches.asm</FILE><LINE>247</LINE></DecrementDebounceCounter>
   <ResetCountersRate><FILE>C:\Users\delta\Documents\eecs10\ee10b\2024\switches2024\HexerSwitches.asm</FILE><LINE>243</LINE></ResetCountersRate>
-  <DebounceSwitchesDone><FILE>C:\Users\delta\Documents\eecs10\ee10b\2024\switches2024\HexerSwitches.asm</FILE><LINE>282</LINE></DebounceSwitchesDone>
-  <DecrementRepeatCounter><FILE>C:\Users\delta\Documents\eecs10\ee10b\2024\switches2024\HexerSwitches.asm</FILE><LINE>267</LINE></DecrementRepeatCounter>
+  <DebounceSwitchesDone><FILE>C:\Users\delta\Documents\eecs10\ee10b\2024\switches2024\HexerSwitches.asm</FILE><LINE>285</LINE></DebounceSwitchesDone>
+  <DecrementRepeatCounter><FILE>C:\Users\delta\Documents\eecs10\ee10b\2024\switches2024\HexerSwitches.asm</FILE><LINE>269</LINE></DecrementRepeatCounter>
   <UpdateDebounceFlagAndPattern><FILE>C:\Users\delta\Documents\eecs10\ee10b\2024\switches2024\HexerSwitches.asm</FILE><LINE>256</LINE></UpdateDebounceFlagAndPattern>
-  <UpdateDebounceCounter><FILE>C:\Users\delta\Documents\eecs10\ee10b\2024\switches2024\HexerSwitches.asm</FILE><LINE>261</LINE></UpdateDebounceCounter>
-  <UpdateRepeatRate><FILE>C:\Users\delta\Documents\eecs10\ee10b\2024\switches2024\HexerSwitches.asm</FILE><LINE>276</LINE></UpdateRepeatRate>
-  <CheckSwitchAvailable><FILE>C:\Users\delta\Documents\eecs10\ee10b\2024\switches2024\HexerSwitches.asm</FILE><LINE>342</LINE></CheckSwitchAvailable>
-  <LoadDebouncedPatt><FILE>C:\Users\delta\Documents\eecs10\ee10b\2024\switches2024\HexerSwitches.asm</FILE><LINE>347</LINE></LoadDebouncedPatt>
-  <DoneGetSwitches><FILE>C:\Users\delta\Documents\eecs10\ee10b\2024\switches2024\HexerSwitches.asm</FILE><LINE>357</LINE></DoneGetSwitches>
+  <UpdateDebounceCounter><FILE>C:\Users\delta\Documents\eecs10\ee10b\2024\switches2024\HexerSwitches.asm</FILE><LINE>262</LINE></UpdateDebounceCounter>
+  <UpdateRepeatRate><FILE>C:\Users\delta\Documents\eecs10\ee10b\2024\switches2024\HexerSwitches.asm</FILE><LINE>278</LINE></UpdateRepeatRate>
+  <CheckSwitchAvailable><FILE>C:\Users\delta\Documents\eecs10\ee10b\2024\switches2024\HexerSwitches.asm</FILE><LINE>345</LINE></CheckSwitchAvailable>
+  <LoadDebouncedPatt><FILE>C:\Users\delta\Documents\eecs10\ee10b\2024\switches2024\HexerSwitches.asm</FILE><LINE>350</LINE></LoadDebouncedPatt>
+  <DoneGetSwitches><FILE>C:\Users\delta\Documents\eecs10\ee10b\2024\switches2024\HexerSwitches.asm</FILE><LINE>361</LINE></DoneGetSwitches>
  </LABELS>
 </ASSEMBLER_INFO>

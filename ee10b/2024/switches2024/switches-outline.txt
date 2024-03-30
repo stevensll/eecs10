@@ -1,13 +1,16 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;                                                                            ;
-;                           Switch Procedure Outlines                     	 ;
+;                        Switch Procedure Outlines                     	 	 ;
 ;                                                                            ;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 Steven Lei
 EECS10b HW2 Switches Procedure Outlines
 * Note: I handed this in last year, but re-did it just to keep documentation 
-		consistent
+		consistent. Some changes I made are:
+			Updated Pseudo code format for all functions (makes it clearer)
+			Updated DebounceSwitches to contain variable repeat rate
+			Included definition of CONSTANTS
 
 ; CONSTANTS used in Pseudo code:
 
@@ -41,10 +44,10 @@ FALSE = 0b00000000                   ; boolean FALSE is all bits low
 ;									    as the debounce time (10 ms).
 ;					 repeatCounter:		Counter used for counting until the 
 ;										repeat rate is switched to fast, WRITTEN
-;										as the fast repeat time (5s)
+;										as the fast repeat time (500ms)
 ;					 repeatRate:		The rate in which a repeated switch 
 ;										pattern is debounced, WRITTEN as 
-;										the slow rate (500ms)
+;										the slow rate (50ms)
 ;					 debounceFlag: 		Flag indicating if a switch is 
 ;										debounced, WRITTEN to false.
 ;					 prevSwitchPatt:	Previous switch pattern, WRITTEN to 
@@ -122,8 +125,8 @@ FALSE = 0b00000000                   ; boolean FALSE is all bits low
 ;										repeat rate is switched to fast, WRITTEN
 ;										as the fast repeat time (5s)
 ;					 repeatRate:		The rate in which a repeated switch 
-;										pattern is debounced, first slow (2s)
-;										then fast (500ms).
+;										pattern is debounced, first slow (200ms)
+;										then fast (50ms).
 ; Global Variables:  None.
 ; Global Variables:  None.
 ;

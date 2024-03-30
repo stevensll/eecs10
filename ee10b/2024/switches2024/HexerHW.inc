@@ -17,8 +17,10 @@
 ;     5/02/18  Glen George      created from original clock.inc file
 ;     8/25/18  Glen George      added Timer 0 values
 ;     4/02/19  Glen George      removed PORTD_DIR, not needed in new hardware
+;    05/18/23  Steven Lei       adapted file from "clockhw.inc" in EXAMPLES
+;                               on Glen's website
 ;    05/18/23  Steven Lei	    updated TIMERCLK32,64,256,1024 definitions
-;    03/29/24  Steven Lei       added TIMERCLK128 definition
+;    03/29/24  Steven Lei       added TIMERCLK128 definition, update comments
 
 
 ;setup values for Timer 0
@@ -28,7 +30,7 @@
 .EQU    TIMERCLK8    = 0b00000010	;timer runs at CLK/8
 .EQU 	TIMERCLK32	 = 0b00000011	;timer runs at CLK/32
 .EQU    TIMERCLK64   = 0b00000100	;timer runs at CLK/64
-.EQU    TIMERCLK128   = 0b00000101	;timer runs at CLK/128
+.EQU    TIMERCLK128  = 0b00000101	;timer runs at CLK/128
 .EQU    TIMERCLK256  = 0b00000110	;timer runs at CLK/256
 .EQU    TIMERCLK1024 = 0b00000111	;timer runs at CLK/1024
 .EQU    TIMERCLKEXTF = 0b00000110	;timer clocks on falling edge of T0/T1

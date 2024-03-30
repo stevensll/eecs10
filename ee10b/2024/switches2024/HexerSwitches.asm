@@ -49,10 +49,10 @@
 ;									    as the debounce time (10 ms).
 ;					 repeatCounter:		Counter used for counting until the 
 ;										repeat rate is switched to fast, WRITTEN
-;										as the fast repeat time (5s)
+;										as the fast repeat time (500ms)
 ;					 repeatRate:		The rate in which a repeated switch 
-;										pattern is debounced, first slow (2s)
-;										then fast (500ms).
+;										pattern is debounced, first slow (200ms)
+;										then fast (50ms).
 ; Global Variables:  None.
 ;
 ; Input:             None.
@@ -115,10 +115,10 @@ DoneResetCountersAndRate:				; done resetting everything so return
 ;									    as the debounce time (10 ms).
 ;					 repeatCounter:		Counter used for counting until the 
 ;										repeat rate is switched to fast, WRITTEN
-;										as the fast repeat time (5s)
+;										as the fast repeat time (500ms)
 ;					 repeatRate:		The rate in which a repeated switch 
 ;										pattern is debounced, WRITTEN as 
-;										the slow rate (500ms)
+;										the slow rate (50ms)
 ;					 debounceFlag: 		Flag indicating if a switch is 
 ;										debounced, WRITTEN to false.
 ;					 prevSwitchPatt:	Previous switch pattern, WRITTEN to 
@@ -140,10 +140,10 @@ DoneResetCountersAndRate:				; done resetting everything so return
 ; Stack Depth:       0 bytes
 ;
 ; Limitations:		 None.
-; Special notes:	 None.
+; Special notes:	 A pressed switch is represented with the low bit (0).
 ;
 ; Author:            Steven Lei
-; Last Modified:	 03/29/2024
+; Last Modified:	 03/26/2024
 
 InitSwitches:
 
@@ -151,11 +151,11 @@ ResetCountersRepeatRate:		; reset the counters and the repeat rate
 	RCALL 	ResetCountersAndRate
 
 ResetDebounceFlag:				; reset the debounce flag
-	LDS		R16, FALSE						
+	LDI		R16, FALSE						
 	STS		debounceFlag, R16
 
 ResetSwitchPatterns:			; set the prev and new switch patt bits to high
-	LDS		R16, SWITCH_UP			; (none pressed)
+	LDI		R16, SWITCH_UP			; (none pressed)
 	STS		newSwitchPatt, R16
 	STS		prevSwitchPatt, R16
 
@@ -166,24 +166,25 @@ ResetSwitchPatterns:			; set the prev and new switch patt bits to high
 ;					 switches. This procedure is expected to be called by the 
 ;					 timer interrupt event handler every 1 ms. It uses variable
 ;					 auto repeat if a switch pattern is held down for a period
-;					 of time (5s).
+;					 of time (500ms).
 ;					  
 ; Operation:         Upon every call, the new switch pattern pressed (input from 
 ;					 pin E) is compared with the old switch pattern. If the
 ;					 pattern is the same AND is not switch up (no switches 
-;					 pressed), the debounce counter will decrement. It will then
-;					 check if the debounce counter hits 0, meaning the switch
-;					 pattern can be returned and the debounce flag will be set.
-;					 It will also decrement the repeat counter until it hits 
+;					 pressed), the debounce counter will decrement. 
+;					 When the debounce counter hits 0, the pattern is fully 
+;					 debounced so the pattern is stored and the debounce flag is 
+;					 set. The debounce counter is reloaded with the repeat rate.
+;					 The repeat counter is also decremented until it hits 
 ;					 zero, in which the repeat rate will be changed. If the new 
-;					 pattern does not satisfy these  conditions, all counters 
-;					 and the repeat rate will be reset.
+;					 pattern does not satisfy these conditions, all counters 
+;					 and the repeat rate will be reset to slow.
 ;                    
 ; Arguments:         None.
 ; Return Value:      None
 ;
 ; Local Variables:   None.
-; Shared Variables:  prevSwitchPatt: 	the previously inputted switch pattern, 
+; Shared Variables:  prevSwitchPatt: 	the previous inputted switch pattern, 
 ;										READ to check if equal to input 
 ;										pattern, WRITTEN to update the old  
 ;										pattern to the input pattern			
@@ -198,8 +199,8 @@ ResetSwitchPatterns:			; set the prev and new switch patt bits to high
 ;										repeat rate is switched to fast, WRITTEN
 ;										as the fast repeat time (5s)
 ;					 repeatRate:		The rate in which a repeated switch 
-;										pattern is debounced, first slow (2s)
-;										then fast (500ms).
+;										pattern is debounced, first slow (200ms)
+;										then fast (50ms).
 ; Global Variables:  None.
 ; Global Variables:  None.
 ;
@@ -215,18 +216,17 @@ ResetSwitchPatterns:			; set the prev and new switch patt bits to high
 ; Stack Depth:       0
 ;
 ; Limitations:		 None.
-; Special notes:	 A pressed switch is represented by a low bit (0).
+; Special notes:	 A pressed switch is represented with the low bit (0).
 ;
 ; Author:            Steven Lei
 ; Last Modified:	 03/27/24
-;
-
 
 DebounceSwitches:
 
 GetSwitchPattern:					; first get the switch pattern pressed
 	IN		R16, SWITCH_PORT			
 	ORI		R16, SWITCH_MASK			; mask unused bits 7 and 0 to high 
+	;RJMP 	CheckSwitchPatternUp		; check if the switches are all up
 
 CheckSwitchPatternUp:				; check if all switches are up
 	CPI 	R16, SWITCH_UP				; up pattern means no switches pressed
@@ -255,16 +255,18 @@ DecrementDebounceCounter:		; decrement the debounce counter until 0
 
 UpdateDebounceFlagAndPattern:	; update debounce flag and new switch pattern
 	STS		newSwitchPatt, R16		; store the new switch pattern to memory
-	LDS		R16, TRUE				; set the debounce flag
+	LDI		R16, TRUE				; set the debounce flag
 	STS		debounceFlag, R16 		
+	;RJMP	UpdateDebounceCounter	; reload deounce counter with repeat rate
 
-UpdateDebounceCounter:			; update the debounce counter to repeat rate	
+UpdateDebounceCounter:				; update the debounce counter to repeat rate	
 	LDS		R16, repeatRate 		
 	STS		debounceCounter, R16			
 	LDS		R16, repeatRate+1
 	STS		debounceCounter+1, R16	
+	;RJMP	DecrementRepeatCounter		;update the repeat counter
 
-DecrementRepeatCounter:			; decrement the repeat counter
+DecrementRepeatCounter:				; decrement the repeat counter
 	LDS		ZL, repeatCounter			; load the counter value
 	LDS		ZH, repeatCounter+1		
 	SBIW	Z,	1						; decrement the counter by 1
@@ -278,6 +280,7 @@ UpdateRepeatRate:						; update the repeat rate to fast rate
 	STS		repeatRate, R16
 	LDS		R16, HIGH(FAST_RATE)
 	STS 	repeatRate+1, R16		
+	;RJMP 	DebounceSwitchesDone		; done updating repeat rate so return
 
 DebounceSwitchesDone:					; done debouncing switches so return
 	RET		
@@ -353,6 +356,7 @@ LoadDebouncedPatt:				; load the pattern and reset debounce flag
 	STS		debounceFlag, R17			
 
 	OUT		SREG, R0				; restore flags (could re-enable interrupts)
+	;RJMP 	DoneGetSwitches			; done updating pattern and flag so return
 
 DoneGetSwitches:					; done so return
 	RET

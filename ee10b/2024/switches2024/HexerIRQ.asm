@@ -28,7 +28,7 @@
 ;                    0. It just calls the appropriate handlers.
 ;
 ; Operation:         The switch debounce function (DebounceSwitches) is called
-;                    and R17-R19 & Z registers are saved.
+;                    and R16-R17 & Z (ZH | ZL) registers are saved.
 ;
 ; Arguments:         None.
 ; Return Value:      None.

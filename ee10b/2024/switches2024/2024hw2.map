@@ -1,5 +1,5 @@
 
-AVRASM ver. 2.1.42  C:\Users\delta\Documents\eecs10\ee10b\2024\switches2024\hw2test.asm Fri Mar 29 16:35:52 2024
+AVRASM ver. 2.1.42  C:\Users\delta\Documents\eecs10\ee10b\2024\switches2024\hw2test.asm Sat Mar 30 02:40:24 2024
 
 
 EQU  SIGNATURE_000 0000001e
@@ -870,7 +870,7 @@ EQU  UTXC1addr    00000040
 EQU  TWIaddr      00000042
 EQU  SPMRaddr     00000044
 EQU  INT_VECTORS_SIZE 00000046
-EQU  DEBOUNCE_TIME 00000001
+EQU  DEBOUNCE_TIME 0000000a
 EQU  FAST_REPEAT_TIME 000001f4
 EQU  SLOW_RATE    000000c8
 EQU  FAST_RATE    00000032
@@ -904,8 +904,8 @@ CSEG STClearBufferLoop 00000054
 CSEG SwitchTestLoop 00000058
 CSEG STCheckGetSwitches1 00000058
 CSEG STWaitLoop   00000059
-CSEG SwitchAvailable 000000f7
-CSEG GetSwitches  000000ec
+CSEG SwitchAvailable 000000f4
+CSEG GetSwitches  000000e9
 CSEG STStoreBuffer 00000070
 CSEG STCheckSwitchAvailable1 0000005e
 CSEG STSkipFFwrite1 00000064
@@ -916,7 +916,7 @@ CSEG EndInitPorts 0000007a
 CSEG EndInitTimer0 00000084
 CSEG StartTimer0CompareHandler 00000085
 CSEG DoSwitches   0000008d
-CSEG DebounceSwitches 000000b5
+CSEG DebounceSwitches 000000b3
 CSEG DoneTimer0CompareHandler 0000008e
 CSEG ResetCountersAndRate 00000097
 CSEG ResetDebounceCounter 00000097
@@ -929,19 +929,19 @@ CSEG DoneResetCountersAndRate 000000a9
 CSEG ResetCountersRepeatRate 000000aa
 CSEG ResetDebounceFlag 000000ab
 DSEG debounceFlag 00000280
-CSEG ResetSwitchPatterns 000000af
+CSEG ResetSwitchPatterns 000000ae
 DSEG newSwitchPatt 00000287
 DSEG prevSwitchPatt 00000288
-CSEG GetSwitchPattern 000000b5
-CSEG CheckSwitchPatternUp 000000b7
-CSEG CheckSwitchPatternSame 000000b9
-CSEG DecrementDebounceCounter 000000c1
-CSEG ResetCountersRate 000000bf
-CSEG DebounceSwitchesDone 000000eb
-CSEG DecrementRepeatCounter 000000d9
-CSEG UpdateDebounceFlagAndPattern 000000cb
-CSEG UpdateDebounceCounter 000000d1
-CSEG UpdateRepeatRate 000000e3
-CSEG CheckSwitchAvailable 000000ec
-CSEG LoadDebouncedPatt 000000ee
-CSEG DoneGetSwitches 000000f6
+CSEG GetSwitchPattern 000000b3
+CSEG CheckSwitchPatternUp 000000b5
+CSEG CheckSwitchPatternSame 000000b7
+CSEG DecrementDebounceCounter 000000bf
+CSEG ResetCountersRate 000000bd
+CSEG DebounceSwitchesDone 000000e8
+CSEG DecrementRepeatCounter 000000d6
+CSEG UpdateDebounceFlagAndPattern 000000c9
+CSEG UpdateDebounceCounter 000000ce
+CSEG UpdateRepeatRate 000000e0
+CSEG CheckSwitchAvailable 000000e9
+CSEG LoadDebouncedPatt 000000eb
+CSEG DoneGetSwitches 000000f3

@@ -26,7 +26,7 @@
 ;    3/23/23  Glen George               initial revision
 ;    5/05/23  Glen George               updated comments
 ;	05/19/23  Steven Lei				added switches routines and inc files
-;										also changed timer compare event handler
+;										also added timer compare event handler
 ; 	03/29/24  Steven Lei				updated file names
 
 
