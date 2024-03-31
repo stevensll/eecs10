@@ -65,8 +65,6 @@ FALSE = 0b00000000                   ; boolean FALSE is all bits low
 ; Algorithms:        None.
 ; Data Structures:   None.
 ;
-; Registers Changed: R16
-; Stack Depth:       0 bytes
 ;
 ; Limitations:		 None.
 ; Special notes:	 A pressed switch is represented with the low bit (0).
@@ -138,8 +136,6 @@ FALSE = 0b00000000                   ; boolean FALSE is all bits low
 ; Algorithms:        None.
 ; Data Structures:   None.
 ;
-; Registers Changed: Flags, R16, R17, Z (ZL | ZH)
-; Stack Depth:       0
 ;
 ; Limitations:		 None.
 ; Special notes:	 A pressed switch is represented with the low bit (0).
@@ -223,9 +219,6 @@ FALSE = 0b00000000                   ; boolean FALSE is all bits low
 ; Limitations:		 None.
 ; Special notes:	 A pressed switch is represented by a low bit (0).
 ;
-; Registers Changed: R0, R16, R17
-; Stack Depth:       0 bytes
-;
 ; Author:            Steven Lei
 ; Last Modified:	 03/26/24
 ;
@@ -272,9 +265,6 @@ FALSE = 0b00000000                   ; boolean FALSE is all bits low
 ;
 ; Limitations:		 None.
 ; Special notes:	 None.
-;
-; Registers Changed: R16
-; Stack Depth:       0
 ;
 ; Author:            Steven Lei
 ; Last Modified:	 03/27/24

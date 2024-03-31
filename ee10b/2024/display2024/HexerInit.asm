@@ -17,6 +17,7 @@
 
 ;    05/18/23  Steven Lei      updated Port E set to all inputs and timer
 ;							   set to 1 ms in output compare mode.
+;	 06/25/23  Steven Lei	   added Port C and D (Display) initializations
 ;	 03/27/24  Steven Lei	   updated comments and formatting.
 
 .cseg 
@@ -47,12 +48,20 @@
 ; Stack Depth:       0 bytes
 ;
 ; Author:            Steven Lei
-; Last Modified:	 5/18/23
+; Last Modified:	 6/25/23
 
 InitPorts:
                                         ;initialize I/O port directions
         LDI     R16, INDATA             ;Port E is all inputs (switches)
         OUT     DDRE, R16
+
+		LDI		R16, OUTDATA			;Port C and D are all outputs (display)
+		OUT		DDRC, R16
+		OUT		DDRD, R16
+
+		CLR		R16						; all outputs are low (turn off LEDs)
+		OUT		PORTC, R16
+		OUT		PORTD, R16
 
 EndInitPorts:                           ;done so return
         RET
@@ -96,7 +105,7 @@ InitTimer0:
 	LDI		R16, TIMERCLK64				;   8 MHz / 64 / 125 interrupt
 	OUT		TCCR0, R16					;   rate = 1KHz (1ms)
 									;use compare interrupts
-	LDI 	R16, COMPARE_MATCH_RATE	; set the rate to 125
+	LDI 	R16, COMPARE_MATCH_RATE	;set the rate to 125
 	OUT 	OCR0, R16
 
 	IN		R16, TIMSK				;get current timer interrupt masks
