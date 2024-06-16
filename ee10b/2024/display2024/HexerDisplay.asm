@@ -86,7 +86,7 @@ DIGIT_PORT = PORTD              ; LED digits are on port D
 ; Global Variables:  None.
 ;
 ; Input:             None.
-; Output:            None.
+; Output:            The LED display is blank.
 ;
 ; Error Handling:    None.
 ;
@@ -96,7 +96,7 @@ DIGIT_PORT = PORTD              ; LED digits are on port D
 ; Limitations:		 None.
 ; Special Notes:	 None.
 ;
-; Registers changed: R16, R17, Y
+; Registers changed: R16, R17, Y (YL | YH)
 ; Stack depth:       0 bytes
 ;                 
 ; Author:            Steven Lei
@@ -119,26 +119,33 @@ ClearDisplayLoop:               ; loop through buffer and clear rows (digits)
 ClearDisplayDone:               ; done so return
     RET         
 
-
 ; InitDisplay
 ;
 ; Description:       This function initializes the display by turning all LEDs 
 ;                    off and initializing the display multiplex variables.
 ;
 ; Operation:         Calls ClearDisplay() to turn off all LEDs in the buffer.
-;					 The currDispDig and currSegPatt variables used in 
+;					 The currBuffIndex and currDigPattern variables used in 
 ;					 MuxLEDs are initialized.
 ;
 ; Arguments:         None.
 ; Return Value:      None.
 ;
-; Local Variables:   R16 - segment counter.
-;                    Y   - pointer to display buffer.
-; Shared Variables:  currentSegs - buffer is filled with LED_BLANK.
+; Local Variables:   None.
+;                    
+; Shared Variables:  currBuffIndex: 		The current index (digit or row #)
+;											used to access the display buffer
+;											is WRITTEN as the first digit (0)
+;					 dispDigPattern:		The current digit pattern to output
+;											to the display is WRITTEN as the 
+;											initial digit pattern.
+;					 displayBuffer:			The display buffer is WRITTEN 
+;											with each row as DIG_OFF to turn off
+;											LEDs. (from ClearDisplay)
 ; Global Variables:  None.
 ;
 ; Input:             None.
-; Output:            The LED display is blanked.
+; Output:            The LED display is blank.
 ;
 ; Error Handling:    None.
 ; Algorithms:        None.
@@ -147,16 +154,29 @@ ClearDisplayDone:               ; done so return
 ; Special Notes:	 None.
 ; Limitations:		 None.
 ;
-; Author:            Steven Lei
-; Last Modified:     June 9, 2023
+; Registers changed: R16, R17, Y (YL | YH)
+; Stack depth:		 0 bytes.
 ;
-; Psuedo code:
+; Author:            Steven Lei
+; Last Modified:     03/30/2024
+;
 
-	InitDisplay(){
-		ClearDisplay()
-		currDispDig = 0
-		RETURN
-	}
+InitDisplay:
+
+StartInitDisplay:					; first clear the display
+	RCALL CLearDisplay
+	;RJMP InitMuxLEDs				; now initialize variables used in MuxLEDs
+
+InitMuxLEDs:						; initialize the index and digit pattern
+	CLR		R16							; starting buffer index value is 0
+	STS		currBuffIndex, R16
+	LDI		R16, INIT_DIG_PATT		; reset digit pattern to the inital one
+	STS		dispDigPattern, R16
+	;RJMP 	EndInitDisplay			; done initializing variables
+
+EndInitDisplay:						; done so return
+	RET
+
 
 ; DisplayGameLEDs(m)
 ;
@@ -183,20 +203,19 @@ ClearDisplayDone:               ; done so return
 ;					01					L7
 ;					00					L6
 ;                    
-; Operation:         The mask (m) is applied by masking the high and low byte 
-;					 of (m) with the first and second byte of the LEDbuffer.
+; Operation:         The mask (m) is applied by setting the high and low byte 
+;					 of (m) with the first and second byte of the displayBuffer.
 ;					 The game LEDs are displayed upon 1 ms interrupt using the
 ;				   	 MuxLEDs function.
 ;	
 ; Arguments:         R17 | R16 - the 16 bit mask (m) 
 ; Return Value:      None.
 ;
-; Local Variables:   currDigitIndex: 	the current digit of display buffer
+; Local Variables:   currBuffIndex: 	the current index of the display buffer
 ;
 ; Shared Variables:  displayBuffer:		the first two bytes of the display 
 ;										buffer, which correspond to game LEDs, 
 ;										are WRITTEN by masking with argument (m)
-;	
 ; Global Variables:  None.
 ;
 ; Input:             None.
@@ -207,7 +226,10 @@ ClearDisplayDone:               ; done so return
 ; Data Structures:   None.
 ;
 ; Special notes:	 None.
-; Limitations:		 None.           
+; Limitations:		 None.  
+; 
+; Registers changed: Y (YL | YH)
+; Stack depth:		 0 bytes.        
 ;         
 ; Author:            Steven Lei
 ; Last Modified:     03/30/24
@@ -216,16 +238,15 @@ ClearDisplayDone:               ; done so return
 
 DisplayGameLEDs:
 
-MaskGameLEDHigh:
-    ANDI    R17, 
-MaskGameLEDLow:
-	DisplayGameLEDs(m){
-		FOR (currDigit = 0, currDigit + GAME_LED_START_DIGIT < 7SEG_START_DIGIT,
-			 currDigit++){
-				displayBuffer[currDigit+GAME_LED_START_DIGIT] &= m[currDigit]
-			 }
-		RETURN
-	}
+UpdateBuffer:						; set the game led rows in buffer to (m)
+	LDI		YL, LOW(displayBuffer)		; load the address of the buffer
+	LDI		YH,	HIGH(displayBuffer)			
+	ADIW	Y,  GAME_LED_START_DIGIT	; offset address by start of game LEDs
+	ST		Y+, R17						; store the high byte of the mask
+	ST		Y, 	R16						; store the low byte of the mask
+
+EndDisplayGameLEDs:						; done so return
+	RET
 
 ; DisplayHex()
 ;
@@ -244,9 +265,9 @@ MaskGameLEDLow:
 ; Arguments:         R17 | R16 - the 16 bit unsigned value to output in hex
 ; Return Value:      None.
 ;
-; Local Variables:   currDigit: 		the current digit (row) of the buffer
-;					 lowByte:			the low byte of the argument (n)
-;					 hex_value			the hex value from the low nibble of (n)
+; Local Variables:   R18: 				the current index (row) of the buffer
+;					 R19:				the low byte of the argument (n)
+;					 R20:				the hex value from the low nibble of (n)
 ; Shared Variables:  displayBuffer:		Each bit of the buffer represents an LED
 ;										segment and each byte(row) of the buffer
 ;										represents a digit. Each segment of the
@@ -264,29 +285,45 @@ MaskGameLEDLow:
 ;
 ; Special Notes:	 None.
 ; Limitations:		 None.
+;	
+; Registers Changed: 
+; Stack depth:		 0 bytes.
 ;	                    
 ; Author:            Steven Lei
 ; Last Modified:     03/30/24
 ;
-; Pseudo code:
+DisplayHex:
 
-	DisplayHex(n){
-		FOR(currDigit = 7SEG_START_DIGIT, currDigit < NUM_BUFFER_DIGITS, 
-			currDigit++){
-				low_byte = LOW(n)
-				hex_value = low_byte & LOW_NIBBLE_MASK
-				displayBuffer[currDigit] = DigitSegTable[hex_value]
-				shiftNibbleRight(n)
-			}
-	}
-	// note: shiftRight is just the bit right shift instruction
-	shiftNibbleRight(n){
-		shiftRight(n)
-		shiftRight(n)
-		shiftRight(n)
-		shiftRight(n)
-	}
+	LDI		R18, NUM_7SEG_DIGITS			;
+	LDI		YL, LOW(displayBuffer)
+	LDI		YH, HIGH(displayBuffer)
+	ADIW	Y, 7SEG_START_DIGIT
 
+	MOV		R19, R16
+	ANDI	R19, LOW_NIBBLE_MASK
+	LDI		ZL, LOW(2 * DigitSegTable)
+	LDI		ZH, HIGH(2 * DigitSegTable)
+	ADD		ZL, R19
+	ADC 	ZH, 0
+	LPM
+	ST		Y+, R0
+
+ShiftArgumentBits:				; shift the next nibble of the argument into R16
+	LSR R17                         ; shift right and put shifted bit into carry
+    ROR R16                         ; shift right and put carry into high bit
+    LSR R17                         ; repeat 4 times since a nibble
+    ROR R16
+    LSR R17 
+    ROR R16
+    LSR R17
+    ROR R16
+
+CheckIndex:								; check if the buffer index is 0
+	DEC		R18							
+	BRNE	DisplayHexLoop				; if not 0, still more rows to update 
+	;BREQ	EndDisplayHex				; else done looping and updating buffer
+EndDisplayHex:							; done so return
+	RET
 ; MuxLEDs
 ;
 ; Description:       This procedure multiplexes the LED display under
@@ -331,6 +368,9 @@ MaskGameLEDLow:
 ; Algorithms:        None.
 ; Data Structures:   None.
 ;
+; Registers changed: R16, R0, Z (ZL | ZH)
+; Stack Depth:		 None.
+;
 ; Special Notes:	 None.
 ; Limitations:		 None.
 ;
@@ -339,36 +379,55 @@ MaskGameLEDLow:
 
 MuxLEDs:
 
-TurnOffDigits:                      ; turn off digits so no wrong LEDs displayed
+TurnOffDigitPort:                   ; turn off digits so no wrong LEDs displayed
     LDI     R16, DIGIT_OFF              ; turn off the digit port so all LEDs 
     OUT     DIGIT_PORT, R16                 ; are off
+	;RJMP	OutputSegmentPattern	; ready to output segment pattern
 
 OutputSegmentPattern:               ; output segment pattern at current digit
     LDI     ZL, LOW(displayBuffer)      ; load the address of the display buffer
     LDI     ZH, HIGH(displayBuffer)
-    LDS     R16, currDispDig            ; load current digit (row) of display
-    ADD     ZL, R16                     ; offset address by the current digit
+    LDS     R16, currBuffIndex          ; load current index (digit) of display
+    ADD     ZL, R16                     ; offset address by the buffer index
     ADC     ZH, 0                       ; use 0 for carry propagation
     LD      R0, Z                       ; get the segment pattern from buffer
-    OUT     BIT_PORT, R0                    ; and output it to the port
+    OUT     SEGMENT_PORT, R0            ; and output it to the segment port
+	;RJMP 	OutputDigitPattern			; ready to output digit pattern
 
-OutputDigPattern:                   ; output digit pattern at current digit
-    LDS       
+OutputDigitPattern:                 ; output digit pattern at current digit
+    LDS     R16, dispDigPattern			; load the current digit pattern
+	OUT		DIGIT_PORT					; and output to the digit port  
+	;RJMP	CheckBufferIndex			; check if buffer value needs to wrap
 
+CheckBufferIndex:					; compute the next buffer value
+	LDS 	R16, currBuffIndex			; load the buffer index 
+	SUBI	R16, NUM_DIGITS				; subtract it from the max index value
+	BRLO	IncrementBuffIndex			; index is not max value yet, increment
+	;BRGE	ResetBuffIndex				; index is max value reset
 
-	MuxLEDs(){
-		DIGIT_PORT = DIGIT_OFF		   	  ; turn off the port controlling digits
-		SEG_PORT = displayBuffer[currDispDig]     ; write the column/seg pattern
-		DIGIT_PORT = currDispDig		; write the row/dig pattern
-		currDispDig = (currDispDig + 1) MOD	NUM_DIGITS	; go to the next digit
-		currSegPatt = displayBuffer[currDispDig]		; get the next segments
-		RETURN
-	}
+ResetBufferIndex:					; reset the buffer index to 0 for wrapping
+	CLR		R16							; clear register to 0
+	STS		currBuffIndex, R16			
+	;RJMP	ResetDigitPattern			; also need to reset next digit pattern
 
-EndMuxLEDs:                         ; done multiplexing LEDs, so return
+ResetDigitPattern:					; reset next digit pattern sent to display
+	LDS		R16, INIT_DIG_PATT			; reset digit to the initial pattern 		
+	STS		dispDigPattern, R16
+	RJMP	DoneMuxLEDs					; done updating digit pattern
+
+IncrementBuffIndex:					; increment the buffer index
+	LDS 	R16, currBuffIndex			
+	INC		R16								
+	STS		currBuffIndex, R16				
+	;RJMP   UpdateDigitPattern			; also need to update the digit pattern
+
+UpdateDigitPattern:					; update the digit pattern sent to display
+	LDS		R16, dispDigPattern
+	LSL		R16							; just need to shift the high bit left
+	;RJMP	DoneMuxLEDs					; done updating digit pattern
+
+DoneMuxLEDs:                         ; done multiplexing LEDs, so return
     RET
-
-
 
 
 ;the data segment
@@ -377,6 +436,5 @@ EndMuxLEDs:                         ; done multiplexing LEDs, so return
 
 displayBuffer:  .BYTE   NUM_DIGITS  ; the 7 byte display buffer for controlling
                                         ; the game LEDs and 7 seg display
-currDispDig:    .BYTE   1           ; current digit to output to the display
-currSegPatt:    .BYTE   1           ; current segment pattern to output to 
-                                    ; the display
+dispDigPattern:	.BYTE	1			; the digit pattern to output to the display
+currBuffIndex:  .BYTE	1			; current index used to access the buffer

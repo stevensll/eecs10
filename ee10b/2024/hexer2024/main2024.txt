@@ -1,0 +1,51 @@
+
+
+
+RunGame:
+
+WHILE(gameRunningState){
+    SwitchPatt = GetSwitches()           ; blocking until a switch is pressed
+    ProcessSwitchPress(SwitchPatt)        ; pick the procedure to do based on lookup
+        : update the move moveCount
+        : pick the appropriate procedure from table lookup
+
+    DisplayGameLEDs(gameLEDState)
+    DisplayHex(moveCount)
+    UpdateGameRunningState()
+        check if Game Led State is all blanks, if so done
+}
+
+ResetGame:             ; prompt user to reset game (game is done)
+                       ; just blink the screen and accept only start + reset button presses
+
+
+Lookup:
+;						Bit code		Switch Pressed	Function
+;						11011111		Black			RotateBlackHexagon
+;						11101111		Red				RotateRedTriangle
+;						11110111		White			White hexagon inverter
+;						11111011		Green			Green triangle rotator
+;						11111101		Blue			Blue hexagon rotator
+;						10011111		Yellow + Black	Random reset
+;						10111101		Yellow + Green	Manual reset 0
+;						10111110		Yellow + Blue	Manual reset 1
+
+RotateBlackHexagon:
+    current black_hexagon_state = gameLEDState AND MASK black_hexagon_state
+    LOOKUP current black_hexagon_state, get new black_hexagon_state
+    gameLEDState NAND 
+
+;Variables 
+moveCount              ; amount of moves made so far
+7SegHexValue           ; argument for DisplayHex
+gameRunningState       ; determines if the user is done with the game yet
+                            ; DONE    (0) : stop playing the game
+                            ; RUNNING (1) : keep playing the game
+
+gameLEDState           ; the game LEDs that are on/off
+
+
+; Constants
+
+BLACK_HEXAGON_MASK:    ; the bits associated with the black hexagon LEDs
+BLUE_HEXAGON_MASK       

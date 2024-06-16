@@ -64,7 +64,7 @@ StartTimer0CompareHandler:             ;save all touched registers
         IN      R0, SREG               ;save the status register too
         PUSH    R0
 DoDisplay:                             ;handle LED muxing 
-        RCALL   
+        RCALL   MuxLEDs                 
 
 ;DoSwitches:                            ;handle switch debouncing/repeating
 ;        RCALL   DebounceSwitches

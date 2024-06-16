@@ -37,5 +37,5 @@
 ; Port Definitions
     ; see LED layout table on website for bit/digits
 
-.EQU    SEG_PORT   = PORTC              ; LED segments are on port C
-.EQU    DIGIT_PORT = PORTD              ; LED digits are on port D
+.EQU    SEGMENT_PORT = PORTC            ; LED segments are on port C
+.EQU    DIGIT_PORT   = PORTD            ; LED digits are on port D
