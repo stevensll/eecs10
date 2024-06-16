@@ -1,0 +1,2 @@
+@ECHO OFF
+"C:\Program Files (x86)\Atmel\AVR Tools\AvrAssembler2\avrasm2.exe" -S "C:\Users\Administrator\Documents\eecs10\ee10b\hw3 leds\hw3\labels.tmp" -fI -W+ie -C V2E -o "C:\Users\Administrator\Documents\eecs10\ee10b\hw3 leds\hw3\hw3verify.hex" -d "C:\Users\Administrator\Documents\eecs10\ee10b\hw3 leds\hw3\hw3verify.obj" -e "C:\Users\Administrator\Documents\eecs10\ee10b\hw3 leds\hw3\hw3verify.eep" -m "C:\Users\Administrator\Documents\eecs10\ee10b\hw3 leds\hw3\hw3verify.map" "C:\Users\Administrator\Documents\eecs10\ee10b\hw3 leds\hw3\HW3Test.asm"
