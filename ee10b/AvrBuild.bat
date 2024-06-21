@@ -1,0 +1,2 @@
+@ECHO OFF
+"C:\Program Files (x86)\Atmel\AVR Tools\AvrAssembler2\avrasm2.exe" -S "C:\users\stevens\Documents\eecs10\ee10b\labels.tmp" -fI -W+ie -o "C:\users\stevens\Documents\eecs10\ee10b\Hexer.hex" -d "C:\users\stevens\Documents\eecs10\ee10b\Hexer.obj" -e "C:\users\stevens\Documents\eecs10\ee10b\Hexer.eep" -m "C:\users\stevens\Documents\eecs10\ee10b\Hexer.map" "Z:\home\stevens\Documents\eecs10\ee10b\hw5 hexer game\src\HexerMainLoop.asm"
