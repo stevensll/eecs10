@@ -37,75 +37,77 @@
   <InitTimer0><FILE>Z:\home\stevens\Documents\eecs10\ee10b\hw5 hexer game\src\HexerInit.asm</FILE><LINE>103</LINE></InitTimer0>
   <InitDisplay><FILE>Z:\home\stevens\Documents\eecs10\ee10b\hw5 hexer game\src\Display.asm</FILE><LINE>57</LINE></InitDisplay>
   <InitSwitches><FILE>Z:\home\stevens\Documents\eecs10\ee10b\hw5 hexer game\src\Switches.asm</FILE><LINE>65</LINE></InitSwitches>
-  <InitHexerGame><FILE>Z:\home\stevens\Documents\eecs10\ee10b\hw5 hexer game\src\HexerGame.asm</FILE><LINE>361</LINE></InitHexerGame>
-  <HexerPlayGameLoop><FILE>Z:\home\stevens\Documents\eecs10\ee10b\hw5 hexer game\src\HexerGame.asm</FILE><LINE>182</LINE></HexerPlayGameLoop>
+  <InitHexerGame><FILE>Z:\home\stevens\Documents\eecs10\ee10b\hw5 hexer game\src\HexerGame.asm</FILE><LINE>190</LINE></InitHexerGame>
+  <HexerPlayGameLoop><FILE>Z:\home\stevens\Documents\eecs10\ee10b\hw5 hexer game\src\HexerGame.asm</FILE><LINE>367</LINE></HexerPlayGameLoop>
   <EndInitPorts><FILE>Z:\home\stevens\Documents\eecs10\ee10b\hw5 hexer game\src\HexerInit.asm</FILE><LINE>67</LINE></EndInitPorts>
   <EndInitTimer0><FILE>Z:\home\stevens\Documents\eecs10\ee10b\hw5 hexer game\src\HexerInit.asm</FILE><LINE>117</LINE></EndInitTimer0>
-  <GameOverState><FILE>Z:\home\stevens\Documents\eecs10\ee10b\hw5 hexer game\src\HexerGame.asm</FILE><LINE>101</LINE></GameOverState>
-  <DisplayGameOverMessage><FILE>Z:\home\stevens\Documents\eecs10\ee10b\hw5 hexer game\src\HexerGame.asm</FILE><LINE>103</LINE></DisplayGameOverMessage>
-  <GameOverMessage><FILE>Z:\home\stevens\Documents\eecs10\ee10b\hw5 hexer game\src\HexerGame.asm</FILE><LINE>496</LINE></GameOverMessage>
+  <ResetGameLEDs><FILE>Z:\home\stevens\Documents\eecs10\ee10b\hw5 hexer game\src\HexerGame.asm</FILE><LINE>78</LINE></ResetGameLEDs>
+  <GetDefaultGameLEDsPattern><FILE>Z:\home\stevens\Documents\eecs10\ee10b\hw5 hexer game\src\HexerGame.asm</FILE><LINE>80</LINE></GetDefaultGameLEDsPattern>
+  <CurrGameLEDsPatt><FILE>Z:\home\stevens\Documents\eecs10\ee10b\hw5 hexer game\src\HexerGame.asm</FILE><LINE>1045</LINE></CurrGameLEDsPatt>
+  <DoneResetGameLEDs><FILE>Z:\home\stevens\Documents\eecs10\ee10b\hw5 hexer game\src\HexerGame.asm</FILE><LINE>86</LINE></DoneResetGameLEDs>
+  <ResetMoveCounter><FILE>Z:\home\stevens\Documents\eecs10\ee10b\hw5 hexer game\src\HexerGame.asm</FILE><LINE>128</LINE></ResetMoveCounter>
+  <GetInitialMoveCount><FILE>Z:\home\stevens\Documents\eecs10\ee10b\hw5 hexer game\src\HexerGame.asm</FILE><LINE>130</LINE></GetInitialMoveCount>
+  <MoveCounter><FILE>Z:\home\stevens\Documents\eecs10\ee10b\hw5 hexer game\src\HexerGame.asm</FILE><LINE>1044</LINE></MoveCounter>
+  <DoneResetMoveCounter><FILE>Z:\home\stevens\Documents\eecs10\ee10b\hw5 hexer game\src\HexerGame.asm</FILE><LINE>136</LINE></DoneResetMoveCounter>
+  <InitHexerGameLEDs><FILE>Z:\home\stevens\Documents\eecs10\ee10b\hw5 hexer game\src\HexerGame.asm</FILE><LINE>192</LINE></InitHexerGameLEDs>
+  <InitHexerMoveCounter><FILE>Z:\home\stevens\Documents\eecs10\ee10b\hw5 hexer game\src\HexerGame.asm</FILE><LINE>195</LINE></InitHexerMoveCounter>
+  <InitHexerGameState><FILE>Z:\home\stevens\Documents\eecs10\ee10b\hw5 hexer game\src\HexerGame.asm</FILE><LINE>198</LINE></InitHexerGameState>
+  <GameState><FILE>Z:\home\stevens\Documents\eecs10\ee10b\hw5 hexer game\src\HexerGame.asm</FILE><LINE>1047</LINE></GameState>
+  <GameOverMessage><FILE>Z:\home\stevens\Documents\eecs10\ee10b\hw5 hexer game\src\HexerGame.asm</FILE><LINE>1046</LINE></GameOverMessage>
+  <DoneInitHexerGame><FILE>Z:\home\stevens\Documents\eecs10\ee10b\hw5 hexer game\src\HexerGame.asm</FILE><LINE>206</LINE></DoneInitHexerGame>
+  <DisplayMoveCounter><FILE>Z:\home\stevens\Documents\eecs10\ee10b\hw5 hexer game\src\HexerGame.asm</FILE><LINE>249</LINE></DisplayMoveCounter>
   <DisplayHex><FILE>Z:\home\stevens\Documents\eecs10\ee10b\hw5 hexer game\src\Display.asm</FILE><LINE>210</LINE></DisplayHex>
-  <GameOverStateLoop><FILE>Z:\home\stevens\Documents\eecs10\ee10b\hw5 hexer game\src\HexerGame.asm</FILE><LINE>108</LINE></GameOverStateLoop>
-  <GetSwitches><FILE>Z:\home\stevens\Documents\eecs10\ee10b\hw5 hexer game\src\Switches.asm</FILE><LINE>218</LINE></GetSwitches>
-  <RandomResetGame><FILE>Z:\home\stevens\Documents\eecs10\ee10b\hw5 hexer game\src\HexerGame.asm</FILE><LINE>117</LINE></RandomResetGame>
-  <ResetMoveCounter><FILE>Z:\home\stevens\Documents\eecs10\ee10b\hw5 hexer game\src\HexerGame.asm</FILE><LINE>246</LINE></ResetMoveCounter>
-  <ResetGameLEDs><FILE>Z:\home\stevens\Documents\eecs10\ee10b\hw5 hexer game\src\HexerGame.asm</FILE><LINE>231</LINE></ResetGameLEDs>
-  <DoneGameOverState><FILE>Z:\home\stevens\Documents\eecs10\ee10b\hw5 hexer game\src\HexerGame.asm</FILE><LINE>121</LINE></DoneGameOverState>
-  <GameState><FILE>Z:\home\stevens\Documents\eecs10\ee10b\hw5 hexer game\src\HexerGame.asm</FILE><LINE>497</LINE></GameState>
-  <HandleSwitchPress><FILE>Z:\home\stevens\Documents\eecs10\ee10b\hw5 hexer game\src\HexerGame.asm</FILE><LINE>143</LINE></HandleSwitchPress>
-  <InitHandleSwitchPress><FILE>Z:\home\stevens\Documents\eecs10\ee10b\hw5 hexer game\src\HexerGame.asm</FILE><LINE>145</LINE></InitHandleSwitchPress>
-  <SwitchHandlerTable><FILE>Z:\home\stevens\Documents\eecs10\ee10b\hw5 hexer game\src\HexerGame.asm</FILE><LINE>483</LINE></SwitchHandlerTable>
-  <GetSwitchHandlerLoop><FILE>Z:\home\stevens\Documents\eecs10\ee10b\hw5 hexer game\src\HexerGame.asm</FILE><LINE>149</LINE></GetSwitchHandlerLoop>
-  <InitSwitchHandler><FILE>Z:\home\stevens\Documents\eecs10\ee10b\hw5 hexer game\src\HexerGame.asm</FILE><LINE>160</LINE></InitSwitchHandler>
-  <DoneHandleSwitchPress><FILE>Z:\home\stevens\Documents\eecs10\ee10b\hw5 hexer game\src\HexerGame.asm</FILE><LINE>178</LINE></DoneHandleSwitchPress>
-  <RunSwitchHandler><FILE>Z:\home\stevens\Documents\eecs10\ee10b\hw5 hexer game\src\HexerGame.asm</FILE><LINE>175</LINE></RunSwitchHandler>
-  <SetupDisplays><FILE>Z:\home\stevens\Documents\eecs10\ee10b\hw5 hexer game\src\HexerGame.asm</FILE><LINE>184</LINE></SetupDisplays>
-  <ClearDisplay><FILE>Z:\home\stevens\Documents\eecs10\ee10b\hw5 hexer game\src\Display.asm</FILE><LINE>103</LINE></ClearDisplay>
-  <Delay16><FILE>Z:\home\stevens\Documents\eecs10\ee10b\hw5 hexer game\src\HexerGame.asm</FILE><LINE>343</LINE></Delay16>
-  <RunGameStateLoop><FILE>Z:\home\stevens\Documents\eecs10\ee10b\hw5 hexer game\src\HexerGame.asm</FILE><LINE>189</LINE></RunGameStateLoop>
-  <DoGamePlayState><FILE>Z:\home\stevens\Documents\eecs10\ee10b\hw5 hexer game\src\HexerGame.asm</FILE><LINE>197</LINE></DoGamePlayState>
-  <DoGameOverState><FILE>Z:\home\stevens\Documents\eecs10\ee10b\hw5 hexer game\src\HexerGame.asm</FILE><LINE>201</LINE></DoGameOverState>
-  <GamePlayState><FILE>Z:\home\stevens\Documents\eecs10\ee10b\hw5 hexer game\src\HexerGame.asm</FILE><LINE>210</LINE></GamePlayState>
-  <DoneHexerPlayGameLoop><FILE>Z:\home\stevens\Documents\eecs10\ee10b\hw5 hexer game\src\HexerGame.asm</FILE><LINE>205</LINE></DoneHexerPlayGameLoop>
-  <DisplayMoveCounter><FILE>Z:\home\stevens\Documents\eecs10\ee10b\hw5 hexer game\src\HexerGame.asm</FILE><LINE>212</LINE></DisplayMoveCounter>
-  <MoveCounter><FILE>Z:\home\stevens\Documents\eecs10\ee10b\hw5 hexer game\src\HexerGame.asm</FILE><LINE>494</LINE></MoveCounter>
-  <HandleUserInput><FILE>Z:\home\stevens\Documents\eecs10\ee10b\hw5 hexer game\src\HexerGame.asm</FILE><LINE>217</LINE></HandleUserInput>
-  <GameOver><FILE>Z:\home\stevens\Documents\eecs10\ee10b\hw5 hexer game\src\HexerGame.asm</FILE><LINE>275</LINE></GameOver>
-  <DoneGamePlayState><FILE>Z:\home\stevens\Documents\eecs10\ee10b\hw5 hexer game\src\HexerGame.asm</FILE><LINE>223</LINE></DoneGamePlayState>
-  <GetDefaultGameLEDsPattern><FILE>Z:\home\stevens\Documents\eecs10\ee10b\hw5 hexer game\src\HexerGame.asm</FILE><LINE>233</LINE></GetDefaultGameLEDsPattern>
-  <CurrGameLEDsPatt><FILE>Z:\home\stevens\Documents\eecs10\ee10b\hw5 hexer game\src\HexerGame.asm</FILE><LINE>495</LINE></CurrGameLEDsPatt>
-  <DisplayDefaultGameLEDsPattern><FILE>Z:\home\stevens\Documents\eecs10\ee10b\hw5 hexer game\src\HexerGame.asm</FILE><LINE>239</LINE></DisplayDefaultGameLEDsPattern>
+  <DoneDisplayMoveCounter><FILE>Z:\home\stevens\Documents\eecs10\ee10b\hw5 hexer game\src\HexerGame.asm</FILE><LINE>253</LINE></DoneDisplayMoveCounter>
+  <DisplayCurrGameLEDs><FILE>Z:\home\stevens\Documents\eecs10\ee10b\hw5 hexer game\src\HexerGame.asm</FILE><LINE>297</LINE></DisplayCurrGameLEDs>
   <DisplayGameLEDs><FILE>Z:\home\stevens\Documents\eecs10\ee10b\hw5 hexer game\src\Display.asm</FILE><LINE>156</LINE></DisplayGameLEDs>
-  <DoneResetGameLEDs><FILE>Z:\home\stevens\Documents\eecs10\ee10b\hw5 hexer game\src\HexerGame.asm</FILE><LINE>242</LINE></DoneResetGameLEDs>
-  <GetInitialMoveCount><FILE>Z:\home\stevens\Documents\eecs10\ee10b\hw5 hexer game\src\HexerGame.asm</FILE><LINE>248</LINE></GetInitialMoveCount>
-  <DisplayInitialMoveCount><FILE>Z:\home\stevens\Documents\eecs10\ee10b\hw5 hexer game\src\HexerGame.asm</FILE><LINE>254</LINE></DisplayInitialMoveCount>
-  <DoneResetMoveCounter><FILE>Z:\home\stevens\Documents\eecs10\ee10b\hw5 hexer game\src\HexerGame.asm</FILE><LINE>257</LINE></DoneResetMoveCounter>
-  <CheckGameLEDsPatt><FILE>Z:\home\stevens\Documents\eecs10\ee10b\hw5 hexer game\src\HexerGame.asm</FILE><LINE>277</LINE></CheckGameLEDsPatt>
-  <CheckMoveCounter><FILE>Z:\home\stevens\Documents\eecs10\ee10b\hw5 hexer game\src\HexerGame.asm</FILE><LINE>287</LINE></CheckMoveCounter>
-  <GetWinMessage><FILE>Z:\home\stevens\Documents\eecs10\ee10b\hw5 hexer game\src\HexerGame.asm</FILE><LINE>301</LINE></GetWinMessage>
-  <DoneGameOver><FILE>Z:\home\stevens\Documents\eecs10\ee10b\hw5 hexer game\src\HexerGame.asm</FILE><LINE>311</LINE></DoneGameOver>
-  <GetLoseMessage><FILE>Z:\home\stevens\Documents\eecs10\ee10b\hw5 hexer game\src\HexerGame.asm</FILE><LINE>296</LINE></GetLoseMessage>
-  <UpdateMessageAndState><FILE>Z:\home\stevens\Documents\eecs10\ee10b\hw5 hexer game\src\HexerGame.asm</FILE><LINE>305</LINE></UpdateMessageAndState>
-  <Delay16Loop><FILE>Z:\home\stevens\Documents\eecs10\ee10b\hw5 hexer game\src\HexerGame.asm</FILE><LINE>345</LINE></Delay16Loop>
-  <Delay16InnerLoop><FILE>Z:\home\stevens\Documents\eecs10\ee10b\hw5 hexer game\src\HexerGame.asm</FILE><LINE>348</LINE></Delay16InnerLoop>
-  <DoneDelay16><FILE>Z:\home\stevens\Documents\eecs10\ee10b\hw5 hexer game\src\HexerGame.asm</FILE><LINE>356</LINE></DoneDelay16>
-  <InitHexerGameLEDs><FILE>Z:\home\stevens\Documents\eecs10\ee10b\hw5 hexer game\src\HexerGame.asm</FILE><LINE>363</LINE></InitHexerGameLEDs>
-  <InitHexerMoveCounter><FILE>Z:\home\stevens\Documents\eecs10\ee10b\hw5 hexer game\src\HexerGame.asm</FILE><LINE>366</LINE></InitHexerMoveCounter>
-  <InitHexerGameState><FILE>Z:\home\stevens\Documents\eecs10\ee10b\hw5 hexer game\src\HexerGame.asm</FILE><LINE>369</LINE></InitHexerGameState>
-  <DoneInitHexerGame><FILE>Z:\home\stevens\Documents\eecs10\ee10b\hw5 hexer game\src\HexerGame.asm</FILE><LINE>377</LINE></DoneInitHexerGame>
-  <InvertGameLEDs><FILE>Z:\home\stevens\Documents\eecs10\ee10b\hw5 hexer game\src\HexerGame.asm</FILE><LINE>383</LINE></InvertGameLEDs>
-  <MaskCurrLEDsPatt><FILE>Z:\home\stevens\Documents\eecs10\ee10b\hw5 hexer game\src\HexerGame.asm</FILE><LINE>385</LINE></MaskCurrLEDsPatt>
-  <DoneInvertGameLEDs><FILE>Z:\home\stevens\Documents\eecs10\ee10b\hw5 hexer game\src\HexerGame.asm</FILE><LINE>411</LINE></DoneInvertGameLEDs>
-  <UpdateDisplay><FILE>Z:\home\stevens\Documents\eecs10\ee10b\hw5 hexer game\src\HexerGame.asm</FILE><LINE>466</LINE></UpdateDisplay>
-  <RotateShape><FILE>Z:\home\stevens\Documents\eecs10\ee10b\hw5 hexer game\src\HexerGame.asm</FILE><LINE>416</LINE></RotateShape>
-  <InitRotationTable><FILE>Z:\home\stevens\Documents\eecs10\ee10b\hw5 hexer game\src\HexerGame.asm</FILE><LINE>418</LINE></InitRotationTable>
-  <MaskCurrGameLEDsPatt><FILE>Z:\home\stevens\Documents\eecs10\ee10b\hw5 hexer game\src\HexerGame.asm</FILE><LINE>422</LINE></MaskCurrGameLEDsPatt>
-  <FindNextGameLEDsPattLoop><FILE>Z:\home\stevens\Documents\eecs10\ee10b\hw5 hexer game\src\HexerGame.asm</FILE><LINE>429</LINE></FindNextGameLEDsPattLoop>
-  <GoToNextRotationTableRow><FILE>Z:\home\stevens\Documents\eecs10\ee10b\hw5 hexer game\src\HexerGame.asm</FILE><LINE>457</LINE></GoToNextRotationTableRow>
-  <UseNewGameLEDsPatt><FILE>Z:\home\stevens\Documents\eecs10\ee10b\hw5 hexer game\src\HexerGame.asm</FILE><LINE>438</LINE></UseNewGameLEDsPatt>
-  <DoneRotateShape><FILE>Z:\home\stevens\Documents\eecs10\ee10b\hw5 hexer game\src\HexerGame.asm</FILE><LINE>461</LINE></DoneRotateShape>
-  <UpdateGameLEDs><FILE>Z:\home\stevens\Documents\eecs10\ee10b\hw5 hexer game\src\HexerGame.asm</FILE><LINE>468</LINE></UpdateGameLEDs>
-  <UpdateMoveCounter><FILE>Z:\home\stevens\Documents\eecs10\ee10b\hw5 hexer game\src\HexerGame.asm</FILE><LINE>470</LINE></UpdateMoveCounter>
+  <DoneDisplayCurrGameLEDs><FILE>Z:\home\stevens\Documents\eecs10\ee10b\hw5 hexer game\src\HexerGame.asm</FILE><LINE>302</LINE></DoneDisplayCurrGameLEDs>
+  <RunGameStateLoop><FILE>Z:\home\stevens\Documents\eecs10\ee10b\hw5 hexer game\src\HexerGame.asm</FILE><LINE>369</LINE></RunGameStateLoop>
+  <DoGamePlayState><FILE>Z:\home\stevens\Documents\eecs10\ee10b\hw5 hexer game\src\HexerGame.asm</FILE><LINE>377</LINE></DoGamePlayState>
+  <DoGameOverState><FILE>Z:\home\stevens\Documents\eecs10\ee10b\hw5 hexer game\src\HexerGame.asm</FILE><LINE>381</LINE></DoGameOverState>
+  <GameOverState><FILE>Z:\home\stevens\Documents\eecs10\ee10b\hw5 hexer game\src\HexerGame.asm</FILE><LINE>447</LINE></GameOverState>
+  <GamePlayState><FILE>Z:\home\stevens\Documents\eecs10\ee10b\hw5 hexer game\src\HexerGame.asm</FILE><LINE>626</LINE></GamePlayState>
+  <DoneHexerPlayGameLoop><FILE>Z:\home\stevens\Documents\eecs10\ee10b\hw5 hexer game\src\HexerGame.asm</FILE><LINE>385</LINE></DoneHexerPlayGameLoop>
+  <DisplayGameOverMessage><FILE>Z:\home\stevens\Documents\eecs10\ee10b\hw5 hexer game\src\HexerGame.asm</FILE><LINE>449</LINE></DisplayGameOverMessage>
+  <GameOverStateLoop><FILE>Z:\home\stevens\Documents\eecs10\ee10b\hw5 hexer game\src\HexerGame.asm</FILE><LINE>454</LINE></GameOverStateLoop>
+  <GetSwitches><FILE>Z:\home\stevens\Documents\eecs10\ee10b\hw5 hexer game\src\Switches.asm</FILE><LINE>218</LINE></GetSwitches>
+  <RandomResetGame><FILE>Z:\home\stevens\Documents\eecs10\ee10b\hw5 hexer game\src\HexerGame.asm</FILE><LINE>463</LINE></RandomResetGame>
+  <DoneGameOverState><FILE>Z:\home\stevens\Documents\eecs10\ee10b\hw5 hexer game\src\HexerGame.asm</FILE><LINE>467</LINE></DoneGameOverState>
+  <HandlePlaySwitchPress><FILE>Z:\home\stevens\Documents\eecs10\ee10b\hw5 hexer game\src\HexerGame.asm</FILE><LINE>540</LINE></HandlePlaySwitchPress>
+  <InitHandlePlaySwitchPress><FILE>Z:\home\stevens\Documents\eecs10\ee10b\hw5 hexer game\src\HexerGame.asm</FILE><LINE>542</LINE></InitHandlePlaySwitchPress>
+  <SwitchHandlerTable><FILE>Z:\home\stevens\Documents\eecs10\ee10b\hw5 hexer game\src\HexerGame.asm</FILE><LINE>1033</LINE></SwitchHandlerTable>
+  <GetSwitchHandlerLoop><FILE>Z:\home\stevens\Documents\eecs10\ee10b\hw5 hexer game\src\HexerGame.asm</FILE><LINE>546</LINE></GetSwitchHandlerLoop>
+  <InitSwitchHandler><FILE>Z:\home\stevens\Documents\eecs10\ee10b\hw5 hexer game\src\HexerGame.asm</FILE><LINE>557</LINE></InitSwitchHandler>
+  <DoneHandlePlaySwitchPress><FILE>Z:\home\stevens\Documents\eecs10\ee10b\hw5 hexer game\src\HexerGame.asm</FILE><LINE>574</LINE></DoneHandlePlaySwitchPress>
+  <RunSwitchHandler><FILE>Z:\home\stevens\Documents\eecs10\ee10b\hw5 hexer game\src\HexerGame.asm</FILE><LINE>571</LINE></RunSwitchHandler>
+  <HandleUserInput><FILE>Z:\home\stevens\Documents\eecs10\ee10b\hw5 hexer game\src\HexerGame.asm</FILE><LINE>628</LINE></HandleUserInput>
+  <GameOver><FILE>Z:\home\stevens\Documents\eecs10\ee10b\hw5 hexer game\src\HexerGame.asm</FILE><LINE>705</LINE></GameOver>
+  <DisplayAll><FILE>Z:\home\stevens\Documents\eecs10\ee10b\hw5 hexer game\src\HexerGame.asm</FILE><LINE>634</LINE></DisplayAll>
+  <DoneGamePlayState><FILE>Z:\home\stevens\Documents\eecs10\ee10b\hw5 hexer game\src\HexerGame.asm</FILE><LINE>638</LINE></DoneGamePlayState>
+  <CheckGameLEDsPatt><FILE>Z:\home\stevens\Documents\eecs10\ee10b\hw5 hexer game\src\HexerGame.asm</FILE><LINE>707</LINE></CheckGameLEDsPatt>
+  <CheckMoveCounter><FILE>Z:\home\stevens\Documents\eecs10\ee10b\hw5 hexer game\src\HexerGame.asm</FILE><LINE>717</LINE></CheckMoveCounter>
+  <GetWinMessage><FILE>Z:\home\stevens\Documents\eecs10\ee10b\hw5 hexer game\src\HexerGame.asm</FILE><LINE>731</LINE></GetWinMessage>
+  <DoneGameOver><FILE>Z:\home\stevens\Documents\eecs10\ee10b\hw5 hexer game\src\HexerGame.asm</FILE><LINE>741</LINE></DoneGameOver>
+  <GetLoseMessage><FILE>Z:\home\stevens\Documents\eecs10\ee10b\hw5 hexer game\src\HexerGame.asm</FILE><LINE>726</LINE></GetLoseMessage>
+  <UpdateMessageAndState><FILE>Z:\home\stevens\Documents\eecs10\ee10b\hw5 hexer game\src\HexerGame.asm</FILE><LINE>735</LINE></UpdateMessageAndState>
+  <Delay16><FILE>Z:\home\stevens\Documents\eecs10\ee10b\hw5 hexer game\src\HexerGame.asm</FILE><LINE>773</LINE></Delay16>
+  <Delay16Loop><FILE>Z:\home\stevens\Documents\eecs10\ee10b\hw5 hexer game\src\HexerGame.asm</FILE><LINE>775</LINE></Delay16Loop>
+  <Delay16InnerLoop><FILE>Z:\home\stevens\Documents\eecs10\ee10b\hw5 hexer game\src\HexerGame.asm</FILE><LINE>778</LINE></Delay16InnerLoop>
+  <DoneDelay16><FILE>Z:\home\stevens\Documents\eecs10\ee10b\hw5 hexer game\src\HexerGame.asm</FILE><LINE>786</LINE></DoneDelay16>
+  <InvertGameLEDs><FILE>Z:\home\stevens\Documents\eecs10\ee10b\hw5 hexer game\src\HexerGame.asm</FILE><LINE>843</LINE></InvertGameLEDs>
+  <MaskCurrLEDsPatt><FILE>Z:\home\stevens\Documents\eecs10\ee10b\hw5 hexer game\src\HexerGame.asm</FILE><LINE>845</LINE></MaskCurrLEDsPatt>
+  <InvertOnlyMaskedBits><FILE>Z:\home\stevens\Documents\eecs10\ee10b\hw5 hexer game\src\HexerGame.asm</FILE><LINE>851</LINE></InvertOnlyMaskedBits>
+  <ClearMaskedBits><FILE>Z:\home\stevens\Documents\eecs10\ee10b\hw5 hexer game\src\HexerGame.asm</FILE><LINE>857</LINE></ClearMaskedBits>
+  <ApplyInvertedBits><FILE>Z:\home\stevens\Documents\eecs10\ee10b\hw5 hexer game\src\HexerGame.asm</FILE><LINE>864</LINE></ApplyInvertedBits>
+  <DoneInvertGameLEDs><FILE>Z:\home\stevens\Documents\eecs10\ee10b\hw5 hexer game\src\HexerGame.asm</FILE><LINE>870</LINE></DoneInvertGameLEDs>
+  <UpdateMoveCounter><FILE>Z:\home\stevens\Documents\eecs10\ee10b\hw5 hexer game\src\HexerGame.asm</FILE><LINE>1015</LINE></UpdateMoveCounter>
+  <RotateShape><FILE>Z:\home\stevens\Documents\eecs10\ee10b\hw5 hexer game\src\HexerGame.asm</FILE><LINE>934</LINE></RotateShape>
+  <InitRotationTable><FILE>Z:\home\stevens\Documents\eecs10\ee10b\hw5 hexer game\src\HexerGame.asm</FILE><LINE>936</LINE></InitRotationTable>
+  <MaskCurrGameLEDsPatt><FILE>Z:\home\stevens\Documents\eecs10\ee10b\hw5 hexer game\src\HexerGame.asm</FILE><LINE>940</LINE></MaskCurrGameLEDsPatt>
+  <FindNextGameLEDsPattLoop><FILE>Z:\home\stevens\Documents\eecs10\ee10b\hw5 hexer game\src\HexerGame.asm</FILE><LINE>947</LINE></FindNextGameLEDsPattLoop>
+  <GoToNextRotationTableRow><FILE>Z:\home\stevens\Documents\eecs10\ee10b\hw5 hexer game\src\HexerGame.asm</FILE><LINE>975</LINE></GoToNextRotationTableRow>
+  <UseNewGameLEDsPatt><FILE>Z:\home\stevens\Documents\eecs10\ee10b\hw5 hexer game\src\HexerGame.asm</FILE><LINE>956</LINE></UseNewGameLEDsPatt>
+  <DoneRotateShape><FILE>Z:\home\stevens\Documents\eecs10\ee10b\hw5 hexer game\src\HexerGame.asm</FILE><LINE>979</LINE></DoneRotateShape>
+  <DoneUpdateMoveCounter><FILE>Z:\home\stevens\Documents\eecs10\ee10b\hw5 hexer game\src\HexerGame.asm</FILE><LINE>1025</LINE></DoneUpdateMoveCounter>
   <BlackHexagonRotation><FILE>Z:\home\stevens\Documents\eecs10\ee10b\hw5 hexer game\src\RotationTables.asm</FILE><LINE>58</LINE></BlackHexagonRotation>
   <RedTriangleRotation><FILE>Z:\home\stevens\Documents\eecs10\ee10b\hw5 hexer game\src\RotationTables.asm</FILE><LINE>770</LINE></RedTriangleRotation>
   <GreenTriangleRotation><FILE>Z:\home\stevens\Documents\eecs10\ee10b\hw5 hexer game\src\RotationTables.asm</FILE><LINE>234</LINE></GreenTriangleRotation>
@@ -117,6 +119,7 @@
   <LEDmux><FILE>Z:\home\stevens\Documents\eecs10\ee10b\hw5 hexer game\src\Display.asm</FILE><LINE>291</LINE></LEDmux>
   <DoneTimer0CompareHandler><FILE>Z:\home\stevens\Documents\eecs10\ee10b\hw5 hexer game\src\HexerIRQ.asm</FILE><LINE>82</LINE></DoneTimer0CompareHandler>
   <StartInitDisplay><FILE>Z:\home\stevens\Documents\eecs10\ee10b\hw5 hexer game\src\Display.asm</FILE><LINE>59</LINE></StartInitDisplay>
+  <ClearDisplay><FILE>Z:\home\stevens\Documents\eecs10\ee10b\hw5 hexer game\src\Display.asm</FILE><LINE>103</LINE></ClearDisplay>
   <InitLEDMux><FILE>Z:\home\stevens\Documents\eecs10\ee10b\hw5 hexer game\src\Display.asm</FILE><LINE>62</LINE></InitLEDMux>
   <currBuffDig><FILE>Z:\home\stevens\Documents\eecs10\ee10b\hw5 hexer game\src\Display.asm</FILE><LINE>338</LINE></currBuffDig>
   <currDrivePatt><FILE>Z:\home\stevens\Documents\eecs10\ee10b\hw5 hexer game\src\Display.asm</FILE><LINE>339</LINE></currDrivePatt>
